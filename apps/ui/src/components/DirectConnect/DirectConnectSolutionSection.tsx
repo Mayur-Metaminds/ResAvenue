@@ -155,7 +155,7 @@ export function DirectConnectSolutionSection() {
   return (
     <BentoGrid
       items={solutions}
-      sectionClassName="w-full py-[60px] lg:py-[72px] px-4 md:px-8 bg-white"
+      sectionClassName="w-full py-[50px] lg:py-[80px] px-4 md:px-8 bg-white"
       containerClassName="container mx-auto max-w-[1300px]"
       cardClassName="p-8 lg:p-12 shadow-[0_4px_40px_-15px_rgba(0,0,0,0.05)]"
       header={
@@ -176,7 +176,7 @@ export function DirectConnectSolutionSection() {
       }
       renderCard={(item, { theme }) => (
         <div className="relative z-10 flex h-full flex-col">
-          {item.icon}
+          <div className="mb-6">{item.icon}</div>
 
           <h3
             className={cn(
