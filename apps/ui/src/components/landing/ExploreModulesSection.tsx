@@ -39,7 +39,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Mobile-first booking flow that converts visitors with frictionless reservations.",
     icon: Monitor,
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/Explore-Module.png",
   },
   {
     id: "corporate",
@@ -47,7 +47,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Negotiated rates, loyalty tiers, and travel-program portals in one place.",
     icon: Users,
-    image: "/images/placeholder-direct-connect.png",
+    image: "/images/Landing/Explore-Module.png",
   },
   {
     id: "analytics",
@@ -55,7 +55,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Real-time pace, pickup, and channel mix dashboards built for revenue teams.",
     icon: BarChart3,
-    image: "/images/placeholder-revenue.png",
+    image: "/images/Landing/Explore-Module.png",
   },
   {
     id: "discounts",
@@ -63,7 +63,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Supports multiple rate plans, discounts, promo codes, and value add-ons to boost RevPAR and ADR.",
     icon: Percent,
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/Explore-Module.png",
   },
   {
     id: "events",
@@ -71,7 +71,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Sell, manage, and track events alongside room revenue without a second system.",
     icon: Ticket,
-    image: "/images/placeholder-events.png",
+    image: "/images/Landing/Explore-Module.png",
   },
   {
     id: "packages",
@@ -79,7 +79,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Bundle rooms, F&B, and experiences into sellable packages with margin control.",
     icon: PackageOpen,
-    image: "/images/placeholder-pms.png",
+    image: "/images/Landing/Explore-Module.png",
   },
   {
     id: "invoice",
@@ -87,7 +87,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Branded payment links, partial captures, and reconciliation built in.",
     icon: Receipt,
-    image: "/images/placeholder-channel-connect.png",
+    image: "/images/Landing/Explore-Module.png",
   },
 ]
 
@@ -98,7 +98,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "One source of truth pushed to every connected channel in real time.",
     icon: PackageOpen,
-    image: "/images/placeholder-channel-connect.png",
+    image: "/images/Landing/Explore-Module.png",
   },
   {
     id: "otas",
@@ -106,7 +106,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Plug into the world's biggest demand sources without per-channel work.",
     icon: Monitor,
-    image: "/images/placeholder-distribution.png",
+    image: "/images/Landing/Explore-Module.png",
   },
   {
     id: "realtime",
@@ -114,7 +114,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Rate, availability, and restriction sync with sub-second propagation.",
     icon: BarChart3,
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/Explore-Module.png",
   },
 ]
 
@@ -261,16 +261,14 @@ export function ExploreModulesSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.35, ease: "easeOut" }}
-                    className="relative h-full w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-4 shadow-2xl backdrop-blur-sm md:p-6"
+                    className="absolute top-0 left-0 h-full w-[150%] overflow-hidden rounded-l-3xl border-y border-l border-white/10 shadow-2xl"
                   >
-                    <div className="h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-white">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={activeFeature.image}
-                        alt={activeFeature.label}
-                        className="h-full w-full object-cover object-top-left"
-                      />
-                    </div>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={activeFeature.image}
+                      alt={activeFeature.label}
+                      className="h-full w-full object-cover object-left-top"
+                    />
                   </motion.div>
                 </AnimatePresence>
               </div>

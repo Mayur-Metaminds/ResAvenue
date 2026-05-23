@@ -12,14 +12,23 @@ import { cn } from "@/lib/styles"
 
 import { PopupIcon } from "../../../public/svg/commonSvg"
 
+/**
+ * Card metadata for the bento grid.
+ *
+ * Modal-related fields (`anchor`, `modalFeatures`, `imagePlaceholder`) are
+ * optional so the same grid can render static cards (no popup) alongside
+ * modal-capable cards. A card opens a modal only if all three are present
+ * — see `hasModal()` below. Existing consumers that always supply them
+ * keep working unchanged.
+ */
 export type BentoItem = {
   id: string
   title: string
   theme: "light" | "dark"
   gridSpan: string
-  anchor: ModalAnchor
-  modalFeatures: string[]
-  imagePlaceholder: string
+  anchor?: ModalAnchor
+  modalFeatures?: string[]
+  imagePlaceholder?: string
 }
 
 type BentoGridProps<T extends BentoItem> = {
@@ -102,6 +111,23 @@ function computeBoundsForAnchor(
   }
 }
 
+/** Narrowed shape: a card that carries every field the modal needs. */
+type ModalCapable<T extends BentoItem> = T & {
+  anchor: ModalAnchor
+  modalFeatures: string[]
+  imagePlaceholder: string
+}
+
+/** A card is modal-capable only if it carries every field the modal needs. */
+function hasModal<T extends BentoItem>(item: T): item is ModalCapable<T> {
+  return (
+    item.anchor != null &&
+    item.imagePlaceholder != null &&
+    Array.isArray(item.modalFeatures) &&
+    item.modalFeatures.length > 0
+  )
+}
+
 export function BentoGrid<T extends BentoItem>({
   items,
   renderCard,
@@ -111,12 +137,13 @@ export function BentoGrid<T extends BentoItem>({
   containerClassName,
   cardClassName,
 }: BentoGridProps<T>) {
-  const [selected, setSelected] = useState<T | null>(null)
+  const [selected, setSelected] = useState<ModalCapable<T> | null>(null)
   const [bounds, setBounds] = useState<ModalBounds | null>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({})
   const gridRef = useRef<HTMLDivElement | null>(null)
 
   const openModal = useCallback((item: T) => {
+    if (!hasModal(item)) return
     const card = cardRefs.current[item.id]
     const grid = gridRef.current
     if (!card || !grid) return
@@ -131,6 +158,9 @@ export function BentoGrid<T extends BentoItem>({
   }, [])
 
   const closeModal = useCallback(() => setSelected(null), [])
+
+  // Skip mounting the modal entirely if no card in this grid uses one.
+  const anyModal = items.some(hasModal)
 
   return (
     <section className={sectionClassName} style={sectionStyle}>
@@ -160,19 +190,23 @@ export function BentoGrid<T extends BentoItem>({
                   : undefined
               }
             >
-              <PopupTrigger
-                onClick={() => openModal(item)}
-                label={`View details for ${item.title}`}
-              />
+              {hasModal(item) && (
+                <PopupTrigger
+                  onClick={() => openModal(item)}
+                  label={`View details for ${item.title}`}
+                />
+              )}
               {renderCard(item, { theme: item.theme })}
             </div>
           ))}
 
-          <BentoProductModal
-            product={selected}
-            bounds={bounds}
-            onClose={closeModal}
-          />
+          {anyModal && (
+            <BentoProductModal
+              product={selected}
+              bounds={bounds}
+              onClose={closeModal}
+            />
+          )}
         </div>
       </div>
     </section>
