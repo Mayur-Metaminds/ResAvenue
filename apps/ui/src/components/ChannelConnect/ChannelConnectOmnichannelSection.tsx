@@ -131,7 +131,7 @@ export function ChannelConnectOmnichannelSection() {
         <SectionHeader
           theme="light"
           className="mx-auto mb-[40px] max-w-3xl text-center lg:mb-[60px]"
-          eyebrow="OMNICHANNEL CONNECTIVITY"
+          eyebrow="API-first infrastructure"
           title={
             <>
               Omnichannel Connectivity <br />

@@ -12,7 +12,10 @@ import {
 
 export function ChannelConnectHeroSection() {
   return (
-    <section className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#010C28]">
+    <section
+      className="relative flex min-h-screen w-full flex-col overflow-hidden  bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
+    >
       {/* Container */}
       <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[106px] lg:px-20">
         {/* Main Content */}
@@ -26,8 +29,8 @@ export function ChannelConnectHeroSection() {
                   style={
                     {
                       "--hero-title-color": "#FFFFFF",
-                      "--hero-title-gradient":
-                        "linear-gradient(90deg, #ED862E 0%, #D97726 100%)",
+                      // Updated to match Figma specs exactly
+                      "--hero-title-gradient": "linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)",
                     } as React.CSSProperties
                   }
                 >
@@ -36,14 +39,18 @@ export function ChannelConnectHeroSection() {
                   <HeroTitle.Highlight>Global Distribution</HeroTitle.Highlight>
                 </HeroTitle>
               }
-              description="Control Every Channel. Maximize Every Booking. Simplify hotel distribution with a centralized channel management solution built for speed, accuracy, and scale. Connects to 100+ channels directly worldwide. Instantly update rates and inventory across OTAs, GDS, and metasearch platforms while optimizing performance with real-time insights."
+              description={
+                <span className="typo-body1 text-white/55">
+                  Control Every Channel. Maximize Every Booking. Simplify hotel distribution with a centralized channel management solution built for speed, accuracy, and scale. Connects to 100+ channels directly worldwide. Instantly update rates and inventory across OTAs, GDS, and metasearch platforms while optimizing performance with real-time insights.
+                </span>
+              }
               actions={[
                 <Button
                   key="demo"
                   variant="primary"
                   size="default"
                   icon={<ArrowRight className="h-4 w-4" />}
-                  className="gap-[7.6px] pt-[8.5px] pr-[10.5px] pb-[8.5px] pl-[9.5px] lg:px-[28px] lg:pt-[17px] lg:pb-[18px]"
+                  className="gap-[7.6px] pt-[8.5px] pr-[10.5px] pb-[8.5px] pl-[9.5px] lg:pt-[14px] lg:pr-[39.16px] lg:pb-[16px] lg:pl-[28px]"
                 >
                   Start Your Journey
                 </Button>,
@@ -58,7 +65,7 @@ export function ChannelConnectHeroSection() {
               <div className="absolute top-1/2 left-1/2 -z-10 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ED862E]/20 blur-[100px]" />
 
               {/* Main Dashboard Image */}
-              <div className="relative overflow-hidden rounded-[24px] border border-white/10 shadow-2xl">
+              <div className="relative overflow-hidden ">
                 <Image
                   src="/images/Channel-Connect/Hero-img.png"
                   alt="Channel Connect Dashboard Preview"

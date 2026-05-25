@@ -1,8 +1,9 @@
-import Image from "next/image"
+"use client"
 import type * as React from "react"
 
 import { Eyebrow } from "@/components/common/Eyebrow"
-
+import Lottie from "lottie-react"
+import animationData from "../../../public/assets/animation.json"
 import { HeroTitle } from "./HeroTitle"
 
 export function SolutionSection() {
@@ -50,13 +51,12 @@ export function SolutionSection() {
           {/* Horizontal Lines Background */}
 
           {/* GIF Mockup */}
-          <div className="relative z-10 h-[90%] w-[90%] rounded-xl bg-white drop-shadow-xl">
-            <Image
-              src="/assets/dashboard.gif"
-              alt="ResAvenue Dashboard Animation"
-              fill
-              unoptimized
-              className="object-contain"
+          <div className="relative z-10 h-[90%] w-[90%]">
+            <Lottie
+              animationData={animationData}
+              loop
+              autoplay
+              className="h-full w-full"
             />
           </div>
         </div>

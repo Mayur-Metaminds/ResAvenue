@@ -7,7 +7,7 @@ export interface HeroContentProps {
   /** Eyebrow label content. Pass a string or a full <Eyebrow /> node to override styling. */
   eyebrow: React.ReactNode
   title: React.ReactNode
-  description: string
+  description: React.ReactNode
   actions?: React.ReactNode[]
   className?: string
 }

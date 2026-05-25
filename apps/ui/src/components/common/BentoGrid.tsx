@@ -170,7 +170,7 @@ export function BentoGrid<T extends BentoItem>({
           ref={gridRef}
           className="relative grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-12"
         >
-          {items.map((item) => (
+          {items?.map((item) => (
             <div
               key={item.id}
               ref={(el) => {
