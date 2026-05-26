@@ -47,7 +47,6 @@ export function DirectConnectOperationsSection() {
       <div className="container mx-auto max-w-[1200px]">
         {/* Header */}
         <SectionHeader
-          theme="light"
           className="mb-[24px] text-center lg:mb-[50px]"
           eyebrow="OUR SOLUTION"
           title={

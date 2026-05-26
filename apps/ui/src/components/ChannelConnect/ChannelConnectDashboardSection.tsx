@@ -3,20 +3,34 @@
 import Image from "next/image"
 
 import { SectionHeader } from "@/components/landing/SectionHeader"
+import { FeatureShowcase } from "@/components/common/FeatureShowcase"
 
 import {
   OmniChannelManagementIcon,
   BulkInventoryControlIcon,
   IntegratedPaymentsIcon,
+  ReservationDashboardIcon1,
+  ReservationDashboardIcon2,
+  ReservationDashboardIcon3,
 } from "../../../public/svg/Channel-Connect"
 
 export function ChannelConnectDashboardSection() {
   return (
-    <section className="w-full bg-white px-4 py-[60px] md:px-8 lg:py-[100px]">
+    <section className="w-full bg-white px-4  md:px-8">
       <div className="container mx-auto max-w-[1200px]">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left Column: Image/Dashboard Preview */}
-          <div className="relative order-2 w-full lg:order-1">
+        <FeatureShowcase
+          imagePosition="left"
+          header={{
+            eyebrow: "CENTRALIZED OPERATIONS HUB",
+            title: (
+              <>
+                Central Reservation <br className="hidden lg:block" />
+                <SectionHeader.Highlight>Dashboard</SectionHeader.Highlight>
+              </>
+            ),
+            description: "Control your entire inventory across all channels from one intuitive interface.",
+          }}
+          imageSlot={
             <Image
               src="/images/Channel-Connect/Hero-img.png"
               alt="Central Reservation Dashboard"
@@ -24,57 +38,29 @@ export function ChannelConnectDashboardSection() {
               height={1934}
               className="h-auto w-full object-cover"
             />
-          </div>
+          }
+        >
+          {/* Feature 1 */}
+          <FeatureShowcase.Card
+            variant="compact"
+            icon={<ReservationDashboardIcon1 className="h-6 w-6 text-[#ED862E]" />}
+            title="Omni-Channel Management"
+          />
 
-          {/* Right Column: Content & Features */}
-          <div className="order-1 flex w-full flex-col lg:order-2">
-            <SectionHeader
-              theme="light"
-              className="mb-10 lg:mb-12"
-              eyebrow="CENTRALIZED OPERATIONS HUB"
-              title={
-                <>
-                  Central Reservation <br className="hidden lg:block" />
-                  <SectionHeader.Highlight>Dashboard</SectionHeader.Highlight>
-                </>
-              }
-              description="Control your entire inventory across all channels from one intuitive interface."
-            />
+          {/* Feature 2 */}
+          <FeatureShowcase.Card
+            variant="compact"
+            icon={<ReservationDashboardIcon2 className="h-6 w-6 text-[#ED862E]" />}
+            title="Bulk Inventory & Rate Control"
+          />
 
-            {/* Feature Cards List */}
-            <div className="flex flex-col gap-4">
-              {/* Feature 1 */}
-              <div className="flex items-center gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-5 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] transition-all hover:border-[#ED862E]/50 hover:shadow-md">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#ED862E]/10">
-                  <OmniChannelManagementIcon className="h-6 w-6 text-[#ED862E]" />
-                </div>
-                <h3 className="font-plus-jakarta-700 text-[16px] text-[#010C28] lg:text-[18px]">
-                  Omni-Channel Management
-                </h3>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="flex items-center gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-5 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] transition-all hover:border-[#ED862E]/50 hover:shadow-md">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#ED862E]/10">
-                  <BulkInventoryControlIcon className="h-6 w-6 text-[#ED862E]" />
-                </div>
-                <h3 className="font-plus-jakarta-700 text-[16px] text-[#010C28] lg:text-[18px]">
-                  Bulk Inventory & Rate Control
-                </h3>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="flex items-center gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-5 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] transition-all hover:border-[#ED862E]/50 hover:shadow-md">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#ED862E]/10">
-                  <IntegratedPaymentsIcon className="h-6 w-6 text-[#ED862E]" />
-                </div>
-                <h3 className="font-plus-jakarta-700 text-[16px] text-[#010C28] lg:text-[18px]">
-                  Integrated Payments
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
+          {/* Feature 3 */}
+          <FeatureShowcase.Card
+            variant="compact"
+            icon={<ReservationDashboardIcon3 className="h-6 w-6 text-[#ED862E]" />}
+            title="Integrated Payments"
+          />
+        </FeatureShowcase>
       </div>
     </section>
   )

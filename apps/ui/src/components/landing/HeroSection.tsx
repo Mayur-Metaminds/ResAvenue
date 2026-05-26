@@ -1,3 +1,5 @@
+"use client"
+
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 
@@ -6,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { HeroContent } from "./HeroContent"
 import { HeroTitle } from "./HeroTitle"
 import { LogoMarquee } from "./LogoMarquee"
+import Lottie from "lottie-react"
+import dashboardLottie from "../../../public/assets/animation2.json"
 
 export function HeroSection() {
   return (
@@ -64,18 +68,12 @@ export function HeroSection() {
           {/* Right Column: Mockup */}
           <div className="relative z-20 flex h-[210px] w-[600px] w-full items-center sm:h-[480px] lg:absolute lg:top-1/2 lg:left-[40%] lg:h-[430px] lg:w-[700px] lg:-translate-y-1/2 xl:left-[42%] xl:h-[590px] xl:w-[876px]">
             {/* Dashboard video — muted + playsInline are required for mobile autoplay */}
-            <div className="relative h-full w-full drop-shadow-2xl">
-              <video
-                src="/assets/Dashboard_4.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                aria-label="ResAvenue Dashboard Mockup"
-                className="absolute inset-0 h-full w-full object-cover object-center lg:object-left"
-              />
-            </div>
+              <Lottie
+              animationData={dashboardLottie}
+              loop
+              autoplay
+              className="h-full w-full"
+            />
 
             {/* Glow */}
             <div className="bg-primary/20 absolute top-1/2 left-1/2 -z-10 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]" />

@@ -6,11 +6,17 @@ import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { cn } from "@/lib/styles"
 
-import { MetaChannelsIcon } from "../../../public/svg/Channel-Connect"
+import {
+  OmnichannelCardIcon1,
+  OmnichannelCardIcon2,
+  OmnichannelCardIcon3,
+  OmnichannelCardIcon4,
+} from "../../../public/svg/Channel-Connect"
 
 export type OmnichannelCard = BentoItem & {
   description: string
-  renderGraphic: () => React.ReactNode
+  icon?: React.ReactNode
+  renderGraphic?: () => React.ReactNode
 }
 
 const omnichannelCards: OmnichannelCard[] = [
@@ -20,19 +26,29 @@ const omnichannelCards: OmnichannelCard[] = [
     description:
       "Direct, reliable connections with all major global OTAs (Booking, Expedia, Agoda) ensuring your inventory is accurately reflected in real-time.",
     theme: "dark",
-    gridSpan: "col-span-1 md:col-span-4",
+    gridSpan: "col-span-1 md:col-span-6 xl:col-span-2",
+    icon: (
+      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#010C28]/40 ring-1 ring-white/10 backdrop-blur-md">
+        <OmnichannelCardIcon1 />
+      </div>
+    ),
     renderGraphic: () => (
-      <div className="absolute bottom-6 left-6 flex items-center gap-2">
-        {["B.", "E.", "A."].map((label) => (
+      <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20">
+        {["EX", "BK", "AG"].map((label) => (
           <div
             key={label}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white shadow-md"
+            className="flex h-[46px] w-[46px] items-center justify-center rounded-full border-2 border-[#1E293B] bg-white text-[#010C28] shadow-sm"
           >
-            <span className="font-plus-jakarta-700 text-sm font-bold">
+            <span className="font-plus-jakarta-700 text-[13px] font-bold">
               {label}
             </span>
           </div>
         ))}
+        <div className="flex h-[46px] w-[46px] items-center justify-center rounded-full border-2 border-white/20 bg-[#010C28] text-white shadow-sm">
+          <span className="font-plus-jakarta-700 text-[12px] font-bold tracking-tight">
+            +1.9k
+          </span>
+        </div>
       </div>
     ),
   },
@@ -42,81 +58,40 @@ const omnichannelCards: OmnichannelCard[] = [
     description:
       "Connect directly to key booking engines and reservation systems without intermediaries ensuring high-performance direct integration.",
     theme: "light",
-    gridSpan: "col-span-1 md:col-span-4",
-    renderGraphic: () => (
-      <div className="absolute top-4 right-0 left-0 flex h-[140px] items-center justify-center">
-        <div className="relative flex h-full w-full max-w-[200px] items-center justify-center">
-          <div className="absolute top-1/2 left-1/2 z-10 flex h-[50px] w-[50px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border border-slate-100 bg-white shadow-lg">
-            <span className="font-plus-jakarta-700 text-xs font-bold text-[#ED862E]">
-              API
-            </span>
-          </div>
-
-          <div className="absolute top-[10%] right-[10%] z-20 flex h-8 w-12 items-center justify-center rounded-md bg-[#ED862E] text-white shadow-md">
-            <span className="font-plus-jakarta-700 text-[10px] font-bold">
-              144.25
-            </span>
-          </div>
-          <div className="absolute bottom-[20%] left-[10%] z-20 flex h-6 w-8 items-center justify-center rounded-md bg-[#ED862E] text-white shadow-md">
-            <span className="font-plus-jakarta-700 text-[10px] font-bold">
-              33
-            </span>
-          </div>
-          <div className="absolute right-[20%] bottom-[10%] z-20 flex h-8 w-10 items-center justify-center rounded-md bg-[#ED862E] text-white shadow-md">
-            <span className="font-plus-jakarta-700 text-[10px] font-bold">
-              41.57
-            </span>
-          </div>
-
-          <svg
-            className="absolute inset-0 h-full w-full"
-            style={{ zIndex: 0 }}
-            aria-hidden
-          >
-            <line
-              x1="50%"
-              y1="50%"
-              x2="85%"
-              y2="20%"
-              stroke="#ED862E"
-              strokeWidth="2"
-              strokeDasharray="4 4"
-            />
-            <line
-              x1="50%"
-              y1="50%"
-              x2="20%"
-              y2="75%"
-              stroke="#ED862E"
-              strokeWidth="2"
-              strokeDasharray="4 4"
-            />
-            <line
-              x1="50%"
-              y1="50%"
-              x2="75%"
-              y2="85%"
-              stroke="#ED862E"
-              strokeWidth="2"
-              strokeDasharray="4 4"
-            />
-          </svg>
-        </div>
+    gridSpan: "col-span-1 md:col-span-6 xl:col-span-1",
+    icon: (
+      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#ED862E]/10">
+        <OmnichannelCardIcon2 />
       </div>
     ),
+  },
+  {
+    id: "gds-access",
+    title: "GDS Access",
+    description:
+      "Expand reach to corporate travellers via leading GDS platforms like Amadeus, Sabre, and Travelport.",
+    theme: "light",
+    gridSpan: "col-span-1 md:col-span-6 xl:col-span-1",
+    icon: (
+      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#ED862E]/10">
+        <OmnichannelCardIcon3 />
+      </div>
+    ),
+    renderGraphic: () => null,
   },
   {
     id: "meta-channels",
     title: "Meta-Channels",
     description:
-      "Boost visibility and drive direct bookings with integrations to Google Hotel Ads, TripAdvisor, Kayak, and Trivago.",
+      "Boost visibility and drive direct traffic with integrations to meta-search platforms like Google Hotel Finder.",
     theme: "light",
-    gridSpan: "col-span-1 md:col-span-4",
-    renderGraphic: () => (
-      <div className="absolute top-10 left-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ED862E]/10">
-        <MetaChannelsIcon className="h-8 w-8 text-[#ED862E]" />
+    gridSpan: "col-span-1 md:col-span-6 xl:col-span-1",
+    icon: (
+      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#ED862E]/10">
+        <OmnichannelCardIcon4 />
       </div>
     ),
+    renderGraphic: () => null,
   },
 ]
 
@@ -124,46 +99,68 @@ export function ChannelConnectOmnichannelSection() {
   return (
     <BentoGrid<OmnichannelCard>
       items={omnichannelCards}
-      sectionClassName="w-full py-[60px] lg:py-[100px] px-4 md:px-8 bg-white"
-      containerClassName="container mx-auto max-w-[1200px]"
-      cardClassName="p-8 lg:p-10 min-h-[320px] justify-end"
+      sectionClassName="w-full py-[32px] lg:py-[90px] px-[20px] lg:px-[80px] bg-white"
+      containerClassName="w-full mx-auto [&>.grid]:xl:!grid-cols-5"
+      cardClassName="p-6 md:p-8 xl:p-10 min-h-[320px] md:min-h-[380px] justify-end"
       header={
         <SectionHeader
-          theme="light"
-          className="mx-auto mb-[40px] max-w-3xl text-center lg:mb-[60px]"
+          className="mx-auto max-w-3xl text-center mb-[45px] lg:mb-[28px]"
           eyebrow="API-first infrastructure"
+          eyebrowClassName="mb-[12px]"
+          highlightGradient="linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 41.93%, #ED862E 60.24%)"
+          titleClassName="font-medium mb-[16px] lg:mb-[24px]"
           title={
-            <>
-              Omnichannel Connectivity <br />
-              <SectionHeader.Highlight>Ecosystem</SectionHeader.Highlight>
-            </>
+            <SectionHeader.Highlight className="inline-block text-center">
+              <span
+                className="text-[#010C28]"
+                style={{ WebkitTextFillColor: "#010C28" }}
+              >
+                Omnichannel
+              </span>
+              <br className="md:hidden" />
+              Connectivity
+              <span className="md:hidden"> </span>
+              <br className="hidden md:block" />
+              Ecosystem
+            </SectionHeader.Highlight>
           }
           description="Power seamless connectivity between PMS, CRSs, and GDS with high performance direct integrations."
         />
       }
       renderCard={(item, { theme }) => (
-        <>
-          {item.renderGraphic()}
-          <div className="relative z-10 mt-auto">
-            <h3
-              className={cn(
-                "font-plus-jakarta-700 mb-3 text-[20px] leading-[1.3]",
-                theme === "dark" ? "text-white" : "text-[#0F172A]"
-              )}
-            >
-              {item.title}
-            </h3>
-            <p
-              className={cn(
-                "font-source-sans-400 text-[14px] leading-[22px]",
-                theme === "dark" ? "text-white/70" : "text-[#64748B]"
-              )}
-            >
-              {item.description}
-            </p>
-          </div>
-        </>
+    <>
+      {item?.icon && (
+        <div className="absolute top-6 left-6 md:top-8 md:left-8 xl:top-10 xl:left-10 z-20">
+          {item.icon}
+        </div>
       )}
-    />
+      {item?.renderGraphic?.()}
+      <div
+        className={cn(
+          "relative z-10 mt-auto",
+          (item.id === "global-otas" || item.id === "discounts-promotion") &&
+            "mb-[64px] md:mb-[72px] xl:mb-[80px]"
+        )}
+      >
+        <h3
+          className={cn(
+            "font-plus-jakarta-700 mb-4 text-[20px] leading-[1.2] tracking-tight",
+            theme === "dark" ? "text-white" : "text-[#0F172A]"
+          )}
+        >
+          {item?.title}
+        </h3>
+        <p
+          className={cn(
+            "font-source-sans-400 text-[14px] leading-[24px]",
+            theme === "dark" ? "text-white/80" : "text-[#64748B]"
+          )}
+        >
+          {item?.description}
+        </p>
+      </div>
+    </>
+  )}
+/>
   )
 }

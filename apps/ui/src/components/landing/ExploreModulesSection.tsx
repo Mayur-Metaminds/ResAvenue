@@ -201,8 +201,9 @@ export function ExploreModulesSection() {
           {/* Header */}
           <SectionHeader
             className="mb-5"
-            theme="dark"
             eyebrow="CORE FEATURES"
+            titleColor="#FFFFFF"
+            highlightGradient="linear-gradient(90deg, #ED862E 0%, #ED862E 100%)"
             title={
               <>
                 Explore the Power Behind{" "}

@@ -123,8 +123,9 @@ export function TestimonialsSection() {
         {/* Testimonials Header */}
         <div className="flex flex-col items-center text-center">
           <SectionHeader
-            theme="dark"
             eyebrow="TESTIMONIAL"
+            titleColor="#FFFFFF"
+            highlightGradient="linear-gradient(90deg, #ED862E 0%, #ED862E 100%)"
             title={
               <>
                 Built for{" "}
@@ -208,8 +209,9 @@ export function TestimonialsSection() {
         {/* Separator / Spacer */}
         <SectionHeader
           className="mt-32 mb-12"
-          theme="dark"
           eyebrow="BY THE NUMBERS"
+          titleColor="#FFFFFF"
+          highlightGradient="linear-gradient(90deg, #ED862E 0%, #ED862E 100%)"
           title={
             <>
               Proven <SectionHeader.Highlight>Results</SectionHeader.Highlight>{" "}
