@@ -160,7 +160,6 @@ export function DirectConnectSolutionSection() {
       cardClassName="p-8 lg:p-12 shadow-[0_4px_40px_-15px_rgba(0,0,0,0.05)]"
       header={
         <SectionHeader
-          theme="light"
           className="mx-auto mb-12 max-w-3xl text-center lg:mb-[40px]"
           eyebrow="OUR SOLUTION"
           title={

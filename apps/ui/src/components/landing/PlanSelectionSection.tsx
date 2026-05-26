@@ -114,7 +114,6 @@ export function PlanSelectionSection() {
       {/* Header */}
       <div className="z-10 mb-16 px-4 text-center">
         <SectionHeader
-          theme="light"
           eyebrow="PRICING"
           title={
             <>

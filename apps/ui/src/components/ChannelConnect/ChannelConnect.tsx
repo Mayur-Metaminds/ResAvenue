@@ -11,11 +11,11 @@ export default function ChannelConnect() {
     <main className="flex min-h-screen flex-col bg-white">
       <ChannelConnectHeroSection />
       <ChannelConnectOmnichannelSection />
-      {/* <ChannelConnectEngineeredSection />     
+      <ChannelConnectEngineeredSection />     
       <ChannelConnectDashboardSection />
       <ChannelConnectPortfolioSection />
       <ChannelConnectCentralizeSection />
-      <CtaSection/> */}
+      <CtaSection/>
     </main>
   )
 }

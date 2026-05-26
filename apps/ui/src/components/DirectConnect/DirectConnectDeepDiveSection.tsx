@@ -58,7 +58,6 @@ export function DirectConnectDeepDiveSection() {
         <div className="order-1 flex w-full flex-col lg:order-2">
           {/* Header */}
           <SectionHeader
-            theme="dark"
             className="mb-[38px] items-start text-left"
             eyebrow={
               <Eyebrow
