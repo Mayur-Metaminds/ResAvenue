@@ -8,7 +8,7 @@ import { cn } from "@/lib/styles"
 
 import { MetaChannelsIcon } from "../../../public/svg/Channel-Connect"
 
-type OmnichannelCard = BentoItem & {
+export type OmnichannelCard = BentoItem & {
   description: string
   renderGraphic: () => React.ReactNode
 }

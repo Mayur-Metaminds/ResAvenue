@@ -10,6 +10,9 @@ export interface HeroContentProps {
   description: React.ReactNode
   actions?: React.ReactNode[]
   className?: string
+  eyebrowClassName?: string
+  /** Optional color for the eyebrow text. Defaults to white if not provided. */
+  eyebrowColor?: string
 }
 
 export function HeroContent({
@@ -18,12 +21,18 @@ export function HeroContent({
   description,
   actions,
   className,
+  eyebrowClassName,
+  eyebrowColor,
 }: HeroContentProps) {
   return (
     <div className={cn("flex max-w-xl flex-col justify-center", className)}>
       {/* Eyebrow — wraps string content in <Eyebrow />, or renders a passed node as-is for full control. */}
-      <div className="mb-[16px] lg:mb-[12px]">
-        {typeof eyebrow === "string" ? <Eyebrow>{eyebrow}</Eyebrow> : eyebrow}
+      <div className={cn("mb-[16px] lg:mb-[12px]", eyebrowClassName)}>
+        {typeof eyebrow === "string" ? (
+          <Eyebrow eyebrowColor={eyebrowColor}>{eyebrow}</Eyebrow>
+        ) : (
+          eyebrow
+        )}
       </div>
 
       {/* Main Title — the caller owns the heading element (e.g. <HeroTitle />). */}
