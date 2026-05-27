@@ -24,16 +24,17 @@ import { PopupIcon } from "../../../public/svg/commonSvg"
 export type BentoItem = {
   id: string
   title: string
-  theme: "light" | "dark"
   gridSpan: string
+  isDark?: boolean
   anchor?: ModalAnchor
   modalFeatures?: string[]
   imagePlaceholder?: string
+  href?: string
 }
 
 type BentoGridProps<T extends BentoItem> = {
   items: T[]
-  renderCard: (item: T, ctx: { theme: "light" | "dark" }) => React.ReactNode
+  renderCard: (item: T) => React.ReactNode
   header?: React.ReactNode
   /** Outer <section> className (controls padding, bg, rounding). */
   sectionClassName?: string
@@ -91,7 +92,7 @@ function computeBoundsForAnchor(
 
   switch (anchor) {
     case "top-left":
-      return { top: topInGrid, left: leftInGrid, right: 0, bottom: "auto" }
+      return { top: topInGrid, left: leftInGrid, right: "auto", bottom: "auto" }
     case "top-right":
       return {
         top: topInGrid,
@@ -100,7 +101,7 @@ function computeBoundsForAnchor(
         bottom: "auto",
       }
     case "bottom-left":
-      return { top: "auto", left: leftInGrid, right: 0, bottom: bottomInGrid }
+      return { top: "auto", left: leftInGrid, right: "auto", bottom: bottomInGrid }
     case "bottom-right":
       return {
         top: "auto",
@@ -179,13 +180,13 @@ export function BentoGrid<T extends BentoItem>({
               className={cn(
                 "group relative flex flex-col overflow-hidden rounded-[40px] shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg",
                 item.gridSpan,
-                item.theme === "dark"
+                item.isDark
                   ? "border-0 bg-cover bg-center text-white"
                   : "border border-gray-100 bg-white text-[#010C28]",
                 cardClassName
               )}
               style={
-                item.theme === "dark"
+                item.isDark
                   ? { backgroundImage: `url('/images/gradient-image.png')` }
                   : undefined
               }
@@ -196,7 +197,7 @@ export function BentoGrid<T extends BentoItem>({
                   label={`View details for ${item.title}`}
                 />
               )}
-              {renderCard(item, { theme: item.theme })}
+              {renderCard(item)}
             </div>
           ))}
 

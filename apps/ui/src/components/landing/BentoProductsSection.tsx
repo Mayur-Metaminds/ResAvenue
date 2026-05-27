@@ -2,12 +2,19 @@
 
 import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
 import { cn } from "@/lib/styles"
+import Lottie from "lottie-react"
+import desktopDirectConnectAnimation from "../../../public/assets/desktop_direct_connect.json"
+import graphAnimation from "../../../public/assets/graph.json"
+import roomReservationAnimation from "../../../public/assets/room_reservation.json"
+import hotelWebsiteAnimation from "../../../public/assets/hotelwebsite.json"
 
 import { SectionHeader } from "./SectionHeader"
 
 type Product = BentoItem & {
   eyebrow: string
   subtitle: string
+  imagePlaceholder?: string
+  lottieAnimation?: any
 }
 
 const products: Product[] = [
@@ -16,7 +23,6 @@ const products: Product[] = [
     eyebrow: "BOOKING ENGINE AND CRS",
     title: "Direct Connect",
     subtitle: "Own Your Guests, Own Your Revenue.",
-    theme: "light",
     gridSpan: "col-span-1 md:col-span-7 lg:col-span-7",
     anchor: "top-left",
     modalFeatures: [
@@ -27,13 +33,14 @@ const products: Product[] = [
       "One Dashboard. Every Inquiry. Every Booking.",
     ],
     imagePlaceholder: "/images/placeholder-direct-connect.png",
+    lottieAnimation: desktopDirectConnectAnimation,
   },
   {
     id: "channel-connect",
     eyebrow: "CHANNEL MANAGER",
     title: "Channel Connect",
     subtitle: "Manage all your distribution channels from one place.",
-    theme: "dark",
+    isDark: true,
     gridSpan: "col-span-1 md:col-span-5 lg:col-span-5",
     anchor: "top-right",
     modalFeatures: [
@@ -50,7 +57,6 @@ const products: Product[] = [
     title: "Property Management",
     subtitle:
       "Your hotel's central nervous system. Everything your front desk and operations team needs.",
-    theme: "light",
     gridSpan: "col-span-1 md:col-span-4 lg:col-span-4",
     anchor: "top-left",
     modalFeatures: [
@@ -60,6 +66,7 @@ const products: Product[] = [
       "Invoicing & billing",
     ],
     imagePlaceholder: "/images/placeholder-pms.png",
+    lottieAnimation: roomReservationAnimation,
   },
   {
     id: "revenue-management",
@@ -67,7 +74,6 @@ const products: Product[] = [
     title: "Revenue Management",
     subtitle:
       "Maximize revenue with intelligent pricing. Let data and AI drive smarter pricing decisions.",
-    theme: "light",
     gridSpan: "col-span-1 md:col-span-4 lg:col-span-4",
     anchor: "top-left",
     modalFeatures: [
@@ -77,6 +83,7 @@ const products: Product[] = [
       "Custom pricing rules",
     ],
     imagePlaceholder: "/images/placeholder-revenue.png",
+    lottieAnimation: graphAnimation,
   },
   {
     id: "distribution-network",
@@ -84,7 +91,6 @@ const products: Product[] = [
     title: "Distribution Network",
     subtitle:
       "Be everywhere your guests are searching. Expand your reach across global booking platforms.",
-    theme: "light",
     gridSpan: "col-span-1 md:col-span-4 lg:col-span-4",
     anchor: "top-right",
     modalFeatures: [
@@ -101,9 +107,10 @@ const products: Product[] = [
     title: "Event Management & Ticketing",
     subtitle:
       "Sell, manage, and track events effortlessly. A complete solution for events and conferences.",
-    theme: "dark",
+    isDark: true,
     gridSpan: "col-span-1 md:col-span-5 lg:col-span-5",
     anchor: "bottom-left",
+    href: "/event-booking",
     modalFeatures: [
       "Ticket sales",
       "Attendee management",
@@ -118,7 +125,6 @@ const products: Product[] = [
     title: "Hotel Website Builder",
     subtitle:
       "Transform your website into your best booking agent. Beautiful, fast, and built to drive bookings.",
-    theme: "light",
     gridSpan: "col-span-1 md:col-span-7 lg:col-span-7",
     anchor: "bottom-right",
     modalFeatures: [
@@ -128,6 +134,7 @@ const products: Product[] = [
       "Custom templates",
     ],
     imagePlaceholder: "/images/placeholder-website.png",
+    lottieAnimation: hotelWebsiteAnimation,
   },
 ]
 
@@ -157,13 +164,13 @@ export function BentoProductsSection() {
           description="Seven powerful modules designed to work together as one intelligent system."
         />
       }
-      renderCard={(product, { theme }) => (
+      renderCard={(product) => (
         <>
           <div className="relative z-10 mb-6">
             <p
               className={cn(
                 "font-plus-jakarta-700 mb-3 text-[11px] leading-[17.6px] tracking-[1.5px] uppercase",
-                theme === "dark" ? "text-[#FDBA74]" : "text-[#ED862E]"
+                product.isDark ? "text-[#FDBA74]" : "text-[#ED862E]"
               )}
             >
               {product.eyebrow}
@@ -171,7 +178,7 @@ export function BentoProductsSection() {
             <h3
               className={cn(
                 "font-plus-jakarta-700 mb-3 text-[20px] leading-8",
-                theme === "dark" ? "text-white" : "text-[#0F172A]"
+                product.isDark ? "text-white" : "text-[#0F172A]"
               )}
             >
               {product.title}
@@ -179,22 +186,33 @@ export function BentoProductsSection() {
             <p
               className={cn(
                 "font-source-sans-400 max-w-[90%] text-[14px] leading-[23.1px]",
-                theme === "dark" ? "text-gray-300" : "text-[#64748B]"
+                product.isDark ? "text-gray-300" : "text-[#64748B]"
               )}
             >
               {product.subtitle}
             </p>
           </div>
 
-          <div
-            className={cn(
-              "absolute right-0 bottom-0 left-0 z-0 mx-8 h-[220px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105",
-              theme === "dark" ? "opacity-90" : "opacity-100"
-            )}
-            style={{
-              background: `linear-gradient(225deg, rgba(240, 242, 253, 0.33) 0%, rgba(61, 98, 129, 0.00) 100%), url(${product.imagePlaceholder}) lightgray 0px -5.426px / 100% 119.816% no-repeat`,
-            }}
-          />
+          {product.lottieAnimation ? (
+            <div className="absolute inset-x-0 bottom-0 z-0 mx-8 flex h-[240px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none">
+              <Lottie
+                animationData={product.lottieAnimation}
+                loop={true}
+                className="h-full w-full"
+                rendererSettings={{ preserveAspectRatio: "xMidYMax meet" }}
+              />
+            </div>
+          ) : (
+            <div
+              className={cn(
+                "absolute right-0 bottom-0 left-0 z-0 mx-8 h-[220px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105",
+                product.isDark ? "opacity-90" : "opacity-100"
+              )}
+              style={{
+                background: `linear-gradient(225deg, rgba(240, 242, 253, 0.33) 0%, rgba(61, 98, 129, 0.00) 100%), url(${product.imagePlaceholder}) lightgray 0px -5.426px / 100% 119.816% no-repeat`,
+              }}
+            />
+          )}
         </>
       )}
     />

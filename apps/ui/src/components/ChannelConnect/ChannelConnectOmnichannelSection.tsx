@@ -25,7 +25,7 @@ const omnichannelCards: OmnichannelCard[] = [
     title: "100+ Global OTAs",
     description:
       "Direct, reliable connections with all major global OTAs (Booking, Expedia, Agoda) ensuring your inventory is accurately reflected in real-time.",
-    theme: "dark",
+    isDark: true,
     gridSpan: "col-span-1 md:col-span-6 xl:col-span-2",
     icon: (
       <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#010C28]/40 ring-1 ring-white/10 backdrop-blur-md">
@@ -57,7 +57,6 @@ const omnichannelCards: OmnichannelCard[] = [
     title: "Direct APIs",
     description:
       "Connect directly to key booking engines and reservation systems without intermediaries ensuring high-performance direct integration.",
-    theme: "light",
     gridSpan: "col-span-1 md:col-span-6 xl:col-span-1",
     icon: (
       <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#ED862E]/10">
@@ -70,7 +69,6 @@ const omnichannelCards: OmnichannelCard[] = [
     title: "GDS Access",
     description:
       "Expand reach to corporate travellers via leading GDS platforms like Amadeus, Sabre, and Travelport.",
-    theme: "light",
     gridSpan: "col-span-1 md:col-span-6 xl:col-span-1",
     icon: (
       <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#ED862E]/10">
@@ -84,7 +82,6 @@ const omnichannelCards: OmnichannelCard[] = [
     title: "Meta-Channels",
     description:
       "Boost visibility and drive direct traffic with integrations to meta-search platforms like Google Hotel Finder.",
-    theme: "light",
     gridSpan: "col-span-1 md:col-span-6 xl:col-span-1",
     icon: (
       <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#ED862E]/10">
@@ -127,7 +124,7 @@ export function ChannelConnectOmnichannelSection() {
           description="Power seamless connectivity between PMS, CRSs, and GDS with high performance direct integrations."
         />
       }
-      renderCard={(item, { theme }) => (
+      renderCard={(item) => (
     <>
       {item?.icon && (
         <div className="absolute top-6 left-6 md:top-8 md:left-8 xl:top-10 xl:left-10 z-20">
@@ -145,7 +142,7 @@ export function ChannelConnectOmnichannelSection() {
         <h3
           className={cn(
             "font-plus-jakarta-700 mb-4 text-[20px] leading-[1.2] tracking-tight",
-            theme === "dark" ? "text-white" : "text-[#0F172A]"
+            item.isDark ? "text-white" : "text-[#0F172A]"
           )}
         >
           {item?.title}
@@ -153,7 +150,7 @@ export function ChannelConnectOmnichannelSection() {
         <p
           className={cn(
             "font-source-sans-400 text-[14px] leading-[24px]",
-            theme === "dark" ? "text-white/80" : "text-[#64748B]"
+            item.isDark ? "text-white/80" : "text-[#64748B]"
           )}
         >
           {item?.description}
