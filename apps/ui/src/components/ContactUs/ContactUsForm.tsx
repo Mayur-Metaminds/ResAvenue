@@ -18,7 +18,7 @@ export default function ContactForm() {
         <div className="grid grid-cols-2 gap-x-4 gap-y-5 md:gap-x-6 md:gap-y-7">
           {/* First Name */}
           <div>
-            <label className="text-[9.503px] leading-[100%] text-white/90 md:text-sm">
+            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
               Name<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -31,7 +31,7 @@ export default function ContactForm() {
 
           {/* Last Name */}
           <div>
-            <label className="text-[9.503px] text-white/90 md:text-sm">
+            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
               Last Name<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -44,7 +44,7 @@ export default function ContactForm() {
 
           {/* Email */}
           <div>
-            <label className="text-[9.503px] text-white/90 md:text-sm">
+            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
               Email address<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -57,7 +57,7 @@ export default function ContactForm() {
 
           {/* Phone */}
           <div>
-            <label className="text-[9.503px] text-white/90 md:text-sm">
+            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
               Phone<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -70,7 +70,7 @@ export default function ContactForm() {
 
           {/* Property Name */}
           <div>
-            <label className="text-[9.503px] text-white/90 md:text-sm">
+            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
               Property Name<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -83,7 +83,7 @@ export default function ContactForm() {
 
           {/* Site URL */}
           <div>
-            <label className="text-[9.503px] text-white/90 md:text-sm">
+            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
               Site URL
             </label>
 
@@ -97,7 +97,7 @@ export default function ContactForm() {
 
         {/* Services */}
         <div className="mt-6 md:mt-8">
-          <h3 className="mb-3 text-[9.503px] font-medium text-white md:mb-4 md:text-sm">
+          <h3 className="font-plus-jakarta-700 mb-4 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
             Services interested in
           </h3>
 
@@ -107,10 +107,10 @@ export default function ContactForm() {
                 key={service}
                 type="button"
                 onClick={() => setSelected(service)}
-                className={`rounded-full border px-3 py-1.5 text-[8.9px] transition-all duration-200 md:px-5 md:py-2 md:text-sm ${
+                className={`cursor-pointer rounded-full border px-3 py-1.5 text-[8.9px] transition-all duration-200 md:px-5 md:py-2 md:text-sm ${
                   selected === service
-                    ? "border-orange-500 bg-[#ED862E] text-white"
-                    : "border-white/20 text-white/80 hover:border-orange-400"
+                    ? "font-plus-jakarta-700 border-white/40 bg-[#ED862E] text-white"
+                    : "font-plus-jakarta-500 border-white/20 text-white/80 hover:border-orange-400"
                 }`}
               >
                 {service}
@@ -130,13 +130,13 @@ export default function ContactForm() {
 
         {/* Button */}
         <div className="mt-6 flex justify-center md:mt-8">
-          <button className="rounded-full bg-[#ED862E] px-6 py-3 text-[8.9px] font-medium text-white shadow-lg transition hover:bg-orange-600 md:px-10 md:py-4 md:text-sm">
+          <button className="font-plus-jakarta-700 cursor-pointer rounded-full bg-[#ED862E] px-6 py-3 text-[8.909px] leading-[14.255px] text-white shadow-lg transition hover:bg-orange-600 md:px-10 md:py-4 lg:text-[15px] lg:leading-6">
             Contact Resavenue →
           </button>
         </div>
 
         {/* Footer */}
-        <div className="mt-5 flex items-center justify-center gap-2 text-center text-[8.315px] text-white/50 md:mt-7 md:text-xs">
+        <div className="font-plus-jakarta-500 mt-5 flex items-center justify-center gap-2 text-[8.315px] leading-[14.255px] text-white md:mt-7 lg:text-[14px] lg:leading-[24px]">
           <span>🛡️</span>
           <p>
             Your information is secure and will not be shared with third

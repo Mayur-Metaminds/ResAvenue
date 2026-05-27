@@ -62,7 +62,7 @@ function ContactUsHero() {
   return (
     <section
       className="relative flex min-h-screen w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
+      style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}
     >
       <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[106px] lg:px-20">
         {/* Main Content */}
@@ -104,7 +104,7 @@ function ContactUsHero() {
                   backgroundColor: "var(--eyebrow-dot-color, #ED862E)",
                 }}
               />
-              <span className="typo-body2 tracking-widest text-[#ED862E] uppercase">
+              <span className="font-plus-jakarta-700 text-[12px] leading-[19px] tracking-[0.7px] text-[#ED862E] uppercase">
                 CONNECTED SUPPORT. REAL
               </span>
               <span className="h-[1px] flex-1 bg-[#FFFFFF66]" />

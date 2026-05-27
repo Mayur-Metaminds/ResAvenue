@@ -167,9 +167,20 @@ function ContactUsBody() {
           header={
             <SectionHeader
               className="mx-auto mb-[40px] max-w-3xl text-center lg:mb-[60px]"
+              eyebrowClassName="typo-body2 tracking-[0.7px] text-[#ED862E]"
+              descriptionClassName="font-source-sans-400 text-[16px] lg:text-[18px] leading-[31.5px] text-center text-[#64748B]"
               eyebrow="API-first infrastructure"
               title={
-                <SectionHeader.Highlight>
+                <SectionHeader.Highlight
+                  className="typo-h1"
+                  style={{
+                    background:
+                      "linear-gradient(86deg, #010E38 -2.62%, #1A2F6D 54.67%, #ED862E 76.16%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
                   Reach the Right Team
                 </SectionHeader.Highlight>
               }
@@ -185,8 +196,8 @@ function ContactUsBody() {
                   <div>
                     <h3
                       className={cn(
-                        "font-plus-jakarta-700 text-[16px] leading-[1.3]",
-                        theme === "dark" ? "text-white" : "text-[#0F172A]"
+                        "font-plus-jakarta-700 text-[16px] leading-[24px]",
+                        theme === "dark" ? "text-white" : "text-[#010E38]"
                       )}
                     >
                       {item.title}
@@ -194,8 +205,8 @@ function ContactUsBody() {
 
                     <p
                       className={cn(
-                        "font-source-sans-400 mt-2 max-w-[260px] text-[14px] leading-[24px] md:text-[16px]",
-                        theme === "dark" ? "text-white/70" : "text-[#64748B]"
+                        "font-source-sans-400 mt-2 max-w-[260px] text-[14px] leading-[20px]",
+                        theme === "dark" ? "text-white/70" : "text-[#475569]"
                       )}
                     >
                       {item.description}
@@ -205,7 +216,7 @@ function ContactUsBody() {
               </div>
 
               <div className="mt-6 flex items-center justify-between">
-                <span className="font-source-sans-600 truncate pl-[60px] text-[16px] text-[#ED862E]">
+                <span className="font-source-sans-400 truncate pl-[60px] text-[16px] leading-[22.75px] text-[#ED862E]">
                   {item.email}
                 </span>
 
