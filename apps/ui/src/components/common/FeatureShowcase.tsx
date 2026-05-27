@@ -36,7 +36,7 @@ function FeatureShowcaseRoot({
       {/* Content Column */}
       <div
         className={cn(
-          "flex flex-col",
+          "flex flex-col ",
           imagePosition === "left" ? "order-1 lg:order-2" : "order-1 lg:order-1"
         )}
       >
@@ -44,13 +44,13 @@ function FeatureShowcaseRoot({
           {...header}
           className={cn(
             headerAlignment === "center"
-              ? "items-center text-center"
+              ? "items-center  text-center"
               : "items-start text-left",
-            "mb-10",
+            "gap-[24px]",
             header.className
           )}
         />
-        <div className="flex w-full flex-col gap-4">{children}</div>
+        <div className="flex w-full flex-col gap-4 ">{children}</div>
       </div>
 
       {/* Image Column */}
