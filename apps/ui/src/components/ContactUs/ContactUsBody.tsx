@@ -166,7 +166,6 @@ function ContactUsBody() {
           cardClassName="min-h-[220px] w-full justify-start overflow-hidden rounded-[24px] border border-slate-200 bg-white max-lg:px-4 max-md:p-4 md:p-4 lg:p-6"
           header={
             <SectionHeader
-              theme="light"
               className="mx-auto mb-[40px] max-w-3xl text-center lg:mb-[60px]"
               eyebrow="API-first infrastructure"
               title={
