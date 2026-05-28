@@ -5,8 +5,14 @@ import { z } from "zod"
 
 const services = [
   "Direct Connect",
+  "Revenue Management",
+  "Website Builder",
   "Channel Connect",
+  "Distribution Network",
+  "Tours & Packages Engine",
   "Property Management System",
+  "Event Management",
+  "Mobile App Ecosystem",
 ]
 
 // Define Zod validation schema
@@ -72,7 +78,7 @@ export default function ContactForm() {
 
   return (
     <section className="flex w-full items-center justify-center px-2 md:px-4">
-      <form onSubmit={handleSubmit} className="w-full max-w-2xl rounded-[14px] md:rounded-[24px] border border-[#00000033] bg-[#FFFFFF1A] p-4 shadow-2xl backdrop-blur-xl md:p-8">
+      <form onSubmit={handleSubmit} className="w-full max-w-2xl rounded-[14px] md:rounded-[15px] border border-[#00000033] bg-[#FFFFFF1A] p-4 shadow-2xl backdrop-blur-xl md:p-8">
         {/* Form Grid */}
         <div className="grid grid-cols-2 gap-x-4 gap-y-5 md:gap-x-6 md:gap-y-7">
           {/* First Name */}
@@ -196,21 +202,23 @@ export default function ContactForm() {
             Services interested in
           </h3>
 
-          <div className="flex flex-wrap gap-2 md:gap-3">
-            {services.map((service) => (
-              <button
-                key={service}
-                type="button"
-                onClick={() => setSelected(service)}
-                className={`cursor-pointer rounded-full border px-3 py-1.5 text-[8.9px] transition-all duration-200 md:px-5 md:py-2 md:text-sm ${
-                  selected === service
-                    ? "font-plus-jakarta-700 border-white/40 bg-[#ED862E] text-white"
-                    : "font-plus-jakarta-500 border-white/20 text-white/80 hover:border-orange-400"
-                }`}
-              >
-                {service}
-              </button>
-            ))}
+          <div className="-mx-4 overflow-x-auto px-4 md:-mx-8 md:px-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-max flex-nowrap gap-2 pb-2 md:gap-3">
+              {services.map((service) => (
+                <button
+                  key={service}
+                  type="button"
+                  onClick={() => setSelected(service)}
+                  className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-3 py-1.5 text-[8.9px] transition-all duration-200 md:px-5 md:py-2 md:text-sm ${
+                    selected === service
+                      ? "font-plus-jakarta-700 border-white/40 bg-[#ED862E] text-white"
+                      : "font-plus-jakarta-500 border-white/20 text-white/80 hover:border-orange-400"
+                  }`}
+                >
+                  {service}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
