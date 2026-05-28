@@ -80,25 +80,15 @@ const services = [
 ]
 
 export function PlanSelectionSection() {
-  const [selectedIds, setSelectedIds] = useState<string[]>([])
+  const [selectedId, setSelectedId] = useState<string | null>(null)
 
-  const toggleService = (id: string) => {
-    setSelectedIds((prev) =>
-      prev.includes(id)
-        ? prev.filter((serviceId) => serviceId !== id)
-        : [...prev, id]
-    )
+  const selectService = (id: string) => {
+    setSelectedId((prev) => (prev === id ? null : id))
   }
 
   const handleRequestQuote = () => {
-    const selectedTitles = services
-      .filter((s) => selectedIds.includes(s.id))
-      .map((s) => s.title)
-
-    // Save to state/console as requested
-    console.log("Saving selected services for quote:", selectedTitles)
-
-    // Redirect to #
+    const selected = services.find((s) => s.id === selectedId)
+    console.log("Saving selected service for quote:", selected?.title ?? null)
     window.location.href = "#"
   }
 
@@ -129,10 +119,10 @@ export function PlanSelectionSection() {
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1300px] md:px-8">
-        <div className="flex flex-col gap-16 rounded-[32px] border border-slate-100 bg-white p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] md:p-12 lg:flex-row lg:p-16 xl:gap-24">
+      <div className="relative z-10 mx-auto w-full lg:px-[80px] ">
+        <div className="flex flex-col gap-16 rounded-[32px] py-[48px] border border-slate-100 bg-white px-4 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]  lg:flex-row lg:gap-[48.34px] ">
           {/* Left Column */}
-          <div className="flex w-full flex-col lg:w-[35%]">
+          <div className="flex w-full flex-col border-slate-300 lg:w-[35%] lg:border-r">
             <h3 className="mb-4 text-3xl font-medium tracking-tight text-[#010C28]">
               Ready to get started?
             </h3>
@@ -171,24 +161,24 @@ export function PlanSelectionSection() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="flex flex-wrap gap-4">
               {services.map((service) => {
-                const isSelected = selectedIds.includes(service.id)
+                const isSelected = selectedId === service.id
                 const Icon = service.icon
 
                 return (
                   <button
                     key={service.id}
-                    onClick={() => toggleService(service.id)}
-                    className={`group relative overflow-hidden rounded-[20px] p-6 text-left transition-all duration-300 outline-none ${
+                    onClick={() => selectService(service.id)}
+                    className={`group relative flex h-[171px] w-full flex-col items-start gap-4 overflow-hidden rounded-[16px] bg-[#010C28] p-[21px] text-left transition-all duration-300 outline-none sm:w-[243px] ${
                       isSelected
-                        ? "border-2 border-[#ED862E] bg-[#0B1530] shadow-[0_0_20px_rgba(237,134,46,0.15)]"
-                        : "border-2 border-transparent bg-[#0B1530] hover:border-slate-700"
+                        ? "border-2 border-[#ED862E] shadow-[0_0_20px_rgba(237,134,46,0.15)]"
+                        : "border-2 border-transparent hover:border-slate-700"
                     }`}
                   >
                     {/* Checkmark for selected state */}
                     {isSelected && (
-                      <div className="absolute top-4 right-4 text-[#ED862E]">
+                      <div className="absolute top-[21px] right-[21px] text-[#ED862E]">
                         <svg
                           width="20"
                           height="20"
@@ -205,19 +195,20 @@ export function PlanSelectionSection() {
                       </div>
                     )}
 
-                    <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 transition-colors">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 transition-colors">
                       <Icon
                         className={`h-5 w-5 ${isSelected ? "text-[#ED862E]" : "text-slate-400 group-hover:text-slate-200"}`}
                       />
                     </div>
 
-                    <h5 className="mb-2 pr-6 text-[15px] font-medium text-white">
-                      {service.title}
-                    </h5>
-
-                    <p className="text-xs leading-relaxed text-slate-400">
-                      {service.description}
-                    </p>
+                    <div className="flex flex-col gap-2">
+                      <h5 className="pr-6 text-[15px] font-medium text-white">
+                        {service.title}
+                      </h5>
+                      <p className="text-xs leading-relaxed text-slate-400">
+                        {service.description}
+                      </p>
+                    </div>
                   </button>
                 )
               })}

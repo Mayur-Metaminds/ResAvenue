@@ -24,7 +24,7 @@ const carouselData: CarouselCard[] = [
     title: "Mobile-friendly booking engine with rate plans",
     linkText: "Learn More",
     linkUrl: "#",
-    videoPlaceholder: "/images/placeholder-direct-connect.png",
+    videoPlaceholder: "https://www.w3schools.com/html/movie.mp4",
   },
   {
     id: "channel-manager",
@@ -32,7 +32,7 @@ const carouselData: CarouselCard[] = [
     title: "Seamlessly distribute to 100+ OTAs instantly",
     linkText: "Learn More",
     linkUrl: "#",
-    videoPlaceholder: "/images/placeholder-channel-connect.png",
+    videoPlaceholder: "https://www.w3schools.com/html/movie.mp4"
   },
   {
     id: "property-management",
@@ -40,7 +40,7 @@ const carouselData: CarouselCard[] = [
     title: "Central nervous system for your entire property",
     linkText: "Learn More",
     linkUrl: "#",
-    videoPlaceholder: "/images/placeholder-pms.png",
+    videoPlaceholder: "https://www.w3schools.com/html/movie.mp4"
   },
 ]
 
@@ -103,9 +103,12 @@ export function FeatureCarouselSection() {
               className="group relative h-[400px] w-[85vw] shrink-0 cursor-pointer snap-center overflow-hidden rounded-[24px] shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[511px] md:w-[1000px] lg:w-[1100px]"
             >
               {/* Background Image / Video Placeholder */}
-              <img
+              <video
                 src={card.videoPlaceholder}
-                alt={card.title}
+                autoPlay
+                muted
+                loop
+                playsInline
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
