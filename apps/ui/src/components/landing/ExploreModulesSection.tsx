@@ -421,6 +421,11 @@ const DEG_TO_RAD = Math.PI / 180
  * adds on top via the `transform` property — the two never conflict.
  */
 function WheelItem({ feature, index, activeIndexFloat }: WheelItemProps) {
+  const [isActive, setIsActive] = useState(false)
+  useMotionValueEvent(activeIndexFloat, "change", (latest) => {
+    setIsActive(Math.round(latest) === index)
+  })
+
   const offset = useTransform(activeIndexFloat, (a) => index - a)
 
   const y = useTransform(
@@ -448,11 +453,6 @@ function WheelItem({ feature, index, activeIndexFloat }: WheelItemProps) {
     return `blur(${px}px)`
   })
 
-  // Icon tile highlights only when the item is near center.
-  const accentOpacity = useTransform(offset, (o) =>
-    Math.max(0, 1 - Math.abs(o) * 2)
-  )
-
   const Icon = feature.icon
 
   return (
@@ -461,32 +461,69 @@ function WheelItem({ feature, index, activeIndexFloat }: WheelItemProps) {
         position: "absolute",
         top: "50%",
         left: 0,
-        right: 0,
-        // y / z / rotateX are applied via the CSS `transform` property by framer-motion.
         y,
         z,
         rotateX,
         opacity,
         filter,
-        // CSS `translate` (separate property from `transform`) handles the
-        // static -50% Y centering. It does NOT conflict with framer's transform.
         translate: "0 -50%",
-        transformOrigin: "center center",
+        transformOrigin: "center left",
       }}
-      className="flex items-center gap-4 whitespace-nowrap"
+      className={cn(
+        "relative flex items-center gap-[24px] transition-all duration-300",
+        isActive
+          ? "w-[467px] py-[10px] pr-[10px] pl-0"
+          : "w-[400px] py-[10px] pr-[10px] pl-0"
+      )}
     >
-      <motion.div
-        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg"
-        style={{
-          backgroundColor: "rgba(237, 134, 46, 0.10)",
-          opacity: accentOpacity,
-        }}
+      {/* Background & Border Layer */}
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-0 z-0 rounded-[8px] transition-opacity duration-300",
+          isActive ? "opacity-100" : "opacity-0"
+        )}
       >
-        <Icon className="h-5 w-5 text-[#ED862E]" />
-      </motion.div>
-      <span className="text-base font-semibold md:text-lg">
-        {feature.label}
-      </span>
+        <div className="absolute inset-0 rounded-[8px] bg-gradient-to-r from-[rgba(237,134,46,0.08)] to-transparent" />
+        <div
+          className="absolute inset-0 rounded-[8px] bg-gradient-to-r from-[#ED862E] to-transparent p-[1px]"
+          style={{
+            WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            maskComposite: "exclude",
+          }}
+        />
+      </div>
+
+      <div
+        className={cn(
+          "relative z-10 flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[8px] transition-colors duration-300 ml-[16px]",
+          isActive ? "bg-[#ED862E]/10" : "bg-white/5"
+        )}
+      >
+        <Icon className={cn("h-5 w-5", isActive ? "text-[#ED862E]" : "text-gray-500")} />
+      </div>
+      <div className="relative z-10 flex min-w-0 flex-col">
+        <span
+          className={cn(
+            "truncate text-base font-semibold transition-colors duration-300 md:text-lg",
+            isActive ? "text-white" : "text-gray-400"
+          )}
+        >
+          {feature.label}
+        </span>
+        <div
+          className={cn(
+            "grid transition-all duration-300 ease-in-out",
+            isActive ? "mt-1 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+          )}
+        >
+          <div className="overflow-hidden">
+            <p className="line-clamp-2 pr-2 text-sm leading-relaxed text-gray-400 whitespace-normal">
+              {feature.description}
+            </p>
+          </div>
+        </div>
+      </div>
     </motion.div>
   )
 }
