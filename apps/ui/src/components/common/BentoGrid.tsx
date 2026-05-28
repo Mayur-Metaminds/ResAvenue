@@ -64,7 +64,7 @@ function PopupTrigger({
       )}
     >
       <PopupIcon
-        rectClassName="transition-colors duration-300 group-hover/popup:[fill:#ED862E]"
+        rectClassName="transition-colors duration-300 group-hover/popup:[fill:#ED862E] cursor-pointer"
         topArrowClassName={cn(
           "transition-all duration-300",
           "group-hover/popup:[stroke:#ffffff]",

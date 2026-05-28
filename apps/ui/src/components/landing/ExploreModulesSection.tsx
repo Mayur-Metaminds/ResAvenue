@@ -400,9 +400,9 @@ interface WheelItemProps {
 }
 
 /** Degrees of wheel rotation per feature step. Larger = items spaced wider apart on the wheel. */
-const WHEEL_ANGLE_STEP = 25
+const WHEEL_ANGLE_STEP = 8
 /** Wheel radius in px. Controls how far items curve out into 3D depth. */
-const WHEEL_RADIUS = 180
+const WHEEL_RADIUS = 600
 const DEG_TO_RAD = Math.PI / 180
 
 /**

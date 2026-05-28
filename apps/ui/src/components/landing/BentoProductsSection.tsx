@@ -147,7 +147,7 @@ export function BentoProductsSection() {
         background:
           "linear-gradient(225deg, rgba(240, 242, 253, 0.33) 0%, rgba(61, 98, 129, 0.00) 100%)",
       }}
-      cardClassName="p-8 justify-between h-[400px]"
+      cardClassName="p-6 md:p-8 justify-between h-[460px] md:h-[400px]"
       header={
         <SectionHeader
           className="mb-5 lg:mb-17"
@@ -194,7 +194,7 @@ export function BentoProductsSection() {
           </div>
 
           {product.lottieAnimation ? (
-            <div className="absolute inset-x-0 bottom-0 z-0 mx-8 flex h-[240px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none">
+            <div className="absolute inset-x-0 bottom-0 z-0 mx-6 md:mx-8 flex h-[200px] md:h-[240px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none">
               <Lottie
                 animationData={product.lottieAnimation}
                 loop={true}
@@ -205,7 +205,7 @@ export function BentoProductsSection() {
           ) : (
             <div
               className={cn(
-                "absolute right-0 bottom-0 left-0 z-0 mx-8 h-[220px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105",
+                "absolute right-0 bottom-0 left-0 z-0 mx-6 md:mx-8 h-[180px] md:h-[220px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105",
                 product.isDark ? "opacity-90" : "opacity-100"
               )}
               style={{
