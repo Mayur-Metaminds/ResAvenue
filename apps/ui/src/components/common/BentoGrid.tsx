@@ -12,15 +12,6 @@ import { cn } from "@/lib/styles"
 
 import { PopupIcon } from "../../../public/svg/commonSvg"
 
-/**
- * Card metadata for the bento grid.
- *
- * Modal-related fields (`anchor`, `modalFeatures`, `imagePlaceholder`) are
- * optional so the same grid can render static cards (no popup) alongside
- * modal-capable cards. A card opens a modal only if all three are present
- * — see `hasModal()` below. Existing consumers that always supply them
- * keep working unchanged.
- */
 export type BentoItem = {
   id: string
   title: string
@@ -44,6 +35,8 @@ type BentoGridProps<T extends BentoItem> = {
   containerClassName?: string
   /** Extra classes appended to every card shell (height, padding, etc.). */
   cardClassName?: string
+  /** Override the grid wrapper className. Defaults to `relative grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-12`. */
+  gridClassName?: string
 }
 
 function PopupTrigger({
@@ -137,6 +130,7 @@ export function BentoGrid<T extends BentoItem>({
   sectionStyle,
   containerClassName,
   cardClassName,
+  gridClassName,
 }: BentoGridProps<T>) {
   const [selected, setSelected] = useState<ModalCapable<T> | null>(null)
   const [bounds, setBounds] = useState<ModalBounds | null>(null)
@@ -160,7 +154,6 @@ export function BentoGrid<T extends BentoItem>({
 
   const closeModal = useCallback(() => setSelected(null), [])
 
-  // Skip mounting the modal entirely if no card in this grid uses one.
   const anyModal = items.some(hasModal)
 
   return (
@@ -169,7 +162,10 @@ export function BentoGrid<T extends BentoItem>({
         {header}
         <div
           ref={gridRef}
-          className="relative grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-12"
+          className={
+            gridClassName ??
+            "relative grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-12"
+          }
         >
           {items?.map((item) => (
             <div

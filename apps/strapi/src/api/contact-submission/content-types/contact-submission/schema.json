@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contact_submissions",
+  "info": {
+    "singularName": "contact-submission",
+    "pluralName": "contact-submissions",
+    "displayName": "Contact Submission",
+    "description": "Lead submissions from the public contact form."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "lastName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "maxLength": 32
+    },
+    "propertyName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "siteUrl": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "service": {
+      "type": "enumeration",
+      "enum": [
+        "Direct Connect",
+        "Channel Connect",
+        "Property Management System"
+      ],
+      "required": true
+    },
+    "message": {
+      "type": "text"
+    }
+  }
+}

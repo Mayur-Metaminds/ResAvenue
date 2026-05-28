@@ -13,7 +13,7 @@ import {
   OmnichannelCardIcon4,
 } from "../../../public/svg/Channel-Connect"
 
-type OmnichannelCard = BentoItem & {
+export type OmnichannelCard = BentoItem & {
   description: string
   icon?: React.ReactNode
   renderGraphic?: () => React.ReactNode
