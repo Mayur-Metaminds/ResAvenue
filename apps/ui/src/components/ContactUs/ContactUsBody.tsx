@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { useEffect, useRef, useState } from "react"
 
 import type { OmnichannelCard } from "@/components/ChannelConnect/ChannelConnectOmnichannelSection"
 import { BentoGrid } from "@/components/common/BentoGrid"
@@ -20,6 +21,55 @@ function CopyIcon() {
       <rect x="9" y="9" width="13" height="13" rx="2" />
       <path d="M5 15V5a2 2 0 012-2h10" />
     </svg>
+  )
+}
+
+function TickIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2.5}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  )
+}
+
+function CopyEmailButton({ email }: { email: string }) {
+  const [copied, setCopied] = useState(false)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [])
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(email)
+    setCopied(true)
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => setCopied(false), 500)
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      aria-label={copied ? `Copied ${email}` : `Copy ${email}`}
+      className={cn(
+        "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border bg-white transition",
+        copied
+          ? "border-[#ED862E] text-[#ED862E]"
+          : "border-slate-200 text-slate-500 hover:border-[#ED862E] hover:text-[#ED862E]"
+      )}
+    >
+      {copied ? <TickIcon /> : <CopyIcon />}
+    </button>
   )
 }
 
@@ -220,9 +270,7 @@ function ContactUsBody() {
                   {item.email}
                 </span>
 
-                <button className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-[#ED862E] hover:text-[#ED862E]">
-                  <CopyIcon />
-                </button>
+                <CopyEmailButton email={item.email} />
               </div>
             </div>
           )}
