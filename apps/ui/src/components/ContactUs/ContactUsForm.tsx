@@ -71,8 +71,8 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="flex w-full items-center justify-center px-4">
-      <form onSubmit={handleSubmit} className="w-full max-w-2xl rounded-[28px] border border-[#00000033] bg-[#FFFFFF1A] p-4 shadow-2xl backdrop-blur-xl md:p-8">
+    <section className="flex w-full items-center justify-center px-2 md:px-4">
+      <form onSubmit={handleSubmit} className="w-full max-w-2xl rounded-[14px] md:rounded-[24px] border border-[#00000033] bg-[#FFFFFF1A] p-4 shadow-2xl backdrop-blur-xl md:p-8">
         {/* Form Grid */}
         <div className="grid grid-cols-2 gap-x-4 gap-y-5 md:gap-x-6 md:gap-y-7">
           {/* First Name */}
@@ -231,7 +231,7 @@ export default function ContactForm() {
 
         {/* Button */}
         <div className="mt-6 flex justify-center md:mt-8">
-          <button type="submit" className="font-plus-jakarta-700 cursor-pointer rounded-full bg-[#ED862E] px-6 py-3 text-[8.909px] leading-[14.255px] text-white shadow-lg transition hover:bg-orange-600 md:px-10 md:py-4 lg:text-[15px] lg:leading-6">
+          <button type="submit" className="font-plus-jakarta-700 cursor-pointer rounded-full bg-[#ED862E] px-5 md:px-6 py-3 text-[8.909px] leading-[14.255px] text-white shadow-lg transition hover:bg-orange-600 md:px-10 md:py-4 lg:text-[15px] lg:leading-6">
             Contact Resavenue →
           </button>
         </div>

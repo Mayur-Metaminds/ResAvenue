@@ -66,7 +66,7 @@ function ContactUsHero() {
     >
       <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[106px] lg:px-20">
         {/* Main Content */}
-        <div className="flex flex-1 flex-col items-center justify-between gap-12 pb-12 lg:flex-row lg:justify-evenly lg:gap-15 lg:pb-0">
+        <div className="flex flex-1 flex-col items-center justify-between gap-8 md:gap-12 pb-8  lg:pb-12 lg:flex-row lg:justify-evenly lg:gap-15 lg:pb-0">
           {/* Left Column: Content */}
           <div className="my-auto flex w-full flex-col justify-center lg:w-[50%] lg:py-20 xl:w-[45%]">
             <HeroContent
