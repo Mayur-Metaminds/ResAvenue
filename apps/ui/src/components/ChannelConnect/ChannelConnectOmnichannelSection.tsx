@@ -94,6 +94,7 @@ const omnichannelCards: OmnichannelCard[] = [
 
 export function ChannelConnectOmnichannelSection() {
   return (
+    <div data-nav-theme="light">
     <BentoGrid<OmnichannelCard>
       items={omnichannelCards}
       sectionClassName="w-full py-[32px] lg:py-[90px] px-[20px] lg:px-[80px] bg-white"
@@ -159,5 +160,6 @@ export function ChannelConnectOmnichannelSection() {
     </>
   )}
 />
+    </div>
   )
 }

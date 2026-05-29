@@ -90,13 +90,13 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="flex w-full items-center justify-center px-2 md:px-4">
+    <section className="flex w-full items-center justify-center px-1 md:px-4">
       <form onSubmit={handleSubmit} className="w-full max-w-2xl rounded-[14px] md:rounded-[15px] border border-[#00000033] bg-[#FFFFFF1A] p-4 shadow-2xl backdrop-blur-xl md:p-8">
         {/* Form Grid */}
-        <div className="grid grid-cols-2 gap-x-4 gap-y-5 md:gap-x-6 md:gap-y-7">
+        <div className="grid grid-cols-1 gap-y-5 md:grid-cols-2 md:gap-x-6 md:gap-y-7">
           {/* First Name */}
           <div>
-            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
+            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
               Name<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -115,7 +115,7 @@ export default function ContactForm() {
 
           {/* Last Name */}
           <div>
-            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
+            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
               Last Name<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -134,7 +134,7 @@ export default function ContactForm() {
 
           {/* Email */}
           <div>
-            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
+            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
               Email address<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -153,7 +153,7 @@ export default function ContactForm() {
 
           {/* Phone */}
           <div>
-            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
+            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
               Phone<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -172,7 +172,7 @@ export default function ContactForm() {
 
           {/* Property Name */}
           <div>
-            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
+            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
               Property Name<span className="text-[#ED862E]">*</span>
             </label>
 
@@ -191,7 +191,7 @@ export default function ContactForm() {
 
           {/* Site URL */}
           <div>
-            <label className="font-plus-jakarta-500 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
+            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
               Site URL
             </label>
 
@@ -222,11 +222,10 @@ export default function ContactForm() {
                   key={service}
                   type="button"
                   onClick={() => setSelected(service)}
-                  className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-3 py-1.5 text-[8.9px] transition-all duration-200 md:px-5 md:py-2 md:text-sm ${
-                    selected === service
-                      ? "font-plus-jakarta-700 border-white/40 bg-[#ED862E] text-white"
-                      : "font-plus-jakarta-500 border-white/20 text-white/80 hover:border-orange-400"
-                  }`}
+                  className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-3 py-1.5 text-[14px] leading-[19.6px] transition-all duration-200 md:px-5 md:py-2 ${selected === service
+                    ? "font-plus-jakarta-700 border-white/40 bg-[#ED862E] text-white"
+                    : "font-plus-jakarta-700 border-white/20 text-white hover:border-orange-400 lg:font-normal"
+                    }`}
                 >
                   {service}
                 </button>
@@ -267,7 +266,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={status.kind === "submitting"}
-            className="font-plus-jakarta-700 cursor-pointer rounded-full bg-[#ED862E] px-5 md:px-6 py-3 text-[8.909px] leading-[14.255px] text-white shadow-lg transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 md:px-10 md:py-4 lg:text-[15px] lg:leading-6"
+            className="typo-body1 cursor-pointer rounded-full bg-[#ED862E] px-5 py-2.5 md:py-3 text-white font-bold shadow-lg transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 md:px-10 md:py-4 lg:[font-family:var(--font-plus-jakarta)] lg:text-[15px] lg:leading-6 lg:font-semibold"
           >
             {status.kind === "submitting" ? "Sending…" : "Contact Resavenue →"}
           </button>

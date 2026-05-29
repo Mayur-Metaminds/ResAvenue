@@ -55,7 +55,10 @@ const features: FeatureItem[] = [
 
 export function DirectConnectBookingEngineSection() {
   return (
-    <section className="w-full bg-white px-4 py-[32px] md:px-8 lg:py-[80px] lg:py-[120px]">
+    <section
+      data-nav-theme="light"
+      className="w-full bg-white px-4 py-[32px] md:px-8 lg:py-[80px] lg:py-[120px]"
+    >
       <div className="container mx-auto max-w-[1300px]">
         <FeatureShowcase
           header={{

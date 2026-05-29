@@ -203,7 +203,10 @@ const contactCards: ContactCard[] = [
 
 function ContactUsBody() {
   return (
-    <section className="w-full bg-white px-4 py-[60px] md:px-8 lg:py-[100px]">
+    <section
+      data-nav-theme="light"
+      className="w-full bg-white px-4 py-15 md:px-8 lg:py-25"
+    >
       <div className="px-6">
         <BentoGrid<ContactCard>
           items={contactCards}

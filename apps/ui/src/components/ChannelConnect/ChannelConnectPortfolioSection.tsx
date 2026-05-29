@@ -9,7 +9,7 @@ import { CheckedIcon } from "../../../public/svg/commonSvg"
 
 export function ChannelConnectPortfolioSection() {
   return (
-    <section className="w-full bg-white pt-[80px]">
+    <section data-nav-theme="light" className="w-full bg-white pt-[80px]">
       <div className="">
         <div
           className="flex flex-col gap-[32px] overflow-hidden rounded-[45px]"

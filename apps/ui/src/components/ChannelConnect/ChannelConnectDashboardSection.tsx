@@ -16,7 +16,7 @@ import {
 
 export function ChannelConnectDashboardSection() {
   return (
-    <section className="w-full bg-white px-4  md:px-8">
+    <section data-nav-theme="light" className="w-full bg-white px-4  md:px-8">
       <div className="container mx-auto max-w-[1200px]">
         <FeatureShowcase
           imagePosition="left"

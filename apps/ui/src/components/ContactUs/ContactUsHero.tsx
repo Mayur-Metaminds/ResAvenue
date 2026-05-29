@@ -111,7 +111,7 @@ function ContactUsHero() {
             </div>
             <OfficeLocations />
           </div>
-          <div className="flex-1 self-start lg:pt-15">
+          <div className="w-full min-w-0 flex-1 self-start lg:pt-15">
             <ContactForm />
           </div>
         </div>
