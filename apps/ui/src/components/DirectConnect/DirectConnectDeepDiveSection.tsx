@@ -59,9 +59,11 @@ export function DirectConnectDeepDiveSection() {
           {/* Header */}
           <SectionHeader
             className="mb-[38px] items-start text-left"
+            titleColor="#FFFFFF"
+            highlightGradient="linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)"
             eyebrow={
               <Eyebrow
-                className="mb-[24px]"
+                className="mb-0"
                 showDot
                 style={
                   {
@@ -81,6 +83,7 @@ export function DirectConnectDeepDiveSection() {
                 </SectionHeader.Highlight>
               </>
             }
+            titleClassName="mb-0"
           />
 
           {/* Accordion */}
