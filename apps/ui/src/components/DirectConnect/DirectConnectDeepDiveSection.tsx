@@ -43,7 +43,10 @@ export function DirectConnectDeepDiveSection() {
   const [openItems, setOpenItems] = useState<string[]>(["item-1"])
 
   return (
-    <section className="w-full rounded-[45px] bg-[#010C28] px-4 py-[21px] lg:py-[60px] lg:pr-[80px] lg:pl-[65px]">
+    <section
+      data-nav-theme="dark"
+      className="w-full rounded-[45px] bg-[#010C28] px-4 py-[21px] lg:py-[60px] lg:pr-[80px] lg:pl-[65px]"
+    >
       <div className="grid grid-cols-1 items-center gap-[56px] lg:grid-cols-2 lg:items-start lg:gap-[80px]">
         {/* Left Column: Image Graphic */}
         <div className="relative order-2 flex w-full items-center justify-center rounded-[24px] lg:order-1">

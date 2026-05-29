@@ -26,14 +26,17 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   // Default to dark — hero is the first section, and we want correct colors before JS hydrates.
   const [theme, setTheme] = useState<NavTheme>("dark")
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("[data-nav-theme]")
     )
-    if (sections.length === 0) return
 
-    const computeActive = () => {
+    const compute = () => {
+      setScrolled(window.scrollY > 0)
+
+      if (sections.length === 0) return
       // The section whose top is just above the navbar's bottom (~80px) is the
       // one currently under the navbar. Walk sections; pick the last one whose
       // top has scrolled past the navbar threshold.
@@ -48,13 +51,13 @@ export function Navbar() {
       setTheme(current)
     }
 
-    computeActive()
-    window.addEventListener("scroll", computeActive, { passive: true })
-    window.addEventListener("resize", computeActive)
+    compute()
+    window.addEventListener("scroll", compute, { passive: true })
+    window.addEventListener("resize", compute)
 
     return () => {
-      window.removeEventListener("scroll", computeActive)
-      window.removeEventListener("resize", computeActive)
+      window.removeEventListener("scroll", compute)
+      window.removeEventListener("resize", compute)
     }
   }, [])
 
@@ -63,12 +66,18 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed z-50 transition-all duration-300",
-        "top-0 left-0 w-full rounded-none px-[15px] py-[19px]", // Mobile defaults
-        "lg:top-6 lg:left-1/2 lg:w-[calc(100%-4rem)] lg:-translate-x-1/2 lg:rounded-[100px] lg:border lg:px-2 lg:py-2 lg:shadow-[0_8px_32px_rgba(0,0,0,0.1)]", // Desktop shape
-        isDark
-          ? "bg-transparent lg:border-white/10 lg:bg-white/10 lg:backdrop-blur-md"
-          : "border-b border-black/5 bg-white/80 backdrop-blur-md lg:border-black/10 lg:shadow-sm"
+        "fixed top-0 left-0 z-50 w-full rounded-none px-[15px] py-[19px] transition-[top,width,padding,background-color,border-color,border-radius,box-shadow,backdrop-filter] duration-300 ease-out will-change-[top,width]",
+        // Always center on desktop — works at full width too (left:50% + -translate-x-1/2 nets to left:0 when width is 100%).
+        // Keeping these stable across scroll states eliminates the wobble from animating left/translate together.
+        "lg:left-1/2 lg:-translate-x-1/2",
+        scrolled
+          ? [
+              "lg:top-6 lg:w-[calc(100%-4rem)] lg:rounded-[100px] lg:border lg:px-2 lg:py-2 lg:shadow-[0_8px_32px_rgba(0,0,0,0.1)]",
+              isDark
+                ? "bg-transparent lg:border-white/10 lg:bg-white/10 lg:backdrop-blur-md"
+                : "border-b border-black/5 bg-[linear-gradient(225deg,rgba(240,242,253,0.18)_0%,rgba(61,98,129,0.12)_100%)] backdrop-blur-[15px] lg:border-black/10 lg:shadow-sm",
+            ]
+          : "border-0 bg-transparent shadow-none backdrop-blur-none"
       )}
     >
       <div className="flex w-full items-center justify-between lg:px-4">
@@ -88,9 +97,8 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   "font-source-sans-400 text-[14px] leading-[22.4px] transition-colors",
-                  isDark
-                    ? "text-white/80 hover:text-white"
-                    : "text-[#010C28]/80 hover:text-[#010C28]"
+                  "hover:text-[#ED862E]",
+                  isDark ? "text-white/80" : "text-[#010E38]"
                 )}
               >
                 {link.name}
@@ -141,7 +149,7 @@ export function Navbar() {
             ))}
             <Button
               variant="primary"
-              className="mt-4 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] !font-['Source_Sans_3'] text-[13px] leading-[20.8px] font-semibold text-white"
+              className="font-source-sans-600 mt-4 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] text-[13px] leading-[20.8px] text-white"
               style={{ padding: "11px 21.661px 11.8px 22px" }}
             >
               Request a Demo

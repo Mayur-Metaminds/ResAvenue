@@ -39,7 +39,10 @@ export function ChannelConnectCentralizeSection() {
   const [activeFeature, setActiveFeature] = useState(features[0]?.id)
 
   return (
-    <section className="w-full bg-[#F8FAFC] px-4 py-[60px] md:px-8 lg:py-[100px]">
+    <section
+      data-nav-theme="light"
+      className="w-full bg-[#F8FAFC] px-4 py-[60px] md:px-8 lg:py-[100px]"
+    >
       <div className="container mx-auto max-w-[1200px]">
         <FeatureShowcase
           header={{

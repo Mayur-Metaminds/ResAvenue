@@ -13,6 +13,7 @@ import {
 export function ChannelConnectHeroSection() {
   return (
     <section
+      data-nav-theme="dark"
       className="relative flex min-h-screen w-full flex-col overflow-hidden  bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
     >

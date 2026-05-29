@@ -149,6 +149,7 @@ const solutions: SolutionCard[] = [
 
 export function DirectConnectSolutionSection() {
   return (
+    <div data-nav-theme="light">
     <BentoGrid
       items={solutions}
       sectionClassName="w-full py-[50px] lg:py-[80px] px-4 md:px-8 bg-white"
@@ -213,5 +214,6 @@ export function DirectConnectSolutionSection() {
         </div>
       )}
     />
+    </div>
   )
 }
