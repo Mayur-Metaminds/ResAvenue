@@ -1,34 +1,20 @@
 "use client"
 
 import { useState } from "react"
-import { z } from "zod"
 
-const services = [
-  "Direct Connect",
-  "Revenue Management",
-  "Website Builder",
-  "Channel Connect",
-  "Distribution Network",
-  "Tours & Packages Engine",
-  "Property Management System",
-  "Event Management",
-  "Mobile App Ecosystem",
-]
-
-// Define Zod validation schema
-const contactSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(1, "Phone number is required"),
-  propertyName: z.string().min(1, "Property name is required"),
-  siteUrl: z.string().url("Invalid URL layout").optional().or(z.literal("")),
-  service: z.string(),
-  message: z.string().optional(),
-})
+import {
+  contactServiceOptions,
+  contactSubmissionSchema,
+  submitContactForm,
+} from "@/services/strapi/contact.service"
+import type {
+  ContactFormErrors,
+  ContactService,
+  ContactSubmitStatus,
+} from "@/types/api"
 
 export default function ContactForm() {
-  const [selected, setSelected] = useState("Direct Connect")
+  const [selected, setSelected] = useState<ContactService>("Direct Connect")
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -38,25 +24,28 @@ export default function ContactForm() {
     siteUrl: "",
     message: "",
   })
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [errors, setErrors] = useState<ContactFormErrors>({})
+  const [status, setStatus] = useState<ContactSubmitStatus>({ kind: "idle" })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
+    const name = e.target.name as keyof typeof formData
+    const value = e.target.value
     setFormData((prev) => ({ ...prev, [name]: value }))
     // Clear error message systematically when user begins re-typing
-    if (errors[name]) {
+    if (errors[name as keyof ContactFormErrors]) {
       setErrors((prev) => {
         const next = { ...prev }
-        delete next[name]
+        delete next[name as keyof ContactFormErrors]
         return next
       })
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (status.kind === "submitting") return
 
-    const result = contactSchema.safeParse({
+    const result = contactSubmissionSchema.safeParse({
       ...formData,
       service: selected,
     })
@@ -69,10 +58,34 @@ export default function ContactForm() {
         }
       })
       setErrors(formattedErrors)
-    } else {
-      setErrors({})
-      // Process validated payload here safely via result.data
-      console.log("Form successfully validated:", result.data)
+      setStatus({ kind: "idle" })
+      return
+    }
+
+    setErrors({})
+    setStatus({ kind: "submitting" })
+
+    try {
+      await submitContactForm(result.data)
+      setStatus({ kind: "success" })
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        propertyName: "",
+        siteUrl: "",
+        message: "",
+      })
+      setSelected("Direct Connect")
+    } catch (err) {
+      setStatus({
+        kind: "error",
+        message:
+          err instanceof Error
+            ? err.message
+            : "Something went wrong. Please try again.",
+      })
     }
   }
 
@@ -204,16 +217,15 @@ export default function ContactForm() {
 
           <div className="-mx-4 overflow-x-auto px-4 md:-mx-8 md:px-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             <div className="flex w-max flex-nowrap gap-2 pb-2 md:gap-3">
-              {services.map((service) => (
+              {contactServiceOptions.map((service) => (
                 <button
                   key={service}
                   type="button"
                   onClick={() => setSelected(service)}
-                  className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-3 py-1.5 text-[8.9px] transition-all duration-200 md:px-5 md:py-2 md:text-sm ${
-                    selected === service
+                  className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-3 py-1.5 text-[8.9px] transition-all duration-200 md:px-5 md:py-2 md:text-sm ${selected === service
                       ? "font-plus-jakarta-700 border-white/40 bg-[#ED862E] text-white"
                       : "font-plus-jakarta-500 border-white/20 text-white/80 hover:border-orange-400"
-                  }`}
+                    }`}
                 >
                   {service}
                 </button>
@@ -237,10 +249,26 @@ export default function ContactForm() {
           )}
         </div>
 
+        {/* Status messages */}
+        {status.kind === "success" && (
+          <p className="font-plus-jakarta-500 mt-5 text-center text-[10px] text-emerald-300 md:text-sm" role="status">
+            Thanks — we&apos;ve received your message and will be in touch soon.
+          </p>
+        )}
+        {status.kind === "error" && (
+          <p className="font-plus-jakarta-500 mt-5 text-center text-[10px] text-red-400 md:text-sm" role="alert">
+            {status.message}
+          </p>
+        )}
+
         {/* Button */}
         <div className="mt-6 flex justify-center md:mt-8">
-          <button type="submit" className="font-plus-jakarta-700 cursor-pointer rounded-full bg-[#ED862E] px-5 md:px-6 py-3 text-[8.909px] leading-[14.255px] text-white shadow-lg transition hover:bg-orange-600 md:px-10 md:py-4 lg:text-[15px] lg:leading-6">
-            Contact Resavenue →
+          <button
+            type="submit"
+            disabled={status.kind === "submitting"}
+            className="font-plus-jakarta-700 cursor-pointer rounded-full bg-[#ED862E] px-5 md:px-6 py-3 text-[8.909px] leading-[14.255px] text-white shadow-lg transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 md:px-10 md:py-4 lg:text-[15px] lg:leading-6"
+          >
+            {status.kind === "submitting" ? "Sending…" : "Contact Resavenue →"}
           </button>
         </div>
 

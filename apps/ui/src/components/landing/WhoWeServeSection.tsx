@@ -190,10 +190,20 @@ export function WhoWeServeSection() {
         ))}
       </div>
 
-      {/* ────────── Mobile: logo + flat vertical list of segment pills (no DNA, no orbital positioning) ────────── */}
-      <div className="flex w-full max-w-md flex-col items-center gap-8 px-4 md:hidden">
+      {/* ────────── Mobile: logo + flat vertical list of segment pills with DNA in the background ────────── */}
+      <div className="relative flex w-full max-w-md flex-col items-center gap-8 px-4 md:hidden">
+        {/* DNA SVG background — sized to fill the column, faded so it sits behind the content */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 flex items-start justify-center text-slate-900/15"
+        >
+          <div className="w-full scale-[1.6] origin-top">
+            <DnaSvg />
+          </div>
+        </div>
+
         {/* Central logo — keep the glow, drop the orbital map scale tricks */}
-        <div className="relative flex items-center justify-center py-4">
+        <div className="relative z-10 flex items-center justify-center py-4">
           <div className="absolute h-32 w-32 rounded-full bg-white opacity-80 blur-2xl" />
           <div className="relative z-10">
             <ResAvenueBlackLogo />
@@ -201,7 +211,7 @@ export function WhoWeServeSection() {
         </div>
 
         {/* Segment pills */}
-        <ul className="flex w-full flex-col gap-3">
+        <ul className="relative z-10 flex w-full flex-col gap-3">
           {segments.map((segment) => (
             <li key={segment.id}>
               <button

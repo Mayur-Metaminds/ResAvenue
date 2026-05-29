@@ -5,18 +5,19 @@ import { Bell, Settings2, Percent } from "lucide-react"
 import { FeatureShowcase } from "@/components/common/FeatureShowcase"
 import { cn } from "@/lib/styles"
 import { PortfolioIcon1, PortfolioIcon2, PortfolioIcon3 } from "../../../public/svg/Channel-Connect"
+import { CheckedIcon } from "../../../public/svg/commonSvg"
 
 export function ChannelConnectPortfolioSection() {
   return (
     <section className="w-full bg-white pt-[80px]">
       <div className="">
         <div
-          className="flex flex-col overflow-hidden rounded-[45px]"
+          className="flex flex-col gap-[32px] overflow-hidden rounded-[45px]"
           style={{
             background: "radial-gradient(100% 100% at 100% 0%, #ED852E 0%, #1A2F6D 50%, #010E38 100%)"
           }}
         >
-          <div className="relative p-8 md:p-16 lg:px-24 lg:pt-24 lg:pb-16">
+          <div className="relative p-[20px] md:p-16 lg:px-24 lg:pt-24 lg:pb-16">
             <div className="relative z-10">
               <FeatureShowcase
                 imagePosition="left"
@@ -73,16 +74,21 @@ export function ChannelConnectPortfolioSection() {
           </div>
 
           {/* Block 2: Decisions Driven by Data */}
-          <div className="relative p-8 md:p-16 lg:px-24 lg:pt-16 lg:pb-24">
+          <div className="relative p-[20px] md:p-16 lg:px-24 lg:pt-16 lg:pb-24">
             <div className="relative z-10">
               <FeatureShowcase
-                imagePosition="right"
+                imagePosition="left"
                 header={{
-                  className: "mb-0",
+                  className: "mb-[24px]",
+                  eyebrowDotColor: "#FFF",
+                  eyebrowClassName: "mb-0",
+                  titleClassName: "mb-0",
                   eyebrow: "BUILT FOR DATA-DRIVEN DECISIONS",
-                  eyebrowColor: "rgba(255, 255, 255, 0.5)",
+                  eyebrowColor: "#FFF",
                   title: "Decisions Driven by\nData, Not Guesswork",
-                  titleColor: "#F9F9F9",
+                  titleHighlight: "Decisions Driven by",
+                  highlightGradient: "linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)",
+                  titleColor: "#F5F4F0",
                   description: (
                     <span className="font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
                       Our advanced analytics suite breaks down your revenue performance by
@@ -103,10 +109,10 @@ export function ChannelConnectPortfolioSection() {
                   </div>
                 }
               >
-                <BulletRow text="Track booking sources and identify top-performing channels." />
-                <BulletRow text="Monitor revenue, occupancy, and key metrics in real-time." />
-                <BulletRow text="Maintain consistent pricing across all OTAs." />
-                <BulletRow text="Benchmark rates and stay ahead of the market." />
+                <CheckedRow text="Track booking sources and identify top-performing channels." />
+                <CheckedRow text="Monitor revenue, occupancy, and key metrics in real-time." />
+                <CheckedRow text="Maintain consistent pricing across all OTAs." />
+                <CheckedRow text="Benchmark rates and stay ahead of the market." />
               </FeatureShowcase>
             </div>
           </div>
@@ -116,10 +122,10 @@ export function ChannelConnectPortfolioSection() {
   )
 }
 
-function BulletRow({ text }: { text: string }) {
+function CheckedRow({ text }: { text: string }) {
   return (
-    <div className="flex items-start gap-3">
-      <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#ED862E]" />
+    <div className="flex items-start gap-[16px]">
+      <CheckedIcon className="h-[20px] w-[20px] shrink-0" />
       <p className="font-source-sans-400 text-[16px] leading-[24px] text-white/80">
         {text}
       </p>

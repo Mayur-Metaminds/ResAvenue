@@ -99,3 +99,5 @@ export type DynamicZonePopulateParams<T> = {
     [K in keyof (T extends { populateDynamicZone?: infer DZ } ? DZ : {})]: true
   }
 }
+
+export * from "./contact"

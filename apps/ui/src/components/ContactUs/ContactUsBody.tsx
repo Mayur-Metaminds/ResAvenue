@@ -167,7 +167,6 @@ const contactCards: ContactCard[] = [
     id: "marketing-inquiries",
     title: "Marketing inquiries",
     description: "For partnerships, media, and general inquiries.",
-    theme: "light",
     gridSpan: "col-span-1 lg:col-span-3",
     icon: <MarketingIcon />,
     email: "contact@resavenue.com",
@@ -177,7 +176,6 @@ const contactCards: ContactCard[] = [
     id: "technical-support",
     title: "Technical support",
     description: "For API issues, integrations, and technical assistance.",
-    theme: "light",
     gridSpan: "col-span-1 lg:col-span-3",
     icon: <SupportIcon />,
     email: "support@resavenue.com",
@@ -187,7 +185,6 @@ const contactCards: ContactCard[] = [
     id: "risk-cardholder-support",
     title: "Risk & Cardholder Support",
     description: "For fraud concerns, chargebacks, and cardholder issues.",
-    theme: "light",
     gridSpan: "col-span-1 lg:col-span-3",
     icon: <RiskIcon />,
     email: "risk@resavenue.com",
@@ -197,7 +194,6 @@ const contactCards: ContactCard[] = [
     id: "billing-accounts",
     title: "Billing & Accounts",
     description: "For invoices, payments, and accounts related queries.",
-    theme: "light",
     gridSpan: "col-span-1 lg:col-span-3",
     icon: <BillingIcon />,
     email: "accounts@resavenue.com",
@@ -237,28 +233,18 @@ function ContactUsBody() {
               description="Choose the appropriate email below and our team will get back to you with the right support as quickly as possible."
             />
           }
-          renderCard={(item, { theme }) => (
+          renderCard={(item) => (
             <div className="flex h-full flex-col justify-between">
               <div className="">
                 <div className="flex items-start gap-3">
                   <CardIcon>{item.icon}</CardIcon>
 
                   <div>
-                    <h3
-                      className={cn(
-                        "font-plus-jakarta-700 text-[16px] leading-[24px]",
-                        theme === "dark" ? "text-white" : "text-[#010E38]"
-                      )}
-                    >
+                    <h3 className="font-plus-jakarta-700 text-[16px] leading-[24px] text-[#010E38]">
                       {item.title}
                     </h3>
 
-                    <p
-                      className={cn(
-                        "font-source-sans-400 mt-2 max-w-[260px] text-[14px] leading-[20px]",
-                        theme === "dark" ? "text-white/70" : "text-[#475569]"
-                      )}
-                    >
+                    <p className="font-source-sans-400 mt-2 max-w-[260px] text-[14px] leading-[20px] text-[#475569]">
                       {item.description}
                     </p>
                   </div>
