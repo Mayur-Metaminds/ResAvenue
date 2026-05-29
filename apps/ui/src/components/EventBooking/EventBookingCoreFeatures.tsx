@@ -100,9 +100,9 @@ const EventBookingCoreFeatures = () => {
           {features.map((f) => (
             <div
               key={f.id}
-              className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
+              className="rounded-[21.795px] border border-slate-200 bg-white px-[10.9px] py-[9.9px] shadow-sm"
             >
-              <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-[21.795px] bg-slate-100">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={f.image}
@@ -121,6 +121,9 @@ const EventBookingCoreFeatures = () => {
             </div>
           ))}
         </div>
+
+
+
       </div>
     </section>
   )
