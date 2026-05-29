@@ -44,8 +44,14 @@
       "type": "enumeration",
       "enum": [
         "Direct Connect",
+        "Revenue Management",
+        "Website Builder",
         "Channel Connect",
-        "Property Management System"
+        "Distribution Network",
+        "Tours & Packages Engine",
+        "Property Management System",
+        "Event Management",
+        "Mobile App Ecosystem"
       ],
       "required": true
     },

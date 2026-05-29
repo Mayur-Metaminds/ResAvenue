@@ -16,8 +16,14 @@ import type { APIResponse } from "."
  */
 export const CONTACT_SERVICE_OPTIONS = [
   "Direct Connect",
+  "Revenue Management",
+  "Website Builder",
   "Channel Connect",
+  "Distribution Network",
+  "Tours & Packages Engine",
   "Property Management System",
+  "Event Management",
+  "Mobile App Ecosystem",
 ] as const
 
 export type ContactService = (typeof CONTACT_SERVICE_OPTIONS)[number]

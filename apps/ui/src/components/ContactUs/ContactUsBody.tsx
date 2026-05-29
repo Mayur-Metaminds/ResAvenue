@@ -209,16 +209,16 @@ function ContactUsBody() {
           items={contactCards}
           containerClassName="w-full"
           gridClassName="relative grid auto-rows-fr grid-cols-1 gap-6 lg:grid-cols-12"
-          cardClassName="min-h-[150px] w-full justify-start overflow-hidden rounded-[24px] border border-slate-200 bg-white max-lg:px-4 max-md:p-4 md:p-4 lg:p-6"
+          cardClassName="min-h-[150px] w-full justify-start overflow-hidden rounded-xl border border-slate-200 bg-white max-lg:px-4 max-md:p-4 md:p-4 lg:p-6"
           header={
             <SectionHeader
               className="mx-auto mb-[40px] max-w-3xl text-center lg:mb-[60px]"
-              eyebrowClassName="typo-body2 tracking-[0.7px] text-[#ED862E]"
-              descriptionClassName="font-source-sans-400 text-[16px] lg:text-[18px] leading-[31.5px] text-center text-[#64748B]"
+              eyebrowClassName="typo-body2 font-normal text-[#ED862E] xl:font-bold xl:text-[12px] xl:tracking-[0.7px]"
+              titleClassName="xl:leading-[56.5px] xl:tracking-normal"
+              descriptionClassName="typo-body1 text-center text-[#64748B]"
               eyebrow="API-first infrastructure"
               title={
                 <SectionHeader.Highlight
-                  className="typo-h1"
                   style={{
                     background:
                       "linear-gradient(86deg, #010E38 -2.62%, #1A2F6D 54.67%, #ED862E 76.16%)",
@@ -240,11 +240,11 @@ function ContactUsBody() {
                   <CardIcon>{item.icon}</CardIcon>
 
                   <div>
-                    <h3 className="font-plus-jakarta-700 text-[16px] leading-[24px]">
+                    <h3 className="font-plus-jakarta-700 text-[16px] leading-[24px] text-[#010E38]">
                       {item.title}
                     </h3>
 
-                    <p className="font-source-sans-400 mt-2 max-w-[260px] text-[14px] leading-[20px] opacity-70">
+                    <p className="font-source-sans-400 mt-2 max-w-[260px] text-[14px] leading-[20px] text-[#475569]">
                       {item.description}
                     </p>
                   </div>
