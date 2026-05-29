@@ -87,7 +87,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "!font-['Inter'] text-[14px] font-normal transition-colors",
+                  "font-source-sans-400 text-[14px] leading-[22.4px] transition-colors",
                   isDark
                     ? "text-white/80 hover:text-white"
                     : "text-[#010C28]/80 hover:text-[#010C28]"
@@ -100,7 +100,7 @@ export function Navbar() {
 
           <Button
             variant="primary"
-            className="flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] !font-['Source_Sans_3'] text-[13px] leading-[20.8px] font-semibold text-white lg:mr-2"
+            className="font-source-sans-600 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] text-[13px] leading-[20.8px] text-white lg:mr-2"
             style={{ padding: "11px 21.661px 11.8px 22px" }}
           >
             Request a Demo
