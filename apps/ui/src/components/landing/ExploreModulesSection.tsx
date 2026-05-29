@@ -185,8 +185,10 @@ export function ExploreModulesSection() {
       {/* Header — in normal flow, scrolls away with the page */}
       <div className="px-4 lg:px-1 pt-24 lg:pt-20">
         <SectionHeader
-          className="mb-5"
+          className="mb-[25px]"
           eyebrow="CORE FEATURES"
+          eyebrowColor="#FFF"
+          eyebrowDotColor="#FFF"
           titleColor="#FFFFFF"
           highlightGradient="linear-gradient(90deg, #ED862E 0%, #ED862E 100%)"
           title={
@@ -199,12 +201,12 @@ export function ExploreModulesSection() {
         />
       </div>
 
-      {/* Sticky block — pins starting at the tabs row */}
-      <div className="sticky top-0 h-dvh w-full overflow-hidden">
-        <div className="flex w-full flex-col px-4 lg:px-1 h-dvh justify-center">
-          <div className="flex h-full flex-col pt-6 lg:pt-10">
+      {/* Sticky block — pins below the fixed navbar so the tabs row stays visible */}
+      <div className="sticky top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden">
+        <div className="flex w-full flex-col px-4 lg:px-1 h-full justify-center">
+          <div className="flex h-full flex-col ">
           {/* Tabs */}
-          <div className="mb-6 lg:mb-10 flex justify-center">
+          <div className="mb-[54px] lg:mb-10 flex justify-center">
             <div className="flex rounded-full border border-gray-800/50 bg-[#0b142e] p-1">
               <TabButton
                 active={activeTab === "direct"}
@@ -221,10 +223,10 @@ export function ExploreModulesSection() {
             </div>
           </div>
 
-          <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 items-center gap-6 lg:gap-12 pb-6 lg:pb-0 min-h-0">
+          <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
             {/* 3D Wheel */}
             <div
-              className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-[600px] lg:ml-22.5 shrink-0"
+              className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-22.5 shrink-0"
               style={{ perspective: "1200px" }}
             >
               <div
@@ -244,7 +246,7 @@ export function ExploreModulesSection() {
             </div>
 
             {/* Image */}
-            <div className="relative z-10 w-full lg:col-span-7 aspect-video lg:aspect-auto lg:h-105 shrink-0 mt-2 lg:mt-0">
+            <div className="relative z-10 w-full lg:col-span-7 aspect-video lg:aspect-auto lg:h-full shrink-0 mt-2 lg:mt-0">
               <div className="pointer-events-none absolute inset-0 rounded-3xl lg:rounded-l-3xl lg:rounded-r-none bg-gradient-to-tr from-[#ED862E]/10 to-transparent opacity-60 blur-3xl" />
               <AnimatePresence mode="wait">
                 <motion.div
@@ -253,7 +255,7 @@ export function ExploreModulesSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="absolute top-0 left-0 h-full w-full lg:w-[150%] overflow-hidden rounded-2xl lg:rounded-3xl lg:rounded-l-3xl lg:rounded-r-none border border-white/10 shadow-2xl bg-[#010C28]"
+                  className="absolute top-0 left-0 h-full w-full lg:w-[150%] overflow-hidden"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -316,7 +318,7 @@ interface WheelItemProps {
 /** Degrees between adjacent items on the wheel. Smaller = straighter / less tilt. */
 const WHEEL_ANGLE_STEP = 6
 /** Vertical radius (px). Large + small angle keeps items nearly vertical with comfortable spacing. */
-const WHEEL_RADIUS_Y = 720
+const WHEEL_RADIUS_Y = 1100
 /** Depth radius (px). Kept modest so items barely recede — wheel reads as almost flat. */
 const WHEEL_RADIUS_Z = 220
 const DEG_TO_RAD = Math.PI / 180

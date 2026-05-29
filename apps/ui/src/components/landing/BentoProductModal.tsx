@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useSyncExternalStore } from "react"
 
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/styles"
 
 import { CheckedIcon, CloseBtn } from "../../../public/svg/commonSvg"
 
@@ -47,6 +48,7 @@ export interface BentoModalProduct {
   modalFeatures: string[]
   imagePlaceholder: string
   href?: string
+  modalWidth?: string
 }
 
 const anchorToOrigin: Record<ModalAnchor, string> = {
@@ -129,12 +131,11 @@ function DesktopAnchoredModal({
 }) {
   return (
     <motion.div
+      layoutId={`bento-card-${product.id}`}
       role="dialog"
       aria-modal="true"
       aria-labelledby={`product-modal-title-${product.id}`}
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0, opacity: 0 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       style={{
         position: "absolute",
@@ -142,9 +143,11 @@ function DesktopAnchoredModal({
         left: bounds.left,
         right: bounds.right,
         bottom: bounds.bottom,
-        transformOrigin: anchorToOrigin[product.anchor],
       }}
-      className="z-40 flex flex-col overflow-hidden rounded-[40px] border border-gray-100 bg-white shadow-2xl w-[760px] max-w-[calc(100vw-32px)] h-[824px] max-h-[calc(100vh-64px)]"
+      className={cn(
+        "z-40 flex flex-col overflow-hidden rounded-[40px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)] h-[824px] max-h-[calc(100vh-64px)]",
+        product.modalWidth || "w-[760px]"
+      )}
     >
       <ModalContent product={product} onClose={onClose} />
     </motion.div>
