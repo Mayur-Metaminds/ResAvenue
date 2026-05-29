@@ -15,7 +15,15 @@ input[type="number"] {
 /* ================= Plus Jakarta Sans ================= */
 @font-face {
   font-family: "Plus Jakarta Sans";
-  src: url("/fonts/plus-jakarta-sans-medium.woff2") format("woff2");
+  src: url("/fonts/Plus-Jakarta-Sans/plus-jakarta-sans-v12-latin-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/Plus-Jakarta-Sans/plus-jakarta-sans-v12-latin-500.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -23,7 +31,7 @@ input[type="number"] {
 
 @font-face {
   font-family: "Plus Jakarta Sans";
-  src: url("/fonts/plus-jakarta-sans-bold.woff2") format("woff2");
+  src: url("/fonts/Plus-Jakarta-Sans/plus-jakarta-sans-v12-latin-700.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -32,7 +40,7 @@ input[type="number"] {
 /* ================= Source Sans 3 ================= */
 @font-face {
   font-family: "Source Sans 3";
-  src: url("/fonts/source-sans-3-regular.woff2") format("woff2");
+  src: url("/fonts/Source-Sans-3/source-sans-3-v19-latin-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -40,173 +48,123 @@ input[type="number"] {
 
 @font-face {
   font-family: "Source Sans 3";
-  src: url("/fonts/source-sans-3-semibold.woff2") format("woff2");
+  src: url("/fonts/Source-Sans-3/source-sans-3-v19-latin-600.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
-/* Register theme colors for Tailwind CSS v4 */
+/* ================= Tailwind v4 theme tokens ================= */
+/* Only font tokens — there is no dark/light theme in this project. Section
+   colors are set per-section via Tailwind arbitrary classes. */
 @theme {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  
-  --sidebar: hsl(var(--sidebar));
-  --sidebar-foreground: hsl(var(--sidebar-foreground));
-  --sidebar-primary: hsl(var(--sidebar-primary));
-  --sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
-  --sidebar-accent: hsl(var(--sidebar-accent));
-  --sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
-  --sidebar-border: hsl(var(--sidebar-border));
-  --sidebar-ring: hsl(var(--sidebar-ring));
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-source-sans: "Source Sans 3", sans-serif;
 }
 
+/* ================= ResAvenue typography variables ================= */
+/* Mobile-first defaults; the desktop block at the bottom overrides at xl+. */
 @layer base {
   :root {
-    /* Base colors */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-
-    /* Card */
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    /* Popover */
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    /* Primary brand color */
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
-
-    /* Secondary/muted */
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    /* Muted backgrounds */
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    /* Accent */
-    --accent: 271 91% 65%;
-    --accent-foreground: 0 0% 100%;
-
-    /* Destructive/error */
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    /* Border */
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 217 91% 60%;
-
-    /* Border radius */
-    --radius: 0.5rem;
-    
-    /* Sidebar Base */
-    --sidebar: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-
-    /* =============== ResAvenue typography variables (Mobile-first) =============== */
-    --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
-    --font-source-sans: "Source Sans 3", sans-serif;
-
-    /* Mobile / H1 — Plus Jakarta Sans, Medium */
+    /* H1 — Plus Jakarta Sans, Medium */
     --h1-font: var(--font-plus-jakarta);
-    --h1-size: 32px;
-    --h1-font-style: normal;
+    --h1-size: 32px;        /* 2rem */
     --h1-weight: 500;
     --h1-line-height: 38.4px;
     --h1-letter-spacing: -1.5px;
 
-    /* Mobile / Body 1 — Source Sans 3, Regular */
+    /* H2 — Plus Jakarta Sans, Semibold */
+    --h2-font: var(--font-plus-jakarta);
+    --h2-size: 24px;
+    --h2-weight: 600;
+    --h2-line-height: 32px;
+    --h2-letter-spacing: 0;
+
+    /* Body 1 — Source Sans 3, Regular */
     --body1-font: var(--font-source-sans);
-    --body1-size: 16px;
-    --body1-font-style: normal;
+    --body1-size: 16px;     /* 1rem */
     --body1-weight: 400;
     --body1-line-height: 22.4px;
-    --body1-letter-spacing: 0px;
+    --body1-letter-spacing: 0;
 
-    /* Mobile / Body 2 (Eyebrow) — Plus Jakarta Sans, Bold, UPPERCASE */
+    /* Body 2 (Eyebrow) — Plus Jakarta Sans, Bold, UPPERCASE */
     --body2-font: var(--font-plus-jakarta);
-    --body2-size: 12px;
-    --body2-font-style: normal;
+    --body2-size: 12px;     /* 0.75rem */
     --body2-weight: 700;
     --body2-line-height: 19px;
     --body2-letter-spacing: 2.5px;
     --body2-text-transform: uppercase;
 
-    /* Mobile / Body 3 — Source Sans 3, Semibold */
+    /* Body 3 — Source Sans 3, Semibold */
     --body3-font: var(--font-source-sans);
-    --body3-size: 16px;
-    --body3-font-style: normal;
+    --body3-size: 16px;     /* 1rem */
     --body3-weight: 600;
     --body3-line-height: 20px;
     --body3-letter-spacing: 2.5px;
-  }
 
-  * {
-    @apply border-border;
+    /* Body 4 — Source Sans 3, Regular */
+    --body4-font: var(--font-source-sans);
+    --body4-size: 16px;
+    --body4-weight: 400;
+    --body4-line-height: 26px;
+    --body4-letter-spacing: 0;
+
+    /* Body 5 — Plus Jakarta Sans, Medium */
+    --body5-font: var(--font-plus-jakarta);
+    --body5-size: 16px;
+    --body5-weight: 500;
+    --body5-line-height: 24px;
+    --body5-letter-spacing: 0;
   }
 
   body {
-    @apply bg-background text-foreground;
+    font-family: var(--font-source-sans);
+    color: #010C28;
+    background: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* ================= Responsive Desktop Overrides ================= */
+/* ================= Desktop overrides (≥1280px) ================= */
 @media (min-width: 1280px) {
   :root {
-    /* Desktop / H1 */
-    --h1-size: 48px;
+    /* H1 */
+    --h1-size: 48px;        /* 3rem */
     --h1-line-height: 56.6px;
     --h1-letter-spacing: -1.5px;
 
-    /* Desktop / Body 1 */
-    --body1-size: 18px;
+    /* Body 1 */
+    --body1-size: 18px;     /* 1.125rem */
     --body1-line-height: 31.5px;
-    --body1-letter-spacing: 0px;
+    --body1-letter-spacing: 0;
 
-    /* Desktop / Body 2 (Eyebrow) */
-    --body2-size: 14px;
+    /* Body 2 (Eyebrow) */
+    --body2-size: 14px;     /* 0.875rem */
     --body2-line-height: 19px;
     --body2-letter-spacing: 2.5px;
 
-    /* Desktop / Body 3 */
-    --body3-size: 14px;
+    /* Body 3 */
+    --body3-size: 14px;     /* 0.875rem */
     --body3-line-height: 20px;
     --body3-letter-spacing: 2.5px;
+
+    /* H2 / Body 4 / Body 5 have a single style across breakpoints. */
   }
 }
 
-/* ================= Font Family Utility Classes ================= */
+/* ================= Font-weight utilities ================= */
+/* Keep these for sites where you want font-family + weight in one class. */
 
 @utility font-plus-jakarta-500 {
   font-family: var(--font-plus-jakarta);
   font-weight: 500;
+}
+
+@utility font-plus-jakarta-600 {
+  font-family: var(--font-plus-jakarta);
+  font-weight: 600;
 }
 
 @utility font-plus-jakarta-700 {
@@ -224,21 +182,27 @@ input[type="number"] {
   font-weight: 600;
 }
 
-/* ================= ResAvenue Typography Utilities ================= */
+/* ================= ResAvenue typography utilities ================= */
 
 @utility typo-h1 {
   font-family: var(--h1-font);
   font-size: var(--h1-size);
-  font-style: var(--h1-font-style);
   font-weight: var(--h1-weight);
   line-height: var(--h1-line-height);
   letter-spacing: var(--h1-letter-spacing, normal);
 }
 
+@utility typo-h2 {
+  font-family: var(--h2-font);
+  font-size: var(--h2-size);
+  font-weight: var(--h2-weight);
+  line-height: var(--h2-line-height);
+  letter-spacing: var(--h2-letter-spacing, normal);
+}
+
 @utility typo-body1 {
   font-family: var(--body1-font);
   font-size: var(--body1-size);
-  font-style: var(--body1-font-style);
   font-weight: var(--body1-weight);
   line-height: var(--body1-line-height);
   letter-spacing: var(--body1-letter-spacing, normal);
@@ -247,7 +211,6 @@ input[type="number"] {
 @utility typo-body2 {
   font-family: var(--body2-font);
   font-size: var(--body2-size);
-  font-style: var(--body2-font-style);
   font-weight: var(--body2-weight);
   line-height: var(--body2-line-height);
   letter-spacing: var(--body2-letter-spacing, normal);
@@ -257,8 +220,23 @@ input[type="number"] {
 @utility typo-body3 {
   font-family: var(--body3-font);
   font-size: var(--body3-size);
-  font-style: var(--body3-font-style);
   font-weight: var(--body3-weight);
   line-height: var(--body3-line-height);
   letter-spacing: var(--body3-letter-spacing, normal);
+}
+
+@utility typo-body4 {
+  font-family: var(--body4-font);
+  font-size: var(--body4-size);
+  font-weight: var(--body4-weight);
+  line-height: var(--body4-line-height);
+  letter-spacing: var(--body4-letter-spacing, normal);
+}
+
+@utility typo-body5 {
+  font-family: var(--body5-font);
+  font-size: var(--body5-size);
+  font-weight: var(--body5-weight);
+  line-height: var(--body5-line-height);
+  letter-spacing: var(--body5-letter-spacing, normal);
 }

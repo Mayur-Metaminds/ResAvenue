@@ -2,13 +2,18 @@
 
 import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
 import { cn } from "@/lib/styles"
-import Lottie from "lottie-react"
+import dynamic from "next/dynamic"
 import desktopDirectConnectAnimation from "../../../public/assets/desktop_direct_connect.json"
 import graphAnimation from "../../../public/assets/graph.json"
 import roomReservationAnimation from "../../../public/assets/room_reservation.json"
 import hotelWebsiteAnimation from "../../../public/assets/hotelwebsite.json"
 
 import { SectionHeader } from "./SectionHeader"
+
+// Lottie touches `window` / DOM during its first render, which breaks on the
+// server pass (and intermittently after hydration in production). Load it
+// client-only so React doesn't try to SSR the canvas/SVG renderer.
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 
 type Product = BentoItem & {
   eyebrow: string
