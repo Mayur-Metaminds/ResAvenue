@@ -1,7 +1,6 @@
 "use client"
 
-import { ArrowLeft, ArrowRight } from "lucide-react"
-import { useRef } from "react"
+import { Marquee } from "@/components/common/Marquee"
 
 import { SectionHeader } from "./SectionHeader"
 
@@ -85,20 +84,6 @@ const avatars = [
 ]
 
 export function TestimonialsSection() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -400, behavior: "smooth" })
-    }
-  }
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 400, behavior: "smooth" })
-    }
-  }
-
   return (
     <section
       data-nav-theme="dark"
@@ -119,7 +104,7 @@ export function TestimonialsSection() {
       <div className="absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-[#010C28] to-transparent" />
       <div className="absolute inset-x-0 bottom-0 z-0 h-40 bg-gradient-to-t from-[#010C28] to-transparent" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full px-[16px] lg:px-[80px]">
         {/* Testimonials Header */}
         <div className="flex flex-col items-center text-center">
           <SectionHeader
@@ -155,56 +140,39 @@ export function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Testimonials Carousel */}
-        <div className="relative left-1/2 mt-16 -ml-[50vw] w-[100vw]">
-          {/* Scroll Container */}
-          <div
-            ref={scrollContainerRef}
-            className="hide-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-8 lg:px-[max(2rem,calc(50vw-640px+2rem))]"
-          >
-            {testimonials.map((testimonial, idx) => (
-              <div
-                key={idx}
-                className="flex w-[85vw] shrink-0 snap-start flex-col rounded-[20px] border border-white/5 bg-[#0A1636]/80 p-8 backdrop-blur-sm transition-all duration-300 hover:border-white/10 hover:bg-[#0A1636] md:w-[400px]"
-              >
-                <p className="mb-10 flex-grow text-[15px] leading-relaxed font-light text-gray-300">
-                  {testimonial.quote}
-                </p>
-                <div className="flex items-center gap-4">
-                  <div
-                    className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${testimonial.colorClass}`}
-                  >
-                    {testimonial.initials}
+        {/* Testimonials Marquee — auto-scrolls, pauses on card hover */}
+        <Marquee
+          className="relative left-1/2 mt-16 -ml-[50vw] w-[100vw]"
+          items={testimonials}
+          durationSeconds={60}
+          pauseOnHover
+          edgeFade
+          gapPx={24}
+          ariaLabel="Customer testimonials"
+          getKey={(_, idx) => idx}
+          renderItem={(testimonial) => (
+            <div className="flex h-[85px] w-[85vw] flex-col rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.04] p-8 backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.06] md:h-[300px] md:w-[400px]">
+              <p className="mb-6 text-[15px] leading-relaxed font-light text-gray-300">
+                {testimonial.quote}
+              </p>
+              <div className="flex items-center gap-4">
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${testimonial.colorClass}`}
+                >
+                  {testimonial.initials}
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-white">
+                    {testimonial.name}
                   </div>
-                  <div>
-                    <div className="text-sm font-medium text-white">
-                      {testimonial.name}
-                    </div>
-                    <div className="mt-0.5 text-xs text-gray-500">
-                      {testimonial.title}
-                    </div>
+                  <div className="mt-0.5 text-xs text-gray-500">
+                    {testimonial.title}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Navigation Arrows */}
-          <div className="mt-4 flex items-center justify-center gap-4">
-            <button
-              onClick={scrollLeft}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:bg-white/10 focus:outline-none"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </button>
-            <button
-              onClick={scrollRight}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:bg-white/10 focus:outline-none"
-            >
-              <ArrowRight className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
+            </div>
+          )}
+        />
 
         {/* Separator / Spacer */}
         <SectionHeader
@@ -221,7 +189,7 @@ export function TestimonialsSection() {
         />
 
         {/* Stats Grid */}
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6">
+        <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6">
           {stats.map((stat, idx) => (
             <div
               key={idx}

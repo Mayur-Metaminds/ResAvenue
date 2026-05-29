@@ -2,7 +2,7 @@
 
 import {
   Monitor,
-  Link,
+  Link as LinkIcon,
   Building2,
   LineChart,
   Globe,
@@ -13,6 +13,7 @@ import {
   Zap,
   ArrowRight,
 } from "lucide-react"
+import Link from "next/link"
 import { useState } from "react"
 
 import { SectionHeader } from "./SectionHeader"
@@ -30,7 +31,7 @@ const services = [
     title: "Channel Connect",
     description:
       "Channel Manager: Manage all OTAs and inventory from one dashboard.",
-    icon: Link,
+    icon: LinkIcon,
   },
   {
     id: "pms",
@@ -86,11 +87,6 @@ export function PlanSelectionSection() {
     setSelectedId((prev) => (prev === id ? null : id))
   }
 
-  const handleRequestQuote = () => {
-    const selected = services.find((s) => s.id === selectedId)
-    console.log("Saving selected service for quote:", selected?.title ?? null)
-    window.location.href = "#"
-  }
 
   return (
     <section
@@ -132,13 +128,13 @@ export function PlanSelectionSection() {
             </p>
 
             <div className="mt-auto">
-              <button
-                onClick={handleRequestQuote}
+              <Link
+                href="/contact-us"
                 className="inline-flex items-center gap-3 rounded-full bg-linear-to-r from-[#ED862E] to-[#D97726] px-8 py-4 font-medium text-white transition-transform hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-[#ED862E] focus:ring-offset-2 focus:outline-none"
               >
                 Request Custom Quote
                 <ArrowRight className="h-5 w-5" />
-              </button>
+              </Link>
 
               <div className="mt-5 flex items-center gap-2 text-emerald-500">
                 <Zap className="h-4 w-4 fill-emerald-500 text-emerald-500" />

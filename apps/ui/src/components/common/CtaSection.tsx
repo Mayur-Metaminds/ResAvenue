@@ -1,6 +1,7 @@
 "use client"
 
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 export function CtaSection() {
   return (
@@ -33,10 +34,13 @@ export function CtaSection() {
         </p>
 
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <button className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-medium text-gray-900 shadow-lg transition-transform hover:scale-105 hover:bg-gray-100">
+          <Link
+            href="/contact-us"
+            className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-medium text-gray-900 shadow-lg transition-transform hover:scale-105 hover:bg-gray-100"
+          >
             Request a Demo
             <ArrowRight className="h-4 w-4" />
-          </button>
+          </Link>
 
           <button className="rounded-full border border-white/10 bg-[#1C2C47]/60 px-8 py-3.5 font-medium text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-[#1C2C47]/80">
             Explore Solutions

@@ -383,3 +383,14 @@ export function Twitter({ className }: { className: string }) {
     </svg>
   )
 }
+
+
+
+export function PlayButton({ className }: { className: string }) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="77" height="77" viewBox="0 0 77 77" fill="none">
+      <rect width="77" height="77" rx="38.5" fill="white" />
+      <path d="M27.2787 55.3605C27.6475 55.5819 28.0655 55.6802 28.4835 55.6802C28.9016 55.6802 29.3688 55.5573 29.7376 55.336L54.3272 40.5822C55.0649 40.1396 55.5321 39.3281 55.5321 38.4675C55.5321 37.6069 55.0895 36.7954 54.3272 36.3528L29.7376 21.5991C29.364 21.3724 28.9362 21.2505 28.4992 21.2462C28.0622 21.2419 27.6321 21.3553 27.2541 21.5745C26.4918 22.0171 26 22.8285 26 23.7138V53.2213C26 54.1065 26.4672 54.9179 27.2541 55.3605H27.2787Z" fill="black" />
+    </svg>
+  )
+}
