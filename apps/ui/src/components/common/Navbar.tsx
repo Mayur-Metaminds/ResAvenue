@@ -11,10 +11,25 @@ import {
   HamburgerMenuSvg,
   ResAvenueBlackLogo,
   ResAvenueWhiteLogo,
+  CloseBtn,
 } from "../../../public/svg/commonSvg"
 
 const navLinks = [
-  { name: "Products", href: "#" },
+  {
+    name: "Products",
+    href: "#",
+    subItems: [
+      { name: "Direct Connect", href: "/direct-connect" },
+      { name: "Channel Connect", href: "/channel-connect" },
+      { name: "Property management system", href: "#" },
+      { name: "Revenue Management", href: "#" },
+      { name: "Distribution Network", href: "#" },
+      { name: "Event Management", href: "#" },
+      { name: "Website Builder", href: "#" },
+      { name: "Tours & Packages Engine", href: "#" },
+      { name: "Mobile App Ecosystem", href: "#" },
+    ],
+  },
   { name: "Features", href: "#" },
   { name: "Benefits", href: "#" },
   { name: "Pricing", href: "#" },
@@ -25,6 +40,7 @@ type NavTheme = "light" | "dark"
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [expandedLink, setExpandedLink] = useState<string | null>("Products")
   // Default to dark — hero is the first section, and we want correct colors before JS hydrates.
   const [theme, setTheme] = useState<NavTheme>("dark")
   const [scrolled, setScrolled] = useState(false)
@@ -60,7 +76,19 @@ export function Navbar() {
       window.removeEventListener("scroll", compute)
       window.removeEventListener("resize", compute)
     }
-  }, [])
+  }, [isMobileMenuOpen]) // Re-run when menu opens/closes since it affects layout
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isMobileMenuOpen])
 
   const isDark = theme === "dark"
 
@@ -76,15 +104,15 @@ export function Navbar() {
           ? [
               "lg:top-6 lg:w-[calc(100%-4rem)] lg:rounded-[100px] lg:border lg:px-2 lg:py-2 lg:shadow-[0_8px_32px_rgba(0,0,0,0.1)]",
               isDark
-                ? "bg-transparent lg:border-white/10 lg:bg-white/10 lg:backdrop-blur-md"
-                : "border-b border-black/5 bg-[linear-gradient(225deg,rgba(240,242,253,0.18)_0%,rgba(61,98,129,0.12)_100%)] backdrop-blur-[15px] lg:border-black/10 lg:shadow-sm",
+                ? "bg-black/20 backdrop-blur-md lg:border-white/10 lg:bg-white/10"
+                : "border-b border-black/5 bg-[linear-gradient(225deg,rgba(240,242,253,0.45)_0%,rgba(61,98,129,0.25)_100%)] backdrop-blur-[15px] lg:border-black/10 lg:shadow-sm",
             ]
           : "border-0 bg-transparent shadow-none backdrop-blur-none"
       )}
     >
       <div className={cn(
-        "flex w-full items-center justify-between lg:px-4 transition-opacity duration-300", 
-        isMobileMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+        "flex w-full items-center justify-between lg:px-4 transition-opacity", 
+        isMobileMenuOpen ? "opacity-0 pointer-events-none duration-100" : "opacity-100 delay-[400ms] duration-500"
       )}>
         {/* Logo */}
         <div className="shrink-0 lg:ml-2">
@@ -131,7 +159,7 @@ export function Navbar() {
           type="button"
         >
           {isMobileMenuOpen ? (
-            <span className="text-2xl leading-none">&times;</span>
+            <CloseBtn bgColor="transparent" iconColor="currentColor" size={28} />
           ) : (
             <HamburgerMenuSvg />
           )}
@@ -143,21 +171,18 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: -20, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.98 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[100] flex flex-col p-4 md:hidden"
-          >
-            <div 
-            className="flex flex-1 flex-col overflow-hidden rounded-[24px] border-[1px] p-6 shadow-2xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] flex flex-col md:hidden"
             style={{
-              borderColor: "rgba(255, 255, 255, 0.10)",
-              background: "rgba(237, 134, 46, 0.25)",
+              background: "rgba(237, 134, 46, 0.60)",
               backdropFilter: "blur(20.7px)",
               WebkitBackdropFilter: "blur(20.7px)",
             }}
           >
+            <div className="flex flex-1 flex-col overflow-hidden px-[15px] py-[19px] shadow-2xl">
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
               <div className="shrink-0">
@@ -165,10 +190,10 @@ export function Navbar() {
               </div>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-black/20 text-white transition-colors hover:bg-black/40"
+                className="flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
                 aria-label="Close menu"
               >
-                <span className="text-xl leading-none">&times;</span>
+                <CloseBtn bgColor="rgba(255, 255, 255, 0.15)" iconColor="#ffffff" size={36} />
               </button>
             </div>
 
@@ -177,13 +202,53 @@ export function Navbar() {
               <div className="flex flex-col space-y-4">
                 {navLinks.map((link) => (
                   <div key={link.name} className="border-b border-white/10 pb-4">
-                    <Link
-                      href={link.href}
-                      className="text-lg font-medium text-white transition-colors hover:text-[#ED862E]"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
+                    {link.subItems ? (
+                      <div>
+                        <button
+                          onClick={() => setExpandedLink(expandedLink === link.name ? null : link.name)}
+                          className={cn(
+                            "flex w-full items-center justify-between text-[20px] font-medium transition-colors hover:text-white/80",
+                            expandedLink === link.name ? "text-[#ED862E]" : "text-white"
+                          )}
+                        >
+                          {link.name}
+                          <span className="text-[24px] leading-none">
+                            {expandedLink === link.name ? "-" : "+"}
+                          </span>
+                        </button>
+                        <AnimatePresence>
+                          {expandedLink === link.name && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="mt-5 flex flex-col space-y-[18px] pl-4">
+                                {link.subItems.map((subItem) => (
+                                  <Link
+                                    key={subItem.name}
+                                    href={subItem.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="text-[16px] text-white transition-colors hover:text-[#ED862E]"
+                                  >
+                                    {subItem.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-[20px] font-medium text-white transition-colors hover:text-[#ED862E]"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    )}
                   </div>
                 ))}
               </div>

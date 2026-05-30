@@ -8,6 +8,10 @@ const withNextIntl = plugin("./src/lib/i18n.ts")
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: env.NEXT_OUTPUT,
+  // Allow LAN-IP origins to receive dev assets (HMR/RSC/chunks). Without this,
+  // Next.js 15+ silently blocks dev-mode requests from non-localhost origins,
+  // which renders SSR HTML but never hydrates on the client.
+  allowedDevOrigins: ["192.168.1.114"],
   reactStrictMode: true,
   devIndicators: {
     position: "bottom-right",
