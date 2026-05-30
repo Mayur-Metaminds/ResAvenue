@@ -51,7 +51,7 @@ export function ChannelConnectHeroSection() {
                   variant="primary"
                   size="default"
                   icon={<ArrowRight className="h-4 w-4" />}
-                  className="gap-[7.6px] pt-[8.5px] pr-[10.5px] pb-[8.5px] pl-[9.5px] lg:pt-[14px] lg:pr-[39.16px] lg:pb-[16px] lg:pl-[28px]"
+                  className="gap-[7.6px] pt-[8.5px] pr-[10.5px] pb-[8.5px] pl-[9.5px] font-['Plus_Jakarta_Sans'] font-semibold text-[16px] leading-[24px] lg:pt-[14px] lg:pr-[39.16px] lg:pb-[16px] lg:pl-[28px] lg:text-[15px]"
                 >
                   Start Your Journey
                 </Button>,

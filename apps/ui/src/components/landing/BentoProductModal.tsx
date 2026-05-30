@@ -247,7 +247,7 @@ function ModalContent({
           <Button
             variant="primary"
             size="default"
-            className="mt-auto w-fit gap-2 rounded-[50px] px-[32px] py-[14px] cursor-pointer text-[15px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
+            className="mt-auto w-fit gap-2 rounded-[50px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
             icon={<ArrowRight className="h-4 w-4" />}
             onClick={() => {
               onClose()

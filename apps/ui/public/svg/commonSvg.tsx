@@ -82,14 +82,14 @@ export function HamburgerMenuSvg() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="28" height="3" fill="white" />
-      <rect width="28" height="3" transform="translate(0 9)" fill="white" />
-      <rect width="28" height="3" transform="translate(0 18)" fill="white" />
+      <rect width="28" height="3" fill="currentColor" />
+      <rect width="28" height="3" transform="translate(0 9)" fill="currentColor" />
+      <rect width="28" height="3" transform="translate(0 18)" fill="currentColor" />
     </svg>
   )
 }
 
-export function DnaSvg() {
+export function DnaSvg({ id = "1" }: { id?: string | number }) {
   return (
     <svg
       width="622"
@@ -100,7 +100,7 @@ export function DnaSvg() {
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <mask
-        id="mask0_2162_11475"
+        id={`mask0_2162_11475_${id}`}
         style={{ maskType: "alpha" }}
         maskUnits="userSpaceOnUse"
         x="0"
@@ -114,34 +114,34 @@ export function DnaSvg() {
           width="622"
           height="656.878"
           transform="rotate(-180 622 656.879)"
-          fill="url(#pattern0_2162_11475)"
+          fill={`url(#pattern0_2162_11475_${id})`}
         />
       </mask>
-      <g mask="url(#mask0_2162_11475)">
+      <g mask={`url(#mask0_2162_11475_${id})`}>
         <rect
           x="622.5"
           y="645.32"
           width="622"
           height="656.878"
           transform="rotate(-180 622.5 645.32)"
-          fill="white"
+          fill="#FFF"
           fillOpacity="0.7"
         />
       </g>
       <defs>
         <pattern
-          id="pattern0_2162_11475"
+          id={`pattern0_2162_11475_${id}`}
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"
         >
           <use
-            xlinkHref="#image0_2162_11475"
+            xlinkHref={`#image0_2162_11475_${id}`}
             transform="scale(0.000934579 0.000884956)"
           />
         </pattern>
         <image
-          id="image0_2162_11475"
+          id={`image0_2162_11475_${id}`}
           width="1070"
           height="1130"
           preserveAspectRatio="none"

@@ -44,7 +44,7 @@ const solutions: SolutionCard[] = [
       "Multi-currency & Multi-lingual",
     ],
     imagePlaceholder: "/images/Mock-Image.png",
-    icon: <UnifiedPlatformIcon1 />,
+    icon: <UnifiedPlatformIcon1 className="text-[#ED862E]"/>,
     modalWidth: "w-[950px]",
   },
   {

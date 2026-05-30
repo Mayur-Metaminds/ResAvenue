@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/styles"
@@ -64,8 +65,9 @@ export function Navbar() {
   const isDark = theme === "dark"
 
   return (
-    <nav
-      className={cn(
+    <>
+      <nav
+        className={cn(
         "fixed top-0 left-0 z-50 w-full rounded-none px-[15px] py-[19px] transition-[top,width,padding,background-color,border-color,border-radius,box-shadow,backdrop-filter] duration-300 ease-out will-change-[top,width]",
         // Always center on desktop — works at full width too (left:50% + -translate-x-1/2 nets to left:0 when width is 100%).
         // Keeping these stable across scroll states eliminates the wobble from animating left/translate together.
@@ -80,7 +82,10 @@ export function Navbar() {
           : "border-0 bg-transparent shadow-none backdrop-blur-none"
       )}
     >
-      <div className="flex w-full items-center justify-between lg:px-4">
+      <div className={cn(
+        "flex w-full items-center justify-between lg:px-4 transition-opacity duration-300", 
+        isMobileMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+      )}>
         {/* Logo */}
         <div className="shrink-0 lg:ml-2">
           <Link href="/">
@@ -132,31 +137,72 @@ export function Navbar() {
           )}
         </button>
       </div>
+    </nav>
 
       {/* Mobile dropdown */}
-      {isMobileMenuOpen && (
-        <div className="px-20 md:hidden">
-          <div className="mt-2 flex flex-col space-y-4 rounded-lg border border-[#333333] bg-[#18181A] p-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="hover:text-primary py-2 text-base font-medium text-white transition-colors"
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.98 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[100] flex flex-col p-4 md:hidden"
+          >
+            <div 
+            className="flex flex-1 flex-col overflow-hidden rounded-[24px] border-[1px] p-6 shadow-2xl"
+            style={{
+              borderColor: "rgba(255, 255, 255, 0.10)",
+              background: "rgba(237, 134, 46, 0.25)",
+              backdropFilter: "blur(20.7px)",
+              WebkitBackdropFilter: "blur(20.7px)",
+            }}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="shrink-0">
+                <ResAvenueWhiteLogo />
+              </div>
+              <button 
                 onClick={() => setIsMobileMenuOpen(false)}
+                className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-black/20 text-white transition-colors hover:bg-black/40"
+                aria-label="Close menu"
               >
-                {link.name}
-              </Link>
-            ))}
-            <Button
-              variant="primary"
-              className="font-source-sans-600 mt-4 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] text-[13px] leading-[20.8px] text-white"
-              style={{ padding: "11px 21.661px 11.8px 22px" }}
-            >
-              Request a Demo
-            </Button>
-          </div>
-        </div>
-      )}
-    </nav>
+                <span className="text-xl leading-none">&times;</span>
+              </button>
+            </div>
+
+            {/* Links */}
+            <div className="flex flex-1 flex-col overflow-y-auto">
+              <div className="flex flex-col space-y-4">
+                {navLinks.map((link) => (
+                  <div key={link.name} className="border-b border-white/10 pb-4">
+                    <Link
+                      href={link.href}
+                      className="text-lg font-medium text-white transition-colors hover:text-[#ED862E]"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <div className="mt-auto pt-8 pb-4">
+                <Button
+                  variant="primary"
+                  className="font-source-sans-600 flex w-full h-[48px] items-center justify-center rounded-[50px] text-[15px] text-white"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Request a Demo
+                </Button>
+              </div>
+            </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
