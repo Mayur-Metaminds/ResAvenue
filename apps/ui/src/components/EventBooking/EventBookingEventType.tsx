@@ -143,7 +143,7 @@ const EventBookingEventType = () => {
                                 }}
                                 onClick={() => goTo(i)}
                                 className={cn(
-                                    "group w-[280px] shrink-0 snap-center cursor-pointer rounded-[21.795px] border-2 bg-white text-left shadow-sm transition-all duration-200 sm:w-[320px]",
+                                    "group w-[280px] shrink-0 snap-center cursor-pointer overflow-hidden rounded-[21.795px] border-2 bg-white text-left shadow-sm transition-all duration-200 sm:w-[320px]",
                                     isActive
                                         ? "border-[#ED862E] shadow-lg"
                                         : "border-slate-200 hover:border-slate-300"
