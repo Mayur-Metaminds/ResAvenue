@@ -10,7 +10,7 @@ export function SolutionSection() {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-white px-4 py-[24px] md:px-8"
+      className="w-full bg-white px-4 py-[61px] md:px-8"
     >
       <div className="container mx-auto flex max-w-5xl flex-col items-center text-center">
         {/* Eyebrow */}
@@ -28,7 +28,6 @@ export function SolutionSection() {
 
         {/* Title */}
         <HeroTitle
-          className="mb-[34px] max-w-4xl lg:mb-[84px]"
           style={{ "--hero-title-color": "#010C28" } as React.CSSProperties}
         >
           Hotels run on disparate systems.
@@ -62,7 +61,7 @@ export function SolutionSection() {
         </div>
 
         {/* Description */}
-        <p className="typo-body1 max-w-3xl leading-relaxed text-[#414E62]">
+        <p className="typo-body1 max-w-3xl text-[#64748B]">
           Managing bookings, channels, operations, and revenue across
           disconnected systems leads to lost revenue, overbookings, and poor
           guest experiences. ResAvenue unifies everything.

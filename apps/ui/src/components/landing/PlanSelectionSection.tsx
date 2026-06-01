@@ -1,22 +1,24 @@
 "use client"
 
-import {
-  Monitor,
-  Link as LinkIcon,
-  Building2,
-  LineChart,
-  Globe,
-  Ticket,
-  Layout,
-  Map,
-  Smartphone,
-  Zap,
-  ArrowRight,
-} from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 
+import { buttonVariants } from "@/components/ui/button"
+
+import {
+  CoreServicesIcon1,
+  CoreServicesIcon2,
+  CoreServicesIcon3,
+  CoreServicesIcon4,
+  CoreServicesIcon5,
+  CoreServicesIcon6,
+  CoreServicesIcon7,
+} from "../../../public/svg/LandingPage"
+
 import { SectionHeader } from "./SectionHeader"
+import { CheckedIcon } from "../../../public/svg/commonSvg"
+import { UnifiedPlatformIcon1 } from "../../../public/svg/Direct-Connect"
 
 const services = [
   {
@@ -24,59 +26,77 @@ const services = [
     title: "Direct Connect",
     description:
       "Booking engine: Turn your website into a highly-converting booking engine.",
-    icon: Monitor,
+    icon: CoreServicesIcon1,
   },
   {
     id: "channel-connect",
     title: "Channel Connect",
     description:
       "Channel Manager: Manage all OTAs and inventory from one dashboard.",
-    icon: LinkIcon,
+    icon: CoreServicesIcon2,
   },
   {
     id: "pms",
     title: "Property Management System",
     description: "Run your operations seamlessly in one place.",
-    icon: Building2,
+    icon: CoreServicesIcon3,
   },
   {
     id: "revenue-management",
     title: "Revenue Management",
     description: "Optimize pricing and grow your revenue intelligently.",
-    icon: LineChart,
+    icon: CoreServicesIcon4,
   },
   {
     id: "distribution",
     title: "Distribution Network",
     description:
       "GDS/IDS: Reach more corporates & guests across global booking platforms.",
-    icon: Globe,
+    icon: CoreServicesIcon5,
   },
   {
     id: "event-management",
     title: "Event Management",
     description: "Create, manage, and monetize your events effortlessly.",
-    icon: Ticket,
+    icon: CoreServicesIcon6,
   },
   {
     id: "website-builder",
     title: "Website Builder",
     description: "Build stunning websites that drive direct bookings.",
-    icon: Layout,
+    icon: CoreServicesIcon7,
   },
   {
+    // Reuses CoreServicesIcon5 (globe) — closest semantic match for travel.
     id: "tours-packages",
     title: "Tours & Packages Engine",
     description:
       "Sell curated guest experiences that create new revenue streams.",
-    icon: Map,
+    icon: CoreServicesIcon5,
   },
   {
+    // Reuses CoreServicesIcon1 — no dedicated mobile icon in CoreServicesIcon set.
     id: "mobile-app",
     title: "Mobile App Ecosystem",
     description:
       "Manage hospitality operations anytime, anywhere with mobile-first access.",
-    icon: Smartphone,
+    icon: CoreServicesIcon1,
+  },
+  {
+    // Reuses CoreServicesIcon4 (chart) — fits analytics theme.
+    id: "analytics-reporting",
+    title: "Analytics & Reporting",
+    description:
+      "Real-time pace, pickup, and channel mix dashboards built for revenue teams.",
+    icon: CoreServicesIcon4,
+  },
+  {
+    // Reuses CoreServicesIcon2 (transfer/connection) — fits loyalty/CRM theme.
+    id: "guest-crm",
+    title: "Guest CRM & Loyalty",
+    description:
+      "Negotiated rates, loyalty tiers, and travel-program portals in one place.",
+    icon: CoreServicesIcon2,
   },
 ]
 
@@ -91,14 +111,14 @@ export function PlanSelectionSection() {
   return (
     <section
       data-nav-theme="light"
-      className="relative flex w-full flex-col items-center overflow-hidden py-24"
+      className="relative flex w-full flex-col items-center overflow-hidden py-[58px]"
       style={{
         background:
           "var(--bg, linear-gradient(225deg, rgba(240, 242, 253, 1) 0%, rgba(61, 98, 129, 0.15) 100%))",
       }}
     >
       {/* Header */}
-      <div className="z-10 mb-16 px-4 text-center">
+      <div className="z-10 mb-[16px] lg:mb-[60px] px-4 text-center">
         <SectionHeader
           eyebrow="PRICING"
           title={
@@ -111,18 +131,19 @@ export function PlanSelectionSection() {
             </>
           }
           description="Explore powerful tools designed to simplify operations, increase bookings, and maximize revenue."
+          descriptionClassName="typo-body-1 text-slate-400"
         />
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 mx-auto w-full lg:px-[80px] ">
-        <div className="flex flex-col gap-16 rounded-[32px] py-[48px] border border-slate-100 bg-white px-4 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]  lg:flex-row lg:gap-[48.34px] ">
+      <div className="relative z-10 mx-auto w-full xl:px-[80px] ">
+        <div className="flex flex-col gap-16 rounded-[32px] py-[48px] border border-slate-100 bg-white px-[12px] lg:px-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]  lg:flex-row lg:gap-[48.34px] ">
           {/* Left Column */}
-          <div className="flex w-full flex-col border-slate-300 lg:w-[35%] lg:border-r">
-            <h3 className="mb-4 text-3xl font-medium tracking-tight text-[#010C28]">
+          <div className="flex w-full flex-col border-slate-300 lg:w-[336px] lg:border-r">
+            <h3 className="mb-4 typo-h1 text-[#010C28] mr-[23px]">
               Ready to get started?
             </h3>
-            <p className="mb-10 text-[15px] leading-relaxed text-slate-500">
+            <p className="mb-10 typo-body-1 lg:w-[287px] text-slate-400">
               Our specialists will build a custom package based on your
               team&apos;s specific requirements.
             </p>
@@ -130,15 +151,19 @@ export function PlanSelectionSection() {
             <div className="mt-auto">
               <Link
                 href="/contact-us"
-                className="inline-flex items-center gap-3 rounded-full bg-linear-to-r from-[#ED862E] to-[#D97726] px-8 py-4 font-medium text-white transition-transform hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-[#ED862E] focus:ring-offset-2 focus:outline-none"
+                className={buttonVariants({
+                  variant: "primary",
+                  size: "default",
+                  className: "gap-3 px-8 py-4 typo-body5 !rounded-[16px]",
+                })}
               >
                 Request Custom Quote
                 <ArrowRight className="h-5 w-5" />
               </Link>
 
               <div className="mt-5 flex items-center gap-2 text-emerald-500">
-                <Zap className="h-4 w-4 fill-emerald-500 text-emerald-500" />
-                <span className="text-sm font-medium">
+                <UnifiedPlatformIcon1 />
+                <span className="typo-body-2 text-slate-400">
                   Response within 24 hours
                 </span>
               </div>
@@ -147,17 +172,17 @@ export function PlanSelectionSection() {
 
           {/* Right Column */}
           <div className="w-full lg:w-[65%]">
-            <div className="mb-8">
-              <h4 className="mb-2 text-xl font-semibold text-[#010C28]">
+            <div className="mb-[24px]">
+              <h4 className="mb-2 typo-h2 text-[#010C28]">
                 Select your core services
               </h4>
-              <p className="text-sm text-slate-500">
+              <p className="typo-body3 text-slate-400">
                 Organize your operational stack by choosing the professional
                 modules you need.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-1 lg:gap-4">
               {services.map((service) => {
                 const isSelected = selectedId === service.id
                 const Icon = service.icon
@@ -166,35 +191,25 @@ export function PlanSelectionSection() {
                   <button
                     key={service.id}
                     onClick={() => selectService(service.id)}
-                    className={`group relative flex h-[171px] w-full flex-col items-start gap-4 overflow-hidden rounded-[16px] bg-[#010C28] p-[21px] text-left transition-all duration-300 outline-none sm:w-[243px] ${
-                      isSelected
+                    className={`group relative flex min-h-[171px] w-full flex-col items-start gap-4 rounded-[16px] bg-[#010C28] p-[21px] text-left transition-all duration-300 outline-none sm:w-[243px] ${isSelected
                         ? "border-2 border-[#ED862E] shadow-[0_0_20px_rgba(237,134,46,0.15)]"
                         : "border-2 border-transparent hover:border-slate-700"
-                    }`}
+                      }`}
                   >
                     {/* Checkmark for selected state */}
                     {isSelected && (
                       <div className="absolute top-[21px] right-[21px] text-[#ED862E]">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                          <polyline points="22 4 12 14.01 9 11.01" />
-                        </svg>
+                        <CheckedIcon />
                       </div>
                     )}
 
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 transition-colors">
-                      <Icon
-                        className={`h-5 w-5 ${isSelected ? "text-[#ED862E]" : "text-slate-400 group-hover:text-slate-200"}`}
-                      />
+                    <div
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-200 [&_svg]:h-full [&_svg]:w-full ${isSelected
+                          ? "bg-[#ED862E]/10 text-[#ED862E]"
+                          : "bg-transparent text-slate-400"
+                        }`}
+                    >
+                      <Icon />
                     </div>
 
                     <div className="flex flex-col gap-2">

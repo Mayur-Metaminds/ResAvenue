@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Eyebrow } from "@/components/common/Eyebrow"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { cn } from "@/lib/styles"
+import { NumberIcon1, NumberIcon2, NumberIcon3, NumberIcon4 } from "../../../public/svg/Direct-Connect"
 
 type AccordionItemData = {
   id: string
@@ -112,21 +113,24 @@ export function DirectConnectDeepDiveSection() {
                     )
                   }
                 >
-                  <div className="flex items-start gap-[14px] py-[16px] pr-[7px] pl-[16px] select-none lg:pr-[31px]">
+                 <div className="flex items-start gap-[14px] py-[16px] pr-[7px] pl-[16px] select-none lg:pr-[31px]">
                     <div
                       className={cn(
-                        "flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg text-[15px] font-bold transition-all duration-300",
+                        "shrink-0 transition-all duration-300",
                         isOpen
-                          ? "bg-[#ED862E] text-white"
-                          : "bg-white/5 text-white/50"
+                          ? "opacity-100"
+                          : "opacity-50 grayscale"
                       )}
                     >
-                      {number}
+                      {index === 0 && <NumberIcon1 />}
+                      {index === 1 && <NumberIcon2 />}
+                      {index === 2 && <NumberIcon3 />}
+                      {index === 3 && <NumberIcon4 />}
                     </div>
-                    <div>
+                    <div> 
                       <h4
                         className={cn(
-                          "font-plus-jakarta-700 mb-[10px] text-[18px] transition-colors duration-300 lg:text-[19px]",
+                          " mb-[10px] transition-colors duration-300 typo-body5",
                           isOpen ? "text-white" : "text-[#94A3B8]"
                         )}
                       >
@@ -140,7 +144,7 @@ export function DirectConnectDeepDiveSection() {
                             : "max-h-0 pb-0 opacity-0"
                         )}
                       >
-                        <p className="font-source-sans-400 text-[15px] leading-[1.6] text-[#94A3B8] lg:text-[16px]">
+                        <p className="typo-body3 text-white/60">
                           {item.description}
                         </p>
                       </div>

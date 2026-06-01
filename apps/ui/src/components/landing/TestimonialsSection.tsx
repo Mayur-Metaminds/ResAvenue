@@ -151,8 +151,8 @@ export function TestimonialsSection() {
           ariaLabel="Customer testimonials"
           getKey={(_, idx) => idx}
           renderItem={(testimonial) => (
-            <div className="flex h-[85px] w-[85vw] flex-col rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.04] p-8 backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.06] md:h-[300px] md:w-[400px]">
-              <p className="mb-6 text-[15px] leading-relaxed font-light text-gray-300">
+            <div className="flex h-[199px] w-[325px] flex-col rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.06] px-[20px] py-[24px] backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.08] md:h-[265px] md:w-[456px]">
+              <p className="mb-6 line-clamp-4 text-[13px] leading-relaxed font-light text-gray-300 md:line-clamp-6 md:text-[15px]">
                 {testimonial.quote}
               </p>
               <div className="flex items-center gap-4">

@@ -4,8 +4,9 @@ import * as React from "react"
 import { cn } from "@/lib/styles"
 
 const buttonVariants = cva(
-  // Added Typography (Plus Jakarta Sans, mobile: 16px, desktop: 15px, line-height: 24px)
-  "inline-flex items-center justify-center whitespace-nowrap rounded-[50px] font-semibold text-white font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] lg:text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  // Typography is intentionally NOT baked in — consumers pass a typo-* utility (or explicit
+  // font/size/weight classes) so call sites stay in control without fighting the cascade.
+  "inline-flex items-center justify-center whitespace-nowrap rounded-[50px] text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {

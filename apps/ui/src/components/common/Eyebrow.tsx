@@ -42,7 +42,6 @@ export function Eyebrow({
   eyebrowColor,
   ...rest
 }: EyebrowProps) {
-  console.log("eyebrowColor", eyebrowColor)
 
   return (
     <div

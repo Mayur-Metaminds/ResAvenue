@@ -143,7 +143,7 @@ export function WhoWeServeSection() {
     >
       {/* Header */}
       <SectionHeader
-        className="z-10 mb-16 px-4"
+        className="z-10 mb-[16px] lg:mb-16 px-4"
         eyebrow="PRODUCTS"
         title={
           <>
@@ -157,7 +157,7 @@ export function WhoWeServeSection() {
       <div className="relative hidden h-[700px] w-[800px] max-w-full scale-75 items-center justify-center sm:scale-100 md:flex">
         {/* DNA SVG Background — DnaSvg uses `currentColor` for its fill, so the wrapper's text-color drives the DNA tint. */}
         <div className="absolute inset-0 flex items-center justify-center text-slate-900/40">
-          <DnaSvg />
+          <DnaSvg id="desktop" />
         </div>
 
         {/* Central Logo with glow */}
@@ -195,10 +195,10 @@ export function WhoWeServeSection() {
         {/* DNA SVG background — sized to fill the column, faded so it sits behind the content */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 flex items-start justify-center text-slate-900/15"
+          className="pointer-events-none absolute inset-0 z-0 flex items-start justify-center text-slate-900/60"
         >
-          <div className="w-full scale-[1.6] origin-top">
-            <DnaSvg />
+          <div className="w-full origin-top scale-100 sm:scale-110 flex justify-center">
+            <DnaSvg id="mobile" />
           </div>
         </div>
 
