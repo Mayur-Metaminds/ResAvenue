@@ -7,7 +7,7 @@ export interface FeatureShowcaseProps {
   /** Optional custom class for the container grid */
   className?: string
   /** Header configuration */
-  header: SectionHeaderProps
+  header?: SectionHeaderProps
   /** The content to display below the header (usually the features list) */
   children: React.ReactNode
   /** The image or visual element to display */
@@ -40,16 +40,18 @@ function FeatureShowcaseRoot({
           imagePosition === "left" ? "order-1 lg:order-2" : "order-1 lg:order-1"
         )}
       >
-        <SectionHeader
-          {...header}
-          className={cn(
-            headerAlignment === "center"
-              ? "items-center  text-center"
-              : "items-start text-left",
-            "gap-[24px]",
-            header.className
-          )}
-        />
+        {header && (
+          <SectionHeader
+            {...header}
+            className={cn(
+              headerAlignment === "center"
+                ? "items-center text-center"
+                : "items-start text-left",
+              "gap-[24px]",
+              header.className
+            )}
+          />
+        )}
         <div className="flex w-full flex-col gap-4 ">{children}</div>
       </div>
 

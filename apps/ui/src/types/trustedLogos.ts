@@ -1,8 +1,18 @@
 import {
-  BullLogo,
+  Agoda,
+  AirBnB,
+  Amadeus,
+  BookingDotCom,
+  ClearTrip,
+  DEdge,
   Expedia,
-  MickinsleyAndCompany,
-  Vercel,
+  Galileo,
+  GoMMt,
+  HotelBeds,
+  HRS,
+  Sabre,
+  Trip,
+  WorldSpan,
 } from "../../public/svg/MarqueeSvg"
 
 /**
@@ -12,9 +22,19 @@ import {
  */
 export const trustedLogos = [
   { name: "Expedia", Component: Expedia },
-  { name: "Texas Longhorns", Component: BullLogo },
-  { name: "McKinsey & Company", Component: MickinsleyAndCompany },
-  { name: "Vercel", Component: Vercel },
+  { name: "Booking.com", Component: BookingDotCom },
+  { name: "Agoda", Component: Agoda },
+  { name: "Airbnb", Component: AirBnB },
+  { name: "Amadeus", Component: Amadeus },
+  { name: "Sabre", Component: Sabre },
+  { name: "Galileo", Component: Galileo },
+  { name: "WorldSpan", Component: WorldSpan },
+  { name: "HotelBeds", Component: HotelBeds },
+  { name: "HRS", Component: HRS },
+  { name: "ClearTrip", Component: ClearTrip },
+  { name: "Trip.com", Component: Trip },
+  { name: "Goibibo / MakeMyTrip", Component: GoMMt },
+  { name: "D-EDGE", Component: DEdge },
 ] as const
 
 export type TrustedLogo = (typeof trustedLogos)[number]
