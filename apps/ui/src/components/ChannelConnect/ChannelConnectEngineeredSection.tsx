@@ -135,7 +135,7 @@ export function ChannelConnectEngineeredSection() {
           {engineeredFeatures.map((feature) => (
             <div
               key={feature.id}
-              className="flex h-full min-h-[204px] flex-col items-start gap-[19px] rounded-[16px] border border-black/5 bg-white p-[20px] text-left"
+              className="flex h-full cursor-pointer min-h-[204px] flex-col items-start gap-[19px] rounded-[16px] border border-black/5 bg-white p-[20px] text-left transition-all duration-300 hover:border-[#ED862E] hover:[background:linear-gradient(0deg,rgba(237,134,46,0.03)_0%,rgba(237,134,46,0.03)_100%),#FFF]"
             >
               <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#ED862E]/10">
                 {feature.icon}
