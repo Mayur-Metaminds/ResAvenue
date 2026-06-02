@@ -8,7 +8,7 @@ const PropertyManagementScalability = () => {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-white px-4 py-[60px] md:px-8 lg:py-[100px]"
+      className="w-full bg-white px-4 py-[60px] md:px-8 lg:py-[100px] md:text-nowrap"
     >
       <SectionHeader
         eyebrow="CLOUD-NATIVE INFRASTRUCTURE"

@@ -27,7 +27,7 @@ const benefits = [
 
 const mobileAppBenefits = () => {
     return (
-        <section data-nav-theme="light" className='bg-white w-full px-4 md:px-8 py-[60px] lg:py-[100px]'>
+        <section data-nav-theme="light" className='bg-white w-full px-4 md:px-8 py-[60px] '>
             <SectionHeader
                 eyebrow={<span>BENEFITS</span>}
                 eyebrowClassName="typo-body2 text-[14px] text-[#ED862E] text-center"
@@ -54,7 +54,7 @@ const mobileAppBenefits = () => {
                 {benefits.map(({ icon: Icon, title, description }) => (
                     <div
                         key={title}
-                        className='flex w-[343px] max-w-full flex-col items-center gap-[14.8px] rounded-[24px] border-[3px] border-[#ED862E40] bg-[#F8FAFC] p-6 text-center lg:w-auto lg:border-[#E2E8F0]'
+                        className='flex w-[343px] max-w-full flex-col items-center gap-[14.8px] rounded-[24px] border-[3px] border-[#ED862E40] bg-[#F8FAFC] p-6 text-center lg:w-auto'
                     >
                         <span className='flex h-14 w-14 items-center justify-center rounded-full bg-[#ED862E1A]'>
                             <Icon className='h-6 w-6 text-[#ED862E]' aria-hidden='true' />

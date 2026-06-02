@@ -8,7 +8,12 @@ import { cn } from "@/lib/styles"
 
 import { SectionHeader } from "./SectionHeader"
 
-const faqs = [
+export type FaqItem = {
+  question: string
+  answer: string
+}
+
+const defaultFaqs: FaqItem[] = [
   {
     question: "How long does deployment typically take?",
     answer:
@@ -41,8 +46,21 @@ const faqs = [
   },
 ]
 
-export function FaqSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
+type FaqSectionProps = {
+  /** FAQ items to render. Defaults to the standard ResAvenue set. */
+  faqs?: FaqItem[]
+  /** Sub-heading under the title. */
+  description?: string
+  /** Which item starts open. Default 0 (first open); pass null for all closed. */
+  defaultOpenIndex?: number | null
+}
+
+export function FaqSection({
+  faqs = defaultFaqs,
+  description = "Everything you need to know about ResAvenue",
+  defaultOpenIndex = 0,
+}: FaqSectionProps = {}) {
+  const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex)
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -70,7 +88,7 @@ export function FaqSection() {
             </SectionHeader.Highlight>
           }
           titleClassName="!font-semibold !leading-[32px] lg:!leading-[48px]"
-          description="Everything you need to know about ResAvenue"
+          description={description}
           descriptionClassName="typo-body1 text-[#45556C]"
         />
 

@@ -6,7 +6,7 @@ import { SectionHeader } from "@/components/landing/SectionHeader"
 
 const MobileAppSolutions = () => {
     return (
-        <section data-nav-theme="light" className="w-full bg-[#F6F7FB] px-4 py-[60px] md:px-8 lg:py-[100px]">
+        <section data-nav-theme="light" className="w-full bg-[#F6F7FB] px-4 py-[60px] md:px-8">
             <div className="mx-auto max-w-6xl">
                 <SectionHeader
                     eyebrow={<span>OUR SOLUTIONS</span>}
@@ -27,7 +27,7 @@ const MobileAppSolutions = () => {
                             Yours doesn't have to.
                         </SectionHeader.Highlight>
                     }
-                    description="Powerful modules designed to work together to create seamless event experiences from creation to post-event analysis."
+                    description="Stay in control of your inventory, rates, and bookings—anytime, anywhere. Our powerful mobile app brings the full capabilities of a hotel channel manager to your fingertips, enabling you to manage distribution seamlessly on the go."
                 />
 
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

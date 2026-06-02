@@ -1,4 +1,6 @@
-import React from 'react'
+"use client"
+
+import { Marquee } from '@/components/common/Marquee'
 
 // Text content from the design; card images are intentionally left as dummy placeholders.
 const showcaseCards = [
@@ -20,18 +22,23 @@ const showcaseCards = [
     },
 ]
 
+type ShowcaseCard = (typeof showcaseCards)[number]
+
 const MobileAppShowcase = () => {
     return (
         <section
             data-nav-theme="light"
-            className='bg-white w-full px-[16px] sm:px-[80px] py-[34px] sm:py-[40px]'
+            className='bg-white w-full sm:px-[40px] py-[34px] sm:py-[40px]'
         >
-            <div className='flex gap-6 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden'>
-                {showcaseCards.map(({ title, description }) => (
-                    <div
-                        key={title}
-                        className='shrink-0 w-[300px] h-[362px] sm:w-[374px] sm:h-[427px] flex flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-sm'
-                    >
+            <Marquee<ShowcaseCard>
+                items={showcaseCards}
+                getKey={(card) => card.title}
+                durationSeconds={70}
+                gapPx={24}
+                backgroundColor="#FFFFFF"
+                ariaLabel="Mobile app highlights"
+                renderItem={({ title, description }) => (
+                    <div className='h-full w-[300px] sm:w-[374px] flex flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-sm transition-colors duration-200 hover:border-[#ED862E]'>
                         {/* Dummy image placeholder */}
                         <div
                             className='shrink-0 w-full h-[193px] sm:h-[241px] bg-slate-200'
@@ -46,8 +53,8 @@ const MobileAppShowcase = () => {
                             </p>
                         </div>
                     </div>
-                ))}
-            </div>
+                )}
+            />
         </section>
     )
 }

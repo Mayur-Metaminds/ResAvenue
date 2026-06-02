@@ -3,7 +3,6 @@ import type React from "react"
 import { BarChart3, BrushCleaning, Coins, Users } from "lucide-react"
 
 import { SectionHeader } from "@/components/landing/SectionHeader"
-import { cn } from "@/lib/styles"
 
 // Icon badge — same style as ContactUsBody's CardIcon.
 function CardIcon({ children }: { children: React.ReactNode }) {
@@ -88,12 +87,7 @@ const PropertyManagementOperations = () => {
         {operationCards.map((card) => (
           <div
             key={card.id}
-            className={cn(
-              "flex flex-col rounded-[24px] border bg-white p-6",
-              card.highlight
-                ? "border-[#ED862E] shadow-[0_10px_40px_rgba(237,134,46,0.18)]"
-                : "border-slate-200"
-            )}
+            className="flex flex-col rounded-[24px] border border-slate-200 bg-white p-6 transition-colors duration-200 hover:border-[#ED862E]"
           >
             <div className="flex items-start gap-3">
               <CardIcon>{card.icon}</CardIcon>

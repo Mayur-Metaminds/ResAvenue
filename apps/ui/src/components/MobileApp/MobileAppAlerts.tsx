@@ -1,4 +1,5 @@
 import { SectionHeader } from '@/components/landing/SectionHeader'
+import { AppearOnScroll } from '@/components/common/AppearOnScroll'
 import React from 'react'
 
 // Dummy placeholder icons (reused Mobile-App svgs) — swap with the real ones later.
@@ -50,9 +51,11 @@ const MobileAppAlerts = () => {
                 </ul>
             </div>
             <div className='bg-[#F1F5F9] max-sm:h-[512px] rounded-3xl sm:flex-1 flex items-center justify-center'>
-                <img
-                    className='h-[311.004px] w-[311.004px] max-w-[384px] aspect-square sm:h-[384px] sm:w-[384px] rounded-3xl rotate-[1deg]'
-                    src="/images/Mobile-App/mobileAppAlerts.png" alt="" />
+                <AppearOnScroll x={40} y={0}>
+                    <img
+                        className='h-[311.004px] w-[311.004px] max-w-[384px] aspect-square sm:h-[384px] sm:w-[384px] rounded-3xl rotate-[1deg]'
+                        src="/images/Mobile-App/mobileAppAlerts.png" alt="" />
+                </AppearOnScroll>
             </div>
         </section>
     )

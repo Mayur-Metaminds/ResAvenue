@@ -129,8 +129,10 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "font-source-sans-400 text-[14px] leading-[22.4px] transition-colors",
+                  "relative inline-block font-source-sans-400 text-[14px] leading-[22.4px] transition-colors",
                   "hover:text-[#ED862E]",
+                  // Animated underline in the same hover color, grows from the left.
+                  "after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-[#ED862E] after:transition-[width] after:duration-300 hover:after:w-full",
                   isDark ? "text-white/80" : "text-[#010E38]"
                 )}
               >
