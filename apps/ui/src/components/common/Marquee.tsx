@@ -70,11 +70,11 @@ export function Marquee<T>({
         ...(backgroundColor ? { backgroundColor } : null),
         ...(edgeFade
           ? {
-              maskImage:
-                "linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)",
-            }
+            maskImage:
+              "linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)",
+          }
           : null),
       }}
     >

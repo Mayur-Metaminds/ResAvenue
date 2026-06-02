@@ -35,7 +35,7 @@ const MobileAppFAQ = () => {
     return (
         <section
             data-nav-theme="light"
-            className="bg-white w-full px-4 md:px-8 py-[60px] lg:py-[100px]"
+            className="bg-white w-full md:px-8 py-[60px] lg:py-[40px]"
         >
             <SectionHeader
                 className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
