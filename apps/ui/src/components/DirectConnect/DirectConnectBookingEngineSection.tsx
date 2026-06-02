@@ -62,7 +62,10 @@ export function DirectConnectBookingEngineSection() {
       <div className="container mx-auto max-w-[1300px]">
         <FeatureShowcase
           header={{
+            className: "mb-[36px]",
             eyebrow: "OPTIMIZED FOR CONVERSIONS",
+            eyebrowClassName: "mb-0",
+            titleClassName: "mb-0",
             title: (
               <>
                 Next-
