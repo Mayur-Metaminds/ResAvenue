@@ -274,7 +274,7 @@ export default function ContactForm() {
 
         {/* Footer */}
         <div className="font-plus-jakarta-500 mt-5 flex items-center justify-center gap-2 text-[8.315px] leading-[14.255px] text-white md:mt-7 lg:text-[14px] lg:leading-[24px]">
-          <span>🛡️</span>
+          <img src="/svg/Contact-Us.svg" alt="" aria-hidden="true" className="h-4 w-4 shrink-0" />
           <p>
             Your information is secure and will not be shared with third parties.
           </p>

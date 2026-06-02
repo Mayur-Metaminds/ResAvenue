@@ -207,7 +207,7 @@ function ContactUsBody() {
       data-nav-theme="light"
       className="w-full bg-white px-4 py-15 md:px-8 lg:py-25"
     >
-      <div className="px-6">
+      <div className="">
         <BentoGrid<ContactCard>
           items={contactCards}
           containerClassName="w-full"
