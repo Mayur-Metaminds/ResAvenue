@@ -143,7 +143,7 @@ export function WhoWeServeSection() {
     >
       {/* Header */}
       <SectionHeader
-        className="z-10 mb-16 px-4"
+        className="z-10 mb-[16px] lg:mb-16 px-4"
         eyebrow="PRODUCTS"
         title={
           <>
@@ -157,7 +157,7 @@ export function WhoWeServeSection() {
       <div className="relative hidden h-[700px] w-[800px] max-w-full scale-75 items-center justify-center sm:scale-100 md:flex">
         {/* DNA SVG Background — DnaSvg uses `currentColor` for its fill, so the wrapper's text-color drives the DNA tint. */}
         <div className="absolute inset-0 flex items-center justify-center text-slate-900/40">
-          <DnaSvg />
+          <DnaSvg id="desktop" />
         </div>
 
         {/* Central Logo with glow */}
@@ -190,10 +190,20 @@ export function WhoWeServeSection() {
         ))}
       </div>
 
-      {/* ────────── Mobile: logo + flat vertical list of segment pills (no DNA, no orbital positioning) ────────── */}
-      <div className="flex w-full max-w-md flex-col items-center gap-8 px-4 md:hidden">
+      {/* ────────── Mobile: logo + flat vertical list of segment pills with DNA in the background ────────── */}
+      <div className="relative flex w-full max-w-md flex-col items-center gap-8 px-4 md:hidden">
+        {/* DNA SVG background — sized to fill the column, faded so it sits behind the content */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-0 flex items-start justify-center text-slate-900/60"
+        >
+          <div className="w-full origin-top scale-100 sm:scale-110 flex justify-center">
+            <DnaSvg id="mobile" />
+          </div>
+        </div>
+
         {/* Central logo — keep the glow, drop the orbital map scale tricks */}
-        <div className="relative flex items-center justify-center py-4">
+        <div className="relative z-10 flex items-center justify-center py-4">
           <div className="absolute h-32 w-32 rounded-full bg-white opacity-80 blur-2xl" />
           <div className="relative z-10">
             <ResAvenueBlackLogo />
@@ -201,7 +211,7 @@ export function WhoWeServeSection() {
         </div>
 
         {/* Segment pills */}
-        <ul className="flex w-full flex-col gap-3">
+        <ul className="relative z-10 flex w-full flex-col gap-3">
           {segments.map((segment) => (
             <li key={segment.id}>
               <button

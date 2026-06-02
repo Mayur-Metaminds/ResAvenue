@@ -1,4 +1,4 @@
-import type * as React from "react"
+import * as React from "react"
 
 import { Eyebrow } from "@/components/common/Eyebrow"
 import { cn } from "@/lib/styles"
@@ -6,127 +6,137 @@ import { cn } from "@/lib/styles"
 import { HeroTitle } from "./HeroTitle"
 
 export interface SectionHeaderProps
-  // Omit the HTML `title` attribute (string) so we can redeclare it as a ReactNode.
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
-  /** Eyebrow label. Pass a string (auto-wrapped in <Eyebrow>) or a custom <Eyebrow> node. */
-  eyebrow: React.ReactNode
-  /** Main title. Use {@link SectionHeader.Highlight} inline to gradient-clip a span. */
+  eyebrow?: React.ReactNode
   title: React.ReactNode
-  /** Optional supporting copy below the title. */
   description?: React.ReactNode
-  /**
-   * Light = dark text on a light bg (default — for BentoProducts, WhoWeServe, etc.).
-   * Dark = light text on a dark bg (for ExploreModules and other dark sections).
-   */
-  theme?: "light" | "dark"
-  /** Override the title color (otherwise derived from `theme`). */
+  /** If provided and title is a string, this text within the title will be wrapped in a highlight gradient */
+  titleHighlight?: string
+  /** Override the title color (defaults to your standard dark blue). */
   titleColor?: string
-  /** Override the highlight gradient (otherwise derived from `theme`). */
+  /** Override the highlight gradient (defaults to your standard blue-to-orange). */
   highlightGradient?: string
+  /** Override the eyebrow text color (defaults to #ED862E). */
+  eyebrowColor?: string
+  /** Override the eyebrow dot color (defaults to #ED862E). */
+  eyebrowDotColor?: string
+  
+  /** Optional class overrides for internal elements */
+  titleClassName?: string
+  eyebrowClassName?: string
+  descriptionClassName?: string
 }
 
-const DEFAULTS = {
-  light: {
-    eyebrow: "#ED862E",
-    title: "#010C28",
-    gradient: "linear-gradient(90deg, #010C28 0%, #ED862E 100%)",
-    descriptionClass: "text-gray-500",
-  },
-  dark: {
-    eyebrow: "#FFFFFF",
-    title: "#FFFFFF",
-    gradient: "linear-gradient(90deg, #ED862E 0%, #D97726 100%)",
-    descriptionClass: "text-[#8b949e]",
-  },
-} as const
+const SectionHeaderRoot = React.forwardRef<HTMLDivElement, SectionHeaderProps>(
+  (
+    {
+      eyebrow,
+      title,
+      description,
+      // Default to your standard brand colors directly in the props
+      titleColor = "#010C28",
+      highlightGradient = "linear-gradient(90deg, #010C28 0%, #ED862E 100%)",
+      eyebrowColor = "#ED862E",
+      eyebrowDotColor = "#ED862E",
+      className,
+      titleClassName,
+      eyebrowClassName,
+      descriptionClassName,
+      titleHighlight,
+      ...rest
+    },
+    ref
+  ) => {
+    const renderTitle = () => {
+      if (typeof title === "string" && titleHighlight && title.includes(titleHighlight)) {
+        const parts = title.split(titleHighlight)
+        return (
+          <>
+            {parts.map((part, index) => {
+              const lines = part.split("\n")
+              return (
+                <React.Fragment key={index}>
+                  {index > 0 && <HeroTitle.Highlight>{titleHighlight}</HeroTitle.Highlight>}
+                  {lines.map((line, lineIndex) => (
+                    <React.Fragment key={lineIndex}>
+                      {line}
+                      {lineIndex < lines.length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
+                </React.Fragment>
+              )
+            })}
+          </>
+        )
+      }
 
-/**
- * Centered section header — eyebrow, gradient-highlighted title, and
- * optional description, in one component.
- *
- * Replaces the repeated `<Eyebrow> + <HeroTitle> + <p>` pattern used by
- * BentoProducts, ExploreModules, WhoWeServe, etc. Theme-aware so light
- * and dark sections share the same JSX.
- *
- * @example
- * <SectionHeader
- *   eyebrow="WHO WE SERVE"
- *   title={<>Who We <SectionHeader.Highlight>Serve</SectionHeader.Highlight></>}
- *   description="..."
- * />
- *
- * @example
- * // Dark section (white text on navy bg)
- * <SectionHeader
- *   theme="dark"
- *   eyebrow="CORE FEATURES"
- *   title={<>Explore <SectionHeader.Highlight>Every Module</SectionHeader.Highlight></>}
- *   description="..."
- * />
- */
-function SectionHeaderRoot({
-  eyebrow,
-  title,
-  description,
-  theme = "light",
-  titleColor,
-  highlightGradient,
-  className,
-  ...rest
-}: SectionHeaderProps) {
-  const defaults = DEFAULTS[theme]
+      if (typeof title === "string" && title.includes("\n")) {
+        return title.split("\n").map((line, i, arr) => (
+          <React.Fragment key={i}>
+            {line}
+            {i < arr.length - 1 && <br />}
+          </React.Fragment>
+        ))
+      }
 
-  return (
-    <div
-      className={cn("flex flex-col items-center text-center", className)}
-      {...rest}
-    >
-      {typeof eyebrow === "string" ? (
-        <Eyebrow
-          className="mb-4"
-          showDot
+      return title
+    }
+
+    return (
+      <div
+        ref={ref}
+        className={cn("flex flex-col items-center text-center", className)}
+        {...rest}
+      >
+        {/* Eyebrow */}
+        {typeof eyebrow === "string" ? (
+          <Eyebrow
+            className={cn("mb-4", eyebrowClassName)}
+            showDot
+            style={
+              {
+                "--eyebrow-color": eyebrowColor,
+                "--eyebrow-dot-color": eyebrowDotColor,
+              } as React.CSSProperties
+            }
+          >
+            {eyebrow}
+          </Eyebrow>
+        ) : (
+          <div className={cn("mb-4", eyebrowClassName)}>{eyebrow}</div>
+        )}
+
+        {/* Title */}
+        <HeroTitle
+          className={cn("mb-4", titleClassName)}
           style={
             {
-              "--eyebrow-color": defaults.eyebrow,
-              "--eyebrow-dot-color": defaults.eyebrow,
+              "--hero-title-color": titleColor,
+              "--hero-title-gradient": highlightGradient,
+              letterSpacing: "-0.5px",
             } as React.CSSProperties
           }
         >
-          {eyebrow}
-        </Eyebrow>
-      ) : (
-        <div className="mb-4">{eyebrow}</div>
-      )}
+          {renderTitle()}
+        </HeroTitle>
 
-      <HeroTitle
-        className="mb-4"
-        style={
-          {
-            "--hero-title-color": titleColor ?? defaults.title,
-            "--hero-title-gradient": highlightGradient ?? defaults.gradient,
-            letterSpacing: "-0.5px",
-          } as React.CSSProperties
-        }
-      >
-        {title}
-      </HeroTitle>
+        {/* Description */}
+        {description != null && (
+          <p
+            className={cn(
+              "typo-body1 max-w-2xl text-gray-500",
+              descriptionClassName
+            )}
+          >
+            {description}
+          </p>
+        )}
+      </div>
+    )
+  }
+)
+SectionHeaderRoot.displayName = "SectionHeader"
 
-      {description != null && (
-        <p className={cn("typo-body1 max-w-2xl", defaults.descriptionClass)}>
-          {description}
-        </p>
-      )}
-    </div>
-  )
-}
-
-/**
- * Compound export so callers don't need a second import for the highlight.
- *
- * `<SectionHeader.Highlight>` is just a re-export of `HeroTitle.Highlight` —
- * the gradient comes from the `--hero-title-gradient` CSS variable that
- * `SectionHeader` sets on its parent `<HeroTitle>`.
- */
 export const SectionHeader = Object.assign(SectionHeaderRoot, {
   Highlight: HeroTitle.Highlight,
 })

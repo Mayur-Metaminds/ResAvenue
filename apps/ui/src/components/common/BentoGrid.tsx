@@ -2,6 +2,7 @@
 
 import type * as React from "react"
 import { useCallback, useRef, useState } from "react"
+import { motion } from "framer-motion"
 
 import {
   BentoProductModal,
@@ -15,16 +16,18 @@ import { PopupIcon } from "../../../public/svg/commonSvg"
 export type BentoItem = {
   id: string
   title: string
-  theme: "light" | "dark"
   gridSpan: string
-  anchor: ModalAnchor
-  modalFeatures: string[]
-  imagePlaceholder: string
+  isDark?: boolean
+  anchor?: ModalAnchor
+  modalFeatures?: string[]
+  imagePlaceholder?: string
+  href?: string
+  modalWidth?: string
 }
 
 type BentoGridProps<T extends BentoItem> = {
   items: T[]
-  renderCard: (item: T, ctx: { theme: "light" | "dark" }) => React.ReactNode
+  renderCard: (item: T) => React.ReactNode
   header?: React.ReactNode
   /** Outer <section> className (controls padding, bg, rounding). */
   sectionClassName?: string
@@ -34,6 +37,8 @@ type BentoGridProps<T extends BentoItem> = {
   containerClassName?: string
   /** Extra classes appended to every card shell (height, padding, etc.). */
   cardClassName?: string
+  /** Override the grid wrapper className. Defaults to `relative grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-12`. */
+  gridClassName?: string
 }
 
 function PopupTrigger({
@@ -54,7 +59,7 @@ function PopupTrigger({
       )}
     >
       <PopupIcon
-        rectClassName="transition-colors duration-300 group-hover/popup:[fill:#ED862E]"
+        rectClassName="transition-colors duration-300 group-hover/popup:[fill:#ED862E] cursor-pointer"
         topArrowClassName={cn(
           "transition-all duration-300",
           "group-hover/popup:[stroke:#ffffff]",
@@ -82,7 +87,7 @@ function computeBoundsForAnchor(
 
   switch (anchor) {
     case "top-left":
-      return { top: topInGrid, left: leftInGrid, right: 0, bottom: "auto" }
+      return { top: topInGrid, left: leftInGrid, right: "auto", bottom: "auto" }
     case "top-right":
       return {
         top: topInGrid,
@@ -91,7 +96,7 @@ function computeBoundsForAnchor(
         bottom: "auto",
       }
     case "bottom-left":
-      return { top: "auto", left: leftInGrid, right: 0, bottom: bottomInGrid }
+      return { top: "auto", left: leftInGrid, right: "auto", bottom: bottomInGrid }
     case "bottom-right":
       return {
         top: "auto",
@@ -102,6 +107,24 @@ function computeBoundsForAnchor(
   }
 }
 
+/** Narrowed shape: a card that carries every field the modal needs. */
+type ModalCapable<T extends BentoItem> = T & {
+  anchor: ModalAnchor
+  modalFeatures: string[]
+  imagePlaceholder: string
+  modalWidth?: string
+}
+
+/** A card is modal-capable only if it carries every field the modal needs. */
+function hasModal<T extends BentoItem>(item: T): item is ModalCapable<T> {
+  return (
+    item.anchor != null &&
+    item.imagePlaceholder != null &&
+    Array.isArray(item.modalFeatures) &&
+    item.modalFeatures.length > 0
+  )
+}
+
 export function BentoGrid<T extends BentoItem>({
   items,
   renderCard,
@@ -110,16 +133,28 @@ export function BentoGrid<T extends BentoItem>({
   sectionStyle,
   containerClassName,
   cardClassName,
+  gridClassName,
 }: BentoGridProps<T>) {
-  const [selected, setSelected] = useState<T | null>(null)
+  const [selected, setSelected] = useState<ModalCapable<T> | null>(null)
   const [bounds, setBounds] = useState<ModalBounds | null>(null)
+  // `activeId` stays set for the full open + close window (selected.id while
+  // open, then held for the modal's exit duration so the source card keeps its
+  // elevated z-index during contraction). Without this, the contracting
+  // shared-layout target paints behind sibling cards.
+  const [activeId, setActiveId] = useState<string | null>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({})
   const gridRef = useRef<HTMLDivElement | null>(null)
+  const activeIdClearTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const openModal = useCallback((item: T) => {
+    if (!hasModal(item)) return
     const card = cardRefs.current[item.id]
     const grid = gridRef.current
     if (!card || !grid) return
+    if (activeIdClearTimer.current) {
+      clearTimeout(activeIdClearTimer.current)
+      activeIdClearTimer.current = null
+    }
     setBounds(
       computeBoundsForAnchor(
         item.anchor,
@@ -127,10 +162,22 @@ export function BentoGrid<T extends BentoItem>({
         grid.getBoundingClientRect()
       )
     )
+    setActiveId(item.id)
     setSelected(item)
   }, [])
 
-  const closeModal = useCallback(() => setSelected(null), [])
+  const closeModal = useCallback(() => {
+    setSelected(null)
+    // Hold the source card's z-index until the modal's exit animation
+    // (0.4s in BentoProductModal) has actually finished.
+    if (activeIdClearTimer.current) clearTimeout(activeIdClearTimer.current)
+    activeIdClearTimer.current = setTimeout(() => {
+      setActiveId(null)
+      activeIdClearTimer.current = null
+    }, 500)
+  }, [])
+
+  const anyModal = items.some(hasModal)
 
   return (
     <section className={sectionClassName} style={sectionStyle}>
@@ -138,41 +185,65 @@ export function BentoGrid<T extends BentoItem>({
         {header}
         <div
           ref={gridRef}
-          className="relative grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-12"
+          className={
+            gridClassName ??
+            "relative grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-12"
+          }
         >
-          {items.map((item) => (
-            <div
+          {items?.map((item) => (
+            <motion.div
+              layoutId={`bento-card-${item.id}`}
               key={item.id}
+              // Mirror the modal's transition (BentoProductModal:
+              // `duration: 0.4, ease: [0.16, 1, 0.3, 1]`) so the source card's
+              // own layout-settle animation joins seamlessly with the modal's
+              // contraction. Without this, the card uses Framer's default
+              // spring and you see a second "beat" at the end of the close.
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -4 }}
               ref={(el) => {
                 cardRefs.current[item.id] = el
               }}
               className={cn(
-                "group relative flex flex-col overflow-hidden rounded-[40px] shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg",
+                "group relative flex flex-col overflow-hidden rounded-[40px] shadow-sm transition-shadow hover:shadow-lg",
                 item.gridSpan,
-                item.theme === "dark"
+                item.isDark
                   ? "border-0 bg-cover bg-center text-white"
                   : "border border-gray-100 bg-white text-[#010C28]",
                 cardClassName
               )}
-              style={
-                item.theme === "dark"
+              style={{
+                ...(item.isDark
                   ? { backgroundImage: `url('/images/gradient-image.png')` }
-                  : undefined
-              }
+                  : null),
+                // While the modal is open OR contracting, the source card sits
+                // under the modal at an elevated z-index so the morph never
+                // slips behind sibling cards.
+                ...(activeId === item.id ? { zIndex: 40 } : null),
+                // Only HIDE the source card while the modal is fully open. The
+                // moment the user clicks close (`selected` becomes null) we
+                // restore it, so the still-contracting modal overlays a
+                // visible source card — no flash at exit-end.
+                ...(selected?.id === item.id ? { opacity: 0 } : null),
+              }}
             >
-              <PopupTrigger
-                onClick={() => openModal(item)}
-                label={`View details for ${item.title}`}
-              />
-              {renderCard(item, { theme: item.theme })}
-            </div>
+              {hasModal(item) && (
+                <PopupTrigger
+                  onClick={() => openModal(item)}
+                  label={`View details for ${item.title}`}
+                />
+              )}
+              {renderCard(item)}
+            </motion.div>
           ))}
 
-          <BentoProductModal
-            product={selected}
-            bounds={bounds}
-            onClose={closeModal}
-          />
+          {anyModal && (
+            <BentoProductModal
+              product={selected}
+              bounds={bounds}
+              onClose={closeModal}
+            />
+          )}
         </div>
       </div>
     </section>

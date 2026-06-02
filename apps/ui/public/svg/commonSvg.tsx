@@ -82,14 +82,14 @@ export function HamburgerMenuSvg() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="28" height="3" fill="white" />
-      <rect width="28" height="3" transform="translate(0 9)" fill="white" />
-      <rect width="28" height="3" transform="translate(0 18)" fill="white" />
+      <rect width="28" height="3" fill="currentColor" />
+      <rect width="28" height="3" transform="translate(0 9)" fill="currentColor" />
+      <rect width="28" height="3" transform="translate(0 18)" fill="currentColor" />
     </svg>
   )
 }
 
-export function DnaSvg() {
+export function DnaSvg({ id = "1" }: { id?: string | number }) {
   return (
     <svg
       width="622"
@@ -100,7 +100,7 @@ export function DnaSvg() {
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <mask
-        id="mask0_2162_11475"
+        id={`mask0_2162_11475_${id}`}
         style={{ maskType: "alpha" }}
         maskUnits="userSpaceOnUse"
         x="0"
@@ -114,34 +114,34 @@ export function DnaSvg() {
           width="622"
           height="656.878"
           transform="rotate(-180 622 656.879)"
-          fill="url(#pattern0_2162_11475)"
+          fill={`url(#pattern0_2162_11475_${id})`}
         />
       </mask>
-      <g mask="url(#mask0_2162_11475)">
+      <g mask={`url(#mask0_2162_11475_${id})`}>
         <rect
           x="622.5"
           y="645.32"
           width="622"
           height="656.878"
           transform="rotate(-180 622.5 645.32)"
-          fill="white"
+          fill="#FFF"
           fillOpacity="0.7"
         />
       </g>
       <defs>
         <pattern
-          id="pattern0_2162_11475"
+          id={`pattern0_2162_11475_${id}`}
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"
         >
           <use
-            xlinkHref="#image0_2162_11475"
+            xlinkHref={`#image0_2162_11475_${id}`}
             transform="scale(0.000934579 0.000884956)"
           />
         </pattern>
         <image
-          id="image0_2162_11475"
+          id={`image0_2162_11475_${id}`}
           width="1070"
           height="1130"
           preserveAspectRatio="none"
@@ -380,6 +380,17 @@ export function Twitter({ className }: { className: string }) {
         fill="white"
         fillOpacity="0.35"
       />
+    </svg>
+  )
+}
+
+
+
+export function PlayButton({ className }: { className: string }) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="77" height="77" viewBox="0 0 77 77" fill="none">
+      <rect width="77" height="77" rx="38.5" fill="white" />
+      <path d="M27.2787 55.3605C27.6475 55.5819 28.0655 55.6802 28.4835 55.6802C28.9016 55.6802 29.3688 55.5573 29.7376 55.336L54.3272 40.5822C55.0649 40.1396 55.5321 39.3281 55.5321 38.4675C55.5321 37.6069 55.0895 36.7954 54.3272 36.3528L29.7376 21.5991C29.364 21.3724 28.9362 21.2505 28.4992 21.2462C28.0622 21.2419 27.6321 21.3553 27.2541 21.5745C26.4918 22.0171 26 22.8285 26 23.7138V53.2213C26 54.1065 26.4672 54.9179 27.2541 55.3605H27.2787Z" fill="black" />
     </svg>
   )
 }

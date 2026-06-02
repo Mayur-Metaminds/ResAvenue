@@ -43,11 +43,13 @@ const operationsData: OperationCard[] = [
 
 export function DirectConnectOperationsSection() {
   return (
-    <section className="w-full bg-[#F8FAFC] px-[16px] py-[34px] md:px-[80px] lg:py-[50px]">
+    <section
+      data-nav-theme="light"
+      className="w-full bg-[#F8FAFC] px-[16px] py-[34px] md:px-[80px] lg:py-[50px]"
+    >
       <div className="container mx-auto max-w-[1200px]">
         {/* Header */}
         <SectionHeader
-          theme="light"
           className="mb-[24px] text-center lg:mb-[50px]"
           eyebrow="OUR SOLUTION"
           title={

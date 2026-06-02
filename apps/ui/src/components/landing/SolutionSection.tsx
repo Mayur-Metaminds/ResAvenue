@@ -1,15 +1,16 @@
-import Image from "next/image"
+"use client"
 import type * as React from "react"
 
 import { Eyebrow } from "@/components/common/Eyebrow"
-
+import Lottie from "lottie-react"
+import animationData from "../../../public/assets/animation.json"
 import { HeroTitle } from "./HeroTitle"
 
 export function SolutionSection() {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-white px-4 py-[24px] md:px-8"
+      className="w-full bg-white px-4 py-[61px] md:px-8"
     >
       <div className="container mx-auto flex max-w-5xl flex-col items-center text-center">
         {/* Eyebrow */}
@@ -27,7 +28,6 @@ export function SolutionSection() {
 
         {/* Title */}
         <HeroTitle
-          className="mb-[34px] max-w-4xl lg:mb-[84px]"
           style={{ "--hero-title-color": "#010C28" } as React.CSSProperties}
         >
           Hotels run on disparate systems.
@@ -50,19 +50,18 @@ export function SolutionSection() {
           {/* Horizontal Lines Background */}
 
           {/* GIF Mockup */}
-          <div className="relative z-10 h-[90%] w-[90%] rounded-xl bg-white drop-shadow-xl">
-            <Image
-              src="/assets/dashboard.gif"
-              alt="ResAvenue Dashboard Animation"
-              fill
-              unoptimized
-              className="object-contain"
+          <div className="relative z-10 h-[90%] w-[90%]">
+            <Lottie
+              animationData={animationData}
+              loop
+              autoplay
+              className="h-full w-full"
             />
           </div>
         </div>
 
         {/* Description */}
-        <p className="typo-body1 max-w-3xl leading-relaxed text-[#414E62]">
+        <p className="typo-body1 max-w-3xl text-[#64748B]">
           Managing bookings, channels, operations, and revenue across
           disconnected systems leads to lost revenue, overbookings, and poor
           guest experiences. ResAvenue unifies everything.

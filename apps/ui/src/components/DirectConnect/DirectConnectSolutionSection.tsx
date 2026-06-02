@@ -29,8 +29,7 @@ const solutions: SolutionCard[] = [
     title: "Conversion-First Booking Engine",
     subtitle:
       "Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless checkout experience.",
-    theme: "light",
-    gridSpan: "col-span-1 md:col-span-7",
+    gridSpan: "col-span-1 md:col-span-7 min-h-[432px] md:h-[432px]",
     anchor: "top-left",
     modalFeatures: [
       "Mobile-friendly booking engine",
@@ -45,15 +44,16 @@ const solutions: SolutionCard[] = [
       "Multi-currency & Multi-lingual",
     ],
     imagePlaceholder: "/images/Mock-Image.png",
-    icon: <UnifiedPlatformIcon1 />,
+    icon: <UnifiedPlatformIcon1 className="text-[#ED862E]"/>,
+    modalWidth: "w-[950px]",
   },
   {
     id: "discounts-promotion",
     title: "Discounts & Promotion",
     subtitle:
       "Create smart hotel promotions, seasonal discounts, last-minute deals, and exclusive guest offers. Easily manage special rates, and promo codes to attract more guests and maximize revenue.",
-    theme: "dark",
-    gridSpan: "col-span-1 md:col-span-5",
+    isDark: true,
+    gridSpan: "col-span-1 md:col-span-5 min-h-[432px] md:h-[432px]",
     anchor: "top-right",
     modalFeatures: [
       "Smart promotions",
@@ -63,15 +63,16 @@ const solutions: SolutionCard[] = [
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon2 />,
+    modalWidth: "w-[950px]",
   },
   {
     id: "google-hotel-ads",
     title: "Google Hotel Ads",
     subtitle:
       "Display your rates directly and maximize direct bookings through Google Search and Google Maps.",
-    theme: "dark",
-    gridSpan: "col-span-1 md:col-span-5",
-    anchor: "bottom-left",
+    isDark: true,
+    gridSpan: "col-span-1 md:col-span-6 min-h-[250px] md:h-[250px]",
+    anchor: "top-left",
     modalFeatures: [
       "Direct Google integration",
       "Maximize direct bookings",
@@ -79,15 +80,15 @@ const solutions: SolutionCard[] = [
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon3 />,
+    modalWidth: "w-[950px]",
   },
   {
     id: "intelligent-analytics",
     title: "Intelligent Analytics",
     subtitle:
       "Keep track of your online bookings with advanced reports, statistics, and advanced tracking via one built-in dashboard.",
-    theme: "light",
-    gridSpan: "col-span-1 md:col-span-7",
-    anchor: "bottom-right",
+    gridSpan: "col-span-1 md:col-span-6 min-h-[250px] md:h-[250px]",
+    anchor: "top-right",
     modalFeatures: [
       "Advanced reports",
       "Real-time statistics",
@@ -95,14 +96,14 @@ const solutions: SolutionCard[] = [
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon4 />,
+    modalWidth: "w-[950px]",
   },
   {
     id: "unlock-revenue",
     title: "Unlock New Revenue Streams",
     subtitle:
       "Designed to drive incremental revenue, it enables guests to book services as standalone offerings or alongside their stay directly through your website - enhancing both profitability and guest experience.",
-    theme: "light",
-    gridSpan: "col-span-1 md:col-span-6",
+    gridSpan: "col-span-1 md:col-span-5 min-h-[432px] md:h-[432px]",
     anchor: "bottom-left",
     modalFeatures: [
       "Offer Add-ons before stay",
@@ -111,14 +112,15 @@ const solutions: SolutionCard[] = [
     bullets: ["Offer Add-ons before stay", "Sell Extras on checkout page"],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon5 />,
+    modalWidth: "w-[950px]",
   },
   {
     id: "payments-security",
     title: "Payments & Security",
     subtitle:
       "Process every payment with total peace of mind, knowing our rock-solid security protects your guests, your reputation, and your revenue.",
-    theme: "dark",
-    gridSpan: "col-span-1 md:col-span-6",
+    isDark: true,
+    gridSpan: "col-span-1 md:col-span-7 min-h-[432px] md:h-[432px]",
     anchor: "bottom-right",
     modalFeatures: [
       "Secure PCI compliant payment processing",
@@ -132,14 +134,14 @@ const solutions: SolutionCard[] = [
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon6 />,
+    modalWidth: "w-[950px]",
   },
   {
     id: "agents-member",
     title: "Agents / Member Management",
     subtitle:
       "Reward your direct bookers with exclusive member-only rates designed to drive loyalty and repeat stays. Keep guests engaged with personalized offers, promotions, and updates while optimizing your pricing strategy to increase direct bookings and long-term customer value.",
-    theme: "light",
-    gridSpan: "col-span-1 md:col-span-12",
+    gridSpan: "col-span-1 md:col-span-12 min-h-[432px] md:h-[432px]",
     anchor: "bottom-left",
     modalFeatures: [
       "Offer exclusive rates",
@@ -148,19 +150,21 @@ const solutions: SolutionCard[] = [
     bullets: ["Offer exclusive rates", "Offer exclusive member discounts"],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon7 />,
+    modalWidth: "w-full",
   },
 ]
 
 export function DirectConnectSolutionSection() {
   return (
+    <div data-nav-theme="light">
     <BentoGrid
       items={solutions}
       sectionClassName="w-full py-[50px] lg:py-[80px] px-4 md:px-8 bg-white"
       containerClassName="container mx-auto max-w-[1300px]"
-      cardClassName="p-8 lg:p-12 shadow-[0_4px_40px_-15px_rgba(0,0,0,0.05)]"
+      gridClassName="relative grid grid-cols-1 gap-6 md:grid-cols-12"
+      cardClassName="px-6 py-8 md:px-10 md:py-[30px] rounded-[32px] shadow-[0_20px_50px_-12px_rgba(1,14,56,0.15)]"
       header={
         <SectionHeader
-          theme="light"
           className="mx-auto mb-12 max-w-3xl text-center lg:mb-[40px]"
           eyebrow="OUR SOLUTION"
           title={
@@ -174,14 +178,14 @@ export function DirectConnectSolutionSection() {
           description="Eliminate fragmented systems. Direct Connect brings your entire distribution and guest journey into one highly-responsive ecosystem."
         />
       }
-      renderCard={(item, { theme }) => (
+      renderCard={(item) => (
         <div className="relative z-10 flex h-full flex-col">
           <div className="mb-6">{item.icon}</div>
 
           <h3
             className={cn(
               "font-plus-jakarta-700 mb-4 pr-10 text-[24px] leading-[1.2] lg:text-[30px]",
-              theme === "dark" ? "text-white" : "text-[#0F172A]"
+              item.isDark ? "text-white" : "text-[#0F172A]"
             )}
           >
             {item.title}
@@ -190,7 +194,7 @@ export function DirectConnectSolutionSection() {
           <p
             className={cn(
               "font-source-sans-400 mb-8 pr-4 text-[15px] leading-[1.75] lg:text-[18px]",
-              theme === "light" ? "text-[#64748B]" : "text-white/80"
+              item.isDark ? "text-white/80" : "text-[#64748B]"
             )}
           >
             {item.subtitle}
@@ -206,7 +210,7 @@ export function DirectConnectSolutionSection() {
                   <span
                     className={cn(
                       "text-[15px] leading-relaxed font-medium",
-                      theme === "dark" ? "text-white" : "text-[#010C28]"
+                      item.isDark ? "text-white" : "text-[#010C28]"
                     )}
                   >
                     {bullet}
@@ -218,5 +222,6 @@ export function DirectConnectSolutionSection() {
         </div>
       )}
     />
+    </div>
   )
 }

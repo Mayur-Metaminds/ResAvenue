@@ -6,7 +6,7 @@ import { useState } from "react"
 
 import { cn } from "@/lib/styles"
 
-import { HeroTitle } from "./HeroTitle"
+import { SectionHeader } from "./SectionHeader"
 
 const faqs = [
   {
@@ -51,39 +51,28 @@ export function FaqSection() {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-[#F8FAFC] px-4 py-24 md:px-8"
+      className="w-full bg-[#F8FAFC] px-4 py-[54px] lg:py-[120px] md:px-8"
     >
       <div className="container mx-auto flex max-w-3xl flex-col items-center">
         {/* Header */}
-        <div className="mb-12 w-full text-center">
-          <HeroTitle
-            className="mb-4"
-            style={
-              {
-                "--hero-title-color": "#010C28",
-                letterSpacing: "-0.5px",
-              } as React.CSSProperties
-            }
-          >
-            Frequently Asked{" "}
-            <HeroTitle.Highlight
+        <SectionHeader
+          className="mb-12"
+          title={
+            <SectionHeader.Highlight
               style={
                 {
                   "--hero-title-gradient":
-                    "linear-gradient(90deg, #ED862E 0%, #D97726 100%)",
+                    "linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 34.36%, #ED862E 100%)",
                 } as React.CSSProperties
               }
             >
-              Questions
-            </HeroTitle.Highlight>
-          </HeroTitle>
-          <a
-            href="#"
-            className="text-sm font-medium text-gray-500 underline decoration-gray-300 underline-offset-4 transition-colors hover:text-[#ED862E] hover:decoration-[#ED862E]"
-          >
-            Everything you need to know about ResAvenue
-          </a>
-        </div>
+              Frequently Asked Questions
+            </SectionHeader.Highlight>
+          }
+          titleClassName="!font-semibold !leading-[32px] lg:!leading-[48px]"
+          description="Everything you need to know about ResAvenue"
+          descriptionClassName="typo-body1 text-[#45556C]"
+        />
 
         {/* FAQ Accordion */}
         <div className="w-full space-y-4">
@@ -105,7 +94,7 @@ export function FaqSection() {
                   className="flex w-full items-center justify-between p-6 text-left outline-none focus-visible:bg-gray-50"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-[15px] font-bold text-[#010C28]">
+                  <span className="typo-body3 text-[#0F172B]">
                     {faq.question}
                   </span>
                   <div
@@ -132,7 +121,7 @@ export function FaqSection() {
                   )}
                 >
                   <div className="overflow-hidden">
-                    <p className="px-6 pb-6 text-sm leading-relaxed text-gray-500">
+                    <p className="px-6 pb-6 typo-body4 text-gray-500">
                       {faq.answer}
                     </p>
                   </div>

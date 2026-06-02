@@ -8,6 +8,7 @@ export interface EyebrowProps extends React.HTMLAttributes<HTMLDivElement> {
   showDot?: boolean
   /** Override the dot color directly (otherwise uses --eyebrow-dot-color). */
   dotColor?: string
+  eyebrowColor?: string
 }
 
 /**
@@ -38,8 +39,10 @@ export function Eyebrow({
   dotColor,
   className,
   style,
+  eyebrowColor,
   ...rest
 }: EyebrowProps) {
+
   return (
     <div
       className={cn("flex items-center gap-3", className)}
@@ -57,7 +60,7 @@ export function Eyebrow({
       )}
       <span
         className="typo-body2 tracking-widest uppercase"
-        style={{ color: "var(--eyebrow-color, #FFFFFF)" }}
+        style={{ color: eyebrowColor ?? "var(--eyebrow-color, #FFFFFF)" }}
       >
         {children}
       </span>

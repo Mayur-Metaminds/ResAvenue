@@ -2,9 +2,11 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useEffect, useSyncExternalStore } from "react"
 
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/styles"
 
 import { CheckedIcon, CloseBtn } from "../../../public/svg/commonSvg"
 
@@ -45,6 +47,8 @@ export interface BentoModalProduct {
   anchor: ModalAnchor
   modalFeatures: string[]
   imagePlaceholder: string
+  href?: string
+  modalWidth?: string
 }
 
 const anchorToOrigin: Record<ModalAnchor, string> = {
@@ -127,12 +131,11 @@ function DesktopAnchoredModal({
 }) {
   return (
     <motion.div
+      layoutId={`bento-card-${product.id}`}
       role="dialog"
       aria-modal="true"
       aria-labelledby={`product-modal-title-${product.id}`}
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0, opacity: 0 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       style={{
         position: "absolute",
@@ -140,9 +143,11 @@ function DesktopAnchoredModal({
         left: bounds.left,
         right: bounds.right,
         bottom: bounds.bottom,
-        transformOrigin: anchorToOrigin[product.anchor],
       }}
-      className="z-40 flex flex-col overflow-hidden rounded-[40px] border border-gray-100 bg-white shadow-2xl"
+      className={cn(
+        "z-40 flex flex-col overflow-hidden rounded-[40px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)] h-[824px] max-h-[calc(100vh-64px)]",
+        product.modalWidth || "w-[760px]"
+      )}
     >
       <ModalContent product={product} onClose={onClose} />
     </motion.div>
@@ -197,9 +202,11 @@ function ModalContent({
   product: BentoModalProduct
   onClose: () => void
 }) {
+  const router = useRouter()
+
   return (
     <div
-      className="relative flex w-full flex-1 flex-col gap-[32px] overflow-y-auto rounded-[24px] bg-white px-[32px] pt-[70px] pb-[24px]"
+      className="relative flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto rounded-[24px] bg-white px-[20px] pt-[56px] pb-[20px] md:px-[32px] md:pt-[70px] md:pb-[24px]"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -209,30 +216,30 @@ function ModalContent({
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="absolute top-6 right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E]"
+        className="absolute top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E]"
       >
         <CloseBtn size={40} />
       </button>
 
       {/* Two-column top section (stacks on mobile via grid-cols-1) */}
-      <div className="grid w-full grid-cols-1 gap-[62px] md:grid-cols-2">
+      <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[62px] md:grid-cols-2">
         {/* Left — eyebrow + title + subtitle + CTA */}
         <div className="flex h-full flex-col items-start">
           {product.eyebrow && (
-            <h4 className="font-plus-jakarta-700 mb-4 text-[14px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
+            <h4 className="font-plus-jakarta-700 mb-3 md:mb-4 text-[12px] md:text-[14px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
               {product.eyebrow}
             </h4>
           )}
 
           <h3
             id={`product-modal-title-${product.id}`}
-            className="font-plus-jakarta-700 mb-4 text-4xl font-bold text-[#010C28]"
+            className="font-plus-jakarta-700 mb-3 md:mb-4 text-3xl md:text-4xl font-bold text-[#010C28]"
           >
             {product.title}
           </h3>
 
           {product.subtitle && (
-            <p className="mb-8 max-w-2xl text-lg leading-relaxed text-gray-600">
+            <p className="mb-6 md:mb-8 max-w-2xl text-[15px] md:text-lg leading-relaxed text-gray-600">
               {product.subtitle}
             </p>
           )}
@@ -240,8 +247,12 @@ function ModalContent({
           <Button
             variant="primary"
             size="default"
-            className="mt-auto gap-2 rounded-[50px] bg-linear-to-br from-[#ED862E] to-[#E07020] px-8 py-6 text-[15px] shadow-[0_4px_20px_0_rgba(237,134,46,0.35)] hover:opacity-90"
+            className="mt-auto w-fit gap-2 rounded-[50px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
             icon={<ArrowRight className="h-4 w-4" />}
+            onClick={() => {
+              onClose()
+              router.push(product.href || `/${product.id}`)
+            }}
           >
             Learn More
           </Button>
@@ -249,13 +260,13 @@ function ModalContent({
 
         {/* Right — feature checklist */}
         <div className="flex flex-col justify-center">
-          <ul className="space-y-4">
+          <ul className="space-y-3 md:space-y-4">
             {product.modalFeatures.map((feature) => (
               <li key={feature} className="flex items-start text-gray-700">
-                <span className="mt-0.5 mr-4 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#ED862E]">
+                <span className="mt-0.5 mr-3 md:mr-4 flex h-5 w-5 md:h-6 md:w-6 shrink-0 items-center justify-center">
                   <CheckedIcon />
                 </span>
-                <span className="text-[16px] leading-relaxed font-medium">
+                <span className="text-[15px] md:text-[16px] leading-relaxed font-medium">
                   {feature}
                 </span>
               </li>
@@ -266,7 +277,7 @@ function ModalContent({
 
       {/* Bottom screenshot */}
       <div
-        className="min-h-[300px] w-full flex-1 rounded-2xl border border-gray-100 shadow-sm md:min-h-[350px]"
+        className="min-h-[200px] w-full flex-1 rounded-2xl border border-gray-100 shadow-sm md:min-h-[350px]"
         style={{
           background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
         }}
