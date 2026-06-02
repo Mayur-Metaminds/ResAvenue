@@ -152,19 +152,19 @@ export function Footer() {
           <div className="flex items-center space-x-4">
             <a
               href="#"
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-[#8b949e] transition-all hover:bg-white/10 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center   transition-all hover:bg-white/10 hover:text-white"
             >
               <LinkedIn className="h-4 w-4 fill-current" />
             </a>
             <a
               href="#"
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-[#8b949e] transition-all hover:bg-white/10 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center   transition-all hover:bg-white/10 hover:text-white"
             >
               <Twitter className="h-4 w-4 fill-current" />
             </a>
             <a
               href="#"
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-[#8b949e] transition-all hover:bg-white/10 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center  transition-all hover:bg-white/10 hover:text-white"
             >
               <Facebook className="h-4 w-4 fill-current" />
             </a>

@@ -41,7 +41,7 @@ export function ChannelConnectPortfolioSection() {
                   ),
                 }}
                 imageSlot={
-                  <div className="flex justify-center w-full">
+                  <div className="hidden lg:flex justify-center w-full">
                     <div className="relative flex aspect-[3/4] w-full max-w-[320px] items-center justify-center overflow-hidden rounded-[32px] border border-slate-700 bg-slate-800 shadow-2xl">
                       <Image 
                         src="/images/Channel-Connect/Hero-img.png" 
@@ -53,6 +53,16 @@ export function ChannelConnectPortfolioSection() {
                   </div>
                 }
               >
+                <div className="flex lg:hidden justify-center w-full mb-6 mt-4">
+                  <div className="relative flex aspect-[3/4] w-full max-w-[320px] items-center justify-center overflow-hidden rounded-[32px] border border-slate-700 bg-slate-800 shadow-2xl">
+                    <Image 
+                      src="/images/Channel-Connect/Hero-img.png" 
+                      alt="Mobile App" 
+                      fill 
+                      className="object-cover opacity-80"
+                    />
+                  </div>
+                </div>
                 <FeatureShowcase.Card
                   variant="dark"
                   icon={<PortfolioIcon1 className="h-5 w-5 text-white/80" />}
@@ -97,7 +107,7 @@ export function ChannelConnectPortfolioSection() {
                   ),
                 }}
                 imageSlot={
-                  <div className="flex justify-center w-full lg:justify-end">
+                  <div className="hidden lg:flex justify-center w-full lg:justify-end">
                     <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[24px] border border-slate-700 bg-slate-800 shadow-2xl">
                       <Image 
                         src="/images/Channel-Connect/Hero-img.png" 
@@ -109,6 +119,16 @@ export function ChannelConnectPortfolioSection() {
                   </div>
                 }
               >
+                <div className="flex lg:hidden justify-center w-full mb-6 mt-4">
+                  <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[24px] border border-slate-700 bg-slate-800 shadow-2xl">
+                    <Image 
+                      src="/images/Channel-Connect/Hero-img.png" 
+                      alt="Dashboard Dummy" 
+                      fill 
+                      className="object-cover opacity-80"
+                    />
+                  </div>
+                </div>
                 <CheckedRow text="Track booking sources and identify top-performing channels." />
                 <CheckedRow text="Monitor revenue, occupancy, and key metrics in real-time." />
                 <CheckedRow text="Maintain consistent pricing across all OTAs." />
