@@ -24,13 +24,13 @@ export default function LandingPage() {
         durationSeconds={35}
         pauseOnHover={false}
         edgeFade
-        gapPx={64}
+        gapPx={96}
         backgroundColor="#FFFFFF"
         ariaLabel="Trusted by"
         renderItem={({ name, Component }) => (
           <div
             aria-label={name}
-            className="flex items-center text-[#414E62] opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-6 [&_svg]:w-auto md:[&_svg]:h-8"
+            className="opacity-80 transition-opacity hover:opacity-100"
           >
             <Component />
           </div>

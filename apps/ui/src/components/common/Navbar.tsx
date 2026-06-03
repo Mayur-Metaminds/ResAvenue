@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/styles"
 
 import {
@@ -141,13 +141,17 @@ export function Navbar() {
             ))}
           </div>
 
-          <Button
-            variant="primary"
-            className="font-source-sans-600 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] text-[13px] leading-[20.8px] text-white lg:mr-2"
+          <Link
+            href="/contact-us"
+            className={buttonVariants({
+              variant: "primary",
+              className:
+                "typo-body3 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] lg:mr-2",
+            })}
             style={{ padding: "11px 21.661px 11.8px 22px" }}
           >
             Request a Demo
-          </Button>
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -257,13 +261,17 @@ export function Navbar() {
 
               {/* CTA Button */}
               <div className="mt-auto pt-8 pb-4">
-                <Button
-                  variant="primary"
-                  className="font-source-sans-600 flex w-full h-[48px] items-center justify-center rounded-[50px] text-[15px] text-white"
+                <Link
+                  href="/contact-us"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  className={buttonVariants({
+                    variant: "primary",
+                    className:
+                      "font-source-sans-600 flex w-full h-[48px] items-center justify-center rounded-[50px] text-[15px] text-white",
+                  })}
                 >
                   Request a Demo
-                </Button>
+                </Link>
               </div>
             </div>
             </div>

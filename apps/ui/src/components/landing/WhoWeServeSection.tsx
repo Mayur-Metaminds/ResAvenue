@@ -1,15 +1,7 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import {
-  Building2,
-  Umbrella,
-  Globe,
-  LineChart,
-  Home,
-  Calendar,
-  Building,
-} from "lucide-react"
+import Image from "next/image"
 import { useState } from "react"
 
 import { SectionHeader } from "./SectionHeader"
@@ -20,6 +12,7 @@ import {
   CloseBtn,
   CheckedIcon,
 } from "../../../public/svg/commonSvg"
+import { WhoWeServePopupIcon1, WhoWeServePopupIcon2, WhoWeServePopupIcon3, WhoWeServePopupIcon4, WhoWeServePopupIcon5, WhoWeServePopupIcon6, WhoWeServePopupIcon7 } from "../../../public/svg/LandingPage"
 
 // Segment Data
 const segments = [
@@ -34,9 +27,9 @@ const segments = [
       "Automate confirmations, payments, and guest communication",
       "Gain real-time insights on occupancy, revenue, and pricing",
     ],
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/DNAPopupImg1.png",
     position: { top: "10%", left: "50%", transform: "translate(-50%, -50%)" },
-    icon: Building2,
+    icon: WhoWeServePopupIcon1,
   },
   {
     id: "serviced-apartments",
@@ -48,9 +41,9 @@ const segments = [
       "Reduce manual work with self-service guest portals",
       "Track performance by unit, location, or duration",
     ],
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/DNAPopupImg5.png",
     position: { top: "24%", right: "0%", transform: "translate(0%, -50%)" },
-    icon: Home,
+    icon: WhoWeServePopupIcon5,
   },
   {
     id: "hotel-chains",
@@ -62,9 +55,9 @@ const segments = [
       "Role-based access for teams across locations",
       "Scale effortlessly with API integrations and automation",
     ],
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/DNAPopupImg7.png",
     position: { top: "48%", right: "-4%", transform: "translate(0%, -50%)" },
-    icon: Building,
+    icon: WhoWeServePopupIcon7,
   },
   {
     id: "revenue-management",
@@ -77,9 +70,9 @@ const segments = [
       "Monitor competitor pricing and market demand",
       "Deliver detailed revenue and ADR reports",
     ],
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/DNAPopupImg4.png",
     position: { bottom: "15%", right: "2%", transform: "translate(0%, 50%)" },
-    icon: LineChart,
+    icon: WhoWeServePopupIcon4,
   },
   {
     id: "tour-operators",
@@ -91,9 +84,9 @@ const segments = [
       "Secure and safe transactions with advanced confirmations",
       "Expand distribution through connected global channels",
     ],
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/DNAPopupImg3.png",
     position: { bottom: "6%", left: "50%", transform: "translate(-50%, 50%)" },
-    icon: Globe,
+    icon: WhoWeServePopupIcon3,
   },
   {
     id: "event-organisers",
@@ -106,9 +99,9 @@ const segments = [
       "Manage multiple events from a single dashboard",
       "Capture attendee data for future marketing campaigns",
     ],
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/DNAPopupImg6.png",
     position: { bottom: "18%", left: "2%", transform: "translate(0%, 50%)" },
-    icon: Calendar,
+    icon: WhoWeServePopupIcon6,
   },
   {
     id: "resorts-villas",
@@ -121,9 +114,9 @@ const segments = [
       "Dynamic pricing based on season and demand",
       "Deliver seamless guest journeys from booking to check-out",
     ],
-    image: "/images/gradient-image.png",
+    image: "/images/Landing/DNAPopupImg2.png",
     position: { top: "35%", left: "-4%", transform: "translate(0%, -50%)" },
-    icon: Umbrella,
+    icon: WhoWeServePopupIcon2,
   },
 ]
 
@@ -141,6 +134,22 @@ export function WhoWeServeSection() {
           "var(--bg, linear-gradient(225deg, rgba(240, 242, 253, 1) 0%, rgba(61, 98, 129, 0.15) 100%))",
       }}
     >
+      {/* Preload popup images. Hidden in layout (size 0, aria-hidden) but
+          Next.js still emits <link rel="preload"> hints because of `priority`
+          + actually fetches via the optimizer because the components mount.
+          By the time the user opens a segment the image is already cached. */}
+      <div aria-hidden className="absolute h-0 w-0 overflow-hidden">
+        {segments.map((s) => (
+          <Image
+            key={s.id}
+            src={s.image}
+            alt=""
+            width={1}
+            height={1}
+            priority
+          />
+        ))}
+      </div>
       {/* Header */}
       <SectionHeader
         className="z-10 mb-[16px] lg:mb-16 px-4"
@@ -154,14 +163,35 @@ export function WhoWeServeSection() {
       />
 
       {/* ────────── Desktop: orbital map (logo + DNA background + absolute-positioned segment nodes) ────────── */}
-      <div className="relative hidden h-[700px] w-[800px] max-w-full scale-75 items-center justify-center sm:scale-100 md:flex">
+      <div
+        className="relative hidden h-[700px] w-[800px] max-w-full scale-75 items-center justify-center sm:scale-100 md:flex"
+        style={
+          {
+            // 78px = geometric offset between logo and DNA viewBox centre.
+            // +12px = perceptual nudge — the DNA artwork's visual mass sits
+            // slightly right of its bounding-box centre, so the eye reads the
+            // pure-geometric centre as too far left. Adjust by eye, not by ruler.
+            "--logo-nudge-x": "90px",
+            "--logo-nudge-y": "11.5px",
+          } as React.CSSProperties
+        }
+      >
         {/* DNA SVG Background — DnaSvg uses `currentColor` for its fill, so the wrapper's text-color drives the DNA tint. */}
         <div className="absolute inset-0 flex items-center justify-center text-slate-900/40">
           <DnaSvg id="desktop" />
         </div>
 
-        {/* Central Logo with glow */}
-        <div className="relative z-20 flex flex-col items-center justify-center">
+        {/* Central Logo with glow — absolutely centered to the main container,
+            then nudged so it sits at the DNA artwork's visual centre (the SVG
+            viewBox is wider/taller than the helix and includes asymmetric
+            whitespace). Tweak --logo-nudge-* values to align with the DNA. */}
+        <div
+          className="absolute top-1/2 left-1/2 z-20 flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2"
+          style={{
+            transform:
+              "translate(calc(-50% + var(--logo-nudge-x, 0px)), calc(-50% + var(--logo-nudge-y, 0px)))",
+          }}
+        >
           <div className="absolute h-[200px] w-[200px] rounded-full bg-white opacity-80 blur-2xl" />
           <div className="relative z-10 scale-125">
             <ResAvenueBlackLogo />
@@ -263,7 +293,7 @@ export function WhoWeServeSection() {
                 <div className="overflow-y-auto p-3 md:p-10 lg:p-12">
                   {/* Icon */}
                   <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FEFAF5]">
-                    <activeSegmentData.icon className="h-8 w-8 text-[#ED862E]" />
+                    <activeSegmentData.icon />
                   </div>
 
                   {/* Title & Subtitle */}
@@ -289,11 +319,14 @@ export function WhoWeServeSection() {
                   </ul>
 
                   {/* Image */}
-                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-gray-100">
-                    <img
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl">
+                    <Image
                       src={activeSegmentData.image}
                       alt={activeSegmentData.title}
-                      className="h-full w-full object-cover"
+                      fill
+                      sizes="(min-width: 768px) 680px, 100vw"
+                      priority
+                      className="object-cover"
                     />
                   </div>
                 </div>

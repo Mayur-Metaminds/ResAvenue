@@ -1,8 +1,53 @@
 "use client"
 
+import { animate, useInView, useMotionValue } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+
 import { Marquee } from "@/components/common/Marquee"
 
 import { SectionHeader } from "./SectionHeader"
+
+/**
+ * Count-up number that animates from 0 → target when it first scrolls into
+ * view. `format` controls how the in-flight number is rendered each frame
+ * (e.g. round to int + thousands separator). Only fires once.
+ */
+function CountUp({
+  target,
+  suffix = "",
+  format = (n: number) => Math.round(n).toString(),
+  durationSeconds = 1.6,
+}: {
+  target: number
+  suffix?: string
+  format?: (n: number) => string
+  durationSeconds?: number
+}) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, amount: 0.4 })
+  const motionValue = useMotionValue(0)
+  const [display, setDisplay] = useState(format(0))
+
+  useEffect(() => {
+    if (!isInView) return
+    const controls = animate(motionValue, target, {
+      duration: durationSeconds,
+      ease: [0.16, 1, 0.3, 1], // ease-out, decelerating
+    })
+    const unsub = motionValue.on("change", (v) => setDisplay(format(v)))
+    return () => {
+      controls.stop()
+      unsub()
+    }
+  }, [isInView, target, motionValue, format, durationSeconds])
+
+  return (
+    <span ref={ref}>
+      {display}
+      {suffix}
+    </span>
+  )
+}
 
 const testimonials = [
   {
@@ -55,21 +100,31 @@ const testimonials = [
   },
 ]
 
-const stats = [
+const stats: Array<{
+  target: number
+  suffix: string
+  format?: (n: number) => string
+  label: string
+}> = [
   {
-    value: "34%",
+    target: 34,
+    suffix: "%",
     label: "Average increase in direct bookings",
   },
   {
-    value: "2,500+",
+    target: 2500,
+    suffix: "+",
+    format: (n) => Math.round(n).toLocaleString(),
     label: "Hotels powered across the globe",
   },
   {
-    value: "40M+",
+    target: 40,
+    suffix: "M+",
     label: "Room nights managed annually",
   },
   {
-    value: "22+",
+    target: 22,
+    suffix: "+",
     label: "Countries with active properties",
   },
 ]
@@ -151,8 +206,8 @@ export function TestimonialsSection() {
           ariaLabel="Customer testimonials"
           getKey={(_, idx) => idx}
           renderItem={(testimonial) => (
-            <div className="flex h-[199px] w-[325px] flex-col rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.06] px-[20px] py-[24px] backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.08] md:h-[265px] md:w-[456px]">
-              <p className="mb-6 line-clamp-4 text-[13px] leading-relaxed font-light text-gray-300 md:line-clamp-6 md:text-[15px]">
+            <div className="flex h-[199px] w-[325px] flex-col justify-between rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.06] px-[20px] py-[20px] backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.08] md:h-[265px] md:w-[456px] md:px-[24px] md:py-[24px]">
+              <p className="line-clamp-4 text-[13px] leading-relaxed font-light text-gray-300 md:line-clamp-5 md:text-[15px]">
                 {testimonial.quote}
               </p>
               <div className="flex items-center gap-4">
@@ -196,7 +251,11 @@ export function TestimonialsSection() {
               className="flex flex-col items-start justify-center rounded-[20px] border border-white/5 bg-[#071330]/80 p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-white/10 hover:bg-[#071330] lg:p-8"
             >
               <div className="mb-3 text-4xl font-semibold tracking-tight text-white lg:text-5xl">
-                {stat.value}
+                <CountUp
+                  target={stat.target}
+                  suffix={stat.suffix}
+                  format={stat.format}
+                />
               </div>
               <div
                 className="mb-4 h-[3px] w-[72px]"
