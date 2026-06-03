@@ -57,7 +57,8 @@ function PropertyManagementHero() {
                   type="button"
                   className="rounded-full border border-white/10 bg-[#1C2C47]/60 px-8 py-3.5 font-medium text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-[#1C2C47]/80"
                 >
-                  Talk to Sales
+                  <span className="lg:hidden">Explore Products</span>
+                  <span className="hidden lg:inline">Talk to Sales</span>
                 </button>,
               ]}
             />

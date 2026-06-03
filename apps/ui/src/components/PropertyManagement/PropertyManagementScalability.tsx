@@ -1,12 +1,29 @@
 "use client"
 
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
+
 import { Marquee } from "@/components/common/Marquee"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { trustedLogos, type TrustedLogo } from "@/types/trustedLogos"
 
 const PropertyManagementScalability = () => {
+  const sectionRef = useRef(null)
+
+  // Scroll-driven: section enters from bottom (start 80%) to center (start 20%)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 50%", "start 5%"],
+  })
+
+  const color1 = useTransform(scrollYProgress, [0, 0.4], ["rgba(100,116,139,0.15)", "rgba(100,116,139,1)"])
+  const color2 = useTransform(scrollYProgress, [0, 0.6], ["rgba(100,116,139,0.15)", "rgba(100,116,139,1)"])
+  const color3 = useTransform(scrollYProgress, [0, 0.8], ["rgba(100,116,139,0.15)", "rgba(100,116,139,1)"])
+  const color4 = useTransform(scrollYProgress, [0, 1.0], ["rgba(100,116,139,0.15)", "rgba(100,116,139,1)"])
+
   return (
     <section
+      ref={sectionRef}
       data-nav-theme="light"
       className="w-full bg-white px-4 py-[60px] md:px-8 lg:py-[100px] md:text-nowrap"
     >
@@ -30,16 +47,19 @@ const PropertyManagementScalability = () => {
         }
         description={
           <>
-            Scale effortlessly with a ResAvenue booking engine{" "}
-            <span style={{ color: "rgba(100, 116, 139, 0.60)" }}>
-              built for real-time{" "}
-            </span>
-            <span style={{ color: "rgba(100, 116, 139, 0.30)" }}>
-              sync and higher{" "}
-            </span>
-            <span style={{ color: "rgba(100, 116, 139, 0.15)" }}>
+            <motion.span style={{ color: color1 }}>
+              {"Scale effortlessly with a ResAvenue booking engine "}
+            </motion.span>
+            <motion.span style={{ color: color2 }}>
+              built for real-time
+            </motion.span>
+            <br className="hidden md:block" />
+            <motion.span style={{ color: color3 }}>
+              {"sync and higher "}
+            </motion.span>
+            <motion.span style={{ color: color4 }}>
               direct conversions.
-            </span>
+            </motion.span>
           </>
         }
       />

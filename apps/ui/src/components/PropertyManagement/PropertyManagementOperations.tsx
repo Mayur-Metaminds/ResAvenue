@@ -87,7 +87,7 @@ const PropertyManagementOperations = () => {
         {operationCards.map((card) => (
           <div
             key={card.id}
-            className="flex flex-col rounded-[24px] border border-slate-200 bg-white p-6 transition-colors duration-200 hover:border-[#ED862E]"
+            className="flex flex-col rounded-[24px] border border-slate-200 bg-white p-6 transition-colors duration-200 hover:border-[#ED862E] hover:shadow-[#ED862E] hover:shadow"
           >
             <div className="flex items-start gap-3">
               <CardIcon>{card.icon}</CardIcon>
