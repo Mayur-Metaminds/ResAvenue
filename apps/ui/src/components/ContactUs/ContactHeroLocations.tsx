@@ -6,11 +6,11 @@ export default function OfficeLocations() {
       <div className="flex flex-col">
         {/* India Office */}
         <div>
-          <h2 className="font-plus-jakarta-700 pl-8 text-xl text-[#ED862E] capitalize">
+          <h2 className="font-plus-jakarta-700 pl-8 py-2.5 text-xl text-[#ED862E] capitalize">
             India Office
           </h2>
 
-          <div className="mb-5 flex items-start gap-3">
+          <div className="mb-2 flex items-start gap-3">
             <MapPin className="mt-1 h-5 w-5 shrink-0 text-orange-400" />
             <p className="font-source-sans-400 text-[16px] leading-[22.75px] text-[#FFF]">
               AvenuesAI Ltd, Level II, Plaza Asiad, S. V. Road,
@@ -30,11 +30,11 @@ export default function OfficeLocations() {
 
         {/* Dubai Office */}
         <div>
-          <h2 className="font-plus-jakarta-700 pt-6 pl-8 text-xl text-[#ED862E] capitalize">
+          <h2 className="font-plus-jakarta-700 pt-6 pl-8 py-2.5 text-xl text-[#ED862E] capitalize">
             Dubai Office
           </h2>
 
-          <div className="mb-5 flex items-start gap-3">
+          <div className="mb-2 flex items-start gap-3">
             <MapPin className="mt-1 h-5 w-5 shrink-0 text-orange-400" />
             <p className="font-source-sans-400 text-[16px] leading-[22.75px] text-[#FFF]">
               Avenues World FZ - LLC., Dubai Internet City, Building # 17, Level
