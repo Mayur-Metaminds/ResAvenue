@@ -241,7 +241,7 @@ export function ExploreModulesSection() {
         <div className="flex w-full flex-col px-4 lg:px-1 h-full justify-center">
           <div className="flex h-full flex-col ">
           {/* Tabs */}
-          <div className="mb-[54px] lg:mb-10 flex justify-center">
+          <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center">
             <div className="flex rounded-full border border-gray-800/50 bg-[#0b142e] p-1">
               <TabButton
                 active={activeTab === "direct"}
@@ -261,7 +261,7 @@ export function ExploreModulesSection() {
           <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
             {/* 3D Wheel */}
             <div
-              className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-22.5 shrink-0"
+              className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
               style={{ perspective: "1200px" }}
             >
               <div
