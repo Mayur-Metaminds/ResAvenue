@@ -13,11 +13,11 @@ export function HotelWebsiteBuilderHeroSection() {
       style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
     >
       {/* Container */}
-      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[106px] lg:px-20">
+      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] lg:px-20">
         {/* Main Content */}
-        <div className="flex flex-1 flex-col items-center justify-between gap-12 pb-12 lg:flex-row lg:gap-8 lg:pb-0">
+        <div className="flex flex-1 flex-col items-center mt-[165px] justify-between gap-12 pb-12 lg:flex-row lg:gap-8 lg:pb-0">
           {/* Left Column: Content */}
-          <div className="my-auto flex w-full flex-col justify-center lg:w-[50%] lg:py-20 xl:w-[45%]">
+          <div className="flex w-full flex-col justify-start lg:w-[50%] xl:w-[45%]">
             <HeroContent
               eyebrow="DIRECT BOOKING PLATFORM"
               title={
@@ -63,7 +63,7 @@ export function HotelWebsiteBuilderHeroSection() {
               {/* Main Image (Placeholder) */}
               <div className="relative overflow-hidden">
                 <Image
-                  src="/images/Hotel-Website-Builder/Hero-img.png"
+                  src="/images/Hotel-Website-Builder/Hotel-Website-Builder1.png"
                   alt="Hotel Website Builder Preview"
                   width={1918}
                   height={1934}
