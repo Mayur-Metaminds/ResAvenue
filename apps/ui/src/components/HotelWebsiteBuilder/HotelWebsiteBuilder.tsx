@@ -3,7 +3,15 @@
 import { Marquee } from "@/components/common/Marquee"
 import { trustedLogos, type TrustedLogo } from "@/types/trustedLogos"
 import { HotelWebsiteBuilderHeroSection } from "./HotelWebsiteBuilderHeroSection"
+import { HotelWebsiteBuilderFeaturesSection } from "./HotelWebsiteBuilderFeaturesSection"
+import { HotelWebsiteBuilderPoweringSection } from "./HotelWebsiteBuilderPoweringSection"
 import { HotelWebsiteBuilderTestimonialsSection } from "./HotelWebsiteBuilderTestimonialsSection"
+import { HotelWebsiteBuilderOpportunitySection } from "./HotelWebsiteBuilderOpportunitySection"
+import { HotelWebsiteBuilderRevenueSection } from "./HotelWebsiteBuilderRevenueSection"
+import { HotelWebsiteBuilderGlobalSection } from "./HotelWebsiteBuilderGlobalSection"
+import { HotelWebsiteBuilderCarouselSection } from "./HotelWebsiteBuilderCarouselSection"
+import { HotelWebsiteBuilderPerformanceSection } from "./HotelWebsiteBuilderPerformanceSection"
+import { CtaSection } from "@/components/common/CtaSection"
 
 export default function HotelWebsiteBuilder() {
   return (
@@ -21,13 +29,13 @@ export default function HotelWebsiteBuilder() {
             durationSeconds={35}
             pauseOnHover={false}
             edgeFade
-            gapPx={64}
+            gapPx={96}
             backgroundColor="#FFFFFF"
             ariaLabel="Trusted by"
             renderItem={({ name, Component }) => (
               <div
                 aria-label={name}
-                className="flex items-center text-[#414E62] opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-8 [&_svg]:w-auto md:[&_svg]:h-10"
+                className="opacity-80 transition-opacity hover:opacity-100"
               >
                 <Component />
               </div>
@@ -36,8 +44,33 @@ export default function HotelWebsiteBuilder() {
         </div>
       </section>
 
+     
+
       {/* Testimonials Marquee Section */}
       <HotelWebsiteBuilderTestimonialsSection />
+
+      {/* Features Animated Section */}
+      <HotelWebsiteBuilderFeaturesSection />
+
+       {/* Powering Section */}
+      <HotelWebsiteBuilderPoweringSection />  
+
+       {/* Opportunity Section */}
+      <HotelWebsiteBuilderOpportunitySection />
+
+      {/* Revenue Section */}
+      <HotelWebsiteBuilderRevenueSection />
+
+      {/* Global Section */}
+      <HotelWebsiteBuilderGlobalSection />
+
+      {/* Carousel Section */}
+      <HotelWebsiteBuilderCarouselSection />
+
+      {/* Performance Section */}
+      <HotelWebsiteBuilderPerformanceSection />
+
+      <CtaSection/>
 
     </div>
   )
