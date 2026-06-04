@@ -10,9 +10,6 @@ import hotelWebsiteAnimation from "../../../public/assets/hotelwebsite.json"
 
 import { SectionHeader } from "./SectionHeader"
 
-// Lottie touches `window` / DOM during its first render, which breaks on the
-// server pass (and intermittently after hydration in production). Load it
-// client-only so React doesn't try to SSR the canvas/SVG renderer.
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 
 type Product = BentoItem & {

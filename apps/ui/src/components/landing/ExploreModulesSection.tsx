@@ -17,7 +17,12 @@ import {
   ThreeDWheelIcon7,
 } from "../../../public/svg/LandingPage"
 import type * as React from "react"
-import { useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
+
+// useLayoutEffect runs after the DOM commits but before the browser paints,
+// so we can re-scroll without a flash. useEffect is the SSR-safe fallback.
+const useIsoLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect
 
 import { cn } from "@/lib/styles"
 
@@ -63,7 +68,7 @@ const directConnectFeatures: FeatureStep[] = [
       "Supports multiple rate plans, discounts, promo codes, and value add-ons to boost RevPAR and ADR.",
     icon: ThreeDWheelIcon4,
     image: "/images/Landing/Explore-Module.png",
-  },
+  },  
   {
     id: "events",
     label: "Events & Ticketing",
@@ -161,11 +166,41 @@ export function ExploreModulesSection() {
     window.scrollTo({ top: sectionTop + scrollable * progress, behavior })
   }
 
+  // When the user switches tabs we preserve their RELATIVE progress (0..1)
+  // in the section rather than resetting them to the top. This stops sticky
+  // from detaching mid-switch and avoids the disorienting jump-to-top feel.
+  // The actual scroll re-anchor happens in useIsoLayoutEffect below, after
+  // React commits the new section height.
+  const pendingProgressRef = useRef<number | null>(null)
+
   const handleTabChange = (tab: "direct" | "channel") => {
+    if (tab === activeTab) return
+    const el = sectionRef.current
+    if (el) {
+      const sectionTop = el.getBoundingClientRect().top + window.scrollY
+      const scrollable = el.offsetHeight - window.innerHeight
+      pendingProgressRef.current =
+        scrollable > 0
+          ? Math.max(0, Math.min(1, (window.scrollY - sectionTop) / scrollable))
+          : 0
+    }
     setActiveTab(tab)
-    setActiveIndex(0)
-    scrollToFeature(0, "instant")
+    // activeIndex resyncs from the scroll-driven useMotionValueEvent below.
   }
+
+  useIsoLayoutEffect(() => {
+    const progress = pendingProgressRef.current
+    if (progress == null) return
+    pendingProgressRef.current = null
+    const el = sectionRef.current
+    if (!el) return
+    const sectionTop = el.getBoundingClientRect().top + window.scrollY
+    const scrollable = el.offsetHeight - window.innerHeight
+    window.scrollTo({
+      top: sectionTop + scrollable * progress,
+      behavior: "instant",
+    })
+  }, [activeTab])
 
   const selectFeature = (i: number) => {
     setActiveIndex(i)
@@ -206,7 +241,7 @@ export function ExploreModulesSection() {
         <div className="flex w-full flex-col px-4 lg:px-1 h-full justify-center">
           <div className="flex h-full flex-col ">
           {/* Tabs */}
-          <div className="mb-[54px] lg:mb-10 flex justify-center">
+          <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center">
             <div className="flex rounded-full border border-gray-800/50 bg-[#0b142e] p-1">
               <TabButton
                 active={activeTab === "direct"}
@@ -226,7 +261,7 @@ export function ExploreModulesSection() {
           <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
             {/* 3D Wheel */}
             <div
-              className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-22.5 shrink-0"
+              className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
               style={{ perspective: "1200px" }}
             >
               <div

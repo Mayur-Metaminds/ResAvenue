@@ -2,7 +2,7 @@ import React from "react"
 
 const EventBookingCreateEvents = () => {
     return (
-        <div className="flex h-[80vh] flex-col items-center justify-center gap-4 bg-[url('/images/demo-section-bg-img.png')] bg-cover bg-center bg-no-repeat px-4">
+        <div data-nav-theme="dark" className="flex h-[80vh] flex-col items-center justify-center gap-4 bg-[url('/images/demo-section-bg-img.png')] bg-cover bg-center bg-no-repeat px-4">
             <h2 className="typo-h1 max-w-3xl text-center text-white xl:text-[46px] xl:leading-[51.52px] xl:tracking-[-0.5px]">
                 Create unforgettable events with less effort and more impact.
             </h2>

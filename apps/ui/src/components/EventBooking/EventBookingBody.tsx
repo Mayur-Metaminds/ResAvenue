@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/landing/SectionHeader"
 
 const EventBookingBody = () => {
   return (
-    <section className="w-full bg-[#F4F6F9] px-4 py-[60px] md:px-8 lg:py-[100px]">
+    <section data-nav-theme="light" className="w-full bg-[#F4F6F9] px-4 py-[60px] md:px-8 lg:py-[100px]">
       <div className="mx-auto max-w-6xl">
         <SectionHeader
           className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"

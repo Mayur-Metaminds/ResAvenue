@@ -28,7 +28,7 @@ const CARDS_DATA = [
       "Direct, reliable connections with all major global OTAs (Booking, Expedia, Agoda) ensuring your inventory is accurately reflected in real-time.",
     Icon: OmnichannelCardIcon1,
     renderGraphic: () => (
-      <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-all duration-300">
+      <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
         {["EX", "BK", "AG"].map((label) => (
           <div
             key={label}
@@ -84,11 +84,11 @@ export function ChannelConnectOmnichannelSection() {
         ? "col-span-1 md:col-span-6 xl:col-span-2"
         : "col-span-1 md:col-span-6 xl:col-span-1",
       icon: isActive ? (
-        <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#010C28]/40 ring-1 ring-white/10 backdrop-blur-md transition-all duration-300">
+        <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#010C28]/40 ring-1 ring-white/10 backdrop-blur-md transition-colors duration-300">
           <card.Icon />
         </div>
       ) : (
-        <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#ED862E]/10 transition-all duration-300">
+        <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#ED862E]/10 transition-colors duration-300">
           <card.Icon />
         </div>
       ),
@@ -102,7 +102,7 @@ export function ChannelConnectOmnichannelSection() {
         items={omnichannelCards}
         sectionClassName="w-full py-[32px] lg:py-[90px] px-[20px] lg:px-[80px] bg-white"
         containerClassName="w-full mx-auto [&>.grid]:xl:!grid-cols-5"
-        cardClassName="p-6 md:p-8 xl:p-10 min-h-[320px] md:min-h-[380px] justify-start transition-all duration-300"
+        cardClassName="p-6 md:p-8 xl:p-10 min-h-[320px] md:min-h-[380px] justify-start"
         header={
           <SectionHeader
             className="mx-auto max-w-3xl text-center mb-[45px] lg:mb-[28px]"
@@ -145,7 +145,7 @@ export function ChannelConnectOmnichannelSection() {
                 </div>
               )}
               {item?.renderGraphic?.()}
-              <div className="relative z-10 transition-all duration-300">
+              <div className="relative z-10 transition-colors duration-300">
                 <h3
                   className={cn(
                     "font-plus-jakarta-700 mb-4 text-[20px] leading-[1.2] tracking-tight transition-colors duration-300",

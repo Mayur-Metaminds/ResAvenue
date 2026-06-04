@@ -1,10 +1,11 @@
 "use client"
 
+import { AnimatePresence, motion } from "framer-motion"
+import { Minus, Plus } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
 
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/styles"
 
 import {
@@ -129,8 +130,10 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "font-source-sans-400 text-[14px] leading-[22.4px] transition-colors",
+                  "relative inline-block typo-body1 transition-colors",
                   "hover:text-[#ED862E]",
+                  // Animated underline in the same hover color, grows from the left.
+                  "after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-[#ED862E] after:transition-[width] after:duration-300 hover:after:w-full",
                   isDark ? "text-white/80" : "text-[#010E38]"
                 )}
               >
@@ -139,13 +142,17 @@ export function Navbar() {
             ))}
           </div>
 
-          <Button
-            variant="primary"
-            className="font-source-sans-600 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] text-[13px] leading-[20.8px] text-white lg:mr-2"
+          <Link
+            href="/contact-us"
+            className={buttonVariants({
+              variant: "primary",
+              className:
+                "typo-body3 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] lg:mr-2",
+            })}
             style={{ padding: "11px 21.661px 11.8px 22px" }}
           >
             Request a Demo
-          </Button>
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -207,14 +214,16 @@ export function Navbar() {
                         <button
                           onClick={() => setExpandedLink(expandedLink === link.name ? null : link.name)}
                           className={cn(
-                            "flex w-full items-center justify-between text-[20px] font-medium transition-colors hover:text-white/80",
+                            "flex w-full items-center justify-between typo-body5 transition-colors hover:text-white/80",
                             expandedLink === link.name ? "text-[#ED862E]" : "text-white"
                           )}
                         >
                           {link.name}
-                          <span className="text-[24px] leading-none">
-                            {expandedLink === link.name ? "-" : "+"}
-                          </span>
+                          {expandedLink === link.name ? (
+                            <Minus className="h-5 w-5 shrink-0" />
+                          ) : (
+                            <Plus className="h-5 w-5 shrink-0" />
+                          )}
                         </button>
                         <AnimatePresence>
                           {expandedLink === link.name && (
@@ -230,7 +239,7 @@ export function Navbar() {
                                     key={subItem.name}
                                     href={subItem.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="text-[16px] text-white transition-colors hover:text-[#ED862E]"
+                                    className="typo-body3 text-white transition-colors hover:text-[#ED862E]"
                                   >
                                     {subItem.name}
                                   </Link>
@@ -243,7 +252,7 @@ export function Navbar() {
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-[20px] font-medium text-white transition-colors hover:text-[#ED862E]"
+                        className="typo-body5 text-white transition-colors hover:text-[#ED862E]"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {link.name}
@@ -255,13 +264,17 @@ export function Navbar() {
 
               {/* CTA Button */}
               <div className="mt-auto pt-8 pb-4">
-                <Button
-                  variant="primary"
-                  className="font-source-sans-600 flex w-full h-[48px] items-center justify-center rounded-[50px] text-[15px] text-white"
+                <Link
+                  href="/contact-us"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  className={buttonVariants({
+                    variant: "primary",
+                    className:
+                      "font-source-sans-600 flex w-full h-[48px] items-center justify-center rounded-[50px] text-[15px] text-white",
+                  })}
                 >
                   Request a Demo
-                </Button>
+                </Link>
               </div>
             </div>
             </div>

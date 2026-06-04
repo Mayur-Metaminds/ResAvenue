@@ -30,7 +30,7 @@ const engineeredFeatures: EngineeredFeature[] = [
     title: "Real-time Sync",
     description:
       "Instant updates across all platforms, preventing double bookings and ensuring accurate availability.",
-    icon: <EnterpriseGradeCapabilitiesIcon1 className="h-8 w-8 text-[#ED862E]" />,
+    icon: <EnterpriseGradeCapabilitiesIcon1 className="h-7 w-7 text-[#ED862E]" />,
   },
   {
     id: "dynamic-pricing",
@@ -137,7 +137,7 @@ export function ChannelConnectEngineeredSection() {
               key={feature.id}
               className="flex h-full cursor-pointer min-h-[204px] flex-col items-start gap-[19px] rounded-[16px] border border-black/5 bg-white p-[20px] text-left transition-all duration-300 hover:border-[#ED862E] hover:[background:linear-gradient(0deg,rgba(237,134,46,0.03)_0%,rgba(237,134,46,0.03)_100%),#FFF]"
             >
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#ED862E]/10">
+              <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl bg-[#ED862E]/10">
                 {feature.icon}
               </div>
               <div className="flex flex-col gap-2">

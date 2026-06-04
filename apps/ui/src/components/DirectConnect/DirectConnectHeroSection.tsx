@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 export function DirectConnectHeroSection() {
   return (
     <section
-      data-nav-theme="dark"
+      data-nav-theme="light"
       className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#0A0A0B]"
     >
       {/* Background image */}
@@ -23,11 +23,11 @@ export function DirectConnectHeroSection() {
       />
 
       {/* Container */}
-      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[106px] lg:px-20">
+      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] mt-[165px] lg:px-20">
         {/* Main Content */}
-        <div className="flex flex-1 flex-col items-center justify-between gap-12 pb-12 lg:flex-row lg:gap-8 lg:pb-0">
+        <div className="flex flex-1 flex-col items-start justify-between gap-12 pb-12 lg:flex-row lg:gap-8 lg:pb-0">
           {/* Left Column: Content */}
-          <div className="my-auto flex w-full flex-col justify-center lg:w-[50%] lg:py-20 xl:w-[45%]">
+          <div className="flex w-full flex-col justify-start lg:w-[50%]  xl:w-[45%]">
             <HeroContent
               eyebrow="HOTEL BOOKING ENGINE"
               title={
@@ -63,12 +63,12 @@ export function DirectConnectHeroSection() {
           </div>
 
           {/* Right Column: Mockup */}
-          <div className="relative z-20 flex h-[300px] w-full items-end justify-center self-end sm:h-[480px] lg:h-[600px] lg:w-[50%] lg:justify-end xl:h-[720px] xl:w-[55%]">
-            <div className="relative flex h-full w-full max-w-[800px] items-center justify-center lg:justify-end">
+          <div className="relative z-20 flex h-[300px] w-full items-start justify-center self-start sm:h-[480px] lg:h-[600px] lg:w-[50%] lg:justify-end xl:h-[720px] xl:w-[55%]">
+            <div className="relative flex h-full w-full max-w-[800px] items-start justify-start">
               <img
                 src="/images/Direct-connect/hero-img.png"
                 alt="Room-Rates Mockup"
-                className="h-full w-full object-contain"
+                className="h-full w-full object-contain object-top"
               />
             </div>
 

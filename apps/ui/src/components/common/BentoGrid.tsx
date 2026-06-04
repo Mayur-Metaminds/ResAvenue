@@ -192,6 +192,7 @@ export function BentoGrid<T extends BentoItem>({
         >
           {items?.map((item) => (
             <motion.div
+              layout
               layoutId={`bento-card-${item.id}`}
               key={item.id}
               // Mirror the modal's transition (BentoProductModal:

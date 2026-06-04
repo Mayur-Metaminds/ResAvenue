@@ -1,9 +1,7 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from "react"
-
+import { Marquee } from "@/components/common/Marquee"
 import { SectionHeader } from "@/components/landing/SectionHeader"
-import { cn } from "@/lib/styles"
 
 type EventType = {
     id: string
@@ -58,56 +56,9 @@ const eventTypes: EventType[] = [
 ]
 
 const EventBookingEventType = () => {
-    const [activeIndex, setActiveIndex] = useState(1)
-    const scrollRef = useRef<HTMLDivElement>(null)
-    const cardRefs = useRef<(HTMLButtonElement | null)[]>([])
-
-    const goTo = (idx: number) => {
-        setActiveIndex(idx)
-        const card = cardRefs.current[idx]
-        const container = scrollRef.current
-        if (!card || !container) return
-        const target =
-            card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2
-        container.scrollTo({ left: target, behavior: "smooth" })
-    }
-
-    useEffect(() => {
-        const container = scrollRef.current
-        if (!container) return
-
-        let frame = 0
-        const updateActive = () => {
-            const visibleCenter = container.scrollLeft + container.offsetWidth / 2
-            let closestIdx = 0
-            let closestDist = Infinity
-            cardRefs.current.forEach((card, i) => {
-                if (!card) return
-                const cardCenter = card.offsetLeft + card.offsetWidth / 2
-                const dist = Math.abs(cardCenter - visibleCenter)
-                if (dist < closestDist) {
-                    closestDist = dist
-                    closestIdx = i
-                }
-            })
-            setActiveIndex(closestIdx)
-        }
-
-        const onScroll = () => {
-            cancelAnimationFrame(frame)
-            frame = requestAnimationFrame(updateActive)
-        }
-
-        container.addEventListener("scroll", onScroll, { passive: true })
-        return () => {
-            cancelAnimationFrame(frame)
-            container.removeEventListener("scroll", onScroll)
-        }
-    }, [])
-
     return (
-        <section className="w-full overflow-hidden bg-white px-4 py-[60px] md:px-8 lg:py-[100px]">
-            <div className="mx-auto max-w-7xl">
+        <section data-nav-theme="light" className="w-full overflow-hidden bg-white px-4 py-[60px] md:px-8 lg:py-[60px]">
+            <div className="mx-auto">
                 <SectionHeader
                     className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
                     descriptionClassName="typo-body1 text-center text-[#64748B]"
@@ -128,67 +79,34 @@ const EventBookingEventType = () => {
                     description="Scalable solutions whether you're hosting 50 or 50,000 attendees."
                 />
 
-                <div
-                    ref={scrollRef}
-                    className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:-mx-8 md:px-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-                >
-                    {eventTypes.map((e, i) => {
-                        const isActive = activeIndex === i
-                        return (
-                            <button
-                                key={e.id}
-                                type="button"
-                                ref={(el) => {
-                                    cardRefs.current[i] = el
-                                }}
-                                onClick={() => goTo(i)}
-                                className={cn(
-                                    "group w-[280px] shrink-0 snap-center cursor-pointer overflow-hidden rounded-[21.795px] border-2 bg-white text-left shadow-sm transition-all duration-200 sm:w-[320px]",
-                                    isActive
-                                        ? "border-[#ED862E] shadow-lg"
-                                        : "border-slate-200 hover:border-slate-300"
-                                )}
-                            >
-                                <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
-                                        src={e.image}
-                                        alt={e.title}
-                                        className="h-full w-full object-cover"
-                                    />
-                                </div>
-                                <div className="p-4 md:p-5">
-                                    <h3 className="font-plus-jakarta-700 text-[20px] leading-[22.4px] text-black xl:text-[21.795px] xl:leading-normal">
-                                        {e.title}
-                                    </h3>
-                                    <p className="font-source-sans-400 mt-2 text-[16px] leading-[22.4px] text-[#666] xl:text-[16.35px] xl:leading-[26.16px]">
-                                        {e.description}
-                                    </p>
-                                </div>
-                            </button>
-                        )
-                    })}
-                </div>
-
-                <div className="mt-6 flex items-center justify-center gap-2">
-                    {eventTypes.map((e, i) => {
-                        const isActive = activeIndex === i
-                        return (
-                            <button
-                                key={e.id}
-                                type="button"
-                                onClick={() => goTo(i)}
-                                aria-label={`Go to ${e.title}`}
-                                className={cn(
-                                    "h-2 rounded-full transition-all duration-200",
-                                    isActive
-                                        ? "w-6 bg-[#ED862E]"
-                                        : "w-2 bg-slate-300 hover:bg-slate-400"
-                                )}
-                            />
-                        )
-                    })}
-                </div>
+                <Marquee<EventType>
+                    items={eventTypes}
+                    getKey={(e) => e.id}
+                    durationSeconds={70}
+                    gapPx={24}
+                    backgroundColor="#FFFFFF"
+                    ariaLabel="Event types"
+                    renderItem={(e) => (
+                        <div className="w-[280px] overflow-hidden rounded-[21.795px] border-2 border-slate-200 bg-white text-left shadow-sm transition-colors duration-200 hover:border-[#ED862E] sm:w-[320px]">
+                            <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src={e.image}
+                                    alt={e.title}
+                                    className="h-full w-full object-cover"
+                                />
+                            </div>
+                            <div className="p-4 md:p-5">
+                                <h3 className="font-plus-jakarta-700 text-[20px] leading-[22.4px] text-black xl:text-[21.795px] xl:leading-normal">
+                                    {e.title}
+                                </h3>
+                                <p className="font-source-sans-400 mt-2 text-[16px] leading-[22.4px] text-[#666] xl:text-[16.35px] xl:leading-[26.16px]">
+                                    {e.description}
+                                </p>
+                            </div>
+                        </div>
+                    )}
+                />
             </div>
         </section>
     )

@@ -26,9 +26,9 @@ export function HeroSection() {
       />
 
       {/* Container */}
-      <div className="relative z-10 container mx-auto mt-[106px] flex max-w-7xl flex-1 flex-col pr-[5px] pl-4 md:px-8">
+      <div className="relative z-10 lg:mx-[80px] mx-[16px] mt-[165px] flex flex-1 flex-col">
         {/* Main Content */}
-        <div className="grid flex-1 grid-cols-1 items-center gap-12 py-12 lg:grid-cols-2 lg:py-20">
+        <div className="grid flex-1 grid-cols-1 items-start gap-12 lg:grid-cols-2 ">
           {/* Left Column: Content */}
           <HeroContent
             eyebrow="CLOUD BASED HOTEL MANAGEMENT"
