@@ -73,7 +73,7 @@ export function DirectConnectOperationsSection() {
               {/* Hover Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#ED862E] to-[#F5A962] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-              <div className="relative z-10 mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-[#ED862E]/10 transition-colors duration-300 group-hover:bg-white/20">
+              <div className="relative z-10 mb-6 flex h-12 w-12 items-center justify-center rounded-xl  transition-colors duration-300 ">
                 <div className="text-[#ED862E] transition-colors duration-300 group-hover:text-white">
                   {op.icon}
                 </div>

@@ -1,5 +1,7 @@
 "use client"
 
+import { CountUp } from "@/components/common/CountUp"
+
 export function DirectConnectDashboardSection() {
   return (
     <section
@@ -29,7 +31,11 @@ export function DirectConnectDashboardSection() {
             <div className="flex items-center gap-12 md:gap-16">
               <div className="flex flex-col">
                 <span className="font-plus-jakarta-700 mb-2 text-[40px] leading-none text-white md:text-[48px]">
-                  2.4s
+                  <CountUp
+                    target={2.4}
+                    suffix="s"
+                    format={(n) => n.toFixed(1)}
+                  />
                 </span>
                 <span className="text-[10px] font-bold tracking-[1.5px] text-white/50 uppercase md:text-[12px]">
                   Avg. Load Time
@@ -37,7 +43,7 @@ export function DirectConnectDashboardSection() {
               </div>
               <div className="flex flex-col">
                 <span className="font-plus-jakarta-700 mb-2 text-[40px] leading-none text-white md:text-[48px]">
-                  18%
+                  <CountUp target={18} suffix="%" />
                 </span>
                 <span className="text-[10px] font-bold tracking-[1.5px] text-white/50 uppercase md:text-[12px]">
                   Revpar Growth
