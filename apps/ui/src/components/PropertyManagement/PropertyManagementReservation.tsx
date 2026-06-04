@@ -56,12 +56,12 @@ const PropertyManagementReservation = () => {
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
         {/* Product image (dummy placeholder — swap with the real asset). Below content on mobile, left on desktop. */}
-        <div className="order-last min-w-0 lg:order-none lg:flex-1">
+        <div className="order-last min-w-0 lg:order-none lg:flex-[0.8]">
           <div className="aspect-[4/3] w-full rounded-2xl bg-white/5" />
         </div>
 
         {/* Right: content */}
-        <div className="flex min-w-0 flex-col lg:flex-1">
+        <div className="flex min-w-0 flex-col lg:flex-[1.2]">
           <SectionHeader
             eyebrow={
               <span className="inline-flex items-center gap-3">
@@ -97,7 +97,7 @@ const PropertyManagementReservation = () => {
                 key={card.id}
                 className="rounded-2xl border border-[#ED862E80] bg-white/5 p-5"
               >
-                <div className="flex items-start gap-3">
+                <div className="flex items-center gap-3">
                   <span className="shrink-0">{card.icon}</span>
                   <div className="min-w-0">
                     <h4 className="typo-body1 text-white lg:text-[14px]! lg:font-medium! lg:leading-[16.8px]! lg:tracking-[-0.25px]! lg:[font-family:'Public_Sans',sans-serif]!">

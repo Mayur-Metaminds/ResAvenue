@@ -7,7 +7,7 @@ import MobileAppReservations from "@/components/MobileApp/MobileAppReservations"
 import MobileAppAlerts from "@/components/MobileApp/MobileAppAlerts"
 import MobileAppShowcase from "@/components/MobileApp/MobileAppShowcase"
 import MobileAppBenefits from "@/components/MobileApp/mobileAppBenefits"
-import MobileAppCTA from "@/components/MobileApp/MobileAppCTA"
+import { CtaSection } from "@/components/common/CtaSection"
 import { FaqSection, type FaqItem } from "@/components/landing/FaqSection"
 
 // Dummy FAQ data for the mobile app page.
@@ -45,7 +45,13 @@ const MobileAppWrapper = () => {
         description="Everything you need to know about ResAvenue Mobile."
         defaultOpenIndex={null}
       />
-      <MobileAppCTA />
+      <CtaSection
+        title="Create unforgettable events with less effort and more impact."
+        titleClassName="typo-h1 text-center text-white lg:text-[46px]! lg:leading-[51.52px]! lg:tracking-[-0.5px]!"
+        description="Get started today and transform the way you manage and sell tickets."
+        descriptionClassName="typo-body1 text-center text-white/50 text-[14px]! lg:text-[18px]! lg:leading-[30.6px]!"
+        primaryButtonLabel={null}
+      />
 
     </div>
   )

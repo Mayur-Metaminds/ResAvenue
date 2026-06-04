@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 export function DirectConnectHeroSection() {
   return (
     <section
-      data-nav-theme="dark"
+      data-nav-theme="light"
       className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#0A0A0B]"
     >
       {/* Background image */}

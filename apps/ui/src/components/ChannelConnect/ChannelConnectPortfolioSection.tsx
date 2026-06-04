@@ -7,7 +7,19 @@ import {
   useTransform,
 } from "framer-motion"
 import Image from "next/image"
-import { useRef, useState } from "react"
+import { useRef, useState, useSyncExternalStore } from "react"
+
+// Sticky-scroll behaviour only makes sense at lg+ where the side-by-side
+// (mobile + cards) layout fits in one viewport. On smaller screens the section
+// renders as normal flow and all card subtitles are visible.
+const LG_MQ = "(min-width: 1024px)"
+const subscribeToLg = (cb: () => void) => {
+  const mq = window.matchMedia(LG_MQ)
+  mq.addEventListener("change", cb)
+  return () => mq.removeEventListener("change", cb)
+}
+const getLgSnapshot = () => window.matchMedia(LG_MQ).matches
+const getLgServerSnapshot = () => false
 
 import { FeatureShowcase } from "@/components/common/FeatureShowcase"
 import { PortfolioIcon1, PortfolioIcon2, PortfolioIcon3 } from "../../../public/svg/Channel-Connect"
@@ -47,12 +59,16 @@ const slideInFromLeft = (i: number) => ({
 })
 
 export function ChannelConnectPortfolioSection() {
-  // Block 1 (Control Your Portfolio) is a sticky-scroll panel: it pins below
-  // the navbar for the duration of `cards.length × 100vh` of page scroll and
-  // reveals one card's subtitle at a time based on scroll progress.
+  // Block 1 (Control Your Portfolio): on lg+ the panel pins for
+  // `cards.length × 100vh` of page scroll and reveals one card's subtitle at
+  // a time. On mobile the panel flows normally and every card stays expanded.
   const block1Ref = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const block1Height = `${portfolioCards.length * 100}vh`
+  const isLgUp = useSyncExternalStore(
+    subscribeToLg,
+    getLgSnapshot,
+    getLgServerSnapshot
+  )
 
   const { scrollYProgress } = useScroll({
     target: block1Ref,
@@ -80,11 +96,11 @@ export function ChannelConnectPortfolioSection() {
         className="flex flex-col gap-[32px] rounded-[45px]"
         style={{ background: PORTFOLIO_GRADIENT }}
       >
-        {/* Block 1 — Sticky-scroll. Tall outer pins the inner content while
-            the user scrolls through three steps (one card's subtitle reveals
-            at a time). */}
-        <div ref={block1Ref} className="relative" style={{ height: block1Height }}>
-          <div className="sticky top-24 lg:top-20 flex h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full items-center">
+        {/* Block 1 — Sticky-scroll on lg+, normal flow on mobile. The tall
+            outer (`lg:h-[300vh]`) only pins on desktop where the side-by-side
+            content fits in a single viewport. */}
+        <div ref={block1Ref} className="relative lg:h-[300vh]">
+          <div className="lg:sticky lg:top-20 lg:flex lg:h-[calc(100dvh-5rem)] w-full lg:items-center">
             <div className="w-full">
               <div className="relative p-[20px] md:p-16 lg:px-24 lg:pt-24 lg:pb-16">
                 <div className="relative z-10">
@@ -139,7 +155,10 @@ export function ChannelConnectPortfolioSection() {
                         icon={card.icon}
                         title={card.title}
                         subtitle={card.subtitle}
-                        isActive={activeIndex === i}
+                        // On mobile we pass `undefined` so the dark-variant
+                        // collapse logic doesn't fire — every card stays
+                        // expanded since there's no scroll-driven progression.
+                        isActive={isLgUp ? activeIndex === i : undefined}
                       />
                     ))}
                   </FeatureShowcase>

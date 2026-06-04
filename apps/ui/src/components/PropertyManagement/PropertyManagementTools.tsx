@@ -96,7 +96,7 @@ const PropertyManagementTools = () => {
       {/* Cards carousel */}
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto px-1 pt-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-6 overflow-x-auto px-10 pt-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {toolCards.map((card, i) => (
           <div

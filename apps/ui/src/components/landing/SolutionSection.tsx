@@ -46,15 +46,15 @@ export function SolutionSection() {
         </HeroTitle>
 
         {/* Animation Box / Horizontal Lines */}
-        <div className="relative mb-[34px] flex h-[300px] w-full items-center justify-center overflow-hidden md:h-[500px]">
-          {/* Horizontal Lines Background */}
-
-          {/* GIF Mockup */}
+        <div className="relative mb-[34px] flex h-[200px] w-full items-center justify-center overflow-hidden md:h-[340px]">
+          {/* GIF Mockup — `slice` makes the Lottie cover its container by
+              zooming in, hiding the built-in canvas padding around the pills. */}
           <div className="relative z-10 h-[90%] w-[90%]">
             <Lottie
               animationData={animationData}
               loop
               autoplay
+              rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
               className="h-full w-full"
             />
           </div>

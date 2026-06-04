@@ -53,7 +53,7 @@ const PropertyManagementHousekeeping = () => {
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
         {/* Product image (dummy placeholder — not given yet). Below content on mobile, left on desktop. */}
-        <div className="order-last min-w-0 lg:order-none lg:flex-[2]">
+        <div className="min-w-0 lg:flex-2">
           <div className="aspect-[4/3] w-full rounded-2xl bg-white/5" />
         </div>
 
@@ -88,13 +88,14 @@ const PropertyManagementHousekeeping = () => {
             }
           />
 
-          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {housekeepingCards.map((card) => (
               <div
                 key={card.id}
                 className="rounded-2xl border border-[#ED862E80] bg-white/5 p-5"
               >
-                <span className="shrink-0">{card.icon}</span>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF3ED] p-3">{card.icon}</div>
+
                 <h4 className="mt-4 typo-body1 text-white lg:text-[14px]! lg:font-medium! lg:leading-[16.8px]! lg:tracking-[-0.25px]! lg:[font-family:'Public_Sans',sans-serif]!">
                   {card.title}
                 </h4>
