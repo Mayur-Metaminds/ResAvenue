@@ -347,6 +347,7 @@ export function ContactUsCheckIcon({ className }: { className?: string }) {
         strokeLinecap="square"
       />
     </svg>
+
   )
 }
 
