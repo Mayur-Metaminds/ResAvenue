@@ -96,7 +96,7 @@ export function BentoProductModal({ product, bounds, onClose }: Props) {
   }, [product, onClose])
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       {product &&
         (isDesktop ? (
           bounds && (

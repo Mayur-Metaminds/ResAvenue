@@ -324,6 +324,33 @@ export function CheckedIcon({
   )
 }
 
+export function ContactUsCheckIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      className={className}
+    >
+      <path
+        d="M2.75 3.95V8.5C2.75 13.05 8.32143 15 8.32143 15C8.32143 15 13.8929 13.05 13.8929 8.5V3.95L8.32143 2L2.75 3.95Z"
+        stroke="white"
+        strokeWidth="1.2381"
+        strokeLinecap="square"
+      />
+      <path
+        d="M5.95312 7.98761L7.70317 9.73828L11.2051 6.23633"
+        stroke="white"
+        strokeWidth="1.2381"
+        strokeLinecap="square"
+      />
+    </svg>
+
+  )
+}
+
 export function LinkedIn({ className }: { className: string }) {
   return (
     <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 
+import { ContactUsCheckIcon } from "../../../public/svg/commonSvg"
 import {
   contactServiceOptions,
   contactSubmissionSchema,
@@ -26,6 +27,33 @@ export default function ContactForm() {
   })
   const [errors, setErrors] = useState<ContactFormErrors>({})
   const [status, setStatus] = useState<ContactSubmitStatus>({ kind: "idle" })
+
+  const tabsScrollRef = useRef<HTMLDivElement>(null)
+  const dragStartX = useRef(0)
+  const dragScrollLeft = useRef(0)
+  const isDragging = useRef(false)
+
+  const onTabsMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = false
+    dragStartX.current = e.pageX
+    dragScrollLeft.current = tabsScrollRef.current?.scrollLeft ?? 0
+    tabsScrollRef.current?.setAttribute("data-pressed", "true")
+  }
+
+  const onTabsMouseMove = (e: React.MouseEvent) => {
+    if (!tabsScrollRef.current?.hasAttribute("data-pressed")) return
+    const delta = e.pageX - dragStartX.current
+    if (Math.abs(delta) > 4) isDragging.current = true
+    tabsScrollRef.current.scrollLeft = dragScrollLeft.current - delta
+  }
+
+  const onTabsMouseUp = () => {
+    tabsScrollRef.current?.removeAttribute("data-pressed")
+  }
+
+  const handleServiceClick = (service: ContactService) => {
+    if (!isDragging.current) setSelected(service)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const name = e.target.name as keyof typeof formData
@@ -211,23 +239,33 @@ export default function ContactForm() {
 
         {/* Services */}
         <div className="mt-6 md:mt-8">
-          <h3 className="font-plus-jakarta-700 mb-4 text-[9.503px] leading-[100%] text-white lg:text-[16px]">
+          <label className="typo-body1 mb-4 block text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
             Services interested in
-          </h3>
+          </label>
 
-          <div className="-mx-4 overflow-x-auto px-4 md:-mx-8 md:px-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <div
+            ref={tabsScrollRef}
+            onMouseDown={onTabsMouseDown}
+            onMouseMove={onTabsMouseMove}
+            onMouseUp={onTabsMouseUp}
+            onMouseLeave={onTabsMouseUp}
+            className="-mx-4 cursor-grab overflow-x-auto px-4 active:cursor-grabbing md:-mx-8 md:px-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          >
             <div className="flex w-max flex-nowrap gap-2 pb-2 md:gap-3">
               {contactServiceOptions.map((service) => (
                 <button
                   key={service}
                   type="button"
-                  onClick={() => setSelected(service)}
+                  onClick={() => handleServiceClick(service)}
                   className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-3 py-1.5 text-[14px] leading-[19.6px] transition-all duration-200 md:px-5 md:py-2 ${selected === service
                     ? "font-plus-jakarta-700 border-white/40 bg-[#ED862E] text-white"
                     : "font-plus-jakarta-700 border-white/20 text-white hover:border-orange-400 lg:font-normal"
                     }`}
                 >
-                  {service}
+                  <span className="grid">
+                    <span aria-hidden="true" className="invisible col-start-1 row-start-1 font-plus-jakarta-700">{service}</span>
+                    <span className="col-start-1 row-start-1">{service}</span>
+                  </span>
                 </button>
               ))}
             </div>
@@ -242,7 +280,7 @@ export default function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             placeholder="Write a message here..."
-            className="w-full resize-none rounded-xl border border-white/10 bg-transparent px-3 py-3 text-[8.315px] text-white transition outline-none placeholder:text-[8.315px] placeholder:text-white/40 focus:border-orange-400 md:px-4 md:py-4 md:text-sm md:placeholder:text-sm"
+            className="w-full resize-none rounded-xl border border-white/10 bg-transparent px-3 py-3 text-[8.315px] text-white transition outline-none placeholder:text-[12px] placeholder:font-normal placeholder:leading-[100%] placeholder:text-white placeholder:[font-family:var(--font-plus-jakarta)] focus:border-orange-400 md:px-4 md:py-4 md:text-sm"
           />
           {errors.message && (
             <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.message}</p>
@@ -266,15 +304,15 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={status.kind === "submitting"}
-            className="typo-body1 cursor-pointer rounded-full bg-[#ED862E] px-5 py-2.5 md:py-3 text-white font-bold shadow-lg transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 md:px-10 md:py-4 lg:[font-family:var(--font-plus-jakarta)] lg:text-[15px] lg:leading-6 lg:font-semibold"
+            className="typo-body1 cursor-pointer rounded-full bg-[#ED862E] px-5 py-2.5 md:py-3 text-white font-bold shadow-lg transition hover:ring hover:ring-white hover:transition hover:duration-300 disabled:cursor-not-allowed disabled:opacity-60 md:px-10 md:py-4 lg:[font-family:var(--font-plus-jakarta)] lg:text-[15px] lg:leading-6 lg:font-semibold"
           >
             {status.kind === "submitting" ? "Sending…" : "Contact Resavenue →"}
           </button>
         </div>
 
         {/* Footer */}
-        <div className="font-plus-jakarta-500 mt-5 flex items-center justify-center gap-2 text-[8.315px] leading-[14.255px] text-white md:mt-7 lg:text-[14px] lg:leading-[24px]">
-          <span>🛡️</span>
+        <div className="mt-5 flex sm:items-center justify-center gap-2 text-center text-[12px] font-medium leading-[14.255px] text-white opacity-50 [font-family:var(--font-plus-jakarta)] md:mt-7 lg:text-[14px] lg:leading-6">
+          <ContactUsCheckIcon className="h-4 w-4 shrink-0" />
           <p>
             Your information is secure and will not be shared with third parties.
           </p>

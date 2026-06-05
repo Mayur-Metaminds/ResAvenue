@@ -101,7 +101,7 @@ input[type="number"] {
     --body3-size: 16px;     /* 1rem */
     --body3-weight: 600;
     --body3-line-height: 20px;
-    --body3-letter-spacing: 2.5px;
+    --body3-letter-spacing: normal;
 
     /* Body 4 — Source Sans 3, Regular */
     --body4-font: var(--font-source-sans);
@@ -148,7 +148,7 @@ input[type="number"] {
     /* Body 3 */
     --body3-size: 14px;     /* 0.875rem */
     --body3-line-height: 20px;
-    --body3-letter-spacing: 2.5px;
+    --body3-letter-spacing: normal;
 
     /* H2 / Body 4 / Body 5 have a single style across breakpoints. */
   }

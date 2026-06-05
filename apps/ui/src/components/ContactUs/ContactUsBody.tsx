@@ -7,22 +7,14 @@ import type { OmnichannelCard } from "@/components/ChannelConnect/ChannelConnect
 import { BentoGrid } from "@/components/common/BentoGrid"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { cn } from "@/lib/styles"
+import {
+  MarketingIcon,
+  SupportIcon,
+  ShieldIcon,
+  BillsIcon,
+  CopyIcon,
+} from "../../../public/svg/Contact-Us"
 
-function CopyIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-    >
-      <rect x="9" y="9" width="13" height="13" rx="2" />
-      <path d="M5 15V5a2 2 0 012-2h10" />
-    </svg>
-  )
-}
 
 function TickIcon() {
   return (
@@ -73,85 +65,9 @@ function CopyEmailButton({ email }: { email: string }) {
   )
 }
 
-function MarketingIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.8}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
-      />
-    </svg>
-  )
-}
-
-function SupportIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.8}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
-      />
-    </svg>
-  )
-}
-
-function RiskIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.8}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-      />
-    </svg>
-  )
-}
-
-function BillingIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.8}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-      />
-    </svg>
-  )
-}
-
 function CardIcon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-12 min-h-12 w-12 min-w-12 items-center justify-center rounded-[14px] bg-[#FEF3E2] text-[#ED862E]">
+    <div className="flex h-12 min-h-12 w-12 min-w-12 items-center justify-center rounded-[14px] bg-[#FEFAF5] text-[#ED862E]">
       {children}
     </div>
   )
@@ -186,7 +102,7 @@ const contactCards: ContactCard[] = [
     title: "Risk & Cardholder Support",
     description: "For fraud concerns, chargebacks, and cardholder issues.",
     gridSpan: "col-span-1 lg:col-span-3",
-    icon: <RiskIcon />,
+    icon: <ShieldIcon />,
     email: "risk@resavenue.com",
     renderGraphic: () => null,
   },
@@ -195,7 +111,7 @@ const contactCards: ContactCard[] = [
     title: "Billing & Accounts",
     description: "For invoices, payments, and accounts related queries.",
     gridSpan: "col-span-1 lg:col-span-3",
-    icon: <BillingIcon />,
+    icon: <BillsIcon />,
     email: "accounts@resavenue.com",
     renderGraphic: () => null,
   },
@@ -207,12 +123,12 @@ function ContactUsBody() {
       data-nav-theme="light"
       className="w-full bg-white px-4 py-15 md:px-8 lg:py-25"
     >
-      <div className="px-6">
+      <div className="">
         <BentoGrid<ContactCard>
           items={contactCards}
           containerClassName="w-full"
           gridClassName="relative grid auto-rows-fr grid-cols-1 gap-6 lg:grid-cols-12"
-          cardClassName="min-h-[150px] w-full justify-start overflow-hidden rounded-xl border border-slate-200 bg-white max-lg:px-4 max-md:p-4 md:p-4 lg:p-6"
+          cardClassName="min-h-[150px] w-full justify-start overflow-hidden rounded-xl border border-slate-200 bg-white max-lg:px-4 max-md:p-4 md:p-4 lg:p-6 transition-shadow hover:shadow-[0_8px_32px_rgba(237,134,46,0.25)]"
           header={
             <SectionHeader
               className="mx-auto mb-[40px] max-w-3xl text-center lg:mb-[60px]"

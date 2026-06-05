@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 import type * as React from "react"
 import { useCallback, useEffect, useRef, useState } from "react"
 
@@ -30,7 +31,7 @@ const carouselData: CarouselCard[] = [
     eyebrow: "DIRECT CONNECT",
     title: "Mobile-friendly booking engine with rate plans",
     linkText: "Learn More",
-    linkUrl: "#",
+    linkUrl: "/direct-connect",
     videoSrc: "https://www.w3schools.com/html/movie.mp4",
   },
   {
@@ -38,7 +39,7 @@ const carouselData: CarouselCard[] = [
     eyebrow: "CHANNEL MANAGER",
     title: "Seamlessly distribute to 100+ OTAs instantly",
     linkText: "Learn More",
-    linkUrl: "#",
+    linkUrl: "/channel-connect",
     videoSrc: "https://www.w3schools.com/html/movie.mp4",
   },
   {
@@ -46,7 +47,7 @@ const carouselData: CarouselCard[] = [
     eyebrow: "OPERATIONS",
     title: "Central nervous system for your entire property",
     linkText: "Learn More",
-    linkUrl: "#",
+    linkUrl: "/property-management",
     videoSrc: "https://www.w3schools.com/html/movie.mp4",
   },
 ]
@@ -57,6 +58,111 @@ export function FeatureCarouselSection() {
   // Remember which card-trigger the user opened the modal from so we can
   // restore focus to it on close (a11y).
   const openerRef = useRef<HTMLButtonElement | null>(null)
+
+  // Mouse drag-to-scroll with momentum. Touch already works natively via
+  // overflow-x-auto.
+  //
+  // We capture the pointer LAZILY: pointerdown only records the start, and we
+  // only call setPointerCapture once the pointer has moved past a small
+  // threshold. Below the threshold the event sequence reaches child elements
+  // normally — so a click on the play button still opens the modal.
+  const DRAG_THRESHOLD = 4
+  const drag = useRef({
+    armed: false, // pointer is down but we haven't decided drag-vs-click yet
+    dragging: false, // movement exceeded threshold; we're actively dragging
+    startX: 0,
+    startScrollLeft: 0,
+    lastX: 0,
+    lastT: 0,
+    velocity: 0,
+  })
+  const momentumRaf = useRef<number | null>(null)
+
+  const stopMomentum = () => {
+    if (momentumRaf.current != null) {
+      cancelAnimationFrame(momentumRaf.current)
+      momentumRaf.current = null
+    }
+  }
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse" || e.button !== 0) return
+    stopMomentum()
+    drag.current = {
+      armed: true,
+      dragging: false,
+      startX: e.clientX,
+      startScrollLeft: e.currentTarget.scrollLeft,
+      lastX: e.clientX,
+      lastT: performance.now(),
+      velocity: 0,
+    }
+  }
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!drag.current.armed) return
+    const dx = e.clientX - drag.current.startX
+
+    // Promote to active drag once we've crossed the threshold.
+    if (!drag.current.dragging) {
+      if (Math.abs(dx) < DRAG_THRESHOLD) return
+      drag.current.dragging = true
+      e.currentTarget.setPointerCapture(e.pointerId)
+    }
+
+    const now = performance.now()
+    const dt = Math.max(1, now - drag.current.lastT)
+    const stepDx = e.clientX - drag.current.lastX
+    drag.current.velocity = drag.current.velocity * 0.4 + (-stepDx / dt) * 0.6
+    drag.current.lastX = e.clientX
+    drag.current.lastT = now
+    e.currentTarget.scrollLeft = drag.current.startScrollLeft - dx
+  }
+
+  const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const wasDragging = drag.current.dragging
+    drag.current.armed = false
+    drag.current.dragging = false
+
+    if (!wasDragging) return // pure click — let it propagate to children
+
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId)
+    }
+    // Swallow the trailing click so a drag doesn't open the play-button modal.
+    const swallow = (ev: MouseEvent) => {
+      ev.stopPropagation()
+      ev.preventDefault()
+      window.removeEventListener("click", swallow, true)
+    }
+    window.addEventListener("click", swallow, true)
+
+    const el = e.currentTarget
+    if (Math.abs(drag.current.velocity) < 0.05) return
+
+    const friction = 0.94
+    let lastT = performance.now()
+    let velocityPxPerMs = drag.current.velocity
+    const step = (now: number) => {
+      const dt = now - lastT
+      lastT = now
+      const before = el.scrollLeft
+      el.scrollLeft += velocityPxPerMs * dt
+      if (el.scrollLeft === before) {
+        momentumRaf.current = null
+        return
+      }
+      velocityPxPerMs *= friction
+      if (Math.abs(velocityPxPerMs) < 0.02) {
+        momentumRaf.current = null
+        return
+      }
+      momentumRaf.current = requestAnimationFrame(step)
+    }
+    momentumRaf.current = requestAnimationFrame(step)
+  }
+
+  useEffect(() => stopMomentum, [])
 
   const openModal = useCallback(
     (card: CarouselCard, trigger: HTMLButtonElement) => {
@@ -121,7 +227,13 @@ export function FeatureCarouselSection() {
 
       {/* Horizontal Scroll Snap Carousel */}
       <div className="relative w-full">
-        <div className="hide-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto px-[5%] pt-4 pb-12 ">
+        <div
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+          className="hide-scrollbar flex gap-6 overflow-x-auto px-[5%] pt-4 pb-12 cursor-grab active:cursor-grabbing select-none"
+        >
           {carouselData.map((card) => (
             <CarouselItem key={card.id} card={card} onOpen={openModal} />
           ))}
@@ -161,7 +273,7 @@ function CarouselItem({
 }) {
   return (
     <div
-      className="group relative h-[400px] w-[85vw] shrink-0 snap-center overflow-hidden rounded-[24px] shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[511px] md:w-[1000px] lg:w-[1100px]"
+      className="group relative h-[400px] w-[85vw] shrink-0 overflow-hidden rounded-[24px] shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[511px] md:w-[1000px] lg:w-[1100px]"
     >
       {/* Preview video — muted, looped, just for ambience */}
       <video
@@ -196,23 +308,23 @@ function CarouselItem({
       <div className="pointer-events-none absolute right-0 bottom-0 left-0 flex flex-col justify-end p-8 md:p-12">
         <Eyebrow
           showDot={false}
-          className="mb-3 text-[12px] font-bold tracking-widest"
+          className="typo-body2 mb-[6px]"
           style={{ "--eyebrow-color": "#ED862E" } as React.CSSProperties}
         >
           {card.eyebrow}
         </Eyebrow>
 
-        <h3 className="font-plus-jakarta-700 mb-4 max-w-3xl text-3xl font-bold text-white md:text-4xl">
+        <h3 className="typo-body1 text-[#FFF] mb-[9px] lg:mb-[34px]">
           {card.title}
         </h3>
 
-        <a
+        <Link
           href={card.linkUrl}
-          className="pointer-events-auto inline-flex w-fit items-center font-medium text-white/90 hover:text-white"
+          className="pointer-events-auto typo-body2 inline-flex w-fit items-center text-white/90 hover:text-white"
         >
           {card.linkText}
           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </a>
+        </Link>
       </div>
     </div>
   )

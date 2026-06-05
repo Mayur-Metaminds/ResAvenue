@@ -191,7 +191,7 @@ export function PlanSelectionSection() {
                   <button
                     key={service.id}
                     onClick={() => selectService(service.id)}
-                    className={`group relative flex min-h-[171px] w-full flex-col items-start gap-4 rounded-[16px] bg-[#010C28] p-[21px] text-left transition-all duration-300 outline-none sm:w-[243px] ${isSelected
+                    className={`group relative cursor-pointer flex min-h-[171px] w-full flex-col items-start gap-4 rounded-[16px] bg-[#010C28] p-[21px] text-left transition-all duration-300 outline-none sm:w-[243px] ${isSelected
                         ? "border-2 border-[#ED862E] shadow-[0_0_20px_rgba(237,134,46,0.15)]"
                         : "border-2 border-transparent hover:border-slate-700"
                       }`}
@@ -204,7 +204,7 @@ export function PlanSelectionSection() {
                     )}
 
                     <div
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-200 [&_svg]:h-full [&_svg]:w-full ${isSelected
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-200 group-hover:bg-[#ED862E]/10 group-hover:text-[#ED862E] [&_svg]:h-full [&_svg]:w-full ${isSelected
                           ? "bg-[#ED862E]/10 text-[#ED862E]"
                           : "bg-transparent text-slate-400"
                         }`}
@@ -213,7 +213,7 @@ export function PlanSelectionSection() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <h5 className="pr-6 text-[15px] font-medium text-white">
+                      <h5 className="pr-6 text-[15px] font-medium text-white transition-colors duration-200 group-hover:text-[#ED862E]">
                         {service.title}
                       </h5>
                       <p className="text-xs leading-relaxed text-slate-400">

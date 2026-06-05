@@ -162,6 +162,11 @@ function FeatureShowcaseCard({
   }
 
   if (variant === "dark") {
+    // When `isActive` is explicitly false we collapse the subtitle (used by
+    // scroll-driven sections that reveal one card's body at a time). If
+    // `isActive` is undefined we leave the subtitle fully visible — preserving
+    // the original static behaviour for any non-scroll callers.
+    const collapse = isActive === false
     return (
       <Comp
         className={cn(
@@ -178,9 +183,18 @@ function FeatureShowcaseCard({
             {title}
           </h3>
           {subtitle && (
-            <p className="mt-1 font-source-sans-400 text-[14px] leading-[22px] text-[#94A3B8]">
-              {subtitle}
-            </p>
+            <div
+              className={cn(
+                "grid overflow-hidden transition-all duration-300 ease-in-out",
+                collapse
+                  ? "grid-rows-[0fr] opacity-0"
+                  : "mt-1 grid-rows-[1fr] opacity-100"
+              )}
+            >
+              <p className="font-source-sans-400 min-h-0 text-[14px] leading-[22px] text-[#94A3B8]">
+                {subtitle}
+              </p>
+            </div>
           )}
         </div>
       </Comp>

@@ -1,6 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import {
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+  motion
+} from "framer-motion"
+import { useRef, useState } from "react"
 
 import { Eyebrow } from "@/components/common/Eyebrow"
 import { SectionHeader } from "@/components/landing/SectionHeader"
@@ -11,6 +18,7 @@ type AccordionItemData = {
   id: string
   title: string
   description?: string
+  image: string
 }
 
 const accordionData: AccordionItemData[] = [
@@ -19,43 +27,99 @@ const accordionData: AccordionItemData[] = [
     title: "Easy Mobile Bookings",
     description:
       "Make it simple for guests no matter where they are with a seamless 2-step mobile booking experience.",
+    image: "/images/DeepDiveSectionImg.png"
   },
   {
     id: "item-2",
     title: "Real-time Sync",
     description:
       "Ensure your inventory is perfectly synced across all channels, avoiding double bookings and maintaining accurate availability.",
+    image: "/images/Direct-Connect/Booking-Engine.png"
   },
   {
     id: "item-3",
     title: "Dynamic Pricing Logic",
     description:
       "Automatically adjust your rates based on demand, seasonality, and competitor analysis to maximize your RevPAR.",
+    image: "/images/Direct-Connect/Unified-Intelligence-Dashboard.png"
   },
   {
     id: "item-4",
     title: "Simple payment processing",
     description:
       "Offer multiple payment gateways and currencies to provide a frictionless checkout experience for your global guests.",
+    image: "/images/DeepDiveSectionImg.png"
   },
 ]
 
 export function DirectConnectDeepDiveSection() {
-  const [openItems, setOpenItems] = useState<string[]>(["item-1"])
+  const sectionRef = useRef<HTMLElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  // One viewport of page scroll per accordion step — the sticky inner stays
+  // pinned for the full outer-section height, so the user "stays in" the
+  // section until they've scrolled through every step, then the next section
+  // naturally comes into view.
+  const stepsPerSection = Math.max(1, accordionData.length)
+  const sectionHeight = `${stepsPerSection * 100}vh`
+
+  // Scroll progress 0→1 across the section: 0 when the section top hits the
+  // viewport top (sticky pinning starts), 1 when the section bottom hits the
+  // viewport bottom (sticky pinning ends).
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  })
+  const indexMotion = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, accordionData.length - 1]
+  )
+  useMotionValueEvent(indexMotion, "change", (latest) => {
+    const next = Math.max(
+      0,
+      Math.min(accordionData.length - 1, Math.round(latest))
+    )
+    setActiveIndex((prev) => (prev === next ? prev : next))
+  })
 
   return (
     <section
+      ref={sectionRef}
       data-nav-theme="dark"
-      className="w-full rounded-[45px] bg-[#010C28] px-4 py-[21px] lg:py-[60px] lg:pr-[80px] lg:pl-[65px]"
+      className="relative w-full"
+      style={{ height: sectionHeight }}
     >
-      <div className="grid grid-cols-1 items-center gap-[56px] lg:grid-cols-2 lg:items-start lg:gap-[80px]">
+      {/* Sticky inner — pins below the fixed navbar for the full outer-section
+          height. The rounded "card" styling lives here so it stays visible the
+          whole time the user is scrolling through the accordion steps. */}
+      <div className="sticky top-24 lg:top-20 flex h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full items-center">
+        <div className="w-full rounded-[45px] bg-[#010C28] px-4 py-[21px] lg:py-[60px] lg:pr-[80px] lg:pl-[65px] transition-all duration-500 ease-in-out">
+      <div className="grid grid-cols-1 items-center gap-[56px] lg:grid-cols-2 lg:items-center lg:gap-[80px]">
         {/* Left Column: Image Graphic */}
-        <div className="relative order-2 flex w-full items-center justify-center rounded-[24px] lg:order-1">
-          <img
-            src="/images/DeepDiveSectionImg.png"
-            alt="Fastest Booking Experience Dashboard"
-            className="h-auto w-full object-contain"
-          />
+        <div className="relative order-2 flex w-full aspect-square md:aspect-video lg:aspect-square items-center justify-center rounded-[24px] lg:order-1">
+          <AnimatePresence mode="wait">
+            {(() => {
+              // activeIndex is clamped to [0, accordionData.length - 1] in
+              // useMotionValueEvent so it's always a valid index — but TS
+              // doesn't know that under noUncheckedIndexedAccess. Fall back
+              // to the first item just in case.
+              const item = accordionData[activeIndex] ?? accordionData[0]
+              if (!item) return null
+              return (
+                <motion.img
+                  key={activeIndex}
+                  src={item.image}
+                  alt={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 h-full w-full object-contain"
+                />
+              )
+            })()}
+          </AnimatePresence>
         </div>
 
         {/* Right Column: Content & Accordion */}
@@ -93,27 +157,24 @@ export function DirectConnectDeepDiveSection() {
           {/* Accordion */}
           <div className="flex flex-col gap-3">
             {accordionData.map((item, index) => {
-              const isOpen = openItems.includes(item.id)
-              const number = index + 1
+              const isOpen = activeIndex === index
 
               return (
                 <div
                   key={item.id}
                   className={cn(
-                    "flex cursor-pointer flex-col overflow-hidden rounded-[16px] border transition-all duration-300",
+                    "flex flex-col overflow-hidden rounded-[16px] border transition-all duration-300",
                     isOpen
                       ? "border-white/10 bg-[#061435]"
-                      : "border-white/5 bg-transparent hover:border-white/10 hover:bg-white/[0.02]"
+                      : "border-white/5 bg-transparent"
                   )}
-                  onClick={() =>
-                    setOpenItems(
-                      isOpen
-                        ? openItems.filter((id) => id !== item.id)
-                        : [...openItems, item.id]
-                    )
-                  }
+                  onClick={() => setActiveIndex(index)}
+                  style={{ cursor: 'pointer' }}
                 >
-                 <div className="flex items-start gap-[14px] py-[16px] pr-[7px] pl-[16px] select-none lg:pr-[31px]">
+                 <div className={cn(
+                   "flex gap-[14px] py-[16px] pr-[7px] pl-[16px] select-none lg:pr-[31px] transition-all duration-300",
+                   isOpen ? "items-start" : "items-center"
+                 )}>
                     <div
                       className={cn(
                         "shrink-0 transition-all duration-300",
@@ -130,8 +191,8 @@ export function DirectConnectDeepDiveSection() {
                     <div> 
                       <h4
                         className={cn(
-                          " mb-[10px] transition-colors duration-300 typo-body5",
-                          isOpen ? "text-white" : "text-[#94A3B8]"
+                          "transition-colors duration-300 typo-body5",
+                          isOpen ? "text-white mb-[10px]" : "text-[#94A3B8] mb-0"
                         )}
                       >
                         {item.title}
@@ -154,6 +215,8 @@ export function DirectConnectDeepDiveSection() {
               )
             })}
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </section>

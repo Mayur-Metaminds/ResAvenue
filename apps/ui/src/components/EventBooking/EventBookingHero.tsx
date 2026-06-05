@@ -4,7 +4,7 @@ import React from 'react'
 
 const EventBookingHero = () => {
   return (
-    <div className='relative flex min-h-screen w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center px-4'
+    <div data-nav-theme="dark" className='relative flex min-h-screen w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center px-4'
     style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}>
         <div className='flex lg:flex-row lg:justify-between'>
             <div className='relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[106px] lg:px-20 items-start'>
