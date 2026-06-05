@@ -3,10 +3,11 @@
 import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
 import { cn } from "@/lib/styles"
 import dynamic from "next/dynamic"
-import desktopDirectConnectAnimation from "../../../public/assets/desktop_direct_connect.json"
+import desktopDirectConnectAnimation from "../../../public/assets/desktop_direct_connect_11.json"
+import globeAnimation from "../../../public/assets/globe_neww.json"
 import graphAnimation from "../../../public/assets/graph.json"
 import roomReservationAnimation from "../../../public/assets/room_reservation.json"
-import hotelWebsiteAnimation from "../../../public/assets/hotelwebsite.json"
+import hotelWebsiteAnimation from "../../../public/assets/hotel_website.json"
 
 import { SectionHeader } from "./SectionHeader"
 
@@ -102,6 +103,7 @@ const products: Product[] = [
       "Automated mapping",
     ],
     imagePlaceholder: "/images/placeholder-distribution.png",
+    lottieAnimation: globeAnimation,
   },
   {
     id: "event-management",
@@ -163,6 +165,7 @@ export function BentoProductsSection() {
               </SectionHeader.Highlight>
             </>
           }
+          titleClassName="!lg:mb-[24px]"
           description="Seven powerful modules designed to work together as one intelligent system."
         />
       }
@@ -171,7 +174,7 @@ export function BentoProductsSection() {
           <div className="relative z-10 mb-6">
             <p
               className={cn(
-                "font-plus-jakarta-700 mb-3 text-[11px] leading-[17.6px] tracking-[1.5px] uppercase",
+                "font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] uppercase",
                 product.isDark ? "text-[#FDBA74]" : "text-[#ED862E]"
               )}
             >
@@ -179,7 +182,7 @@ export function BentoProductsSection() {
             </p>
             <h3
               className={cn(
-                "font-plus-jakarta-700 mb-3 text-[20px] leading-8",
+                "font-plus-jakarta-700 mb-[2px] text-[20px] leading-8",
                 product.isDark ? "text-white" : "text-[#0F172A]"
               )}
             >

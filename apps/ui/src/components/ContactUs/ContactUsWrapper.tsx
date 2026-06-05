@@ -14,7 +14,7 @@ function ContactUsWrapper() {
         <Marquee<TrustedLogo>
           items={[...trustedLogos]}
           getKey={(logo) => logo.name}
-          durationSeconds={30}
+          durationSeconds={60}
           pauseOnHover={false}
           edgeFade
           gapPx={96}
@@ -23,7 +23,7 @@ function ContactUsWrapper() {
           renderItem={({ name, Component }) => (
             <div
               aria-label={name}
-              className="opacity-80 transition-opacity hover:opacity-100"
+              className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-10 [&_svg]:w-auto md:[&_svg]:h-auto md:[&_svg]:w-auto"
             >
               <Component />
             </div>

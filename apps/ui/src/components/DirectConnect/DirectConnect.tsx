@@ -16,7 +16,7 @@ export default function DirectConnect() {
       <DirectConnectDashboardSection />
       <DirectConnectOperationsSection />
       <DirectConnectBookingEngineSection />
-      <CtaSection />
+      <CtaSection primaryButtonLabel={null} />
     </div>
   )
 }

@@ -416,7 +416,7 @@ function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
       <div className="relative z-10 flex min-w-0 flex-col">
         <span
           className={cn(
-            "truncate text-[15px] leading-tight font-semibold transition-colors duration-300 md:text-lg",
+            "truncate typo-body5 transition-colors duration-300",
             isActive ? "text-white" : "text-gray-400"
           )}
         >

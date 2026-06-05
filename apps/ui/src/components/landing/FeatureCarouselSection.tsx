@@ -305,22 +305,22 @@ function CarouselItem({
       </div>
 
       {/* Bottom content — non-interactive aside from the Learn More link */}
-      <div className="pointer-events-none absolute right-0 bottom-0 left-0 flex flex-col justify-end p-8 md:p-12">
+      <div className="pointer-events-none absolute right-0 bottom-0 left-0 flex flex-col justify-end p-4 md:p-12">
         <Eyebrow
           showDot={false}
-          className="typo-body2 mb-[6px]"
+          className="typo-body2 mb-0"
           style={{ "--eyebrow-color": "#ED862E" } as React.CSSProperties}
         >
           {card.eyebrow}
         </Eyebrow>
 
-        <h3 className="typo-body1 text-[#FFF] mb-[9px] lg:mb-[34px]">
+        <h3 className="text-[20px] md:text-[24px] lg:text-[40px] font-plus-jakarta-500 text-[#FFF] mb-[9px] lg:mb-[20px]">
           {card.title}
         </h3>
 
         <Link
           href={card.linkUrl}
-          className="pointer-events-auto typo-body2 inline-flex w-fit items-center text-white/90 hover:text-white"
+          className="pointer-events-auto typo-body2 md:text-[16px] text-[14px] inline-flex w-fit items-center text-white/90 hover:text-white"
         >
           {card.linkText}
           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

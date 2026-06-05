@@ -91,7 +91,7 @@ const SectionHeaderRoot = React.forwardRef<HTMLDivElement, SectionHeaderProps>(
         {/* Eyebrow */}
         {typeof eyebrow === "string" ? (
           <Eyebrow
-            className={cn("mb-4", eyebrowClassName)}
+            className={cn("mb-[12px]", eyebrowClassName)}
             showDot
             style={
               {

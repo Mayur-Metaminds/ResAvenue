@@ -3,6 +3,8 @@
 import { useRef, useState } from "react"
 
 import { ContactUsCheckIcon } from "../../../public/svg/commonSvg"
+import { NextIcon } from "../../../public/svg/Contact-Us"
+import { Button } from "@/components/ui/button"
 import {
   contactServiceOptions,
   contactSubmissionSchema,
@@ -118,14 +120,14 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="flex w-full items-center justify-center px-1 md:px-4">
-      <form onSubmit={handleSubmit} className="w-full max-w-2xl rounded-[14px] md:rounded-[15px] border border-[#00000033] bg-[#FFFFFF1A] p-4 shadow-2xl backdrop-blur-xl md:p-8">
+    <section className="flex w-full items-start justify-start">
+      <form onSubmit={handleSubmit} className="w-full overflow-hidden rounded-[14px] md:rounded-[15px] border border-[#00000033] bg-[#FFFFFF1A] p-4 shadow-2xl backdrop-blur-xl xl:p-8">
         {/* Form Grid */}
         <div className="grid grid-cols-1 gap-y-5 md:grid-cols-2 md:gap-x-6 md:gap-y-7">
           {/* First Name */}
           <div>
-            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
-              Name<span className="text-[#ED862E]">*</span>
+            <label className="typo-body5 text-white">
+              Name<span className="text-[#F00]">*</span>
             </label>
 
             <input
@@ -134,7 +136,7 @@ export default function ContactForm() {
               value={formData.firstName}
               onChange={handleChange}
               placeholder="First name"
-              className="w-full border-b border-white/30 bg-transparent py-2 text-[8.315px] text-white transition outline-none placeholder:text-[8.315px] placeholder:text-white/40 focus:border-orange-400 md:py-3 md:text-sm md:placeholder:text-sm"
+              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.firstName && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.firstName}</p>
@@ -143,8 +145,8 @@ export default function ContactForm() {
 
           {/* Last Name */}
           <div>
-            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
-              Last Name<span className="text-[#ED862E]">*</span>
+            <label className="typo-body5 text-white">
+              Last Name<span className="text-[#F00]">*</span>
             </label>
 
             <input
@@ -153,7 +155,7 @@ export default function ContactForm() {
               value={formData.lastName}
               onChange={handleChange}
               placeholder="Last name"
-              className="w-full border-b border-white/30 bg-transparent py-2 text-[8.315px] text-white transition outline-none placeholder:text-[8.315px] placeholder:text-white/40 focus:border-orange-400 md:py-3 md:text-sm md:placeholder:text-sm"
+              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.lastName && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.lastName}</p>
@@ -162,8 +164,8 @@ export default function ContactForm() {
 
           {/* Email */}
           <div>
-            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
-              Email address<span className="text-[#ED862E]">*</span>
+            <label className="typo-body5 text-white">
+              Email<span className="text-[#F00]">*</span>
             </label>
 
             <input
@@ -172,7 +174,7 @@ export default function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               placeholder="John@hotel.com"
-              className="w-full border-b border-white/30 bg-transparent py-2 text-[8.315px] text-white transition outline-none placeholder:text-[8.315px] placeholder:text-white/40 focus:border-orange-400 md:py-3 md:text-sm md:placeholder:text-sm"
+              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.email && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.email}</p>
@@ -181,8 +183,8 @@ export default function ContactForm() {
 
           {/* Phone */}
           <div>
-            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
-              Phone<span className="text-[#ED862E]">*</span>
+            <label className="typo-body5 text-white">
+              Phone<span className="text-[#F00]">*</span>
             </label>
 
             <input
@@ -191,7 +193,7 @@ export default function ContactForm() {
               value={formData.phone}
               onChange={handleChange}
               placeholder="+91 88888 88888"
-              className="w-full border-b border-white/30 bg-transparent py-2 text-[8.315px] text-white transition outline-none placeholder:text-[8.315px] placeholder:text-white/40 focus:border-orange-400 md:py-3 md:text-sm md:placeholder:text-sm"
+              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.phone && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.phone}</p>
@@ -200,8 +202,8 @@ export default function ContactForm() {
 
           {/* Property Name */}
           <div>
-            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
-              Property Name<span className="text-[#ED862E]">*</span>
+            <label className="typo-body5 text-white">
+              Property Name<span className="text-[#F00]">*</span>
             </label>
 
             <input
@@ -210,7 +212,7 @@ export default function ContactForm() {
               value={formData.propertyName}
               onChange={handleChange}
               placeholder="The Grand Resort"
-              className="w-full border-b border-white/30 bg-transparent py-2 text-[8.315px] text-white transition outline-none placeholder:text-[8.315px] placeholder:text-white/40 focus:border-orange-400 md:py-3 md:text-sm md:placeholder:text-sm"
+              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.propertyName && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.propertyName}</p>
@@ -219,7 +221,7 @@ export default function ContactForm() {
 
           {/* Site URL */}
           <div>
-            <label className="typo-body1 text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
+            <label className="typo-body5 text-white">
               Site URL
             </label>
 
@@ -229,7 +231,7 @@ export default function ContactForm() {
               value={formData.siteUrl}
               onChange={handleChange}
               placeholder="https://yourcompany.com"
-              className="w-full border-b border-white/30 bg-transparent py-2 text-[8.315px] text-white transition outline-none placeholder:text-[8.315px] placeholder:text-white/40 focus:border-orange-400 md:py-3 md:text-sm md:placeholder:text-sm"
+              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.siteUrl && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.siteUrl}</p>
@@ -238,8 +240,8 @@ export default function ContactForm() {
         </div>
 
         {/* Services */}
-        <div className="mt-6 md:mt-8">
-          <label className="typo-body1 mb-4 block text-white lg:[font-family:var(--font-plus-jakarta)] lg:text-[16px] lg:leading-4">
+        <div className="my-[24px]">
+          <label className="typo-body5 mb-[7px] md:mb-[16px] block text-white">
             Services interested in
           </label>
 
@@ -263,8 +265,8 @@ export default function ContactForm() {
                     }`}
                 >
                   <span className="grid">
-                    <span aria-hidden="true" className="invisible col-start-1 row-start-1 font-plus-jakarta-700">{service}</span>
-                    <span className="col-start-1 row-start-1">{service}</span>
+                    <span aria-hidden="true" className="invisible col-start-1 row-start-1 typo-body3">{service}</span>
+                    <span className="col-start-1 row-start-1 typo-body3">{service}</span>
                   </span>
                 </button>
               ))}
@@ -273,14 +275,14 @@ export default function ContactForm() {
         </div>
 
         {/* Message */}
-        <div className="mt-5 md:mt-7">
+        <div className="mt-[12px] md:mt-[32px]">
           <textarea
             rows={4}
             name="message"
             value={formData.message}
             onChange={handleChange}
             placeholder="Write a message here..."
-            className="w-full resize-none rounded-xl border border-white/10 bg-transparent px-3 py-3 text-[8.315px] text-white transition outline-none placeholder:text-[12px] placeholder:font-normal placeholder:leading-[100%] placeholder:text-white placeholder:[font-family:var(--font-plus-jakarta)] focus:border-orange-400 md:px-4 md:py-4 md:text-sm"
+            className="w-full resize-none rounded-xl border border-white/10 bg-transparent px-3 py-3 text-[8.315px] text-white transition outline-none placeholder:text-[#FFF] placeholder:typo-body5 focus:border-orange-400 p-[12px] md:p-[10px] md:text-sm"
           />
           {errors.message && (
             <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.message}</p>
@@ -300,20 +302,21 @@ export default function ContactForm() {
         )}
 
         {/* Button */}
-        <div className="mt-6 flex justify-center md:mt-8">
-          <button
+        <div className="mt-[24px] flex justify-center">
+          <Button
             type="submit"
             disabled={status.kind === "submitting"}
-            className="typo-body1 cursor-pointer rounded-full bg-[#ED862E] px-5 py-2.5 md:py-3 text-white font-bold shadow-lg transition hover:ring hover:ring-white hover:transition hover:duration-300 disabled:cursor-not-allowed disabled:opacity-60 md:px-10 md:py-4 lg:[font-family:var(--font-plus-jakarta)] lg:text-[15px] lg:leading-6 lg:font-semibold"
+            className="typo-body5 gap-[4px] md:py-[14px] md:px-[32px] py-[8px] px-[16px]"
+            icon={status.kind !== "submitting" && <NextIcon />}
           >
-            {status.kind === "submitting" ? "Sending…" : "Contact Resavenue →"}
-          </button>
+            {status.kind === "submitting" ? "Sending…" : "Contact Resavenue"}
+          </Button>
         </div>
 
         {/* Footer */}
-        <div className="mt-5 flex sm:items-center justify-center gap-2 text-center text-[12px] font-medium leading-[14.255px] text-white opacity-50 [font-family:var(--font-plus-jakarta)] md:mt-7 lg:text-[14px] lg:leading-6">
+        <div className="mt-[16px] flex sm:items-center justify-center gap-[6px] ">
           <ContactUsCheckIcon className="h-4 w-4 shrink-0" />
-          <p>
+          <p className="typo-body3 text-[#FFF] opacity-50 text-center">
             Your information is secure and will not be shared with third parties.
           </p>
         </div>

@@ -7,6 +7,7 @@ export interface HeroContentProps {
   /** Eyebrow label content. Pass a string or a full <Eyebrow /> node to override styling. */
   eyebrow: React.ReactNode
   title: React.ReactNode
+  titleClassName?: React.ReactNode
   description: React.ReactNode
   actions?: React.ReactNode[]
   className?: string
@@ -18,6 +19,7 @@ export interface HeroContentProps {
 export function HeroContent({
   eyebrow,
   title,
+  titleClassName,
   description,
   actions,
   className,
@@ -36,10 +38,10 @@ export function HeroContent({
       </div>
 
       {/* Main Title — the caller owns the heading element (e.g. <HeroTitle />). */}
-      <div className="mb-[16px] lg:mb-[24px]">{title}</div>
+      <div className={cn("mb-[16px] lg:mb-[24px]",titleClassName)}>{title}</div>
 
       {/* Description */}
-      <p className="typo-body1 mb-[40px] text-gray-300">{description}</p>
+      <p className="typo-body1 mb-[40px] text-white opacity-55">{description}</p>
 
       {/* Actions */}
       {actions && actions.length > 0 && (

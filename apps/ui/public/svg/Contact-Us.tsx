@@ -41,3 +41,13 @@ export function CopyIcon() {
         <path opacity="0.5" d="M5.5 17.4173C4.77065 17.4173 4.07118 17.1276 3.55546 16.6119C3.03973 16.0961 2.75 15.3967 2.75 14.6673V9.16732C2.75 5.71057 2.75 3.98173 3.82433 2.90832C4.89867 1.8349 6.62658 1.83398 10.0833 1.83398H13.75C14.4793 1.83398 15.1788 2.12372 15.6945 2.63944C16.2103 3.15517 16.5 3.85464 16.5 4.58398" stroke="#475569" stroke-width="1.6875" />
     </svg>)
 }
+
+
+export function NextIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8H13M9 12L13 8L9 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+    )
+}

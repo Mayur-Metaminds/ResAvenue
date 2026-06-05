@@ -111,7 +111,7 @@ export function PlanSelectionSection() {
   return (
     <section
       data-nav-theme="light"
-      className="relative flex w-full flex-col items-center overflow-hidden py-[58px]"
+      className="relative flex w-full rounded-b-[40px] flex-col items-center overflow-hidden py-[58px]"
       style={{
         background:
           "var(--bg, linear-gradient(225deg, rgba(240, 242, 253, 1) 0%, rgba(61, 98, 129, 0.15) 100%))",
@@ -140,10 +140,10 @@ export function PlanSelectionSection() {
         <div className="flex flex-col gap-16 rounded-[32px] py-[48px] border border-slate-100 bg-white px-[12px] lg:px-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]  lg:flex-row lg:gap-[48.34px] ">
           {/* Left Column */}
           <div className="flex w-full flex-col border-slate-300 lg:w-[336px] lg:border-r">
-            <h3 className="mb-4 typo-h1 text-[#010C28] mr-[23px]">
+            <h3 className=" typo-h1 text-[24px] lg:text-[30px] text-[#010C28] mr-[23px]">
               Ready to get started?
             </h3>
-            <p className="mb-10 typo-body-1 lg:w-[287px] text-slate-400">
+            <p className="mb-10 typo-body1 leading-[22.8px] text-[14px] lg:w-[287px] text-slate-400">
               Our specialists will build a custom package based on your
               team&apos;s specific requirements.
             </p>
@@ -173,10 +173,10 @@ export function PlanSelectionSection() {
           {/* Right Column */}
           <div className="w-full lg:w-[65%]">
             <div className="mb-[24px]">
-              <h4 className="mb-2 typo-h2 text-[#010C28]">
+              <h4 className="mb-[4px] typo-h2 text-[20px] font-medium text-[#010C28]">
                 Select your core services
               </h4>
-              <p className="typo-body3 text-slate-400">
+              <p className="typo-body3 font-normal text-slate-400">
                 Organize your operational stack by choosing the professional
                 modules you need.
               </p>

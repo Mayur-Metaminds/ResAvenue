@@ -8,7 +8,7 @@ import { SectionHeader } from "./SectionHeader"
 const testimonials = [
   {
     quote:
-      "The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.",
+      "The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.",
     name: "SUNITA PATEL",
     title: "Revenue Director - Coastal Escapes",
     initials: "SP",
@@ -16,7 +16,7 @@ const testimonials = [
   },
   {
     quote:
-      "We moved from 5 disconnected tools to one platform. Booking engine conversion doubled, and we manage 12 properties from a single dashboard.",
+      "We moved from 5 disconnected tools to one platform. Booking engine conversion doubled, and we manage 12 properties from a single dashboard. The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.",
     name: "ARJUN MEHTA",
     title: "CEO - Urban Stay Apartments",
     initials: "AM",
@@ -24,7 +24,7 @@ const testimonials = [
   },
   {
     quote:
-      "Event management module is flawless. 300+ tickets sold with QR check-in. Analytics help us understand delegates better.",
+      "Event management module is flawless. 300+ tickets sold with QR check-in. Analytics help us understand delegates better.The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.",
     name: "VIKRAM TANDON",
     title: "Events Head - Grand Conventions",
     initials: "VT",
@@ -32,7 +32,7 @@ const testimonials = [
   },
   {
     quote:
-      "Event management module is flawless. 300+ tickets sold with QR check-in. Analytics help us understand delegates better.",
+      "Event management module is flawless. 300+ tickets sold with QR check-in. Analytics help us understand delegates better.The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.",
     name: "VIKRAM TANDON",
     title: "Events Head - Grand Conventions",
     initials: "VT",
@@ -40,7 +40,7 @@ const testimonials = [
   },
   {
     quote:
-      "Event management module is flawless. 300+ tickets sold with QR check-in. Analytics help us understand delegates better.",
+      "Event management module is flawless. 300+ tickets sold with QR check-in. Analytics help us understand delegates better.The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.",
     name: "VIKRAM TANDON",
     title: "Events Head - Grand Conventions",
     initials: "VT",
@@ -48,7 +48,7 @@ const testimonials = [
   },
   {
     quote:
-      "Event management module is flawless. 300+ tickets sold with QR check-in. Analytics help us understand delegates better.",
+      "Event management module is flawless. 300+ tickets sold with QR check-in. Analytics help us understand delegates better.The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.",
     name: "VIKRAM TANDON",
     title: "Events Head - Grand Conventions",
     initials: "VT",
@@ -63,20 +63,20 @@ const stats: Array<{
   label: string
 }> = [
   {
-    target: 34,
+    target: 30,
     suffix: "%",
-    label: "Average increase in direct bookings",
+    label: "Average Increase in Direct Bookings",
   },
   {
-    target: 2500,
+    target: 3500,
     suffix: "+",
     format: (n) => Math.round(n).toLocaleString(),
-    label: "Hotels powered across the globe",
+    label: "Hotels Powered Across the Globe",
   },
   {
-    target: 40,
+    target: 25,
     suffix: "M+",
-    label: "Room nights managed annually",
+    label: "Room Nights Managed Annually",
   },
   {
     target: 22,
@@ -98,7 +98,7 @@ export function TestimonialsSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#010C28] py-24 lg:py-32"
+      className="relative flex w-full rounded-[40px] flex-col items-center justify-center overflow-hidden bg-[#010C28] py-24 lg:py-32"
     >
       {/* Background Image with Overlay */}
       <div
@@ -120,6 +120,8 @@ export function TestimonialsSection() {
         <div className="flex flex-col items-center text-center">
           <SectionHeader
             eyebrow="TESTIMONIAL"
+            eyebrowDotColor="#FFF"
+            eyebrowColor="#FFF"
             titleColor="#FFFFFF"
             highlightGradient="linear-gradient(90deg, #ED862E 0%, #ED862E 100%)"
             title={
@@ -133,7 +135,7 @@ export function TestimonialsSection() {
             }
           />
 
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
+          <div className="mt-8 flex flex-col items-center gap-4 ">
             <span className="text-sm text-gray-400">Trusted by:</span>
             <div className="flex -space-x-2">
               {avatars.map((avatar, idx) => (
@@ -162,8 +164,8 @@ export function TestimonialsSection() {
           ariaLabel="Customer testimonials"
           getKey={(_, idx) => idx}
           renderItem={(testimonial) => (
-            <div className="flex h-[199px] w-[325px] flex-col justify-between rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.06] px-[20px] py-[20px] backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.08] md:h-[265px] md:w-[456px] md:px-[24px] md:py-[24px]">
-              <p className="line-clamp-4 text-[13px] leading-relaxed font-light text-gray-300 md:line-clamp-5 md:text-[15px]">
+            <div className="flex h-[199px] justify-between w-[325px] flex-col  rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.06] px-[20px] py-[20px] backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.08] md:h-[265px] md:w-[456px] md:px-[24px] md:py-[24px]">
+              <p className="line-clamp-4 text-[13px] leading-relaxed font-light text-white/60 md:line-clamp-5 md:text-[15px]">
                 {testimonial.quote}
               </p>
               <div className="flex items-center gap-4">
@@ -173,7 +175,7 @@ export function TestimonialsSection() {
                   {testimonial.initials}
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-white">
+                  <div className="text-[16px] font-medium text-white">
                     {testimonial.name}
                   </div>
                   <div className="mt-0.5 text-xs text-gray-500">
@@ -189,6 +191,8 @@ export function TestimonialsSection() {
         <SectionHeader
           className="mt-32 mb-12"
           eyebrow="BY THE NUMBERS"
+          eyebrowColor="#FFF"
+          eyebrowDotColor="#FFF"
           titleColor="#FFFFFF"
           highlightGradient="linear-gradient(90deg, #ED862E 0%, #ED862E 100%)"
           title={
@@ -206,7 +210,7 @@ export function TestimonialsSection() {
               key={idx}
               className="flex flex-col items-start justify-center rounded-[20px] border border-white/5 bg-[#071330]/80 p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-white/10 hover:bg-[#071330] lg:p-8"
             >
-              <div className="mb-3 text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+              <div className="mb-3 text-[48px] font-medium tracking-tight text-white lg:text-[65px]">
                 <CountUp
                   target={stat.target}
                   suffix={stat.suffix}
@@ -221,7 +225,7 @@ export function TestimonialsSection() {
                   borderRadius: "2.323px",
                 }}
               />
-              <p className="text-[15px] leading-relaxed text-[#8BA0B2]">
+              <p className="text-[16px] lg:text-[18px] leading-relaxed text-[#8BA0B2]">
                 {stat.label}
               </p>
             </div>

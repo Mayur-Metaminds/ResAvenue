@@ -6,6 +6,13 @@ import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { cn } from "@/lib/styles"
 
+import cottageVillaAnimation from "../../../public/assets/cattage_villa.json"
+import enrichmentAnimation from "../../../public/assets/enrichment.json"
+import finalMobileScreenAnimation from "../../../public/assets/final_mobile_screen.json"
+import ghaReferenceAnimation from "../../../public/assets/GHA refrence pic 1.json"
+import intelligentAnalyticsAnimation from "../../../public/assets/intelligent_analytice.json"
+import memberDiscountAnimation from "../../../public/assets/member_discount.json"
+import paymentCardAnimation from "../../../public/assets/payment_card.json"
 import { CheckedIcon } from "../../../public/svg/commonSvg"
 import {
   UnifiedPlatformIcon1,
@@ -21,6 +28,9 @@ type SolutionCard = BentoItem & {
   subtitle: string
   bullets?: string[]
   icon: React.ReactNode
+  /** Optional Lottie JSON shown in the card's popup modal (replaces the
+      bottom screenshot when present). */
+  lottieAnimation?: unknown
 }
 
 const solutions: SolutionCard[] = [
@@ -46,6 +56,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon1 className="text-[#ED862E]"/>,
     modalWidth: "w-[950px]",
+    lottieAnimation: finalMobileScreenAnimation,
   },
   {
     id: "discounts-promotion",
@@ -64,6 +75,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon2 />,
     modalWidth: "w-[950px]",
+    lottieAnimation: memberDiscountAnimation,
   },
   {
     id: "google-hotel-ads",
@@ -81,6 +93,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon3 />,
     modalWidth: "w-[950px]",
+    lottieAnimation: ghaReferenceAnimation,
   },
   {
     id: "intelligent-analytics",
@@ -97,6 +110,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon4 />,
     modalWidth: "w-[950px]",
+    lottieAnimation: intelligentAnalyticsAnimation,
   },
   {
     id: "unlock-revenue",
@@ -113,6 +127,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon5 />,
     modalWidth: "w-[950px]",
+    lottieAnimation: enrichmentAnimation,
   },
   {
     id: "payments-security",
@@ -135,6 +150,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon6 />,
     modalWidth: "w-[950px]",
+    lottieAnimation: paymentCardAnimation,
   },
   {
     id: "agents-member",
@@ -151,6 +167,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon7 />,
     modalWidth: "w-full",
+    lottieAnimation: cottageVillaAnimation,
   },
 ]
 

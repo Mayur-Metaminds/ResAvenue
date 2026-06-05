@@ -2,11 +2,14 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import dynamic from "next/dynamic"
 import { useRouter } from "next/navigation"
 import { useEffect, useSyncExternalStore } from "react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/styles"
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 
 import { CheckedIcon, CloseBtn } from "../../../public/svg/commonSvg"
 
@@ -49,6 +52,9 @@ export interface BentoModalProduct {
   imagePlaceholder: string
   href?: string
   modalWidth?: string
+  /** Optional Lottie JSON. When present, renders in place of the bottom
+      screenshot. */
+  lottieAnimation?: unknown
 }
 
 const anchorToOrigin: Record<ModalAnchor, string> = {
@@ -206,7 +212,7 @@ function ModalContent({
 
   return (
     <div
-      className="relative flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto rounded-[24px] bg-white px-[20px] pt-[56px] pb-[20px] md:px-[32px] md:pt-[70px] md:pb-[24px]"
+      className="relative flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[56px] pb-[20px] md:px-[32px] md:pt-[30px] md:pb-[24px]"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -222,24 +228,24 @@ function ModalContent({
       </button>
 
       {/* Two-column top section (stacks on mobile via grid-cols-1) */}
-      <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[62px] md:grid-cols-2">
+      <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-2">
         {/* Left — eyebrow + title + subtitle + CTA */}
         <div className="flex h-full flex-col items-start">
           {product.eyebrow && (
-            <h4 className="font-plus-jakarta-700 mb-3 md:mb-4 text-[12px] md:text-[14px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
+            <h4 className="font-plus-jakarta-700 mb-[12px] text-[12px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
               {product.eyebrow}
             </h4>
           )}
 
           <h3
             id={`product-modal-title-${product.id}`}
-            className="font-plus-jakarta-700 mb-3 md:mb-4 text-3xl md:text-4xl font-bold text-[#010C28]"
+            className="font-plus-jakarta-700 mb-[2px] text-[24px] font-bold text-[#010C28]"
           >
             {product.title}
           </h3>
 
           {product.subtitle && (
-            <p className="mb-6 md:mb-8 max-w-2xl text-[15px] md:text-lg leading-relaxed text-gray-600">
+            <p className="mb-6 md:mb-8 max-w-2xl font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
               {product.subtitle}
             </p>
           )}
@@ -247,7 +253,7 @@ function ModalContent({
           <Button
             variant="primary"
             size="default"
-            className="mt-auto w-fit gap-2 rounded-[50px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
+            className="mt-auto w-fit gap-2 rounded-[16px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
             icon={<ArrowRight className="h-4 w-4" />}
             onClick={() => {
               onClose()
@@ -260,13 +266,13 @@ function ModalContent({
 
         {/* Right — feature checklist */}
         <div className="flex flex-col justify-center">
-          <ul className="space-y-3 md:space-y-4">
+          <ul className="space-y-3 md:space-y-[12px]">
             {product.modalFeatures.map((feature) => (
               <li key={feature} className="flex items-start text-gray-700">
                 <span className="mt-0.5 mr-3 md:mr-4 flex h-5 w-5 md:h-6 md:w-6 shrink-0 items-center justify-center">
                   <CheckedIcon />
                 </span>
-                <span className="text-[15px] md:text-[16px] leading-relaxed font-medium">
+                <span className="text-[15px] md:text-[16px] leading-relaxed text-[#45556C] font-medium">
                   {feature}
                 </span>
               </li>
@@ -275,13 +281,25 @@ function ModalContent({
         </div>
       </div>
 
-      {/* Bottom screenshot */}
-      <div
-        className="min-h-[200px] w-full flex-1 rounded-2xl border border-gray-100 shadow-sm md:min-h-[350px]"
-        style={{
-          background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
-        }}
-      />
+      {/* Bottom visual — Lottie if provided, otherwise the imagePlaceholder
+          rendered as a cover background. */}
+      {product.lottieAnimation ? (
+        <div className="min-h-[200px] w-full flex-1 overflow-hidden rounded-2xl border border-gray-100 shadow-sm md:min-h-[350px]">
+          <Lottie
+            animationData={product.lottieAnimation}
+            loop
+            className="h-full w-full"
+            rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+          />
+        </div>
+      ) : (
+        <div
+          className="min-h-[200px] w-full flex-1 rounded-2xl border border-gray-100 shadow-sm md:min-h-[350px]"
+          style={{
+            background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
+          }}
+        />
+      )}
     </div>
   )
 }

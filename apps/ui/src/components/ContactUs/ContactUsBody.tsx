@@ -54,10 +54,10 @@ function CopyEmailButton({ email }: { email: string }) {
       onClick={handleCopy}
       aria-label={copied ? `Copied ${email}` : `Copy ${email}`}
       className={cn(
-        "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border bg-white transition",
+        "flex h-9 w-9 cursor-pointer shrink-0 items-center justify-center rounded-lg bg-white transition",
         copied
-          ? "border-[#ED862E] text-[#ED862E]"
-          : "border-slate-200 text-slate-500 hover:border-[#ED862E] hover:text-[#ED862E]"
+          ? "text-[#ED862E]"
+          : "text-slate-500 hover:text-[#ED862E]"
       )}
     >
       {copied ? <TickIcon /> : <CopyIcon />}
@@ -128,7 +128,7 @@ function ContactUsBody() {
           items={contactCards}
           containerClassName="w-full"
           gridClassName="relative grid auto-rows-fr grid-cols-1 gap-6 lg:grid-cols-12"
-          cardClassName="min-h-[150px] w-full justify-start overflow-hidden rounded-xl border border-slate-200 bg-white max-lg:px-4 max-md:p-4 md:p-4 lg:p-6 transition-shadow hover:shadow-[0_8px_32px_rgba(237,134,46,0.25)]"
+          cardClassName="min-h-[150px] w-full justify-start overflow-hidden rounded-xl border border-slate-200 bg-white max-lg:px-4 max-md:p-4 md:p-4 lg:p-6 transition-shadow hover:shadow-[0_12px_20px_-10px_rgba(237,134,46,0.15)]"
           header={
             <SectionHeader
               className="mx-auto mb-[40px] max-w-3xl text-center lg:mb-[60px]"

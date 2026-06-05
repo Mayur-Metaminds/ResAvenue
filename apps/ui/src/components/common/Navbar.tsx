@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { Minus, Plus } from "lucide-react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
 import { buttonVariants } from "@/components/ui/button"
@@ -45,19 +46,34 @@ export function Navbar() {
   // Default to dark — hero is the first section, and we want correct colors before JS hydrates.
   const [theme, setTheme] = useState<NavTheme>("dark")
   const [scrolled, setScrolled] = useState(false)
+  // Re-run the theme-detection effect whenever the route changes. The Navbar
+  // lives in the root layout and does NOT unmount on Next.js navigation, so
+  // without this dep we'd be reading stale `data-nav-theme` elements from the
+  // previous page.
+  const pathname = usePathname()
 
   useEffect(() => {
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-nav-theme]")
-    )
+    let rafId: number | null = null
 
     const compute = () => {
       setScrolled(window.scrollY > 0)
 
-      if (sections.length === 0) return
-      // The section whose top is just above the navbar's bottom (~80px) is the
-      // one currently under the navbar. Walk sections; pick the last one whose
-      // top has scrolled past the navbar threshold.
+      // Re-query every call rather than capturing once: sections may be added
+      // after mount (Suspense, animations, route changes), and the captured
+      // array can't see them otherwise.
+      const sections = document.querySelectorAll<HTMLElement>(
+        "[data-nav-theme]"
+      )
+      if (sections.length === 0) {
+        // No themed sections on this page — fall back to dark default so we
+        // don't carry over a stale theme from a previous route.
+        setTheme("dark")
+        return
+      }
+
+      // Walk sections in document order; the last one whose top is at-or-past
+      // the navbar threshold (~80px from viewport top) is the one currently
+      // under the navbar.
       const threshold = 80
       let current: NavTheme = "dark"
       for (const section of sections) {
@@ -69,15 +85,26 @@ export function Navbar() {
       setTheme(current)
     }
 
+    // rAF-throttle scroll handler — coalesces a burst of scroll events into
+    // one layout read per frame.
+    const onScroll = () => {
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        compute()
+      })
+    }
+
     compute()
-    window.addEventListener("scroll", compute, { passive: true })
+    window.addEventListener("scroll", onScroll, { passive: true })
     window.addEventListener("resize", compute)
 
     return () => {
-      window.removeEventListener("scroll", compute)
+      if (rafId !== null) cancelAnimationFrame(rafId)
+      window.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", compute)
     }
-  }, [isMobileMenuOpen]) // Re-run when menu opens/closes since it affects layout
+  }, [pathname])
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -123,14 +150,14 @@ export function Navbar() {
         </div>
 
         {/* Desktop nav */}
-        <div className="hidden items-center space-x-8 md:flex lg:space-x-12">
+        <div className="hidden items-center space-x-8 lg:flex lg:space-x-12">
           <div className="flex items-center space-x-8 lg:space-x-10">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "relative inline-block typo-body1 transition-colors",
+                  "relative inline-block typo-body3 transition-colors",
                   "hover:text-[#ED862E]",
                   // Animated underline in the same hover color, grows from the left.
                   "after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-[#ED862E] after:transition-[width] after:duration-300 hover:after:w-full",
@@ -158,7 +185,7 @@ export function Navbar() {
         {/* Mobile hamburger */}
         <button
           className={cn(
-            "touch-manipulation p-2 md:hidden",
+            "touch-manipulation p-2 lg:hidden",
             isDark ? "text-white" : "text-[#010C28]"
           )}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -182,7 +209,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex flex-col md:hidden"
+            className="fixed inset-0 z-[100] flex flex-col lg:hidden"
             style={{
               background: "rgba(237, 134, 46, 0.60)",
               backdropFilter: "blur(20.7px)",

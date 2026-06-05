@@ -68,7 +68,7 @@ export function CtaSection({
       {/* Overlay */}
       {showOverlay && <div className="absolute inset-0 z-0 bg-[#010C28]/20 mix-blend-multiply" />}
 
-      <div className="relative z-10 mx-auto w-full max-w-4xl px-6 text-center">
+      <div className="relative z-10 mx-auto w-full px-6 text-center">
         {eyebrow && (
           <p
             className={cn(
@@ -82,7 +82,7 @@ export function CtaSection({
 
         <h2
           className={cn(
-            "mb-6 text-4xl leading-[1.15] font-medium tracking-tight text-white md:text-5xl lg:text-6xl",
+            "mb-[18px] text-[32px] lg:text-[48px] leading-[1.15] font-medium tracking-tight text-white md:text-5xl lg:text-6xl",
             titleClassName
           )}
         >
@@ -91,7 +91,7 @@ export function CtaSection({
 
         <p
           className={cn(
-            "mx-auto mb-10 max-w-2xl text-base leading-relaxed font-light text-gray-200 opacity-90 md:text-lg",
+            "mx-auto mb-[40px] max-w-2xl text-[18px] leading-relaxed font-light text-white opacity-50 md:text-lg",
             descriptionClassName
           )}
         >

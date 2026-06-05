@@ -61,7 +61,7 @@ const segments = [
   },
   {
     id: "revenue-management",
-    title: "Revenue Management Companies",
+    title: "Hotel Revenue management companies",
     subtitle:
       "Manage pricing and distribution for multiple hotels from one platform",
     points: [
@@ -71,7 +71,7 @@ const segments = [
       "Deliver detailed revenue and ADR reports",
     ],
     image: "/images/Landing/DNAPopupImg4.png",
-    position: { bottom: "15%", right: "2%", transform: "translate(0%, 50%)" },
+    position: { bottom: "25%", right: "-6%", transform: "translate(0%, 50%)" },
     icon: WhoWeServePopupIcon4,
   },
   {
@@ -202,10 +202,10 @@ export function WhoWeServeSection() {
         {segments.map((segment) => (
           <div
             key={segment.id}
-            className="absolute z-30 flex items-center gap-3 rounded-full border border-gray-100 bg-white px-5 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-transform hover:scale-105"
+            className="absolute z-30 flex items-center gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-transform hover:scale-105"
             style={segment.position}
           >
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-[16px] md:text-[18px] font-plus-jakarta-500 text-gray-700">
               {segment.title}
             </span>
             <button
@@ -248,7 +248,7 @@ export function WhoWeServeSection() {
                 type="button"
                 onClick={() => setSelectedSegment(segment.id)}
                 aria-label={`View details for ${segment.title}`}
-                className="flex w-full touch-manipulation items-center justify-between gap-3 rounded-full border border-gray-100 bg-white px-5 py-3 text-left shadow-[0_4px_16px_rgb(0,0,0,0.06)] transition-transform active:scale-[0.98]"
+                className="flex w-full touch-manipulation items-center justify-between gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-3 text-left shadow-[0_4px_16px_rgb(0,0,0,0.06)] transition-transform active:scale-[0.98]"
               >
                 <span className="text-sm font-medium text-gray-700">
                   {segment.title}
@@ -292,26 +292,26 @@ export function WhoWeServeSection() {
 
                 <div className="overflow-y-auto p-3 md:p-10 lg:p-12">
                   {/* Icon */}
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FEFAF5]">
+                  <div className="mb-6 flex lg:mt-0 lg:ml-0 ml-2.5 mt-3 h-12 w-12 lg:h-16 lg:w-16 items-center justify-center rounded-2xl bg-[#FEFAF5]">
                     <activeSegmentData.icon />
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="mb-3 text-3xl font-semibold tracking-tight text-[#010C28]">
+                  <h3 className="mb-2 lg:ml-0 ml-2.5 text-2xl font-semibold tracking-tight text-[#010C28]">
                     {activeSegmentData.title}
                   </h3>
-                  <p className="mb-8 pr-6 text-[17px] font-medium text-[#8BA0B2]">
+                  <p className="mb-4 lg:mb-8 lg:ml-0 ml-2.5 pr-6 text-[14px] font-medium text-[#8BA0B2]">
                     {activeSegmentData.subtitle}
                   </p>
 
                   {/* Points */}
-                  <ul className="mb-10 space-y-4">
+                  <ul className="mb-10 lg:ml-0 ml-2.5 space-y-[14px] lg:space-y-4">
                     {activeSegmentData.points.map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-4">
+                      <li key={idx} className="flex items-start gap-2">
                         <div className="mt-1 shrink-0">
                           <CheckedIcon />
                         </div>
-                        <span className="text-[16px] leading-relaxed text-[#475467]">
+                        <span className="text-[14px] lg:text-[16px] leading-relaxed text-[#475467]">
                           {point}
                         </span>
                       </li>

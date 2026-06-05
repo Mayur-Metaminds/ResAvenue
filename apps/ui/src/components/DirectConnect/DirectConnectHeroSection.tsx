@@ -1,14 +1,22 @@
+"use client"
+
 import { ArrowRight } from "lucide-react"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 
 import { HeroContent } from "@/components/landing/HeroContent"
 import { HeroTitle } from "@/components/landing/HeroTitle"
 import { Button } from "@/components/ui/button"
 
+import overlayBorderAnimation from "../../../public/assets/Overlay+Border+OverlayBlur jes.json"
+
+// Lottie pulls lottie-web (DOM only) — dynamic + ssr:false keeps SSR clean.
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
+
 export function DirectConnectHeroSection() {
   return (
     <section
-      data-nav-theme="light"
+      data-nav-theme="dark"
       className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#0A0A0B]"
     >
       {/* Background image */}
@@ -65,10 +73,11 @@ export function DirectConnectHeroSection() {
           {/* Right Column: Mockup */}
           <div className="relative z-20 flex h-[300px] w-full items-start justify-center self-start sm:h-[480px] lg:h-[600px] lg:w-[50%] lg:justify-end xl:h-[720px] xl:w-[55%]">
             <div className="relative flex h-full w-full max-w-[800px] items-start justify-start">
-              <img
-                src="/images/Direct-connect/hero-img.png"
-                alt="Room-Rates Mockup"
-                className="h-full w-full object-contain object-top"
+              <Lottie
+                animationData={overlayBorderAnimation}
+                loop
+                className="h-full w-full"
+                rendererSettings={{ preserveAspectRatio: "xMidYMin meet" }}
               />
             </div>
 

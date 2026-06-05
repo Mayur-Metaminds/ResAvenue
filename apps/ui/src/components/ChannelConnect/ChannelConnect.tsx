@@ -15,7 +15,7 @@ export default function ChannelConnect() {
       <ChannelConnectDashboardSection />
       <ChannelConnectPortfolioSection />
       <ChannelConnectCentralizeSection />
-      <CtaSection/>
+      <CtaSection primaryButtonLabel={null}/>
     </main>
   )
 }

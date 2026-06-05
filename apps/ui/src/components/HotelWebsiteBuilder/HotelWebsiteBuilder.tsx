@@ -26,7 +26,7 @@ export default function HotelWebsiteBuilder() {
             className="w-full"
             items={[...trustedLogos]}
             getKey={(logo) => logo.name}
-            durationSeconds={35}
+            durationSeconds={60}
             pauseOnHover={false}
             edgeFade
             gapPx={96}
@@ -35,7 +35,7 @@ export default function HotelWebsiteBuilder() {
             renderItem={({ name, Component }) => (
               <div
                 aria-label={name}
-                className="opacity-80 transition-opacity hover:opacity-100"
+                className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-6 [&_svg]:w-auto md:[&_svg]:h-auto md:[&_svg]:w-auto"
               >
                 <Component />
               </div>
