@@ -201,7 +201,7 @@ export function TestimonialsSection() {
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-start justify-center rounded-[20px] border border-white/5 bg-[#071330]/80 p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-white/10 hover:bg-[#071330] lg:p-8"
+              className="flex flex-col items-start justify-start rounded-[20px] border border-white/5 bg-[#071330]/80 p-3 lg:p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-white/10 hover:bg-[#071330]"
             >
               <div className="mb-3 text-[40px] font-medium tracking-tight text-white xl:text-[65px]">
                 <CountUp
