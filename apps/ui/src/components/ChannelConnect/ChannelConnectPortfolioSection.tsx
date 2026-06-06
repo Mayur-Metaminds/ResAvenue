@@ -55,7 +55,7 @@ const slideInFromLeft = (i: number) => ({
   initial: { opacity: 0, x: -40 },
   whileInView: { opacity: 1, x: 0 },
   viewport: { once: true, amount: 0.5 },
-  transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const, delay: i * 0.12 },
+  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: i * 0.2 },
 })
 
 export function ChannelConnectPortfolioSection() {
@@ -88,7 +88,7 @@ export function ChannelConnectPortfolioSection() {
   })
 
   return (
-    <section data-nav-theme="light" className="w-full bg-white pt-[80px]">
+    <section data-nav-theme="dark" className="w-full bg-white pt-[80px]">
       {/* One shared gradient card holds both blocks. `overflow-hidden` is
           OMITTED here because it would break the sticky positioning inside
           Block 1; the rounded-[45px] visually clips fine for padded content. */}

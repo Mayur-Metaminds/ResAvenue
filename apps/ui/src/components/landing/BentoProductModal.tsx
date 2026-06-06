@@ -13,7 +13,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 
 import { CheckedIcon, CloseBtn } from "../../../public/svg/commonSvg"
 
-const DESKTOP_MQ = "(min-width: 768px)"
+const DESKTOP_MQ = "(min-width: 1024px)"
 
 function subscribeToDesktop(callback: () => void) {
   const mq = window.matchMedia(DESKTOP_MQ)
@@ -146,8 +146,9 @@ function DesktopAnchoredModal({
       style={{
         position: "absolute",
         top: bounds.top,
-        left: bounds.left,
-        right: bounds.right,
+        // Clamp left/right so a 760px wide modal never spills outside the grid container on smaller desktop screens
+        left: bounds.left !== "auto" ? `calc(min(${bounds.left}px, 100% - 760px))` : "auto",
+        right: bounds.right !== "auto" ? `calc(min(${bounds.right}px, 100% - 760px))` : "auto",
         bottom: bounds.bottom,
       }}
       className={cn(

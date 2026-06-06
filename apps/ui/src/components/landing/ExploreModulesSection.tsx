@@ -261,7 +261,7 @@ export function ExploreModulesSection() {
           <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
             {/* 3D Wheel */}
             <div
-              className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
+              className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
               style={{ perspective: "1200px" }}
             >
               <div
@@ -384,7 +384,7 @@ function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
         transformOrigin: "center left",
       }}
       className={cn(
-        "relative flex items-center gap-4 lg:gap-[24px] text-left w-full lg:w-[467px] py-2 lg:py-[10px] pr-[10px] pl-0"
+        "relative flex items-center gap-4 lg:gap-[24px] text-left w-full lg:w-full xl:w-[467px] py-2 lg:py-[10px] pr-[10px] pl-0"
       )}
     >
       {/* Background & Border Layer (active only) */}

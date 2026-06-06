@@ -130,8 +130,7 @@ export function WhoWeServeSection() {
       data-nav-theme="light"
       className="relative flex w-full flex-col items-center overflow-hidden py-[69px]"
       style={{
-        background:
-          "var(--bg, linear-gradient(225deg, rgba(240, 242, 253, 1) 0%, rgba(61, 98, 129, 0.15) 100%))",
+        background: "var(--bg, linear-gradient(225deg, rgba(240, 242, 253, 0.33) 0%, rgba(61, 98, 129, 0.00) 100%))"
       }}
     >
       {/* Preload popup images. Hidden in layout (size 0, aria-hidden) but
@@ -164,7 +163,7 @@ export function WhoWeServeSection() {
 
       {/* ────────── Desktop: orbital map (logo + DNA background + absolute-positioned segment nodes) ────────── */}
       <div
-        className="relative hidden h-[700px] w-[800px] max-w-full scale-75 items-center justify-center sm:scale-100 md:flex"
+        className="relative hidden h-[700px] w-[800px] max-w-full scale-75 items-center justify-center sm:scale-100 lg:flex"
         style={
           {
             // 78px = geometric offset between logo and DNA viewBox centre.
@@ -177,7 +176,7 @@ export function WhoWeServeSection() {
         }
       >
         {/* DNA SVG Background — DnaSvg uses `currentColor` for its fill, so the wrapper's text-color drives the DNA tint. */}
-        <div className="absolute inset-0 flex items-center justify-center text-slate-900/40">
+        <div className="absolute inset-0 flex items-center justify-center text-slate-900/15">
           <DnaSvg id="desktop" />
         </div>
 
@@ -202,7 +201,7 @@ export function WhoWeServeSection() {
         {segments.map((segment) => (
           <div
             key={segment.id}
-            className="absolute z-30 flex items-center gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-transform hover:scale-105"
+            className="absolute z-30 flex items-center gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_52px_88px_0_rgba(2,33,69,0.50)] transition-transform hover:scale-105"
             style={segment.position}
           >
             <span className="text-[16px] md:text-[18px] font-plus-jakarta-500 text-gray-700">
@@ -221,11 +220,11 @@ export function WhoWeServeSection() {
       </div>
 
       {/* ────────── Mobile: logo + flat vertical list of segment pills with DNA in the background ────────── */}
-      <div className="relative flex w-full max-w-md flex-col items-center gap-8 px-4 md:hidden">
+      <div className="relative flex w-full max-w-lg flex-col items-center gap-8 px-4 lg:hidden">
         {/* DNA SVG background — sized to fill the column, faded so it sits behind the content */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 z-0 flex items-start justify-center text-slate-900/60"
+          className="pointer-events-none absolute inset-0 z-0 flex items-start justify-center text-slate-900/20"
         >
           <div className="w-full origin-top scale-100 sm:scale-110 flex justify-center">
             <DnaSvg id="mobile" />

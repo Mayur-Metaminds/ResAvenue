@@ -137,18 +137,18 @@ export function PlanSelectionSection() {
 
       {/* Main Container */}
       <div className="relative z-10 mx-auto w-full xl:px-[80px] ">
-        <div className="flex flex-col gap-16 rounded-[32px] py-[48px] border border-slate-100 bg-white px-[12px] lg:px-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]  lg:flex-row lg:gap-[48.34px] ">
+        <div className="flex flex-col gap-8 rounded-[32px] py-[48px] border border-slate-100 bg-white px-[12px] lg:px-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]  lg:flex-row lg:gap-[48.34px] ">
           {/* Left Column */}
           <div className="flex w-full flex-col border-slate-300 lg:w-[336px] lg:border-r">
             <h3 className=" typo-h1 text-[24px] lg:text-[30px] text-[#010C28] mr-[23px]">
               Ready to get started?
             </h3>
-            <p className="mb-10 typo-body1 leading-[22.8px] text-[14px] lg:w-[287px] text-slate-400">
+            <p className="mb-0 lg:mb-10 typo-body1 leading-[22.8px] text-[14px] lg:w-[287px] text-slate-400">
               Our specialists will build a custom package based on your
               team&apos;s specific requirements.
             </p>
 
-            <div className="mt-auto">
+            <div className="mt-auto hidden lg:block">
               <Link
                 href="/contact-us"
                 className={buttonVariants({
@@ -223,6 +223,27 @@ export function PlanSelectionSection() {
                   </button>
                 )
               })}
+            </div>
+
+            <div className="mt-8 block lg:hidden">
+              <Link
+                href="/contact-us"
+                className={buttonVariants({
+                  variant: "primary",
+                  size: "default",
+                  className: "gap-3 px-8 py-4 typo-body5 !rounded-[16px]",
+                })}
+              >
+                Request Custom Quote
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+
+              <div className="mt-5 flex items-center gap-2 text-emerald-500">
+                <UnifiedPlatformIcon1 />
+                <span className="typo-body-2 text-slate-400">
+                  Response within 24 hours
+                </span>
+              </div>
             </div>
           </div>
         </div>

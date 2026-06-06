@@ -1,8 +1,10 @@
 "use client"
 
 import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
+import { CountUp } from "@/components/common/CountUp"
 import { cn } from "@/lib/styles"
 import dynamic from "next/dynamic"
+import type * as React from "react"
 import desktopDirectConnectAnimation from "../../../public/assets/desktop_direct_connect_11.json"
 import globeAnimation from "../../../public/assets/globe_neww.json"
 import graphAnimation from "../../../public/assets/graph.json"
@@ -18,6 +20,7 @@ type Product = BentoItem & {
   subtitle: string
   imagePlaceholder?: string
   lottieAnimation?: any
+  renderBottom?: () => React.ReactNode
 }
 
 const products: Product[] = [
@@ -60,7 +63,7 @@ const products: Product[] = [
     title: "Property Management",
     subtitle:
       "Your hotel's central nervous system. Everything your front desk and operations team needs.",
-    gridSpan: "col-span-1 md:col-span-4 lg:col-span-4",
+    gridSpan: "col-span-1 md:col-span-6 lg:col-span-4",
     anchor: "top-left",
     modalFeatures: [
       "Front desk dashboard",
@@ -70,6 +73,18 @@ const products: Product[] = [
     ],
     imagePlaceholder: "/images/placeholder-pms.png",
     lottieAnimation: roomReservationAnimation,
+    renderBottom: () => (
+      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[130px]">
+        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] border border-[#F1F5F9] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)] p-2 md:p-4">
+          <Lottie
+            animationData={roomReservationAnimation}
+            loop
+            className="h-full w-full"
+            rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+          />
+        </div>
+      </div>
+    ),
   },
   {
     id: "revenue-management",
@@ -77,7 +92,7 @@ const products: Product[] = [
     title: "Revenue Management",
     subtitle:
       "Maximize revenue with intelligent pricing. Let data and AI drive smarter pricing decisions.",
-    gridSpan: "col-span-1 md:col-span-4 lg:col-span-4",
+    gridSpan: "col-span-1 md:col-span-6 lg:col-span-4",
     anchor: "top-left",
     modalFeatures: [
       "Automated rate updates",
@@ -87,6 +102,18 @@ const products: Product[] = [
     ],
     imagePlaceholder: "/images/placeholder-revenue.png",
     lottieAnimation: graphAnimation,
+    renderBottom: () => (
+      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[130px]">
+        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] border border-[#F1F5F9] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)] p-2 md:p-4">
+          <Lottie
+            animationData={graphAnimation}
+            loop
+            className="h-full w-full"
+            rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+          />
+        </div>
+      </div>
+    ),
   },
   {
     id: "distribution-network",
@@ -94,7 +121,7 @@ const products: Product[] = [
     title: "Distribution Network",
     subtitle:
       "Be everywhere your guests are searching. Expand your reach across global booking platforms.",
-    gridSpan: "col-span-1 md:col-span-4 lg:col-span-4",
+    gridSpan: "col-span-1 md:col-span-12 lg:col-span-4",
     anchor: "top-right",
     modalFeatures: [
       "Global reach",
@@ -104,6 +131,26 @@ const products: Product[] = [
     ],
     imagePlaceholder: "/images/placeholder-distribution.png",
     lottieAnimation: globeAnimation,
+    // Custom bottom slot: globe Lottie with the "120+" CountUp absolutely
+    // centered on top of it (matches the Figma reference).
+    renderBottom: () => (
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:h-[240px]">
+        <div className="relative h-full w-full">
+          <Lottie
+            animationData={globeAnimation}
+            loop
+            className="h-full w-full"
+            rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+          />
+          {/* Absolutely-centered count-up overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-plus-jakarta-700 leading-none tracking-tight text-[#0F172A] md:text-[24px]">
+              <CountUp target={120} suffix="+" />
+            </span>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: "event-management",
@@ -112,7 +159,7 @@ const products: Product[] = [
     subtitle:
       "Sell, manage, and track events effortlessly. A complete solution for events and conferences.",
     isDark: true,
-    gridSpan: "col-span-1 md:col-span-5 lg:col-span-5",
+    gridSpan: "col-span-1 md:col-span-6 lg:col-span-5",
     anchor: "bottom-left",
     href: "/event-booking",
     modalFeatures: [
@@ -129,7 +176,7 @@ const products: Product[] = [
     title: "Hotel Website Builder",
     subtitle:
       "Transform your website into your best booking agent. Beautiful, fast, and built to drive bookings.",
-    gridSpan: "col-span-1 md:col-span-7 lg:col-span-7",
+    gridSpan: "col-span-1 md:col-span-6 lg:col-span-7",
     anchor: "bottom-right",
     modalFeatures: [
       "SEO optimized",
@@ -171,7 +218,7 @@ export function BentoProductsSection() {
       }
       renderCard={(product) => (
         <>
-          <div className="relative z-10 mb-6">
+          <div className="relative z-10 mb-6 lg:pr-12">
             <p
               className={cn(
                 "font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] uppercase",
@@ -198,8 +245,10 @@ export function BentoProductsSection() {
             </p>
           </div>
 
-          {product.lottieAnimation ? (
-            <div className="absolute inset-x-0 bottom-0 z-0 mx-6 md:mx-8 flex h-[200px] md:h-[240px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none">
+          {product.renderBottom ? (
+            product.renderBottom()
+          ) : product.lottieAnimation ? (
+            <div className="absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none md:mx-8 lg:h-[240px]">
               <Lottie
                 animationData={product.lottieAnimation}
                 loop={true}
@@ -210,7 +259,7 @@ export function BentoProductsSection() {
           ) : (
             <div
               className={cn(
-                "absolute right-0 bottom-0 left-0 z-0 mx-6 md:mx-8 h-[180px] md:h-[220px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105",
+                "absolute right-0 bottom-0 left-0 z-0 mx-6 h-[180px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105 md:mx-8 lg:h-[220px]",
                 product.isDark ? "opacity-90" : "opacity-100"
               )}
               style={{

@@ -102,18 +102,11 @@ export function TestimonialsSection() {
     >
       {/* Background Image with Overlay */}
       <div
-        className="absolute inset-0 z-0 h-full w-full opacity-40 mix-blend-screen"
+        className="absolute inset-0 z-0 h-full w-full pointer-events-none"
         style={{
-          backgroundImage: "url('/images/testimonial-bg-image.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          background: `linear-gradient(180deg, rgba(1, 12, 40, 0.00) 0%, #010C28 100%), url('/images/testimonial-bg-image.png') top center / 100% auto no-repeat`,
         }}
       />
-
-      {/* Top Gradient to blend with previous section (assuming it's dark) */}
-      <div className="absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-[#010C28] to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 z-0 h-40 bg-gradient-to-t from-[#010C28] to-transparent" />
 
       <div className="relative z-10 mx-auto w-full px-[16px] lg:px-[80px]">
         {/* Testimonials Header */}
@@ -210,7 +203,7 @@ export function TestimonialsSection() {
               key={idx}
               className="flex flex-col items-start justify-center rounded-[20px] border border-white/5 bg-[#071330]/80 p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-white/10 hover:bg-[#071330] lg:p-8"
             >
-              <div className="mb-3 text-[48px] font-medium tracking-tight text-white lg:text-[65px]">
+              <div className="mb-3 text-[40px] font-medium tracking-tight text-white xl:text-[65px]">
                 <CountUp
                   target={stat.target}
                   suffix={stat.suffix}
@@ -225,7 +218,7 @@ export function TestimonialsSection() {
                   borderRadius: "2.323px",
                 }}
               />
-              <p className="text-[16px] lg:text-[18px] leading-relaxed text-[#8BA0B2]">
+              <p className="text-[16px] xl:text-[18px] leading-relaxed text-[#8BA0B2]">
                 {stat.label}
               </p>
             </div>

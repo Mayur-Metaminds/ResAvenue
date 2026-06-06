@@ -201,7 +201,7 @@ export function DirectConnectDeepDiveSection() {
                         className={cn(
                           "overflow-hidden transition-all duration-300 ease-in-out",
                           isOpen
-                            ? "max-h-[200px] pb-5 opacity-100"
+                            ? "max-h-[200px] opacity-100"
                             : "max-h-0 pb-0 opacity-0"
                         )}
                       >

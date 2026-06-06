@@ -10,9 +10,9 @@ export function SolutionSection() {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-white px-2 lg:px-4 py-[61px] md:px-8"
+      className="w-full bg-white py-[61px]"
     >
-      <div className="container mx-auto flex lg:max-w-5xl flex-col items-center text-center">
+      <div className="container mx-auto flex lg:max-w-5xl flex-col items-center text-center px-2 lg:px-4 md:px-8">
         {/* Eyebrow */}
         <Eyebrow
           className="mb-[12px]"
@@ -44,22 +44,24 @@ export function SolutionSection() {
             Yours doesn&apos;t have to.
           </HeroTitle.Highlight>
         </HeroTitle>
+      </div>
 
-        {/* Animation Box / Horizontal Lines */}
-        <div className="relative mb-[34px] mt-[34px] flex h-[200px] w-full items-center justify-center overflow-hidden md:h-[340px]">
-          {/* GIF Mockup — `slice` makes the Lottie cover its container by
-              zooming in, hiding the built-in canvas padding around the pills. */}
-          <div className="relative z-10 h-[90%] w-[90%]">
-            <Lottie
-              animationData={animationData}
-              loop
-              autoplay
-              rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
-              className="h-full w-full"
-            />
-          </div>
+      {/* Animation Box / Horizontal Lines */}
+      <div className="relative mx-auto mb-[34px] mt-[34px] flex h-[200px] w-full items-center justify-center overflow-hidden md:container md:h-[340px] md:px-8 lg:max-w-5xl lg:px-4">
+        {/* GIF Mockup — `slice` makes the Lottie cover its container by
+            zooming in, hiding the built-in canvas padding around the pills. */}
+        <div className="relative z-10 h-[90%] w-[90%] md:h-[90%] md:w-[90%]">
+          <Lottie
+            animationData={animationData}
+            loop
+            autoplay
+            rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
+            className="h-full w-full"
+          />
         </div>
+      </div>
 
+      <div className="container mx-auto flex lg:max-w-5xl flex-col items-center text-center px-2 lg:px-4 md:px-8">
         {/* Description */}
         <p className="typo-body1 max-w-3xl text-[#64748B]">
           Managing bookings, channels, operations, and revenue across

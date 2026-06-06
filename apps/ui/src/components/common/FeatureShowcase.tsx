@@ -12,6 +12,8 @@ export interface FeatureShowcaseProps {
   children: React.ReactNode
   /** The image or visual element to display */
   imageSlot: React.ReactNode
+
+  imageClassName?: string
   /** Whether the image should be on the left or right on desktop (default: right) */
   imagePosition?: "left" | "right"
   /** Content alignment for the header */
@@ -23,6 +25,7 @@ function FeatureShowcaseRoot({
   header,
   children,
   imageSlot,
+  imageClassName,
   imagePosition = "right",
   headerAlignment = "left",
 }: FeatureShowcaseProps) {
@@ -59,7 +62,7 @@ function FeatureShowcaseRoot({
       <div
         className={cn(
           "relative flex w-full items-center justify-center",
-          imagePosition === "left" ? "order-2 lg:order-1" : "order-2 lg:order-2"
+          imagePosition === "left" ? "order-2 lg:order-1" : "order-2 lg:order-2", imageClassName
         )}
       >
         {imageSlot}
