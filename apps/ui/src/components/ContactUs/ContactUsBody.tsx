@@ -133,7 +133,7 @@ function ContactUsBody() {
             <SectionHeader
               className="mx-auto mb-[40px] max-w-3xl text-center lg:mb-[60px]"
               eyebrowClassName="typo-body2 font-normal text-[#ED862E] xl:font-bold xl:text-[12px] xl:tracking-[0.7px]"
-              titleClassName="xl:leading-[56.5px] xl:tracking-normal"
+              titleClassName="xl:leading-[56.5px] tracking-[-1.5px]! xl:tracking-normal!"
               descriptionClassName="typo-body1 text-center text-[#64748B]"
               eyebrow="API-first infrastructure"
               title={
@@ -153,25 +153,25 @@ function ContactUsBody() {
             />
           }
           renderCard={(item) => (
-            <div className="flex h-full flex-col justify-between">
+            <div className="flex h-full flex-col">
               <div className="">
                 <div className="flex items-start gap-3">
                   <CardIcon>{item.icon}</CardIcon>
 
                   <div>
-                    <h3 className="font-plus-jakarta-700 text-[16px] leading-[24px] text-[#010E38]">
+                    <h3 className="typo-body5 text-[#010E38] font-bold! font-source-sans! leading-[22.4px]! xl:font-plus-jakarta! xl:leading-6!">
                       {item.title}
                     </h3>
 
-                    <p className="font-source-sans-400 mt-2 max-w-[260px] text-[14px] leading-[20px] text-[#475569]">
+                    <p className="typo-body1 mt-2 max-w-[260px] text-[14px]! text-[#475569] xl:leading-5!">
                       {item.description}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center justify-between">
-                <span className="font-source-sans-400 truncate xl:pl-[60px] pl-[60px] lg:pl-2 text-[16px] leading-[22.75px] text-[#ED862E]">
+              <div className="mt-2.5 flex items-center justify-between">
+                <span className="typo-body1 truncate xl:pl-[60px] pl-[60px] lg:pl-2 text-[#ED862E] xl:text-[16px]! xl:leading-[22.75px]!">
                   {item.email}
                 </span>
 
