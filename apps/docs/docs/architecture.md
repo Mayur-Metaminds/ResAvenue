@@ -59,8 +59,8 @@ Dual i18n system:
 
 ## Authentication
 
-- **Better Auth v1**: Session management (cookies)
-- **Strapi JWT**: Stored in session as `user.strapiJWT`, used for private API calls
+- **Better Auth v1** : Session management (cookies)
+- **Strapi JWT** : Stored in session as `user.strapiJWT`, used for private API calls
 
 ## Environment Variables
 
