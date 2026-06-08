@@ -71,9 +71,10 @@ function ContactUsHero() {
           <div className="flex w-full flex-col justify-start lg:w-[50%] xl:w-[45%]">
             <HeroContent
               eyebrow="CONNECTED SUPPORT. REAL-TIME RESPONSE"
-              className="px-[20px] lg:px-0 gap-[24px]"
+              className="px-[20px] lg:px-0 gap-[12px]"
               eyebrowColor="#ED862E"
               eyebrowClassName="typo-body2 gap-[8px] !mb-0"
+              titleClassName="lg:mb-2"
               title={
                 <HeroTitle
                   style={
@@ -87,12 +88,12 @@ function ContactUsHero() {
                 >
                   Get In Touch With
                   <br />
-                  
+
                   <HeroTitle.Highlight> Our Team</HeroTitle.Highlight>
                 </HeroTitle>
               }
               description={
-                <span className="typo-body1 text-white/55">
+                <span className="typo-body1 text-white/65">
                   We’re here to help you streamline operations and maximize
                   global distribution. Our team delivers solutions that simplify
                   workflows, improve efficiency, and drive results.
@@ -107,7 +108,7 @@ function ContactUsHero() {
                   backgroundColor: "var(--eyebrow-dot-color, #ED862E)",
                 }}
               />
-              <span className="typo-body2 text-[#ED862E] uppercase">
+              <span className="typo-body2 text-[#ED862E] text-[12px]! tracking-[0.7px]! uppercase">
                 CONNECTED SUPPORT. REAL
               </span>
               <span className="h-[1px] flex-1 bg-[#FFFFFF66]" />

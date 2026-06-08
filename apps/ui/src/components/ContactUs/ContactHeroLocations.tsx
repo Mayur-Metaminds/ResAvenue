@@ -5,23 +5,26 @@ export default function OfficeLocations() {
     <section className="w-full py-10">
       <div className="flex flex-col">
         {/* India Office */}
-        <div>
+        <div className="w-full">
           <h2 className="font-plus-jakarta-700 pl-8 py-2.5 text-xl text-[#ED862E] capitalize">
             India Office
           </h2>
 
-          <div className="mb-2 flex items-start gap-3">
-            <MapPin className="mt-1 h-5 w-5 shrink-0 text-orange-400" />
-            <p className="font-source-sans-400 text-[16px] leading-[22.75px] text-[#FFF]">
+          <div className="mb-2 flex items-start gap-4">
+            <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
+              <MapPin className="h-6 w-6 text-orange-400" />
+            </span>
+            <p className="typo-body1 text-[#FFF] xl:text-[16px]! xl:leading-[22.75px]!">
               AvenuesAI Ltd, Level II, Plaza Asiad, S. V. Road,
-              <br className="hidden sm:block" />
               Santa Cruz (West), Mumbai - 400054, India.
             </p>
           </div>
 
-          <div className="flex items-start gap-3">
-            <Phone className="mt-1 h-5 w-5 shrink-0 text-orange-400" />
-            <p className="font-source-sans-400 text-[16px] leading-[22.75px] text-[#FFF]">
+          <div className="flex items-start gap-4">
+            <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
+              <Phone className="h-6 w-6 text-orange-400" />
+            </span>
+            <p className="typo-body1 text-[#FFF] xl:text-[16px]! xl:leading-[22.75px]!">
               +91-22-67425555 / 26000816 / 26000846 / 26491524 / 32913622 /
               66920419
             </p>
@@ -29,14 +32,16 @@ export default function OfficeLocations() {
         </div>
 
         {/* Dubai Office */}
-        <div>
+        <div className="w-full">
           <h2 className="font-plus-jakarta-700 pt-6 pl-8 py-2.5 text-xl text-[#ED862E] capitalize">
             Dubai Office
           </h2>
 
-          <div className="mb-2 flex items-start gap-3">
-            <MapPin className="mt-1 h-5 w-5 shrink-0 text-orange-400" />
-            <p className="font-source-sans-400 text-[16px] leading-[22.75px] text-[#FFF]">
+          <div className="mb-2 flex items-start gap-4">
+            <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
+              <MapPin className="h-6 w-6 text-orange-400" />
+            </span>
+            <p className="typo-body1 text-[#FFF] xl:text-[16px]! xl:leading-[22.75px]!">
               Avenues World FZ - LLC., Dubai Internet City, Building # 17, Level
               2, Office # 253,
               <br className="hidden sm:block" />
@@ -44,9 +49,11 @@ export default function OfficeLocations() {
             </p>
           </div>
 
-          <div className="flex items-start gap-3">
-            <Phone className="mt-1 h-5 w-5 shrink-0 text-orange-400" />
-            <p className="font-source-sans-400 text-[16px] leading-[22.75px] text-[#FFF]">
+          <div className="flex items-start gap-4">
+            <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
+              <Phone className="h-6 w-6 text-orange-400" />
+            </span>
+            <p className="typo-body1 text-[#FFF] xl:text-[16px]! xl:leading-[22.75px]!">
               +971 4 5531029
             </p>
           </div>
