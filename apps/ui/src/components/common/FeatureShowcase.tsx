@@ -50,7 +50,7 @@ function FeatureShowcaseRoot({
               headerAlignment === "center"
                 ? "items-center text-center"
                 : "items-start text-left",
-              "gap-[24px]",
+              "gap-[12px]",
               header.className
             )}
           />
@@ -77,7 +77,7 @@ export interface FeatureShowcaseCardProps
   title: React.ReactNode
   subtitle?: React.ReactNode
   isActive?: boolean
-  variant?: "default" | "compact" | "interactive" | "dark"
+  variant?: "default" | "compact" | "interactive" | "dark" | "light"
   as?: "div" | "button"
 }
 
@@ -124,7 +124,7 @@ function FeatureShowcaseCard({
         className={cn(
           "flex w-full items-start gap-4 rounded-2xl border p-6 text-left transition-all duration-300",
           isActive
-            ? "border-transparent bg-white shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
+            ? "border-[#ED862E] bg-[rgba(255,240,226,0.68)] shadow-[0_4px_4px_0_rgba(237,134,46,0.15)]"
             : "border-[#E2E8F0] bg-transparent hover:border-[#ED862E]/30 hover:bg-white/50",
           className
         )}
@@ -152,7 +152,7 @@ function FeatureShowcaseCard({
           {subtitle && (
             <p
               className={cn(
-                "font-source-sans-400 text-[15px] leading-[24px]",
+                "font-source-sans-400 text-[14px] leading-[24px]",
                 isActive ? "text-[#475569]" : "text-[#94A3B8]"
               )}
             >
@@ -195,6 +195,42 @@ function FeatureShowcaseCard({
               )}
             >
               <p className="font-source-sans-400 min-h-0 text-[14px] leading-[22px] text-[#94A3B8]">
+                {subtitle}
+              </p>
+            </div>
+          )}
+        </div>
+      </Comp>
+    )
+  }
+
+  if (variant === "light") {
+    const collapse = isActive === false
+    return (
+      <Comp
+        className={cn(
+          "flex items-start gap-4 rounded-[16px] border border-slate-200 bg-white p-5 transition-all hover:bg-slate-50 shadow-sm",
+          className
+        )}
+        {...rest}
+      >
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+          {icon}
+        </div>
+        <div className="flex flex-col pt-2 text-left">
+          <h3 className="font-plus-jakarta-700 text-[16px] text-[#010C28]">
+            {title}
+          </h3>
+          {subtitle && (
+            <div
+              className={cn(
+                "grid overflow-hidden transition-all duration-300 ease-in-out",
+                collapse
+                  ? "grid-rows-[0fr] opacity-0"
+                  : "mt-1 grid-rows-[1fr] opacity-100"
+              )}
+            >
+              <p className="font-source-sans-400 min-h-0 text-[14px] leading-[22px] text-[#475569]">
                 {subtitle}
               </p>
             </div>

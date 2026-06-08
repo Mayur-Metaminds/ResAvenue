@@ -60,7 +60,7 @@ const solutions: SolutionCard[] = [
   },
   {
     id: "discounts-promotion",
-    title: "Discounts & Promotion",
+    title: "Discounts & Promotions",
     subtitle:
       "Create smart hotel promotions, seasonal discounts, last-minute deals, and exclusive guest offers. Easily manage special rates, and promo codes to attract more guests and maximize revenue.",
     isDark: true,
@@ -201,7 +201,7 @@ export function DirectConnectSolutionSection() {
 
           <h3
             className={cn(
-              "font-plus-jakarta-700 mb-2 lg:mb-4 pr-4 lg:pr-10 text-[20px] lg:text-[30px] leading-[1.2]",
+              "font-plus-jakarta-700 mb-2 lg:mb-[12px] pr-4 lg:pr-10 text-[20px] lg:text-[24px] leading-[1.2]",
               item.isDark ? "text-white" : "text-[#0F172A]"
             )}
           >
@@ -210,32 +210,14 @@ export function DirectConnectSolutionSection() {
 
           <p
             className={cn(
-              "font-source-sans-400 mb-4 lg:mb-8 pr-2 lg:pr-4 text-[14px] lg:text-[18px] leading-[1.6] lg:leading-[1.75]",
+              "font-source-sans-400 mb-4 lg:mb-8 pr-2 lg:pr-4 text-[14px] lg:text-[16px] leading-[1.6] lg:leading-[24px]",
               item.isDark ? "text-white/80" : "text-[#64748B]"
             )}
           >
             {item.subtitle}
           </p>
 
-          {item.bullets && item.bullets.length > 0 && (
-            <ul className="mt-6 lg:mt-8 space-y-2 lg:space-y-4">
-              {item.bullets.map((bullet, idx) => (
-                <li key={idx} className="flex items-start gap-2 lg:gap-3">
-                  <div className="mt-[2px] shrink-0 scale-90 lg:scale-100">
-                    <CheckedIcon color="#22C55E" />
-                  </div>
-                  <span
-                    className={cn(
-                      "text-[13px] lg:text-[15px] leading-relaxed font-medium",
-                      item.isDark ? "text-white" : "text-[#010C28]"
-                    )}
-                  >
-                    {bullet}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
+          
         </div>
       )}
     />

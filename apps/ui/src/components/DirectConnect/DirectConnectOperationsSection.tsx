@@ -27,7 +27,7 @@ const operationsData: OperationCard[] = [
   },
   {
     id: "multi-property",
-    title: "Multi-Property Management",
+    title: "Multi-Property Support",
     description:
       "Manage inventory, rates, and promotions across multiple properties from a single, centralized dashboard with ease.",
     icon: <OurSolutionsIcon2 />,

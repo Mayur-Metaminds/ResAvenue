@@ -22,7 +22,7 @@ export function DirectConnectDashboardSection() {
           {/* Left Column: Content */}
           <div className="z-10 flex flex-col gap-[24px]">
             {/* Title */}
-            <h2 className="font-plus-jakarta-700 text-[36px] leading-[1.1] tracking-tight text-white md:text-[48px] lg:text-[56px]">
+            <h2 className="font-plus-jakarta-500 text-[36px] leading-[1.1] tracking-tight text-white md:text-[48px]">
               Unified Intelligence <br className="hidden md:block" />
               Dashboard
             </h2>
@@ -36,14 +36,14 @@ export function DirectConnectDashboardSection() {
             {/* Stats */}
             <div className="flex items-center gap-12 md:gap-16">
               <div className="flex flex-col">
-                <span className="font-plus-jakarta-700 mb-2 text-[40px] leading-none text-white md:text-[48px]">
+                <span className="font-plus-jakarta-700 mb-2 text-[36px] leading-none text-white md:text-[48px]">
                   <CountUp
                     target={2.4}
                     suffix="s"
                     format={(n) => n.toFixed(1)}
                   />
                 </span>
-                <span className="text-[10px] font-bold tracking-[1.5px] text-white/50 uppercase md:text-[12px]">
+                <span className="font-source-sans-600 text-[10px] font-bold tracking-[1.5px] text-white/50 uppercase md:text-[12px]">
                   Avg. Load Time
                 </span>
               </div>
@@ -51,7 +51,7 @@ export function DirectConnectDashboardSection() {
                 <span className="font-plus-jakarta-700 mb-2 text-[40px] leading-none text-white md:text-[48px]">
                   <CountUp target={18} suffix="%" />
                 </span>
-                <span className="text-[10px] font-bold tracking-[1.5px] text-white/50 uppercase md:text-[12px]">
+                <span className="font-source-sans-600 text-[10px] font-bold tracking-[1.5px] text-white/50 uppercase md:text-[12px]">
                   Revpar Growth
                 </span>
               </div>

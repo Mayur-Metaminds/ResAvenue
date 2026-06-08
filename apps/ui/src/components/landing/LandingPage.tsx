@@ -18,7 +18,7 @@ export default function LandingPage() {
     <div>
       <HeroSection />
       <Marquee<TrustedLogo>
-        className="w-full pb-[30px] pt-[50px] "
+        className="w-full pb-[30px] pt-[30px] "
         items={[...trustedLogos]}
         getKey={(logo) => logo.name}
         durationSeconds={60}
@@ -30,7 +30,7 @@ export default function LandingPage() {
         renderItem={({ name, Component }) => (
           <div
             aria-label={name}
-            className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-10 [&_svg]:w-auto md:[&_svg]:h-auto md:[&_svg]:w-auto"
+            className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-[70px] [&_svg]:w-[150px] md:[&_svg]:h-[80px] md:[&_svg]:w-[170px]"
           >
             <Component />
           </div>

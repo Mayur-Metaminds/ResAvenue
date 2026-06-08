@@ -213,7 +213,7 @@ function ModalContent({
 
   return (
     <div
-      className="relative flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[56px] pb-[20px] md:px-[32px] md:pt-[30px] md:pb-[24px]"
+      className="relative flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[72px] pb-[20px] md:px-[32px] md:pt-[88px] md:pb-[24px]"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -229,11 +229,11 @@ function ModalContent({
       </button>
 
       {/* Two-column top section (stacks on mobile via grid-cols-1) */}
-      <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-2">
+      <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-[1fr_1.3fr]">
         {/* Left — eyebrow + title + subtitle + CTA */}
         <div className="flex h-full flex-col items-start">
           {product.eyebrow && (
-            <h4 className="font-plus-jakarta-700 mb-[12px] text-[12px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
+            <h4 className="font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
               {product.eyebrow}
             </h4>
           )}
@@ -246,7 +246,7 @@ function ModalContent({
           </h3>
 
           {product.subtitle && (
-            <p className="mb-6 md:mb-8 max-w-2xl font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
+            <p className="mb-[40px] font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
               {product.subtitle}
             </p>
           )}
@@ -254,7 +254,7 @@ function ModalContent({
           <Button
             variant="primary"
             size="default"
-            className="mt-auto w-fit gap-2 rounded-[16px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
+            className=" w-fit gap-2 rounded-[16px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
             icon={<ArrowRight className="h-4 w-4" />}
             onClick={() => {
               onClose()
@@ -270,10 +270,10 @@ function ModalContent({
           <ul className="space-y-3 md:space-y-[12px]">
             {product.modalFeatures.map((feature) => (
               <li key={feature} className="flex items-start text-gray-700">
-                <span className="mt-0.5 mr-3 md:mr-4 flex h-5 w-5 md:h-6 md:w-6 shrink-0 items-center justify-center">
+                <span className="mt-0.5 mr-3 flex h-5 w-5 md:h-6 md:w-6 shrink-0 items-center justify-center">
                   <CheckedIcon />
                 </span>
-                <span className="text-[15px] md:text-[16px] leading-relaxed text-[#45556C] font-medium">
+                <span className="text-[16px] md:text-[16px] font-source-sans leading-relaxed text-[#45556C] font-medium md:whitespace-nowrap">
                   {feature}
                 </span>
               </li>

@@ -121,10 +121,10 @@ export function ChannelConnectDashboardSection() {
                   key={index}
                   onClick={() => handleCardClick(index)}
                   className={cn(
-                    "relative flex w-full cursor-pointer items-start gap-4 overflow-hidden rounded-[18px] border bg-white p-5 transition-all duration-300",
+                    "relative flex w-full cursor-pointer gap-4 overflow-hidden rounded-[18px] border bg-white p-5 transition-all duration-300",
                     isActive
-                      ? "border-[#ED862E]/10 shadow-[0_55px_15px_0_rgba(236,91,19,0),0_35px_14px_0_rgba(236,91,19,0.01),0_20px_12px_0_rgba(236,91,19,0.03),0_9px_9px_0_rgba(236,91,19,0.04),0_2px_5px_0_rgba(236,91,19,0.05)]"
-                      : "border-[#E2E8F0] shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] hover:border-[#ED862E]/50 hover:shadow-md"
+                      ? "items-start border-[#ED862E]/10 shadow-[0_55px_15px_0_rgba(236,91,19,0),0_35px_14px_0_rgba(236,91,19,0.01),0_20px_12px_0_rgba(236,91,19,0.03),0_9px_9px_0_rgba(236,91,19,0.04),0_2px_5px_0_rgba(236,91,19,0.05)]"
+                      : "items-center border-[#E2E8F0] shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] hover:border-[#ED862E]/50 hover:shadow-md"
                   )}
                 >
                   {isActive && (
@@ -141,7 +141,7 @@ export function ChannelConnectDashboardSection() {
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#ED862E]/10 text-[#ED862E]">
                     <feature.icon className="h-6 w-6" />
                   </div>
-                  <div className="flex w-full flex-col pt-1">
+                  <div className={cn("flex w-full flex-col", isActive && "pt-1")}>
                     <h3 className="font-plus-jakarta-700 text-[16px] text-[#010C28] lg:text-[18px]">
                       {feature.title}
                     </h3>

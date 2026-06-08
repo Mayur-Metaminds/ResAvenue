@@ -53,6 +53,25 @@ const CARDS_DATA = [
     description:
       "Connect directly to key booking engines and reservation systems without intermediaries ensuring high-performance direct integration.",
     Icon: OmnichannelCardIcon2,
+     renderGraphic: () => (
+      <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
+        {["EX", "BK", "AG"].map((label) => (
+          <div
+            key={label}
+            className="flex h-[46px] w-[46px] items-center justify-center rounded-full border-2 border-[#1E293B] bg-white text-[#010C28] shadow-sm"
+          >
+            <span className="font-plus-jakarta-700 text-[13px] font-bold">
+              {label}
+            </span>
+          </div>
+        ))}
+        <div className="flex h-[46px] w-[46px] items-center justify-center rounded-full border-2 border-white/20 bg-[#010C28] text-white shadow-sm">
+          <span className="font-plus-jakarta-700 text-[12px] font-bold tracking-tight">
+            +1.9k
+          </span>
+        </div>
+      </div>
+    ),
   },
   {
     id: "gds-access",
@@ -60,6 +79,25 @@ const CARDS_DATA = [
     description:
       "Expand reach to corporate travellers via leading GDS platforms like Amadeus, Sabre, and Travelport.",
     Icon: OmnichannelCardIcon3,
+     renderGraphic: () => (
+      <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
+        {["EX", "BK", "AG"].map((label) => (
+          <div
+            key={label}
+            className="flex h-[46px] w-[46px] items-center justify-center rounded-full border-2 border-[#1E293B] bg-white text-[#010C28] shadow-sm"
+          >
+            <span className="font-plus-jakarta-700 text-[13px] font-bold">
+              {label}
+            </span>
+          </div>
+        ))}
+        <div className="flex h-[46px] w-[46px] items-center justify-center rounded-full border-2 border-white/20 bg-[#010C28] text-white shadow-sm">
+          <span className="font-plus-jakarta-700 text-[12px] font-bold tracking-tight">
+            +1.9k
+          </span>
+        </div>
+      </div>
+    ),
   },
   {
     id: "meta-channels",
@@ -67,6 +105,25 @@ const CARDS_DATA = [
     description:
       "Boost visibility and drive direct traffic with integrations to meta-search platforms like Google Hotel Finder.",
     Icon: OmnichannelCardIcon4,
+     renderGraphic: () => (
+      <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
+        {["EX", "BK", "AG"].map((label) => (
+          <div
+            key={label}
+            className="flex h-[46px] w-[46px] items-center justify-center rounded-full border-2 border-[#1E293B] bg-white text-[#010C28] shadow-sm"
+          >
+            <span className="font-plus-jakarta-700 text-[13px] font-bold">
+              {label}
+            </span>
+          </div>
+        ))}
+        <div className="flex h-[46px] w-[46px] items-center justify-center rounded-full border-2 border-white/20 bg-[#010C28] text-white shadow-sm">
+          <span className="font-plus-jakarta-700 text-[12px] font-bold tracking-tight">
+            +1.9k
+          </span>
+        </div>
+      </div>
+    ),
   },
 ]
 
@@ -84,7 +141,7 @@ export function ChannelConnectOmnichannelSection() {
         ? "col-span-1 md:col-span-6 xl:col-span-2"
         : "col-span-1 md:col-span-6 xl:col-span-1",
       icon: isActive ? (
-        <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#010C28]/40 ring-1 ring-white/10 backdrop-blur-md transition-colors duration-300">
+        <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-[#010C28]/40 ring-1 ring-white/10 backdrop-blur-md transition-colors duration-300 [&_svg_path]:fill-white">
           <card.Icon />
         </div>
       ) : (
@@ -156,7 +213,7 @@ export function ChannelConnectOmnichannelSection() {
                 </h3>
                 <p
                   className={cn(
-                    "font-source-sans-400 text-[14px] leading-[24px] transition-colors duration-300",
+                    "font-source-sans-400 text-[16px] leading-[24px] transition-colors duration-300",
                     item.isDark ? "text-white/80" : "text-[#64748B]"
                   )}
                 >

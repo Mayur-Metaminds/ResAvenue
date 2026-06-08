@@ -133,7 +133,7 @@ export function Navbar() {
               "lg:top-6 lg:w-[calc(100%-4rem)] lg:rounded-[100px] lg:border lg:px-2 lg:py-2 lg:shadow-[0_8px_32px_rgba(0,0,0,0.1)]",
               isDark
                 ? "bg-black/20 backdrop-blur-md lg:border-white/10 lg:bg-white/10"
-                : "border-b border-black/5 bg-[linear-gradient(225deg,rgba(240,242,253,0.45)_0%,rgba(61,98,129,0.25)_100%)] backdrop-blur-[15px] lg:border-black/10 lg:shadow-sm",
+                : "border-b border-black/5 bg-[linear-gradient(225deg,rgba(240,242,253,0.18)_0%,rgba(61,98,129,0.12)_100%)] backdrop-blur-[15px] lg:border-black/10 lg:shadow-sm",
             ]
           : "border-0 bg-transparent shadow-none backdrop-blur-none"
       )}

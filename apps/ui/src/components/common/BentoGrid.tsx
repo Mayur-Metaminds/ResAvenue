@@ -207,7 +207,7 @@ export function BentoGrid<T extends BentoItem>({
               }}
               onClick={() => openModal(item)}
               className={cn(
-                "group relative cursor-pointer flex flex-col overflow-hidden rounded-[20px] shadow-sm transition-shadow hover:shadow-lg",
+                "group relative cursor-pointer flex flex-col overflow-hidden rounded-[20px] shadow-sm transition-shadow hover:shadow-[0_24px_30px_-18px_rgba(237,134,46,0.25)]",
                 item.gridSpan,
                 item.isDark
                   ? "border-0 bg-cover bg-center text-white"

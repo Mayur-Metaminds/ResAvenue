@@ -41,10 +41,11 @@ export function ChannelConnectHeroSection() {
                 </HeroTitle>
               }
               description={
-                <span className="typo-body1 text-white/55">
+                <span className="typo-body1 text-white/65">
                   Control Every Channel. Maximize Every Booking. Simplify hotel distribution with a centralized channel management solution built for speed, accuracy, and scale. Connects to 100+ channels directly worldwide. Instantly update rates and inventory across OTAs, GDS, and metasearch platforms while optimizing performance with real-time insights.
                 </span>
               }
+              
               actions={[
                 <Button
                   key="demo"

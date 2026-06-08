@@ -74,8 +74,8 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-pms.png",
     lottieAnimation: roomReservationAnimation,
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[130px]">
-        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] border border-[#F1F5F9] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)] p-2 md:p-4">
+      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
+        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] xl:border xl:border-[#F1F5F9] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)] p-2 md:p-4">
           <Lottie
             animationData={roomReservationAnimation}
             loop
@@ -103,8 +103,8 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-revenue.png",
     lottieAnimation: graphAnimation,
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[130px]">
-        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] border border-[#F1F5F9] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)] p-2 md:p-4">
+      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
+        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] xl:border xl:border-[#F1F5F9] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)] p-2 md:p-4">
           <Lottie
             animationData={graphAnimation}
             loop
@@ -134,7 +134,7 @@ const products: Product[] = [
     // Custom bottom slot: globe Lottie with the "120+" CountUp absolutely
     // centered on top of it (matches the Figma reference).
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:h-[240px]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:h-[200px]">
         <div className="relative h-full w-full">
           <Lottie
             animationData={globeAnimation}
@@ -248,7 +248,7 @@ export function BentoProductsSection() {
           {product.renderBottom ? (
             product.renderBottom()
           ) : product.lottieAnimation ? (
-            <div className="absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none md:mx-8 lg:h-[240px]">
+            <div className="absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none md:mx-0 lg:h-[240px]">
               <Lottie
                 animationData={product.lottieAnimation}
                 loop={true}

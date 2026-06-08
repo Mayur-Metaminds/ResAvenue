@@ -82,7 +82,7 @@ export function DirectConnectBookingEngineSection() {
           header={{
             className: "mb-[36px]",
             eyebrow: "OPTIMIZED FOR CONVERSIONS",
-            eyebrowClassName: "mb-0",
+            eyebrowClassName: "mb-0 ",
             titleClassName: "mb-0",
             title: (
               <>
@@ -93,6 +93,7 @@ export function DirectConnectBookingEngineSection() {
               </>
             ),
             description: "A high-conversion, mobile-optimized engine delivering a seamless booking journey from discovery to payment.",
+            descriptionClassName:"leading-[28px]"
           }}
           imageSlot={
             <>

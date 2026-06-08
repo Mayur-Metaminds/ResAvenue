@@ -124,7 +124,7 @@ const SectionHeaderRoot = React.forwardRef<HTMLDivElement, SectionHeaderProps>(
         {description != null && (
           <p
             className={cn(
-              "typo-body1 max-w-2xl text-gray-500",
+              "typo-body1 max-w-2xl text-[#64748B]",
               descriptionClassName
             )}
           >
