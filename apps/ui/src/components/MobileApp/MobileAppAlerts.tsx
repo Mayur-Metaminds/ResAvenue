@@ -1,12 +1,12 @@
 import { SectionHeader } from '@/components/landing/SectionHeader'
 import { AppearOnScroll } from '@/components/common/AppearOnScroll'
+import { SettingsIcon, LeaderboardIcon, SyncIcon } from '../../../public/svg/Mobile-App'
 import React from 'react'
 
-// Dummy placeholder icons (reused Mobile-App svgs) — swap with the real ones later.
 const alertsPoints = [
-    { icon: '/images/Mobile-App/Icon.svg', label: 'Customizable alert priority settings' },
-    { icon: '/images/Mobile-App/carbon_workflow-automation.svg', label: 'Daily summary of key performance metrics' },
-    { icon: '/images/Mobile-App/lsicon_control-outline.svg', label: 'Team-wide notification syncing' },
+    { Icon: SettingsIcon, label: 'Customizable alert priority settings' },
+    { Icon: LeaderboardIcon, label: 'Daily summary of key performance metrics' },
+    { Icon: SyncIcon, label: 'Team-wide notification syncing' },
 ]
 
 const MobileAppAlerts = () => {
@@ -35,14 +35,11 @@ const MobileAppAlerts = () => {
                 />
 
                 <ul className="mt-6 flex flex-col gap-4 lg:mt-8 lg:gap-6">
-                    {alertsPoints.map(({ icon, label }) => (
+                    {alertsPoints.map(({ Icon, label }) => (
                         <li key={label} className="flex items-center gap-3 lg:gap-4">
-                            <img
-                                src={icon}
-                                alt=""
-                                aria-hidden="true"
-                                className="shrink-0 h-5 w-5 xl:h-7 xl:w-7"
-                            />
+                            <span aria-hidden="true" className="shrink-0">
+                                <Icon />
+                            </span>
                             <span className="typo-body1 text-[#334155] xl:text-[24px]">
                                 {label}
                             </span>

@@ -1,11 +1,12 @@
 import { SectionHeader } from '@/components/landing/SectionHeader'
 import { AppearOnScroll } from '@/components/common/AppearOnScroll'
+import { InventoryIcon, AutomationIcon, ControlIcon } from '../../../public/svg/Mobile-App'
 import React from 'react'
 
 const inventoryPoints = [
-    { icon: '/images/Mobile-App/Icon.svg', label: 'Bulk inventory updates in two taps' },
-    { icon: '/images/Mobile-App/carbon_workflow-automation.svg', label: 'Dynamic pricing rules automation' },
-    { icon: '/images/Mobile-App/lsicon_control-outline.svg', label: 'Stop-sell control for all channels' },
+    { Icon: InventoryIcon, label: 'Bulk inventory updates in two taps' },
+    { Icon: AutomationIcon, label: 'Dynamic pricing rules automation' },
+    { Icon: ControlIcon, label: 'Stop-sell control for all channels' },
 ]
 
 const MobileAppInventory = () => {
@@ -19,6 +20,7 @@ const MobileAppInventory = () => {
                     descriptionClassName="typo-body1 text-left text-[#64748B]"
                     title={
                         <SectionHeader.Highlight
+                            className="min-[1440px]:whitespace-nowrap min-[1440px]:text-[42px]"
                             style={{
                                 background:
                                     "var(--cta-gradient, linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 34.36%, #ED862E 100%))",
@@ -37,14 +39,11 @@ Prevent overbookings with lightning-fast cloud synchronization."
                 {/* typo-body1 matches font-family/weight + mobile 16px/22.4px + desktop 31.5px line-height.
                     Only the desktop font-size (24px vs utility's 18px) and color are overridden inline. */}
                 <ul className="mt-6 flex flex-col gap-4 lg:mt-8 lg:gap-6">
-                    {inventoryPoints.map(({ icon, label }) => (
+                    {inventoryPoints.map(({ Icon, label }) => (
                         <li key={label} className="flex items-center gap-3 lg:gap-4">
-                            <img
-                                src={icon}
-                                alt=""
-                                aria-hidden="true"
-                                className="shrink-0 h-5 w-5 xl:h-7 xl:w-7"
-                            />
+                            <span aria-hidden="true" className="shrink-0">
+                                <Icon />
+                            </span>
                             <span className="typo-body1 text-[#334155] xl:text-[24px]">
                                 {label}
                             </span>
