@@ -11,7 +11,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 export function DirectConnectDashboardSection() {
   return (
     <section
-      data-nav-theme="light"
+      data-nav-theme="dark"
       className="relative mt-[80px] w-full overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url('/images/demo-section-bg-img.png')`,

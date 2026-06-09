@@ -55,6 +55,21 @@ export interface BentoModalProduct {
   /** Optional Lottie JSON. When present, renders in place of the bottom
       screenshot. */
   lottieAnimation?: unknown
+  /** Optional icon displayed at the top of the left column in the
+      "side-by-side" layout (e.g., UnifiedPlatformIcon1). Ignored in the
+      default "stacked" layout. */
+  icon?: React.ReactNode
+  /** Modal body arrangement.
+      - "stacked"   (default): title+bullets on top, animation full-width below.
+                                Used on the home page.
+      - "side-by-side":         icon+title+description+bullets on the left,
+                                animation filling the right column.
+                                Used on per-product detail modals (e.g., Conversion-First Booking Engine). */
+  modalLayout?: "stacked" | "side-by-side"
+  /** Show the "Learn More" CTA button in the stacked layout (default `true`).
+      Set to `false` on the Direct Connect page modals where the user is
+      already on a detail page and a deeper navigation isn't relevant. */
+  showLearnMore?: boolean
 }
 
 const anchorToOrigin: Record<ModalAnchor, string> = {
@@ -209,6 +224,13 @@ function ModalContent({
   product: BentoModalProduct
   onClose: () => void
 }) {
+  // Side-by-side variant: icon + title + description + bullets on the left,
+  // animation filling the right column. Used on per-product detail modals
+  // (e.g., the Conversion-First Booking Engine card on /direct-connect).
+  if (product.modalLayout === "side-by-side") {
+    return <SideBySideModalContent product={product} onClose={onClose} />
+  }
+
   const router = useRouter()
 
   return (
@@ -251,18 +273,20 @@ function ModalContent({
             </p>
           )}
 
-          <Button
-            variant="primary"
-            size="default"
-            className=" w-fit gap-2 rounded-[16px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
-            icon={<ArrowRight className="h-4 w-4" />}
-            onClick={() => {
-              onClose()
-              router.push(product.href || `/${product.id}`)
-            }}
-          >
-            Learn More
-          </Button>
+          {product.showLearnMore !== false && (
+            <Button
+              variant="primary"
+              size="default"
+              className=" w-fit gap-2 rounded-[16px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
+              icon={<ArrowRight className="h-4 w-4" />}
+              onClick={() => {
+                onClose()
+                router.push(product.href || `/${product.id}`)
+              }}
+            >
+              Learn More
+            </Button>
+          )}
         </div>
 
         {/* Right — feature checklist */}
@@ -301,6 +325,97 @@ function ModalContent({
           }}
         />
       )}
+    </div>
+  )
+}
+
+/* ─────────── Side-by-side variant (used on /direct-connect cards) ───────────
+   icon + title + description + bullets stacked on the LEFT,
+   animation/image filling the RIGHT column. No Learn More CTA — the user
+   is already on the detail page so a deeper navigation isn't relevant. */
+
+function SideBySideModalContent({
+  product,
+  onClose,
+}: {
+  product: BentoModalProduct
+  onClose: () => void
+}) {
+  return (
+    <div
+      className="relative flex w-full flex-1 flex-col overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[56px] pb-[20px] md:px-[40px] md:pt-[48px] md:pb-[40px]"
+      style={{
+        boxShadow:
+          "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
+      }}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close"
+        className="absolute top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E]"
+      >
+        <CloseBtn size={40} />
+      </button>
+
+      <div className="grid h-full w-full grid-cols-1 gap-[32px] md:gap-[40px] md:grid-cols-2">
+        {/* Left — icon + title + description + bullets */}
+        <div className="flex flex-col items-start">
+          {product.icon && (
+            <div className="mb-[20px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
+              {product.icon}
+            </div>
+          )}
+
+          <h3
+            id={`product-modal-title-${product.id}`}
+            className="font-plus-jakarta-700 mb-[12px] text-[22px] font-bold text-[#010C28] md:text-[24px]"
+          >
+            {product.title}
+          </h3>
+
+          {product.subtitle && (
+            <p className="mb-[24px] font-source-sans-400 text-[14px] leading-[22px] text-[#64748B] md:text-[15px] md:leading-[24px]">
+              {product.subtitle}
+            </p>
+          )}
+
+          {/* Bullets — stacked below the description in the same column */}
+          {product.modalFeatures.length > 0 && (
+            <ul className="space-y-[12px]">
+              {product.modalFeatures.map((feature) => (
+                <li key={feature} className="flex items-start text-gray-700">
+                  <span className="mt-0.5 mr-3 flex h-5 w-5 shrink-0 items-center justify-center md:h-6 md:w-6">
+                    <CheckedIcon />
+                  </span>
+                  <span className="font-source-sans-400 text-[14px] leading-[22px] text-[#45556C] font-medium md:text-[15px] md:leading-[24px]">
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* Right — animation/image fills the full column height */}
+        <div className="flex h-full w-full items-center justify-center">
+          {product.lottieAnimation ? (
+            <Lottie
+              animationData={product.lottieAnimation}
+              loop
+              className="h-full w-full"
+              rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+            />
+          ) : (
+            <div
+              className="h-full w-full rounded-2xl"
+              style={{
+                background: `url(${product.imagePlaceholder}) lightgray 50% / contain no-repeat`,
+              }}
+            />
+          )}
+        </div>
+      </div>
     </div>
   )
 }

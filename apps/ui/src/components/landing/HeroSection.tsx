@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button"
 import { HeroContent } from "./HeroContent"
 import { HeroTitle } from "./HeroTitle"
 import Lottie from "lottie-react"
-import dashboardLottie from "../../../public/assets/animation2.json"
+import dashboardLottie from "../../../public/assets/landing/hero-section.json"
+
 
 export function HeroSection() {
   return (

@@ -23,6 +23,12 @@ export type BentoItem = {
   imagePlaceholder?: string
   href?: string
   modalWidth?: string
+  /** Optional icon for the side-by-side modal layout (rendered top-left). */
+  icon?: React.ReactNode
+  /** Modal body layout — see BentoModalProduct.modalLayout. Default: "stacked". */
+  modalLayout?: "stacked" | "side-by-side"
+  /** Show the Learn More CTA in the stacked layout. Default: true. */
+  showLearnMore?: boolean
 }
 
 type BentoGridProps<T extends BentoItem> = {
