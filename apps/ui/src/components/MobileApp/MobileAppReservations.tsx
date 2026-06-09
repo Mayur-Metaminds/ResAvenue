@@ -1,12 +1,12 @@
 import { SectionHeader } from '@/components/landing/SectionHeader'
 import { AppearOnScroll } from '@/components/common/AppearOnScroll'
+import { CalenderIcon, GuestUser, BoxCheck } from '../../../public/svg/Mobile-App'
 import React from 'react'
 
-// Dummy placeholder icons (reused Mobile-App svgs) — swap with the real ones later.
 const reservationPoints = [
-    { icon: '/images/Mobile-App/Icon.svg', label: 'Unified reservation calendar view' },
-    { icon: '/images/Mobile-App/carbon_workflow-automation.svg', label: 'Instant guest communication tools' },
-    { icon: '/images/Mobile-App/lsicon_control-outline.svg', label: 'One-click check-in/check-out status' },
+    { Icon: CalenderIcon, label: 'Unified reservation calendar view' },
+    { Icon: GuestUser, label: 'Instant guest communication tools' },
+    { Icon: BoxCheck, label: 'One-click check-in/check-out status' },
 ]
 
 const MobileAppReservations = () => {
@@ -37,14 +37,11 @@ const MobileAppReservations = () => {
                 />
 
                 <ul className="mt-6 flex flex-col gap-4 lg:mt-8 lg:gap-6">
-                    {reservationPoints.map(({ icon, label }) => (
+                    {reservationPoints.map(({ Icon, label }) => (
                         <li key={label} className="flex items-center gap-3 lg:gap-4">
-                            <img
-                                src={icon}
-                                alt=""
-                                aria-hidden="true"
-                                className="shrink-0 h-5 w-5 xl:h-7 xl:w-7"
-                            />
+                            <span aria-hidden="true" className="shrink-0">
+                                <Icon />
+                            </span>
                             <span className="typo-body1 text-white xl:text-[24px]">
                                 {label}
                             </span>

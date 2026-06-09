@@ -3,7 +3,7 @@ import React from 'react'
 
 const MobileAppCoreFeatures = () => {
     return (
-        <section data-nav-theme="light" className="w-full bg-white px-4 py-[60px] md:px-8">
+        <section data-nav-theme="light" className="w-full bg-white px-4 py-[40px] md:px-8">
             <div className="mx-auto max-w-6xl">
                 <SectionHeader
                     className="mx-auto max-w-3xl text-center"
@@ -11,8 +11,7 @@ const MobileAppCoreFeatures = () => {
                     title={
                         <SectionHeader.Highlight
                             style={{
-                                background:
-                                    "var(--cta-gradient, linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 34.36%, #ED862E 100%))",
+                                background: "var(--cta-gradient, linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 34.36%, #ED862E 100%))",
                                 backgroundClip: "text",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
@@ -31,7 +30,7 @@ const MobileAppCoreFeatures = () => {
 
 
             </div>
-        </section>
+        </section >
     )
 }
 

@@ -6,7 +6,7 @@ import { SectionHeader } from "@/components/landing/SectionHeader"
 
 const MobileAppSolutions = () => {
     return (
-        <section data-nav-theme="light" className="w-full bg-[#F6F7FB] px-4 py-[60px] md:px-8">
+        <section data-nav-theme="light" className="w-full bg-[#F6F7FB] px-4 py-[96px] md:px-8">
             <div className="mx-auto max-w-6xl">
                 <SectionHeader
                     eyebrow={<span>OUR SOLUTIONS</span>}

@@ -16,7 +16,7 @@ function MobileAppHero() {
           <div className="my-auto flex w-full flex-col justify-center lg:w-[50%] lg:py-20 xl:w-[45%]">
             <HeroContent
               eyebrow="CLOUD-BASED HOTEL MANAGEMENT"
-              eyebrowColor="#ED862E"
+              eyebrowColor="#FFF"
               title={
                 <HeroTitle
                   style={
@@ -33,7 +33,7 @@ function MobileAppHero() {
                 </HeroTitle>
               }
               description={
-                <span className="typo-body1 text-white/55">
+                <span className="typo-body1 text-white/65">
                   Empower your team with full control of rates, inventory, and
                   reservations directly from their pocket. The ultimate mobile
                   companion for hoteliers.
