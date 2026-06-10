@@ -19,8 +19,7 @@ import {
 import type * as React from "react"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 
-// useLayoutEffect runs after the DOM commits but before the browser paints,
-// so we can re-scroll without a flash. useEffect is the SSR-safe fallback.
+  
 const useIsoLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect
 
@@ -127,6 +126,9 @@ export function ExploreModulesSection() {
   const [activeTab, setActiveTab] = useState<"direct" | "channel">("direct")
   const [activeIndex, setActiveIndex] = useState(0)
 
+  const wheelCooldownRef = useRef(0)
+  const exitLockoutRef = useRef(0)
+
   const currentFeatures =
     activeTab === "direct" ? directConnectFeatures : channelConnectFeatures
 
@@ -206,6 +208,62 @@ export function ExploreModulesSection() {
     setActiveIndex(i)
     scrollToFeature(i)
   }
+
+  // Wheel/trackpad hijacking — while the section is pinned, swallow wheel
+  // events and snap exactly one step at a time. Without this, the natural
+  // scroll distance per wheel varies (~50px on slow trackpads, 500px+ on a
+  // fast swipe), so a single gesture would non-deterministically advance 1,
+  // 2, or 3 steps depending on velocity. The cooldown matches the smooth
+  // scroll duration so a burst of trackpad inertia events still resolves
+  // to one step. At the section's first/last step, we let wheel events
+  // bubble naturally so the user can scroll out of the section.
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+
+    const COOLDOWN_MS = 150
+    const EXIT_LOCKOUT_MS = 500
+
+    const isPinned = () => {
+      const rect = el.getBoundingClientRect()
+      // Allow 1px tolerance for browser subpixel layout rounding
+      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1
+    }
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!isPinned()) return
+
+      const now = performance.now()
+
+      if (now < exitLockoutRef.current) return
+
+      const direction = Math.sign(e.deltaY)
+      if (direction === 0) return
+
+      const target = activeIndex + direction
+      // Boundaries: let the user scroll out of the section in the natural
+      // direction (don't preventDefault). Arm the exit lockout so subsequent
+      // inertia events don't get trapped by the cooldown check.
+      if (target < 0 || target >= currentFeatures.length) {
+        exitLockoutRef.current = now + EXIT_LOCKOUT_MS
+        return
+      }
+
+      if (now < wheelCooldownRef.current) {
+        e.preventDefault()
+
+        return
+      }
+
+      e.preventDefault()
+      wheelCooldownRef.current = now + COOLDOWN_MS
+      scrollToFeature(target, "instant")
+    }
+
+    window.addEventListener("wheel", handleWheel, { passive: false })
+
+    return () => window.removeEventListener("wheel", handleWheel)
+  }, [activeIndex, currentFeatures.length])
 
   const activeFeature = currentFeatures[activeIndex] ?? currentFeatures[0]
   if (!activeFeature) return null

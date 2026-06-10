@@ -5,8 +5,6 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { HeroContent } from "./HeroContent"
 import { HeroTitle } from "./HeroTitle"
-import Lottie from "lottie-react"
-import dashboardLottie from "../../../public/assets/landing/hero-section.json"
 
 
 export function HeroSection() {
@@ -65,11 +63,14 @@ export function HeroSection() {
           {/* Right Column: Mockup */}
           <div className="relative z-20 flex h-[210px] w-full items-start sm:h-[480px] lg:absolute lg:top-0 lg:left-[40%] lg:h-[430px] lg:w-[700px] xl:left-[42%] xl:h-[590px] xl:w-[876px]">
             {/* Dashboard video — muted + playsInline are required for mobile autoplay */}
-              <Lottie
-              animationData={dashboardLottie}
+            <video
+              src="/assets/landing/hero_section.mp4"
+              autoPlay
               loop
-              autoplay
-              className="h-full w-full"
+              muted
+              playsInline
+              preload="auto"
+              className="h-full w-full object-contain"
             />
 
             {/* Glow */}

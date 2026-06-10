@@ -45,7 +45,7 @@ const solutions: SolutionCard[] = [
     id: "conversion-booking",
     title: "Conversion-First Booking Engine",
     subtitle:
-      "Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless checkout experience.",
+      "Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless check-out experience. Enable guests to book faster with an intuitive, conversion-focused interface that reduces friction and improves completion rates. Offer personalized booking journeys, real-time availability, and responsive experiences that work seamlessly across desktop, tablet, and mobile devices.",
     gridSpan: "col-span-1 lg:col-span-7 min-h-[432px]",
     anchor: "top-left",
     modalFeatures: [
