@@ -27,6 +27,8 @@ const MobileAppInventory = () => {
                                 backgroundClip: "text",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
+                                WebkitBoxDecorationBreak: "clone",
+                                boxDecorationBreak: "clone",
                             }}
                         >
                             Inventory & Rate Management

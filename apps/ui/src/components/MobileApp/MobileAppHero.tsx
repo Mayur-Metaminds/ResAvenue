@@ -13,7 +13,7 @@ function MobileAppHero() {
         {/* Main Content */}
         <div className="flex flex-1 flex-col items-center justify-between gap-8 pb-8 md:gap-12 lg:flex-row lg:justify-evenly lg:gap-15 lg:pb-0">
           {/* Left Column: Content */}
-          <div className="my-auto flex w-full flex-col justify-center lg:w-[50%] lg:py-20 xl:w-[45%]">
+          <div className="my-auto flex w-full flex-col justify-center lg:w-[50%] lg:-translate-y-8 lg:py-20 xl:w-[45%]">
             <HeroContent
               eyebrow="CLOUD-BASED HOTEL MANAGEMENT"
               eyebrowColor="#FFF"
@@ -40,6 +40,12 @@ function MobileAppHero() {
                 </span>
               }
             />
+
+            <div className="flex justify-start pt-[39px] md:pt-[32px]">
+              <button type="submit" className="font-plus-jakarta-700 cursor-pointer rounded-full bg-[#ED862E] px-5 md:px-6 py-3 text-[8.909px] leading-[14.255px] text-white shadow-lg transition hover:bg-orange-600 md:px-10 md:py-4 lg:text-[15px] lg:leading-6">
+                Request a Demo →
+              </button>
+            </div>
           </div>
 
           {/* Right Column: Mobile mockup */}

@@ -21,6 +21,8 @@ const MobileAppSolutions = () => {
                                 backgroundClip: "text",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
+                                WebkitBoxDecorationBreak: "clone",
+                                boxDecorationBreak: "clone",
                             }}
                         >
                             Hotels run on disparate systems.

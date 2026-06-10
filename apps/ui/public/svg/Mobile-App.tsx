@@ -60,7 +60,7 @@ export function LeaderboardIcon() {
 }
 
 export function SyncIcon() {
-    return (<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style={iconStyle} viewBox="0 0 18 20" fill="none">
-        <path d="M0 20V6H4V20H0ZM7 20V0H11V20H7ZM14 20V12H18V20H14Z" fill="#EC5B13" />
+    return (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M7 21L2 16L7 11L8.425 12.4L5.825 15H21V17H5.825L8.425 19.6L7 21ZM17 13L15.575 11.6L18.175 9H3V7H18.175L15.575 4.4L17 3L22 8L17 13Z" fill="#EC5B13" />
     </svg>)
 }

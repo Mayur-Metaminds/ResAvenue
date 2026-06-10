@@ -16,42 +16,42 @@ const eventTypes: EventType[] = [
         title: "Conferences",
         description:
             "Multi-day scheduling, speaker management, and networking tools.",
-        image: "/images/Event-Booking/conferences.jpg",
+        image: "/images/Event-Booking/Background.png",
     },
     {
         id: "festivals-concerts",
         title: "Festivals & Concerts",
         description:
             "High-volume ticketing, wristband integration, and access control.",
-        image: "/images/Event-Booking/festivals-concerts.jpg",
+        image: "/images/Event-Booking/Background%20(1).png",
     },
     {
         id: "corporate-events",
         title: "Corporate Events",
         description:
             "Private invitations, precise ROI tracking, and brandable microsites.",
-        image: "/images/Event-Booking/corporate-events.jpg",
+        image: "/images/Event-Booking/Background%20(2).png",
     },
     {
         id: "weddings",
         title: "Weddings",
         description:
             "Custom RSVP flows, guest management, and seating chart tools.",
-        image: "/images/Event-Booking/weddings.jpg",
+        image: "/images/Event-Booking/Background%20(3).png",
     },
     {
         id: "workshops-trainings",
         title: "Workshops & Trainings",
         description:
             "Capacity limits, materials distribution, and attendance tracking.",
-        image: "/images/Event-Booking/workshops-trainings.jpg",
+        image: "/images/Event-Booking/Background.png",
     },
     {
         id: "trade-shows",
         title: "Trade Shows",
         description:
             "Booth booking, exhibitor management, and on-site lead capture.",
-        image: "/images/Event-Booking/trade-shows.jpg",
+        image: "/images/Event-Booking/Background%20(1).png",
     },
 ]
 

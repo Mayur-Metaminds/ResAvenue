@@ -22,10 +22,12 @@ const MobileAppAlerts = () => {
                         <SectionHeader.Highlight
                             style={{
                                 background:
-                                    "var(--cta-gradient, linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 34.36%, #ED862E 100%))",
+                                    "linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 34.36%, #ED862E 100%)",
                                 backgroundClip: "text",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
+                                WebkitBoxDecorationBreak: "clone",
+                                boxDecorationBreak: "clone",
                             }}
                         >
                             Smart Alerts & Notifications

@@ -35,13 +35,16 @@ const MobileAppShowcase = () => {
                 getKey={(card) => card.title}
                 durationSeconds={70}
                 gapPx={24}
+                className="py-4 sm:py-5"
                 backgroundColor="#FFFFFF"
                 ariaLabel="Mobile app highlights"
                 renderItem={({ title, description }) => (
-                    <div className='h-full w-[300px] sm:w-[374px] flex flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-sm transition-colors duration-200 hover:border-[#ED862E]'>
-                        {/* Dummy image placeholder */}
-                        <div
-                            className='shrink-0 w-full h-[193px] sm:h-[241px] bg-slate-200'
+                    <div className='h-full w-[300px] sm:w-[374px] flex flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-lg shadow-[#ED862E]/12 transition-shadow duration-200 hover:shadow-lg hover:shadow-black/20'>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/images/Mobile-App/dummyshowcase.png"
+                            alt={title}
+                            className='shrink-0 w-full h-[193px] sm:h-[241px] object-cover'
                             style={{ borderRadius: '21px 20px 0 0' }}
                         />
                         <div className='p-5 sm:p-6 text-left'>

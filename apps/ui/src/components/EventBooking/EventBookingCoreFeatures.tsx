@@ -15,61 +15,61 @@ const features: Feature[] = [
     title: "End-to-End Event Management",
     description:
       "Configure and manage events seamlessly with centralized dashboard.",
-    image: "/images/Event-Booking/end-to-end-event-management.jpg",
+    image: "/images/Event-Booking/Rectangle%204239.png",
   },
   {
     id: "seamless-payment-integration",
     title: "Seamless Payment Integration",
     description:
       "Maximize conversions with frictionless payment options.",
-    image: "/images/Event-Booking/seamless-payment-integration.jpg",
+    image: "/images/Event-Booking/Rectangle%204239%20(1).png",
   },
   {
     id: "event-website-custom-pages",
     title: "Event Website & Custom Pages",
     description:
       "Launch stunning event web pages without technical expertise.",
-    image: "/images/Event-Booking/event-website-custom-pages.jpg",
+    image: "/images/Event-Booking/Rectangle%204239%20(2).png",
   },
   {
     id: "smart-ticketing-registration",
     title: "Smart Ticketing & Registration",
     description:
       "Deliver a smooth and flexible ticketing experience for your attendees.",
-    image: "/images/Event-Booking/smart-ticketing-registration.jpg",
+    image: "/images/Event-Booking/Rectangle%204239%20(3).png",
   },
   {
     id: "on-ground-check-in-access-control",
     title: "On-Ground Check-In & Access Control",
     description:
       "Ensure a smooth entry experience with minimal wait times.",
-    image: "/images/Event-Booking/on-ground-check-in-access-control.jpg",
+    image: "/images/Event-Booking/Rectangle%204239%20(4).png",
   },
   {
     id: "marketing-promotion-tools",
     title: "Marketing & Promotion Tools",
     description:
       "Drive registrations with built-in marketing capabilities.",
-    image: "/images/Event-Booking/marketing-promotion-tools.jpg",
+    image: "/images/Event-Booking/Rectangle%204239%20(5).png",
   },
   {
     id: "crm-engagement-tools",
     title: "CRM & Engagement Tools",
     description: "Build lasting relationships beyond the event.",
-    image: "/images/Event-Booking/crm-engagement-tools.jpg",
+    image: "/images/Event-Booking/Rectangle%204239%20(6).png",
   },
   {
     id: "analytics-reporting",
     title: "Analytics & Reporting",
     description: "Make data-driven decisions with powerful insights.",
-    image: "/images/Event-Booking/analytics-reporting.jpg",
+    image: "/images/Event-Booking/Rectangle%204239%20(7).png",
   },
   {
     id: "attendee-management",
     title: "Attendee Management",
     description:
       "Keep your attendees engaged and informed at every stage.",
-    image: "/images/Event-Booking/attendee-management.jpg",
+    image: "/images/Event-Booking/Rectangle%204239.png",
   },
 ]
 
@@ -100,14 +100,14 @@ const EventBookingCoreFeatures = () => {
           {features.map((f) => (
             <div
               key={f.id}
-              className="rounded-[21.795px] border border-slate-200 bg-white px-[10.9px] py-[9.9px] shadow-sm"
+              className="group rounded-[21.795px] border border-slate-200 bg-white px-[10.9px] py-[9.9px] shadow-sm"
             >
               <div className="aspect-[4/3] w-full overflow-hidden rounded-[21.795px] bg-slate-100">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={f.image}
                   alt={f.title}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.4]"
                 />
               </div>
               <div className="p-4 md:p-5">
