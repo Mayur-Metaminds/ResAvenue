@@ -63,7 +63,7 @@ export function HeroSection() {
             ]}
           />
           {/* Right Column: Mockup */}
-          <div className="relative z-20 flex h-[210px] w-[600px] w-full items-center sm:h-[480px] lg:absolute lg:top-1/2 lg:left-[40%] lg:h-[430px] lg:w-[700px] lg:-translate-y-1/2 xl:left-[42%] xl:h-[590px] xl:w-[876px]">
+          <div className="relative z-20 flex h-[210px] w-full items-start sm:h-[480px] lg:absolute lg:top-0 lg:left-[40%] lg:h-[430px] lg:w-[700px] xl:left-[42%] xl:h-[590px] xl:w-[876px]">
             {/* Dashboard video — muted + playsInline are required for mobile autoplay */}
               <Lottie
               animationData={dashboardLottie}
