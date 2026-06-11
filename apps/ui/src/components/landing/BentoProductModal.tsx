@@ -47,6 +47,11 @@ export interface BentoModalProduct {
   eyebrow?: string
   title: string
   subtitle?: string
+  /** Optional override for the modal body's description. When set, the modal
+      displays this instead of `subtitle` — useful when the card needs a short
+      one-liner but the modal warrants a longer explanation. Falls back to
+      `subtitle` when not provided. */
+  modalSubtitle?: string
   anchor: ModalAnchor
   modalFeatures: string[]
   imagePlaceholder: string
@@ -55,29 +60,37 @@ export interface BentoModalProduct {
   /** Optional Lottie JSON. When present, renders in place of the bottom
       screenshot. */
   lottieAnimation?: unknown
+  /** Optional override for the modal's Lottie animation. When set, the modal
+      plays this instead of `lottieAnimation` — useful when the card needs a
+      compact in-bento animation but the modal warrants a fuller / more
+      detailed one. Falls back to `lottieAnimation` when not provided. */
+  modalLottieAnimation?: unknown
+  /** Optional overlay to render on top of the Lottie animation */
+  lottieOverlay?: React.ReactNode
   /** Optional icon displayed at the top of the left column in the
       "side-by-side" layout (e.g., UnifiedPlatformIcon1). Ignored in the
       default "stacked" layout. */
   icon?: React.ReactNode
   /** Modal body arrangement.
-      - "stacked"   (default): title+bullets on top, animation full-width below.
-                                Used on the home page.
-      - "side-by-side":         icon+title+description+bullets on the left,
-                                animation filling the right column.
-                                Used on per-product detail modals (e.g., Conversion-First Booking Engine). */
-  modalLayout?: "stacked" | "side-by-side"
+      - "stacked"          (default): title+bullets on top in a 2-column split,
+                                       animation full-width below. Used on the
+                                       home page bento.
+      - "side-by-side":              icon+title+description+bullets on the left,
+                                       animation filling the right column. Used
+                                       on per-product detail modals.
+      - "stacked-vertical":          everything full-width, vertically stacked —
+                                       icon → title → description → 2-column
+                                       bullet grid → animation. Used on the
+                                       Direct Connect solution cards' modals so
+                                       the layout matches Figma. */
+  modalLayout?: "stacked" | "side-by-side" | "stacked-vertical"
   /** Show the "Learn More" CTA button in the stacked layout (default `true`).
       Set to `false` on the Direct Connect page modals where the user is
       already on a detail page and a deeper navigation isn't relevant. */
   showLearnMore?: boolean
 }
 
-const anchorToOrigin: Record<ModalAnchor, string> = {
-  "top-left": "top left",
-  "top-right": "top right",
-  "bottom-left": "bottom left",
-  "bottom-right": "bottom right",
-}
+
 
 interface Props {
   /** Currently selected product, or null when closed. */
@@ -231,6 +244,10 @@ function ModalContent({
     return <SideBySideModalContent product={product} onClose={onClose} />
   }
 
+  if (product.modalLayout === "stacked-vertical") {
+    return <StackedVerticalModalContent product={product} onClose={onClose} />
+  }
+
   const router = useRouter()
 
   return (
@@ -252,8 +269,16 @@ function ModalContent({
 
       {/* Two-column top section (stacks on mobile via grid-cols-1) */}
       <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-[1fr_1.3fr]">
-        {/* Left — eyebrow + title + subtitle + CTA */}
+        {/* Left — icon + eyebrow + title + subtitle + CTA */}
         <div className="flex h-full flex-col items-start">
+          {/* Icon — same chip styling as the side-by-side variant so card-level
+              icons render consistently across both modal layouts. */}
+          {product.icon && (
+            <div className="mb-[16px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
+              {product.icon}
+            </div>
+          )}
+
           {product.eyebrow && (
             <h4 className="font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
               {product.eyebrow}
@@ -267,9 +292,9 @@ function ModalContent({
             {product.title}
           </h3>
 
-          {product.subtitle && (
+          {(product.modalSubtitle ?? product.subtitle) && (
             <p className="mb-[40px] font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
-              {product.subtitle}
+              {product.modalSubtitle ?? product.subtitle}
             </p>
           )}
 
@@ -308,18 +333,19 @@ function ModalContent({
 
       {/* Bottom visual — Lottie if provided, otherwise the imagePlaceholder
           rendered as a cover background. */}
-      {product.lottieAnimation ? (
-        <div className="min-h-[200px] w-full flex-1 overflow-hidden rounded-2xl border border-gray-100 shadow-sm md:min-h-[350px]">
+      {(product.modalLottieAnimation ?? product.lottieAnimation) ? (
+        <div className="relative min-h-[200px] w-full flex-1 overflow-hidden rounded-2xl md:min-h-[350px]">
           <Lottie
-            animationData={product.lottieAnimation}
+            animationData={product.modalLottieAnimation ?? product.lottieAnimation}
             loop
             className="h-full w-full"
             rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
           />
+          {product.lottieOverlay}
         </div>
       ) : (
         <div
-          className="min-h-[200px] w-full flex-1 rounded-2xl border border-gray-100 shadow-sm md:min-h-[350px]"
+          className="min-h-[200px] w-full flex-1 rounded-2xl md:min-h-[350px]"
           style={{
             background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
           }}
@@ -343,7 +369,7 @@ function SideBySideModalContent({
 }) {
   return (
     <div
-      className="relative flex w-full flex-1 flex-col overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[56px] pb-[20px] md:px-[40px] md:pt-[48px] md:pb-[40px]"
+      className="relative flex w-full flex-1 flex-col overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[72px] pb-[20px] md:px-[40px] md:pt-[88px] md:pb-[40px]"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -374,9 +400,9 @@ function SideBySideModalContent({
             {product.title}
           </h3>
 
-          {product.subtitle && (
-            <p className="mb-[24px] font-source-sans-400 text-[14px] leading-[22px] text-[#64748B] md:text-[15px] md:leading-[24px]">
-              {product.subtitle}
+          {(product.modalSubtitle ?? product.subtitle) && (
+            <p className="mb-[24px] font-source-sans-400 text-[14px] leading-[22px] text-[#64748B] md:text-[15px] md:leading-[24px] whitespace-pre-line">
+              {product.modalSubtitle ?? product.subtitle}
             </p>
           )}
 
@@ -397,20 +423,116 @@ function SideBySideModalContent({
           )}
         </div>
 
-        {/* Right — animation/image fills the full column height */}
-        <div className="flex h-full w-full items-center justify-center">
-          {product.lottieAnimation ? (
-            <Lottie
-              animationData={product.lottieAnimation}
-              loop
-              className="h-full w-full"
-              rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
-            />
+        <div className="relative flex h-full w-full items-center justify-center">
+          {(product.modalLottieAnimation ?? product.lottieAnimation) ? (
+            <>
+              <Lottie
+                animationData={product.modalLottieAnimation ?? product.lottieAnimation}
+                loop
+                className="h-full w-full"
+                rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+              />
+              {product.lottieOverlay}
+            </>
           ) : (
             <div
               className="h-full w-full rounded-2xl"
               style={{
                 background: `url(${product.imagePlaceholder}) lightgray 50% / contain no-repeat`,
+              }}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ─────── Stacked vertical variant (used on /direct-connect cards) ─────── */
+/*  Everything is full-width, vertically stacked:                            */
+/*    icon → title → description → 2-column bullet grid → animation/image    */
+/*  No Learn More CTA — these are detail-page modals.                        */
+
+function StackedVerticalModalContent({
+  product,
+  onClose,
+}: {
+  product: BentoModalProduct
+  onClose: () => void
+}) {
+  return (
+    <div
+      className="relative flex w-full flex-1 flex-col overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[72px] pb-[20px] md:px-[40px] md:pt-[88px] md:pb-[40px]"
+      style={{
+        boxShadow:
+          "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
+      }}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close"
+        className="absolute top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E]"
+      >
+        <CloseBtn size={40} />
+      </button>
+
+      <div className="flex w-full flex-col ">
+        {/* Icon (chip) */}
+        {product.icon && (
+          <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[10px] mb-[16px] bg-[#FDFAEE]">
+            {product.icon}
+          </div>
+        )}
+
+        {/* Title */}
+        <h3
+          id={`product-modal-title-${product.id}`}
+          className="font-plus-jakarta-700 text-[22px] font-bold text-[#010C28] md:text-[24px] mb-[16px]"
+        >
+          {product.title}
+        </h3>
+
+        {/* Description */}
+        {(product.modalSubtitle ?? product.subtitle) && (
+          <p className="font-source-sans-400 text-[14px] leading-[22px] text-[#64748B] mb-[20px] md:text-[16px] md:leading-[26px] whitespace-pre-line">
+            {product.modalSubtitle ?? product.subtitle}
+          </p>
+        )}
+
+        {/* Bullets — 2-column grid (single column on mobile) */}
+        {product.modalFeatures.length > 0 && (
+          <ul className="grid grid-cols-1 gap-x-[24px] gap-y-[16px] md:w-fit md:grid-cols-2 md:gap-x-[60px]">
+            {product.modalFeatures.map((feature) => (
+              <li key={feature} className="flex items-start text-gray-700">
+                <span className="mt-0.5 mr-3 flex h-5 w-5 shrink-0 items-center justify-center md:h-6 md:w-6">
+                  <CheckedIcon />
+                </span>
+                <span className="font-source-sans-400 text-[14px] leading-[22px] text-[#45556C] font-medium md:text-[16px] md:leading-[24px]">
+                  {feature}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {/* Animation / image — full width, sits at the bottom of the stack */}
+        <div className="relative mt-[8px] min-h-[200px] w-full overflow-hidden rounded-2xl md:min-h-[350px]">
+          {(product.modalLottieAnimation ?? product.lottieAnimation) ? (
+            <>
+              <Lottie
+                animationData={product.modalLottieAnimation ?? product.lottieAnimation}
+                loop
+                className="h-full w-full"
+                rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+              />
+              {product.lottieOverlay}
+            </>
+          ) : (
+            <div
+              className="h-full w-full"
+              style={{
+                background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
               }}
             />
           )}

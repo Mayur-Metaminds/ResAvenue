@@ -196,9 +196,12 @@ export function UnifiedPlatformIcon1({
   )
 }
 
-export function UnifiedPlatformIcon2() {
+export function UnifiedPlatformIcon2({
+  className,
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"  className={className} {...props}>
       <rect width="48" height="48" rx="12" fill="white" fill-opacity="0.1" />
       <path d="M31 23H17M31 23C32.1038 23 33 23.8962 33 25V31C33 32.1038 32.1038 33 31 33H17C15.8962 33 15 32.1038 15 31V25C15 23.8962 15.8962 23 17 23M31 23V21C31 19.8962 30.1038 19 29 19M17 23V21C17 19.8962 17.8962 19 19 19M19 19V17C19 15.8954 19.8954 15 21 15H27C28.1038 15 29 15.8962 29 17V19M19 19H29" stroke="#ED862E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
