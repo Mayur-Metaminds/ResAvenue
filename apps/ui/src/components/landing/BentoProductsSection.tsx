@@ -89,7 +89,7 @@ const products: Product[] = [
     lottieAnimation: roomReservationAnimation,
     renderBottom: () => (
       <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
-        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] xl:border xl:border-[#F1F5F9] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)] p-2 md:p-4">
+        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px]  bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
           <Lottie
             animationData={roomReservationAnimation}
             loop

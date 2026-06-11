@@ -45,7 +45,7 @@ const solutions: SolutionCard[] = [
     id: "conversion-booking",
     title: "Conversion-First Booking Engine",
     subtitle:
-      "Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless checkout experience.",
+      "Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless check-out experience. Enable guests to book faster with an intuitive, conversion-focused interface that reduces friction and improves completion rates. Offer personalized booking journeys, real-time availability, and responsive experiences that work seamlessly across desktop, tablet, and mobile devices.",
     gridSpan: "col-span-1 lg:col-span-7 min-h-[432px]",
     anchor: "top-left",
     modalFeatures: [
@@ -90,7 +90,7 @@ const solutions: SolutionCard[] = [
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     modalWidth: "w-[950px]",
-    lottieAnimation: memberDiscountAnimation,
+    lottieAnimation: cottageVillaAnimation,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[260px]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-6 lg:right-0 lg:mx-0 lg:h-[280px] lg:w-full lg:items-end lg:justify-center",
     lottieClassName: "scale-100 origin-bottom",
@@ -206,7 +206,7 @@ const solutions: SolutionCard[] = [
     icon: <UnifiedPlatformIcon7 />,
     modalWidth: "w-full",
     showLearnMore: false,
-    lottieAnimation: cottageVillaAnimation,
+    lottieAnimation: memberDiscountAnimation,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-0 lg:max-w-[45%] xl:max-w-[40%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-6 lg:right-0 lg:mx-0 lg:h-[300px] lg:w-[50%] xl:w-[55%] lg:items-end lg:justify-end lg:pr-8",
     lottieClassName: "scale-100 origin-bottom-right",
