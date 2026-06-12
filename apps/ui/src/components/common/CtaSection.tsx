@@ -19,6 +19,8 @@ interface CtaSectionProps {
   secondaryButtonLabel?: string | null
   secondaryButtonHref?: string
   secondaryButtonClassName?: string
+  // Extend/override the buttons wrapper (e.g. keep them on one row on mobile)
+  actionsClassName?: string
   // CSS backgroundImage value — URL or gradient. Defaults to the standard dark bg image.
   backgroundImage?: string
   // Set false to remove the dark overlay (useful when using a gradient background)
@@ -39,6 +41,7 @@ export function CtaSection({
   secondaryButtonLabel = "Explore Solutions",
   secondaryButtonHref,
   secondaryButtonClassName,
+  actionsClassName,
   backgroundImage = "url('/images/demo-section-bg-img.png')",
   showOverlay = true,
   className,
@@ -99,7 +102,12 @@ export function CtaSection({
         </p>
 
         {(showPrimary || showSecondary) && (
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div
+            className={cn(
+              "flex flex-col items-center justify-center gap-4 sm:flex-row",
+              actionsClassName
+            )}
+          >
             {showPrimary && (
               <Link
                 href={primaryButtonHref ?? "/contact-us"}

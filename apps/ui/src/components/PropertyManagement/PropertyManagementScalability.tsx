@@ -29,9 +29,10 @@ const PropertyManagementScalability = () => {
     >
       <SectionHeader
         eyebrow="CLOUD-NATIVE INFRASTRUCTURE"
+        eyebrowClassName="lg:text-[14px]"
         eyebrowColor="#ED862E"
         className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
-        descriptionClassName="font-source-sans-400 text-center text-[16px] leading-[31.5px] text-[#64748B]"
+        descriptionClassName="font-source-sans-400 text-center text-[18px] leading-[31.5px] text-[#64748B]"
         title={
           <SectionHeader.Highlight
             style={{
@@ -78,7 +79,7 @@ const PropertyManagementScalability = () => {
           renderItem={({ name, Component }) => (
             <div
               aria-label={name}
-              className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-6 [&_svg]:w-auto md:[&_svg]:h-auto md:[&_svg]:w-auto"
+              className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-17.5 [&_svg]:w-37.5 md:[&_svg]:h-20 md:[&_svg]:w-42.5"
             >
               <Component />
             </div>

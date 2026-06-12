@@ -31,37 +31,61 @@ const bullets = [
   {
     id: "reservation",
     icon: <CalendarCog className="h-5 w-5 lg:h-6 lg:w-6" />,
-    content: (
-      <p className="typo-body1 text-white xl:text-[24px]">
+    title: (
+      <>
         Real-time reservation <span className="text-[#ED862E]">updates</span>
-      </p>
+      </>
     ),
+    description:
+      "Stay on top of every booking with instant updates synced across all your channels and devices.",
   },
   {
     id: "checkin",
     icon: <ArrowRightLeft className="h-5 w-5 lg:h-6 lg:w-6" />,
-    content: (
-      <div>
-        <h3 className="font-plus-jakarta-700 text-[20px] leading-7 text-white xl:text-[24px]">
-          Quick Check-in<span className="text-[#ED862E]">/Check-out</span>
-        </h3>
-        <p className="typo-body1 mt-2 text-[#FFFFFF80]">
-          Manage rates, inventory, and bookings across OTAs, GDS, and direct channels in real
-          time.
-        </p>
-      </div>
+    title: (
+      <>
+        Quick Check-in<span className="text-[#ED862E]">/Check-out</span>
+      </>
     ),
+    description:
+      "Manage rates, inventory, and bookings across OTAs, GDS, and direct channels in real time.",
   },
   {
     id: "assignment",
     icon: <ClipboardList className="h-5 w-5 lg:h-6 lg:w-6" />,
-    content: (
-      <p className="typo-body1 text-white xl:text-[24px]">
+    title: (
+      <>
         Automated room <span className="text-[#ED862E]">assignment</span>
-      </p>
+      </>
     ),
+    description:
+      "Let the system intelligently assign rooms based on availability, guest preferences, and housekeeping status.",
   },
 ]
+
+// Shared header — rendered above the panel on mobile (normal flow, scrolls out
+// before the sticky panel pins) and inside the right column on desktop.
+function FrontDeskHeader({ className }: { className?: string }) {
+  return (
+    <SectionHeader
+      eyebrow="SMARTER FRONT DESK. FASTER CHECK-INS. HAPPIER GUESTS."
+      eyebrowColor="#FFFFFF"
+      className={cn("items-start text-left", className)}
+      descriptionClassName="typo-body1 text-left text-[#FFFFFF80]"
+      title="Front Desk Operations ."
+      titleHighlight="Operations ."
+      titleColor="#FFFFFF"
+      highlightGradient="linear-gradient(90deg, #ED862E 0%, #ED862E 100%)"
+      description={
+        <>
+          Empower your front desk team with everything they need in one place.
+          <br />
+          Manage reservations, walk-ins, and guest interactions with speed and precision.
+        </>
+      }
+    />
+  )
+}
 
 const PropertyManagementFrontDesk = () => {
   const sectionRef = useRef<HTMLElement>(null)
@@ -96,31 +120,16 @@ const PropertyManagementFrontDesk = () => {
     <section
       ref={sectionRef}
       data-nav-theme="dark"
-      className="relative w-full bg-[#010C28]"
-      style={{ height: sectionHeight }}
+      className="relative h-[calc(var(--fd-section-h)_+_60vh)] w-full bg-[#010C28] lg:h-[var(--fd-section-h)]"
+      style={{ "--fd-section-h": sectionHeight } as React.CSSProperties}
     >
-      {/* Header — normal flow, scrolls away before freeze kicks in */}
-      <div className="px-4 pt-15 sm:px-20 lg:pt-25">
-        <SectionHeader
-          eyebrow="SMARTER FRONT DESK. FASTER CHECK-INS. HAPPIER GUESTS."
-          eyebrowColor="#FFFFFF"
-          className="items-start text-left"
-          descriptionClassName="typo-body1 text-left text-[#FFFFFF80]"
-          title="Front Desk Operations ."
-          titleHighlight="Operations ."
-          titleColor="#FFFFFF"
-          highlightGradient="linear-gradient(90deg, #ED862E 0%, #ED862E 100%)"
-          description={
-            <>
-              Empower your front desk team with everything they need in one place.
-              <br />
-              Manage reservations, walk-ins, and guest interactions with speed and precision.
-            </>
-          }
-        />
+      {/* Mobile-only header — normal flow above the panel, so the sticky panel
+          only pins once this description has scrolled out the top of the viewport. */}
+      <div className="px-4 pt-15 sm:px-20 lg:hidden">
+        <FrontDeskHeader />
       </div>
 
-      {/* Sticky panel — pins once description has scrolled past */}
+      {/* Sticky panel — bullets (and the header on desktop) pinned on the right */}
       <div className="sticky top-20 h-[calc(100dvh-5rem)] w-full overflow-hidden">
         <div className="flex h-full flex-col gap-4 px-4 py-6 sm:px-20 lg:flex-row lg:items-center lg:gap-10 lg:py-15">
 
@@ -140,10 +149,12 @@ const PropertyManagementFrontDesk = () => {
             </AnimatePresence>
           </div>
 
-          {/* Right — bullets only */}
+          {/* Right — header + bullets */}
           <div className="flex min-w-0 flex-col justify-center text-left lg:flex-1">
+            {/* Desktop-only header — glued above the bullets inside the panel */}
+            <FrontDeskHeader className="mt-20 mb-8 hidden lg:mb-20 lg:flex" />
             {/* Bullets */}
-            <div className="flex flex-col gap-6 lg:gap-8">
+            <div className="flex flex-col gap-6 lg:gap-8 lg:pb-20">
               {bullets.map((bullet, i) => {
                 const isActive = i === activeIndex
                 return (
@@ -157,7 +168,29 @@ const PropertyManagementFrontDesk = () => {
                     )}
                   >
                     <IconBadge active={isActive}>{bullet.icon}</IconBadge>
-                    {bullet.content}
+                    <div>
+                      <h3
+                        className={cn(
+                          "font-plus-jakarta-700 leading-7 text-white transition-all duration-500",
+                          isActive ? "text-[24px]" : "text-[20px]"
+                        )}
+                      >
+                        {bullet.title}
+                      </h3>
+                      <AnimatePresence initial={false}>
+                        {isActive && (
+                          <motion.p
+                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                            animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                            transition={{ duration: 0.35, ease: "easeOut" }}
+                            className="typo-body1 max-w-108 overflow-hidden text-[#FFFFFF80]"
+                          >
+                            {bullet.description}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </button>
                 )
               })}

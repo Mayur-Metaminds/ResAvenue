@@ -18,8 +18,9 @@ function PropertyManagementHero() {
           {/* Left Column: Content */}
           <div className="my-auto flex w-full flex-col justify-center lg:w-[50%] lg:py-20 xl:w-[45%]">
             <HeroContent
+              className="lg:w-[499px]"
               eyebrow="ONE PLATFORM. TOTAL CONTROL. BETTER REVENUE."
-              eyebrowColor="#ED862E"
+              eyebrowColor="#fff"
               title={
                 <HeroTitle
                   style={
@@ -35,7 +36,7 @@ function PropertyManagementHero() {
                 </HeroTitle>
               }
               description={
-                <span className="typo-body1 text-white/55">
+                <span className="typo-body1 text-white/65 lg:w-129">
                   Your front desk, bookings, payments, housekeeping, and revenue—all
                   unified into one intelligent system.
                   <br />
@@ -47,7 +48,7 @@ function PropertyManagementHero() {
                 <button
                   key="demo"
                   type="button"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#ED862E] px-8 py-3.5 font-medium text-white shadow-[0_8px_24px_rgba(237,134,46,0.45)] transition-transform hover:scale-105 hover:bg-[#d97726]"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#ED862E] px-8 py-3.5 font-medium text-white shadow-[0_8px_24px_rgba(237,134,46,0.45)] transition-transform hover:scale-105 hover:bg-[#d97726] lg:text-[15px]"
                 >
                   Request a Demo
                   <ArrowRight className="h-4 w-4" />
@@ -55,7 +56,7 @@ function PropertyManagementHero() {
                 <button
                   key="sales"
                   type="button"
-                  className="rounded-full border border-white/10 bg-[#1C2C47]/60 px-8 py-3.5 font-medium text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-[#1C2C47]/80"
+                  className="rounded-full border border-white/10 bg-[#1C2C47]/60 px-8 py-3.5 font-medium text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-[#1C2C47]/80 lg:text-[15px]"
                 >
                   <span className="lg:hidden">Explore Products</span>
                   <span className="hidden lg:inline">Talk to Sales</span>

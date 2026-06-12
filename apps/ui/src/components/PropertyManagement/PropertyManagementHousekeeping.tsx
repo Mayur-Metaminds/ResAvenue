@@ -1,4 +1,8 @@
+"use client"
+
 import type React from "react"
+
+import { motion } from "framer-motion"
 
 import { SectionHeader } from "@/components/landing/SectionHeader"
 
@@ -20,13 +24,13 @@ type HousekeepingCard = {
 const housekeepingCards: HousekeepingCard[] = [
   {
     id: "live-room-status",
-    icon: <InventoryControl />,
+    icon: <ChannelUpdates />,
     title: "Live Room Status",
     description: "Know exactly which rooms are ready, dirty, or in progress — instantly.",
   },
   {
     id: "real-time-tracking",
-    icon: <ChannelUpdates />,
+    icon: <InventoryControl />,
     title: "Real-Time Tracking",
     description: "Monitor cleaning progress as it happens and stay in complete control.",
   },
@@ -49,7 +53,7 @@ const PropertyManagementHousekeeping = () => {
     <section
       data-nav-theme="dark"
       className="w-full bg-cover bg-center bg-no-repeat px-4 py-[60px] md:px-8 lg:py-[100px]"
-      style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
+      style={{ backgroundImage: "url('/images/Property-Management/gradiantbg.png')" }}
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
         {/* Product image (dummy placeholder — not given yet). Below content on mobile, left on desktop. */}
@@ -89,12 +93,16 @@ const PropertyManagementHousekeeping = () => {
           />
 
           <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            {housekeepingCards.map((card) => (
-              <div
+            {housekeepingCards.map((card, i) => (
+              <motion.div
                 key={card.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
                 className="rounded-2xl border border-[#ED862E80] bg-white/5 p-5"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF3ED] p-3">{card.icon}</div>
+                <div className="h-12 w-12">{card.icon}</div>
 
                 <h4 className="mt-4 typo-body1 text-white lg:text-[14px]! lg:font-medium! lg:leading-[16.8px]! lg:tracking-[-0.25px]! lg:[font-family:'Public_Sans',sans-serif]!">
                   {card.title}
@@ -102,7 +110,7 @@ const PropertyManagementHousekeeping = () => {
                 <p className="mt-2 font-source-sans-400 text-[14px] leading-[22.4px] text-white/50 lg:text-[12px] lg:font-light! lg:leading-[15.6px] lg:[font-family:'Public_Sans',sans-serif]!">
                   {card.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
