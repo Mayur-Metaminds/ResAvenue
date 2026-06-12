@@ -1,6 +1,7 @@
 "use client"
 
 import { Marquee } from "@/components/common/Marquee"
+import { SectionHeader } from "@/components/landing/SectionHeader"
 
 const testimonials = [
   {
@@ -42,27 +43,31 @@ const testimonials = [
 
 export function HotelWebsiteBuilderTestimonialsSection() {
   return (
-    <section className="w-full bg-white py-16 md:py-24 overflow-hidden">
+    <section className="w-full bg-white py-[50px] md:py-[85px] overflow-hidden">
       <div className="container mx-auto max-w-[1200px] px-4 md:px-8">
-        <div className="flex flex-col items-center justify-center text-center">
-          <div className="flex items-center justify-center gap-2 mb-6 md:mb-10">
-            <div className="h-2 w-2 rounded-full bg-[#ED862E]" />
-            <span className="font-plus-jakarta-500 text-[14px] tracking-[1.4px] text-[#ED862E] uppercase">
-              Trusted by Modern Hotels
-            </span>
-          </div>
-          <h2 className="font-plus-jakarta-500 text-[40px] leading-[1.2] text-[#0F172A] md:text-[48px]">
-            Loved by <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(91deg, #010E38 9.57%, #1A2F6D 37.74%, #ED862E 82.58%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Hospitality Teams</span>
-            <br />
-            Around the World
-          </h2>
-          <p className="mt-6 max-w-3xl font-plus-jakarta-400 text-[16px] text-[#64748B] md:text-[18px]">
-            Empowering hotels around the world to deliver seamless digital experiences, smarter operations, and guest journeys designed to convert.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Trusted by Modern Hotels"
+          eyebrowClassName="mb-[16px] md:mb-[32px] typo-body2"
+          title={
+            <SectionHeader.Highlight
+              style={{
+                WebkitBoxDecorationBreak: "clone",
+                boxDecorationBreak: "clone",
+              }}
+            >
+              Loved by Hospitality Teams
+              <br />
+              Around the World
+            </SectionHeader.Highlight>
+          }
+          titleClassName="mb-[24px] md:mb-[12px]"
+          highlightGradient="linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 57.71%, #ED862E 68.44%)"
+          description="Empowering hotels around the world to deliver seamless digital experiences, smarter operations, and guest journeys designed to convert."
+          descriptionClassName="typo-body1 text-[#464554]"
+        />
       </div>
 
-      <div className="mt-12 w-full">
+      <div className="mt-[81px] md:mt-[51px] w-full">
         <Marquee
           className="w-full py-4"
           items={testimonials}
@@ -70,11 +75,12 @@ export function HotelWebsiteBuilderTestimonialsSection() {
           durationSeconds={45}
           pauseOnHover={true}
           edgeFade
-          gapPx={24}
+          mdGapPx={34}
+          gapPx={8}
           backgroundColor="transparent"
           renderItem={(testimonial) => (
             <div className="flex h-full min-h-[220px] flex-col justify-between w-[320px] md:w-[400px] rounded-[18px] border border-[#ED862E]/20 bg-white p-6 md:p-8 transition-shadow hover:shadow-lg">
-              <p className="text-[#0F172A] font-plus-jakarta-400 text-[15px] md:text-[16px] leading-[1.6]">
+              <p className="text-[#010E38] text-[24px] typo-body1">
                 {testimonial.quote}
               </p>
               <div className="mt-8 flex items-center gap-4">
@@ -82,8 +88,8 @@ export function HotelWebsiteBuilderTestimonialsSection() {
                   {testimonial.initials}
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[#ED862E] font-plus-jakarta-600 text-[14px] md:text-[15px] leading-tight">{testimonial.name}</span>
-                  <span className="text-[#64748B] font-plus-jakarta-400 text-[12px] md:text-[13px] mt-1 leading-tight">{testimonial.role}</span>
+                  <span className="text-[#ED862E] typo-body5 font-bold">{testimonial.name}</span>
+                  <span className="text-[#010C28] typo-body3 font-normal">{testimonial.role}</span>
                 </div>
               </div>
             </div>

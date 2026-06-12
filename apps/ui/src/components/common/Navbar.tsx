@@ -18,7 +18,7 @@ import {
 
 const navLinks = [
   {
-    name: "Products",
+    name: "Services",
     href: "#",
     subItems: [
       { name: "Direct Connect", href: "/direct-connect" },
@@ -32,17 +32,27 @@ const navLinks = [
       { name: "Mobile App Ecosystem", href: "#" },
     ],
   },
-  { name: "Features", href: "#" },
-  { name: "Benefits", href: "#" },
+  { name: "About Us", href: "#" },
   { name: "Pricing", href: "#" },
+  {
+    name: "Support Center",
+    href: "#",
+    subItems: [
+      { name: "Help Center", href: "#" },
+      { name: "Contact Support", href: "/contact-us" },
+      { name: "Documentation", href: "#" },
+      { name: "FAQs", href: "#" },
+    ],
+  },
   { name: "Resources", href: "#" },
+  { name: "Partners & resellers", href: "#" },
 ]
 
 type NavTheme = "light" | "dark"
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [expandedLink, setExpandedLink] = useState<string | null>("Products")
+  const [expandedLink, setExpandedLink] = useState<string | null>("Services")
   // Default to dark — hero is the first section, and we want correct colors before JS hydrates.
   const [theme, setTheme] = useState<NavTheme>("dark")
   const [scrolled, setScrolled] = useState(false)

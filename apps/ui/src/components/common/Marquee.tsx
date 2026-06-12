@@ -20,6 +20,8 @@ export type MarqueeProps<T> = {
   edgeFade?: boolean
   /** Gap (in px) between items. Also used as trailing padding so the loop joins seamlessly. */
   gapPx?: number
+  /** Optional gap (in px) used at the `md` breakpoint (>=768px) and above. Falls back to `gapPx` when omitted. */
+  mdGapPx?: number
   /**
    * How many times to render the item list back-to-back in the track. Must be
    * even so `translateX(-50%)` lands exactly on a copy boundary. Increase if
@@ -50,6 +52,7 @@ export function Marquee<T>({
   pauseOnHover = true,
   edgeFade = true,
   gapPx = 24,
+  mdGapPx,
   repetitions = 6,
   backgroundColor,
   className,
@@ -60,6 +63,7 @@ export function Marquee<T>({
   const repeats = Math.max(2, repetitions % 2 === 0 ? repetitions : repetitions + 1)
   const safeId = useId().replace(/:/g, "")
   const animationName = `marquee-${safeId}`
+  const trackClass = `marquee-track-${safeId}`
 
   return (
     <div
@@ -80,12 +84,13 @@ export function Marquee<T>({
     >
       <div
         className={cn(
+          trackClass,
           "flex w-max",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
         style={{
-          gap: `${gapPx}px`,
-          paddingRight: `${gapPx}px`,
+          gap: "var(--marquee-gap)",
+          paddingRight: "var(--marquee-gap)",
           // Set individual animation-* properties (not the `animation`
           // shorthand) so the `hover:[animation-play-state:paused]` class can
           // actually override the play-state without the shorthand re-asserting
@@ -117,6 +122,10 @@ export function Marquee<T>({
           from { transform: translateX(0); }
           to { transform: translateX(-50%); }
         }
+        .${trackClass} { --marquee-gap: ${gapPx}px; }
+        ${mdGapPx != null
+          ? `@media (min-width: 768px) { .${trackClass} { --marquee-gap: ${mdGapPx}px; } }`
+          : ""}
       `}</style>
     </div>
   )

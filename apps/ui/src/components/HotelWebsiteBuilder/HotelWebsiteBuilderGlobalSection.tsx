@@ -75,30 +75,30 @@ export function HotelWebsiteBuilderGlobalSection() {
             {/* List of features */}
             <div className="flex flex-col gap-6 mt-8 lg:mt-10">
               <motion.div {...slideInFromLeft(0)}>
-                <CheckedRow 
+                <CheckedRow
                   text={
                     <>
-                      <span className="font-semibold text-white">Global Guests</span> - Welcome guests from around the world
+                      <span className="font-semibold text-white">Global Guests</span>{" - Welcome guests from around the world"}
                     </>
-                  } 
+                  }
                 />
               </motion.div>
               <motion.div {...slideInFromLeft(1)}>
-                <CheckedRow 
+                <CheckedRow
                   text={
                     <>
-                      <span className="font-semibold text-white">Multi-Currency</span> - Show prices in your guest&apos;s currency
+                      <span className="font-semibold text-white">Multi-Currency</span>{" - Show prices in your guest’s currency"}
                     </>
-                  } 
+                  }
                 />
               </motion.div>
               <motion.div {...slideInFromLeft(2)}>
-                <CheckedRow 
+                <CheckedRow
                   text={
                     <>
-                      <span className="font-semibold text-white">Multi-Language</span> - Speak your guest&apos;s language
+                      <span className="font-semibold text-white">Multi-Language</span>{" - Speak your guest’s language"}
                     </>
-                  } 
+                  }
                 />
               </motion.div>
             </div>

@@ -124,7 +124,7 @@
           {description != null && (
             <p
               className={cn(
-                "typo-body1 max-w-2xl text-[#64748B]",
+                "typo-body1 text-[#64748B]",
                 descriptionClassName
               )}
             >

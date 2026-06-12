@@ -159,6 +159,7 @@ export function WhoWeServeSection() {
           </>
         }
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+        descriptionClassName="max-w-2xl"
       />
 
       {/* ────────── Desktop: orbital map (logo + DNA background + absolute-positioned segment nodes) ────────── */}
