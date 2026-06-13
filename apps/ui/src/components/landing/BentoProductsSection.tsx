@@ -31,7 +31,8 @@ const products: Product[] = [
     id: "direct-connect",
     eyebrow: "BOOKING ENGINE AND CRS",
     title: "Direct Connect",
-    subtitle: "Own Your Guests, Own Your Revenue.",
+    subtitle: "Own Your Guests. Own Your Revenue. \nTurn Every Visitor Into a Direct Booking",
+    modalSubtitle: "ResAvenue Direct Connect helps hospitality businesses convert website traffic into commission-free bookings through a seamless, mobile-first booking experience. Designed to reduce booking friction and increase conversions, it empowers properties to drive more revenue from their own website while delivering a superior guest experience.",
     gridSpan: "col-span-1 md:col-span-7 lg:col-span-7",
     anchor: "top-left",
     modalFeatures: [
@@ -62,7 +63,8 @@ const products: Product[] = [
     id: "channel-connect",
     eyebrow: "CHANNEL MANAGER",
     title: "Channel Connect",
-    subtitle: "Manage all your distribution channels from one place.",
+    subtitle: "Manage Every Channel From One Place",
+    modalSubtitle: "Keep rates, inventory, and availability perfectly synchronized across OTAs and distribution channels with ResAvenue Channel Connect. Automate updates in real time, eliminate manual effort, and maximize your online visibility while maintaining complete control over your distribution strategy.",
     isDark: true,
     gridSpan: "col-span-1 md:col-span-5 lg:col-span-5",
     anchor: "top-right",
@@ -92,7 +94,8 @@ const products: Product[] = [
     eyebrow: "OPERATIONS",
     title: "Property Management",
     subtitle:
-      "Your hotel's central nervous system. Everything your front desk and operations team needs.",
+      "Run Your Hotel Operations Seamlessly. Everything your front desk and operations team need — in one system/Simplify Operations. Elevate Guest Experiences.",
+    modalSubtitle: "ResAvenue PMS brings reservations, front desk operations, housekeeping, guest management, and billing into one centralized platform. Streamline daily operations, improve team productivity, and deliver exceptional guest experiences through a system built specifically for modern hospitality businesses.",
     gridSpan: "col-span-1 md:col-span-6 lg:col-span-4",
     anchor: "top-left",
     modalFeatures: [
@@ -122,7 +125,8 @@ const products: Product[] = [
     eyebrow: "INTELLIGENCE",
     title: "Revenue Management",
     subtitle:
-      "Maximize revenue with intelligent pricing. Let data and AI drive smarter pricing decisions.",
+      "Maximize Revenue with Intelligent Pricing Let data and AI drive smarter pricing decisions.",
+    modalSubtitle: "Make data-driven pricing decisions with powerful revenue management tools designed to maximize occupancy and revenue. Analyze demand patterns, monitor performance, and optimize rates dynamically to stay competitive and capture every revenue opportunity.",
     gridSpan: "col-span-1 md:col-span-6 lg:col-span-4",
     anchor: "top-left",
     modalFeatures: [
@@ -151,7 +155,8 @@ const products: Product[] = [
     eyebrow: "DISTRIBUTION",
     title: "Distribution Network",
     subtitle:
-      "Be everywhere your guests are searching. Expand your reach across global booking platforms.",
+      "Be Everywhere Your Guests Are Searching. Expand Your Reach Across the Global Travel Ecosystem",
+    modalSubtitle: "Connect your property to leading GDS, IDS, OTA, and metasearch platforms through ResAvenue's powerful distribution network. Increase visibility, access corporate travel demand, and ensure your inventory is available wherever travelers search and book.",
     gridSpan: "col-span-1 md:col-span-12 lg:col-span-4",
     anchor: "top-right",
     modalFeatures: [
@@ -193,7 +198,8 @@ const products: Product[] = [
     eyebrow: "EVENTS",
     title: "Event Management & Ticketing",
     subtitle:
-      "Sell, manage, and track events effortlessly. A complete solution for events and conferences.",
+      "A complete solution for events, conferences, and experiences. Create/Manage & Monetize Every Event.",
+    modalSubtitle: "ResAvenue Event Management & Ticketing helps venues and hospitality businesses seamlessly create, market, sell, and manage events of any scale. From online registrations and ticket sales to attendee check-ins and event analytics, everything is managed through one powerful platform designed to maximize attendance and revenue.",
     isDark: true,
     gridSpan: "col-span-1 md:col-span-6 lg:col-span-5",
     anchor: "bottom-left",
@@ -211,7 +217,8 @@ const products: Product[] = [
     eyebrow: "BRAND WEBSITE",
     title: "Hotel Website Builder",
     subtitle:
-      "Transform your website into your best booking agent. Beautiful, fast, and built to drive bookings.",
+      "Transform Your Website into Your Best Booking Agent.",
+    modalSubtitle: "Create beautiful, high-performing websites that showcase your property and drive direct bookings. With responsive templates, intuitive content management, SEO tools, and seamless booking engine integration, ResAvenue Website Builder helps transform your website into a powerful revenue-generating channel.",
     gridSpan: "col-span-1 md:col-span-6 lg:col-span-7",
     anchor: "bottom-right",
     modalFeatures: [

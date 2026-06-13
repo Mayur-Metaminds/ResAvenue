@@ -23,7 +23,7 @@ function ContactUsWrapper() {
           renderItem={({ name, Component }) => (
             <div
               aria-label={name}
-              className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-10 [&_svg]:w-auto md:[&_svg]:h-auto md:[&_svg]:w-auto"
+              className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-17.5 [&_svg]:w-37.5 md:[&_svg]:h-20 md:[&_svg]:w-42.5"
             >
               <Component />
             </div>

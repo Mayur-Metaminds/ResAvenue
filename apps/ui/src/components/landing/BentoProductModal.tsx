@@ -269,10 +269,8 @@ function ModalContent({
 
       {/* Two-column top section (stacks on mobile via grid-cols-1) */}
       <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-[1fr_1.3fr]">
-        {/* Left — icon + eyebrow + title + subtitle + CTA */}
+        {/* Left — icon + eyebrow + title + Learn More */}
         <div className="flex h-full flex-col items-start">
-          {/* Icon — same chip styling as the side-by-side variant so card-level
-              icons render consistently across both modal layouts. */}
           {product.icon && (
             <div className="mb-[16px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
               {product.icon}
@@ -287,22 +285,16 @@ function ModalContent({
 
           <h3
             id={`product-modal-title-${product.id}`}
-            className="font-plus-jakarta-700 mb-[2px] text-[24px] font-bold text-[#010C28]"
+            className="font-plus-jakarta-700 mb-[16px] text-[24px] font-bold text-[#010C28]"
           >
             {product.title}
           </h3>
-
-          {(product.modalSubtitle ?? product.subtitle) && (
-            <p className="mb-[40px] font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
-              {product.modalSubtitle ?? product.subtitle}
-            </p>
-          )}
 
           {product.showLearnMore !== false && (
             <Button
               variant="primary"
               size="default"
-              className=" w-fit gap-2 rounded-[16px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
+              className="w-fit gap-2 rounded-[16px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
               icon={<ArrowRight className="h-4 w-4" />}
               onClick={() => {
                 onClose()
@@ -314,8 +306,14 @@ function ModalContent({
           )}
         </div>
 
-        {/* Right — feature checklist */}
-        <div className="flex flex-col justify-center">
+        {/* Right — description + feature checklist */}
+        <div className="flex flex-col justify-center gap-[20px]">
+          {(product.modalSubtitle ?? product.subtitle) && (
+            <p className="font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
+              {product.modalSubtitle ?? product.subtitle}
+            </p>
+          )}
+
           <ul className="space-y-3 md:space-y-[12px]">
             {product.modalFeatures.map((feature) => (
               <li key={feature} className="flex items-start text-gray-700">
