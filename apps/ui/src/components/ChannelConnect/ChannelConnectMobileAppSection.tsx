@@ -53,14 +53,14 @@ export function ChannelConnectMobileAppSection() {
   })
 
   return (
-    <section data-nav-theme="light" className="w-full bg-white pt-[80px]">
+    <section data-nav-theme="light" className="w-full bg-white ">
       <div
         className="flex flex-col gap-[32px] rounded-[45px] bg-white"
       >
         <div ref={block1Ref} className="relative h-[300vh]">
           <div className="sticky top-20 flex h-[calc(100dvh-5rem)] w-full items-start lg:items-center">
             <div className="w-full">
-              <div className="relative p-[12px] md:p-16 lg:px-24 lg:pt-24 lg:pb-16">
+              <div className="relative p-[12px] md:px-16 lg:px-24 lg:pb-16">
                 <div className="relative z-10">
                   <FeatureShowcase
                     imagePosition="left"

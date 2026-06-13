@@ -46,7 +46,7 @@ const solutions: SolutionCard[] = [
     title: "Conversion-First Booking Engine",
     subtitle:
       "Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless check-out experience. \n\n Enable guests to book faster with an intuitive, conversion-focused interface that reduces friction and improves completion rates. Offer personalized booking journeys, real-time availability, and responsive experiences that work seamlessly across desktop, tablet, and mobile devices.",
-    gridSpan: "col-span-1 lg:col-span-7 min-h-[432px]",
+    gridSpan: "col-span-1 lg:col-span-7 h-[432px]",
     anchor: "top-left",
     modalFeatures: [
       "Mobile-friendly booking engine",
@@ -63,6 +63,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon1 className="text-[#ED862E]" />,
     modalWidth: "w-[950px]",
+    modalHeight: "h-[740px]",
     showLearnMore: false,
     modalLayout: "side-by-side",
     lottieAnimation: finalMobileScreenAnimation,
@@ -77,10 +78,10 @@ const solutions: SolutionCard[] = [
     subtitle:
       "Create smart hotel promotions, seasonal discounts, last-minute deals, and exclusive guest offers. Easily manage special rates, and promo codes to attract more guests and increase revenue. \n\n Drive urgency and increase bookings with limited-time offers, bundled packages, and personalized promotions tailored to different guest segments. Easily manage campaigns that help improve occupancy and maximize revenue opportunities.",
     isDark: true,
-    icon: <UnifiedPlatformIcon2 className="text-[#ED862E]"/>,
+    icon: <UnifiedPlatformIcon2 className="text-[#ED862E]" />,
     showLearnMore: false,
     modalLayout: "stacked-vertical",
-    gridSpan: "col-span-1 lg:col-span-5 min-h-[432px]",
+    gridSpan: "col-span-1 lg:col-span-5 h-[432px]",
     anchor: "top-right",
     modalFeatures: [
       "Smart promotions",
@@ -90,10 +91,11 @@ const solutions: SolutionCard[] = [
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     modalWidth: "w-[950px]",
+    modalHeight: "h-[740px]",
     lottieAnimation: cottageVillaAnimation,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[260px]",
-    animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-6 lg:right-0 lg:mx-0 lg:h-[280px] lg:w-full lg:items-end lg:justify-center",
-    lottieClassName: "scale-100 origin-bottom",
+    animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-12 lg:right-0 lg:mx-0 lg:h-[280px] lg:w-full lg:items-end lg:justify-center",
+    lottieClassName: "scale-100 origin-bottom translate-y-4 lg:translate-y-8",
     lottieRendererSettings: { preserveAspectRatio: "xMidYMax meet" },
   },
   {
@@ -102,7 +104,7 @@ const solutions: SolutionCard[] = [
     title: "Google Hotel Ads",
     subtitle:
       "Display your rates directly and maximize direct bookings through Google Search and Google Maps.",
-    modalSubtitle:"Increase visibility where travellers search most by displaying your direct website rates on Google Search and Google Maps. Capture high-intent travellers and encourage guests to book directly through your official websiteReduce dependency on OTAs while increasing direct revenue opportunities through metasearch visibility.Display your official website pricing alongside OTA listings and attract guests looking for the best direct booking experience. Improve click-through rates and drive commission-free bookings directly from Google’s travel ecosystem.",
+    modalSubtitle: "Increase visibility where travellers search most by displaying your direct website rates on Google Search and Google Maps. Capture high-intent travellers and encourage guests to book directly through your official websiteReduce dependency on OTAs while increasing direct revenue opportunities through metasearch visibility.Display your official website pricing alongside OTA listings and attract guests looking for the best direct booking experience. Improve click-through rates and drive commission-free bookings directly from Google’s travel ecosystem.",
     isDark: true,
     gridSpan: "col-span-1 lg:col-span-6 min-h-[250px]",
     anchor: "top-left",
@@ -114,6 +116,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon3 />,
     modalWidth: "w-[950px]",
+    modalHeight: "h-[740px]",
     showLearnMore: false,
     lottieAnimation: ghaReferenceAnimation,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[60%] xl:max-w-[45%]",
@@ -127,7 +130,7 @@ const solutions: SolutionCard[] = [
     title: "Intelligent Analytics",
     subtitle:
       "Keep track of your online bookings with advanced reports, statistics, and advanced tracking via one built-in dashboard.",
-      modalSubtitle:"Gain complete visibility into your booking performance, revenue trends, guest behaviour, and operational insights through one intelligent analytics dashboard.Make smarter business decisions with real-time reports and actionable data that help optimize revenue and improve overall performance. Monitor booking sources, conversion trends, promotional performance, and operational KPIs through visually rich reports and analytics tools. Turn data into actionable insights that help improve pricing strategies and business growth.",
+    modalSubtitle: "Gain complete visibility into your booking performance, revenue trends, guest behaviour, and operational insights through one intelligent analytics dashboard.Make smarter business decisions with real-time reports and actionable data that help optimize revenue and improve overall performance. Monitor booking sources, conversion trends, promotional performance, and operational KPIs through visually rich reports and analytics tools. Turn data into actionable insights that help improve pricing strategies and business growth.",
     gridSpan: "col-span-1 lg:col-span-6 min-h-[250px]",
     anchor: "top-right",
     modalFeatures: [
@@ -138,6 +141,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon4 />,
     modalWidth: "w-[950px]",
+    modalHeight: "h-[740px]",
     showLearnMore: false,
     lottieAnimation: intelligentAnalyticsAnimation,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[55%]",
@@ -149,7 +153,7 @@ const solutions: SolutionCard[] = [
     title: "Unlock New Revenue Streams",
     subtitle:
       "Designed to drive incremental revenue, it enables guests to book services as standalone offerings or alongside their stay directly through your website - enhancing both profitability and guest experience.",
-      modalSubtitle:"Go beyond room bookings by turning every guest interaction into an additional revenue opportunity. ResAvenue enables properties to sell experiences, activities, and value-added services directly through their website — bundled either with stays or as standalone offerings.Enhance guest satisfaction while increasing ancillary revenue through curated experiences and personalized upsells. Promote spa sessions, airport transfers, dining experiences, day packages, activities, wellness services, and more directly within the booking flow. Create dynamic combinations that encourage guests to spend more before arrival while simplifying service discovery and bookings.",
+    modalSubtitle: "Go beyond room bookings by turning every guest interaction into an additional revenue opportunity. ResAvenue enables properties to sell experiences, activities, and value-added services directly through their website — bundled either with stays or as standalone offerings.Enhance guest satisfaction while increasing ancillary revenue through curated experiences and personalized upsells. Promote spa sessions, airport transfers, dining experiences, day packages, activities, wellness services, and more directly within the booking flow. Create dynamic combinations that encourage guests to spend more before arrival while simplifying service discovery and bookings.",
     gridSpan: "col-span-1 lg:col-span-5 min-h-[432px]",
     anchor: "bottom-left",
     modalFeatures: [
@@ -160,6 +164,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon5 />,
     modalWidth: "w-[950px]",
+    modalHeight: "h-[740px]",
     showLearnMore: false,
     lottieAnimation: enrichmentAnimation,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[280px]",
@@ -188,8 +193,9 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon6 />,
     modalWidth: "w-[950px]",
+    modalHeight: "h-[740px]",
     showLearnMore: false,
-    modalLayout:"side-by-side",
+    modalLayout: "side-by-side",
     lottieAnimation: paymentCardAnimation,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-0 lg:max-w-[50%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:inset-y-0 lg:right-8 lg:mx-0 lg:h-full lg:w-[40%] lg:items-center lg:justify-end",
@@ -202,7 +208,7 @@ const solutions: SolutionCard[] = [
     title: "Agents / Member Management",
     subtitle:
       "Reward your direct bookers with exclusive member-only rates designed to drive loyalty and repeat stays. Keep guests engaged with personalized offers, promotions, and updates while optimizing your pricing strategy to increase direct bookings and long-term customer value. Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
-      modalSubtitle:"Build stronger guest relationships and drive repeat business with exclusive member programs and agent-focused pricing strategies. Reward loyalty with personalized offers, member-only rates, and targeted promotions that encourage direct bookings over third-party channels.Create a more personalized guest journey while maximizing long-term customer value. Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
+    modalSubtitle: "Build stronger guest relationships and drive repeat business with exclusive member programs and agent-focused pricing strategies. Reward loyalty with personalized offers, member-only rates, and targeted promotions that encourage direct bookings over third-party channels.Create a more personalized guest journey while maximizing long-term customer value. Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
     gridSpan: "col-span-1 lg:col-span-12 min-h-[350px]",
     anchor: "bottom-left",
     modalFeatures: [
@@ -213,6 +219,7 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon7 />,
     modalWidth: "w-full",
+    modalHeight: "h-[740px]",
     showLearnMore: false,
     lottieAnimation: memberDiscountAnimation,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-0 lg:max-w-[45%] xl:max-w-[40%]",
@@ -262,7 +269,7 @@ export function DirectConnectSolutionSection() {
 
               <p
                 className={cn(
-                  "font-source-sans-400 mb-4 lg:mb-8 pr-2 lg:pr-4 text-[14px] lg:text-[16px] leading-[1.6] lg:leading-[24px] whitespace-pre-line",
+                  "font-source-sans-400 mb-4 lg:mb-8 pr-2 lg:pr-4 text-[14px] leading-[1.6] lg:leading-[20px] whitespace-pre-line",
                   item.isDark ? "text-white/80" : "text-[#64748B]"
                 )}
               >

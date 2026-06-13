@@ -57,6 +57,7 @@ export interface BentoModalProduct {
   imagePlaceholder: string
   href?: string
   modalWidth?: string
+  modalHeight?: string
   /** Optional Lottie JSON. When present, renders in place of the bottom
       screenshot. */
   lottieAnimation?: unknown
@@ -180,8 +181,9 @@ function DesktopAnchoredModal({
         bottom: bounds.bottom,
       }}
       className={cn(
-        "z-40 flex flex-col overflow-hidden rounded-[40px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)] h-[824px] max-h-[calc(100vh-64px)]",
-        product.modalWidth || "w-[760px]"
+        "z-40 flex flex-col overflow-hidden rounded-[40px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)] max-h-[calc(100vh-64px)]",
+        product.modalWidth || "w-[760px]",
+        product.modalHeight || "h-[824px]"
       )}
     >
       <ModalContent product={product} onClose={onClose} />
@@ -252,7 +254,7 @@ function ModalContent({
 
   return (
     <div
-      className="relative flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[72px] pb-[20px] md:px-[32px] md:pt-[88px] md:pb-[24px]"
+      className="relative flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-hidden rounded-[16px] bg-white px-[20px] pt-[72px] pb-[0px] md:px-[32px] md:pt-[88px] md:pb-[0px]"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -287,16 +289,12 @@ function ModalContent({
 
           <h3
             id={`product-modal-title-${product.id}`}
-            className="font-plus-jakarta-700 mb-[2px] text-[24px] font-bold text-[#010C28]"
+            className="font-plus-jakarta-700 mb-[40px] text-[24px] font-bold text-[#010C28]"
           >
             {product.title}
           </h3>
 
-          {(product.modalSubtitle ?? product.subtitle) && (
-            <p className="mb-[40px] font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
-              {product.modalSubtitle ?? product.subtitle}
-            </p>
-          )}
+
 
           {product.showLearnMore !== false && (
             <Button
@@ -314,8 +312,12 @@ function ModalContent({
           )}
         </div>
 
-        {/* Right — feature checklist */}
         <div className="flex flex-col justify-center">
+          {(product.modalSubtitle ?? product.subtitle) && (
+            <p className="mb-[24px] font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
+              {product.modalSubtitle ?? product.subtitle}
+            </p>
+          )}
           <ul className="space-y-3 md:space-y-[12px]">
             {product.modalFeatures.map((feature) => (
               <li key={feature} className="flex items-start text-gray-700">
@@ -369,7 +371,7 @@ function SideBySideModalContent({
 }) {
   return (
     <div
-      className="relative flex w-full flex-1 flex-col overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[72px] pb-[20px] md:px-[40px] md:pt-[88px] md:pb-[40px]"
+      className="relative flex w-full flex-1 flex-col overflow-hidden rounded-[16px] bg-white px-[20px] pt-[72px] pb-[0px] md:px-[40px] md:pt-[88px] md:pb-[0px]"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -462,7 +464,7 @@ function StackedVerticalModalContent({
 }) {
   return (
     <div
-      className="relative flex w-full flex-1 flex-col overflow-y-auto rounded-[16px] bg-white px-[20px] pt-[72px] pb-[20px] md:px-[40px] md:pt-[88px] md:pb-[40px]"
+      className="relative flex w-full flex-1 flex-col overflow-hidden rounded-[16px] bg-white px-[20px] pt-[72px] pb-[0px] md:px-[40px] md:pt-[88px] md:pb-[0px]"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",

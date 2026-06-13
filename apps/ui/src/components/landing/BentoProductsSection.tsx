@@ -12,6 +12,7 @@ import graphAnimation from "../../../public/assets/landing/graph.json"
 import roomReservationAnimation from "../../../public/assets/landing/property-management.json"
 import hotelWebsiteAnimation from "../../../public/assets/landing/hotel-website-builder.json"
 import propertyManagementModalAnimation from "../../../public/assets/landing/system-management.json"
+import distributionNetworkModal from "../../../public/assets/landing/distribution-network_modal.json"
 
 import { SectionHeader } from "./SectionHeader"
 
@@ -34,6 +35,7 @@ const products: Product[] = [
     subtitle: "Own Your Guests, Own Your Revenue.",
     gridSpan: "col-span-1 md:col-span-7 lg:col-span-7",
     anchor: "top-left",
+    modalSubtitle:"Own Your Guests. Own Your Revenue. Turn Every Visitor Into a Direct Booking ResAvenue Direct Connect helps hospitality businesses convert website traffic into commission-free bookings through a seamless, mobile-first booking experience. Designed to reduce booking friction and increase conversions, it empowers properties to drive more revenue from their own website while delivering a superior guest experience.",
     modalFeatures: [
       "Turn Every Click into a Direct Booking.",
       "Maximise Revenue with Smarter Rates and Offers.",
@@ -162,13 +164,8 @@ const products: Product[] = [
     ],
     imagePlaceholder: "/images/placeholder-distribution.png",
     lottieAnimation: globeAnimation,
-    lottieOverlay: (
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="font-plus-jakarta-700 leading-none tracking-tight text-[#0F172A] text-[40px] md:text-[64px] mb-8">
-          <CountUp target={120} suffix="+" loop />
-        </span>
-      </div>
-    ),
+    modalLottieAnimation: distributionNetworkModal,
+
     renderBottom: () => (
       <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
         <div className="relative flex h-[198px] w-full items-center justify-center rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">

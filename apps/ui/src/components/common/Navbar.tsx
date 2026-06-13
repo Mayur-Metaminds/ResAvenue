@@ -35,10 +35,9 @@ const navLinks = [
     name: "Support Center",
     href: "#",
     subItems: [
-      { name: "Help Center", href: "#" },
-      { name: "Contact Support", href: "/contact-us" },
-      { name: "Documentation", href: "#" },
+      { name: "Knowledge Base & Tutorials", href: "#" },
       { name: "FAQs", href: "#" },
+      { name: "Ticketing & Chat", href: "/contact-us" },
     ],
   },
   { name: "Resources", href: "#" },
