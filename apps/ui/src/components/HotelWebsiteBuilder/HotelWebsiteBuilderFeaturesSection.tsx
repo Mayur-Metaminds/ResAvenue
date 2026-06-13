@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform, useSpring } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { Blocks, Database, Lock, Zap } from "lucide-react"
 import Image from "next/image"
 import { useRef } from "react"
@@ -10,37 +10,35 @@ import { SectionHeader } from "@/components/landing/SectionHeader"
 export function HotelWebsiteBuilderFeaturesSection() {
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // We map the full scroll of the container to 5 logical steps
+  // Map the sticky scroll range to 4 logical steps — one per card. Each card
+  // reveals from the START of its step (so the very first scroll wheel tick
+  // after the section sticks immediately starts revealing card 1).
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   })
 
-  // Apply useSpring for butter-smooth interpolation
-  const smoothScroll = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
+  const progress = useTransform(scrollYProgress, [0, 1], [0, 4])
 
-  // We'll map smoothScroll [0, 1] to steps [0, 5]
-  const progress = useTransform(smoothScroll, [0, 1], [0, 5])
+  // Reveal order follows reading-flow: Top-Left → Top-Right → Bottom-Left → Bottom-Right.
+  // Each card fades + slides up over the first 80% of its step, leaving a brief
+  // "settle" tail before the next card starts.
 
-  // Step 2: Bottom-Right Card (1 to 2)
-  const rbOpacity = useTransform(progress, [1, 1.5, 2], [0, 0, 1])
-  const rbY = useTransform(progress, [1, 1.5, 2], [40, 40, 0])
+  // Step 1: Top-Left
+  const ltOpacity = useTransform(progress, [0, 0.8], [0, 1])
+  const ltY = useTransform(progress, [0, 0.8], [40, 0])
 
-  // Step 3: Top-Right Card (2 to 3)
-  const rtOpacity = useTransform(progress, [2, 2.5, 3], [0, 0, 1])
-  const rtY = useTransform(progress, [2, 2.5, 3], [40, 40, 0])
+  // Step 2: Top-Right
+  const rtOpacity = useTransform(progress, [1, 1.8], [0, 1])
+  const rtY = useTransform(progress, [1, 1.8], [40, 0])
 
-  // Step 4: Bottom-Left Card (3 to 4)
-  const lbOpacity = useTransform(progress, [3, 3.5, 4], [0, 0, 1])
-  const lbY = useTransform(progress, [3, 3.5, 4], [40, 40, 0])
+  // Step 3: Bottom-Left
+  const lbOpacity = useTransform(progress, [2, 2.8], [0, 1])
+  const lbY = useTransform(progress, [2, 2.8], [40, 0])
 
-  // Step 5: Top-Left Card (4 to 5)
-  const ltOpacity = useTransform(progress, [4, 4.5, 5], [0, 0, 1])
-  const ltY = useTransform(progress, [4, 4.5, 5], [40, 40, 0])
+  // Step 4: Bottom-Right
+  const rbOpacity = useTransform(progress, [3, 3.8], [0, 1])
+  const rbY = useTransform(progress, [3, 3.8], [40, 0])
 
   return (
     <section className="relative w-full bg-[#FAFAFA]" ref={containerRef} style={{ height: "400vh" }}>
@@ -65,8 +63,8 @@ export function HotelWebsiteBuilderFeaturesSection() {
             
             {/* Left Features */}
             <div className="hidden w-full flex-col gap-16 lg:flex lg:w-1/4">
-              {/* Top-Left Card */}
-              <motion.div style={{ opacity: ltOpacity, y: ltY }} className="flex flex-col items-start gap-4">
+              {/* Top-Left Card — shifted slightly left to break the grid */}
+              <motion.div style={{ opacity: ltOpacity, y: ltY }} className="flex flex-col items-start gap-4 lg:-translate-x-10">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#ED862E] shadow-sm">
                   <Blocks className="h-6 w-6" />
                 </div>
@@ -76,14 +74,14 @@ export function HotelWebsiteBuilderFeaturesSection() {
                 </p>
               </motion.div>
 
-              {/* Bottom-Left Card */}
-              <motion.div style={{ opacity: lbOpacity, y: lbY }} className="flex flex-col items-start gap-4">
+              {/* Bottom-Left Card — shifted slightly right (toward the image) */}
+              <motion.div style={{ opacity: lbOpacity, y: lbY }} className="flex flex-col items-start gap-4 lg:translate-x-6">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#ED862E] shadow-sm">
-                  <Zap className="h-6 w-6" />
+                  <Database className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1E293B]">Integrated Booking Engine</h3>
+                <h3 className="text-xl font-bold text-[#1E293B]">Content Management System (CMS)</h3>
                 <p className="text-sm text-[#64748B]">
-                  Enable instant, commission-free bookings directly from your website with a seamless, embedded booking experience.
+                  Easily update rooms, offers, images, and pages in real-time with a flexible and powerful CMS.
                 </p>
               </motion.div>
             </div>
@@ -105,19 +103,19 @@ export function HotelWebsiteBuilderFeaturesSection() {
 
             {/* Right Features */}
             <div className="hidden w-full flex-col gap-16 lg:flex lg:w-1/4">
-              {/* Top-Right Card */}
-              <motion.div style={{ opacity: rtOpacity, y: rtY }} className="flex flex-col items-start gap-4">
+              {/* Top-Right Card — pushed slightly right, mirror of top-left */}
+              <motion.div style={{ opacity: rtOpacity, y: rtY }} className="flex flex-col items-start gap-4 lg:translate-x-10">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#ED862E] shadow-sm">
-                  <Database className="h-6 w-6" />
+                  <Zap className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1E293B]">Content Management System (CMS)</h3>
+                <h3 className="text-xl font-bold text-[#1E293B]">Integrated Booking Engine</h3>
                 <p className="text-sm text-[#64748B]">
-                  Easily update rooms, offers, images, and pages in real-time with a flexible and powerful CMS.
+                  Enable instant, commission-free bookings directly from your website with a seamless, embedded booking experience.
                 </p>
               </motion.div>
 
-              {/* Bottom-Right Card */}
-              <motion.div style={{ opacity: rbOpacity, y: rbY }} className="flex flex-col items-start gap-4">
+              {/* Bottom-Right Card — pulled slightly left (toward the image) */}
+              <motion.div style={{ opacity: rbOpacity, y: rbY }} className="flex flex-col items-start gap-4 lg:-translate-x-6">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#ED862E] shadow-sm">
                   <Lock className="h-6 w-6" />
                 </div>

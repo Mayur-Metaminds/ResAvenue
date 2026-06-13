@@ -19,11 +19,10 @@ export default function HotelWebsiteBuilder() {
       <HotelWebsiteBuilderHeroSection />
       
       {/* Trusted Logos & Marquee Section */}
-      <section className="w-full bg-white pt-16 md:pt-24 pb-8">
-        <div className="container mx-auto max-w-[1200px] px-4 md:px-8">
+     
           
           <Marquee<TrustedLogo>
-            className="w-full"
+            className="w-full pb-[30px] pt-[30px] "
             items={[...trustedLogos]}
             getKey={(logo) => logo.name}
             durationSeconds={60}
@@ -35,14 +34,13 @@ export default function HotelWebsiteBuilder() {
             renderItem={({ name, Component }) => (
               <div
                 aria-label={name}
-                className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-6 [&_svg]:w-auto md:[&_svg]:h-auto md:[&_svg]:w-auto"
+                className="opacity-80 transition-opacity hover:opacity-100 [&_svg]:h-[70px] [&_svg]:w-[150px] md:[&_svg]:h-[80px] md:[&_svg]:w-[170px]"
               >
                 <Component />
               </div>
             )}
           />
-        </div>
-      </section>
+ 
 
      
 

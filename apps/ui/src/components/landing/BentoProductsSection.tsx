@@ -5,11 +5,14 @@ import { CountUp } from "@/components/common/CountUp"
 import { cn } from "@/lib/styles"
 import dynamic from "next/dynamic"
 import type * as React from "react"
+import channelConnectAnimation from "../../../public/assets/landing/channel-connect.json"
 import directConnectAnimation from "../../../public/assets/landing/direct-connect.json"
 import globeAnimation from "../../../public/assets/landing/distribution-network.json"
-import graphAnimation from "../../../public/assets/graph.json"
+import graphAnimation from "../../../public/assets/landing/graph.json"
 import roomReservationAnimation from "../../../public/assets/landing/property-management.json"
 import hotelWebsiteAnimation from "../../../public/assets/landing/hotel-website-builder.json"
+import propertyManagementModalAnimation from "../../../public/assets/landing/system-management.json"
+import distributionNetworkModal from "../../../public/assets/landing/distribution-network_modal.json"
 
 import { SectionHeader } from "./SectionHeader"
 
@@ -20,6 +23,7 @@ type Product = BentoItem & {
   subtitle: string
   imagePlaceholder?: string
   lottieAnimation?: any
+  lottieOverlay?: React.ReactNode
   renderBottom?: () => React.ReactNode
 }
 
@@ -31,6 +35,7 @@ const products: Product[] = [
     subtitle: "Own Your Guests, Own Your Revenue.",
     gridSpan: "col-span-1 md:col-span-7 lg:col-span-7",
     anchor: "top-left",
+    modalSubtitle:"Own Your Guests. Own Your Revenue. Turn Every Visitor Into a Direct Booking ResAvenue Direct Connect helps hospitality businesses convert website traffic into commission-free bookings through a seamless, mobile-first booking experience. Designed to reduce booking friction and increase conversions, it empowers properties to drive more revenue from their own website while delivering a superior guest experience.",
     modalFeatures: [
       "Turn Every Click into a Direct Booking.",
       "Maximise Revenue with Smarter Rates and Offers.",
@@ -70,6 +75,19 @@ const products: Product[] = [
       "Avoid double bookings",
     ],
     imagePlaceholder: "/images/placeholder-channel-connect.png",
+    lottieAnimation: channelConnectAnimation,
+    // Match Direct Connect's gutters (mx-8) instead of falling through to the
+    // default renderCard fallback, which uses `md:mx-0` (edge-to-edge at md+).
+    renderBottom: () => (
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-8 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 lg:h-[240px]">
+        <Lottie
+          animationData={channelConnectAnimation}
+          loop
+          className="h-full w-full"
+          rendererSettings={{ preserveAspectRatio: "xMidYMax meet" }}
+        />
+      </div>
+    ),
   },
   {
     id: "property-management",
@@ -87,6 +105,7 @@ const products: Product[] = [
     ],
     imagePlaceholder: "/images/placeholder-pms.png",
     lottieAnimation: roomReservationAnimation,
+    modalLottieAnimation: propertyManagementModalAnimation,
     renderBottom: () => (
       <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
         <div className="flex h-[198px] w-full items-center justify-center rounded-[20px]  bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
@@ -118,7 +137,7 @@ const products: Product[] = [
     lottieAnimation: graphAnimation,
     renderBottom: () => (
       <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
-        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] xl:border xl:border-[#F1F5F9] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)] p-2 md:p-4">
+        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
           <Lottie
             animationData={graphAnimation}
             loop
@@ -145,11 +164,11 @@ const products: Product[] = [
     ],
     imagePlaceholder: "/images/placeholder-distribution.png",
     lottieAnimation: globeAnimation,
-    // Custom bottom slot: globe Lottie with the "120+" CountUp absolutely
-    // centered on top of it (matches the Figma reference).
+    modalLottieAnimation: distributionNetworkModal,
+
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:h-[200px]">
-        <div className="relative h-full w-full">
+      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
+        <div className="relative flex h-[198px] w-full items-center justify-center rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
           <Lottie
             animationData={globeAnimation}
             loop
@@ -158,8 +177,8 @@ const products: Product[] = [
           />
           {/* Absolutely-centered count-up overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-plus-jakarta-700 leading-none tracking-tight text-[#0F172A] md:text-[24px]">
-              <CountUp target={120} suffix="+" />
+            <span className="font-plus-jakarta-700 leading-none tracking-tight text-[#0F172A] text-[28px] md:text-[40px]">
+              <CountUp target={120} suffix="+" loop />
             </span>
           </div>
         </div>

@@ -1,10 +1,14 @@
 "use client"
 
 import { ArrowRight } from "lucide-react"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import laptopMockupAnimation from "../../../public/assets/landing/home page.json"
 import { HeroContent } from "./HeroContent"
 import { HeroTitle } from "./HeroTitle"
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 
 
 export function HeroSection() {
@@ -62,15 +66,13 @@ export function HeroSection() {
           />
           {/* Right Column: Mockup */}
           <div className="relative z-20 flex h-[210px] w-full items-start sm:h-[480px] lg:absolute lg:top-0 lg:left-[40%] lg:h-[430px] lg:w-[700px] xl:left-[42%] xl:h-[590px] xl:w-[876px]">
-            {/* Dashboard video — muted + playsInline are required for mobile autoplay */}
-            <video
-              src="/assets/landing/hero_section.mp4"
-              autoPlay
+            {/* Dashboard laptop mockup Lottie */}
+            <Lottie
+              animationData={laptopMockupAnimation}
               loop
-              muted
-              playsInline
-              preload="auto"
-              className="h-full w-full object-contain"
+              autoplay
+              className="h-full w-full"
+              rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
             />
 
             {/* Glow */}

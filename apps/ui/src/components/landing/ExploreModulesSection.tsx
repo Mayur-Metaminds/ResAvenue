@@ -9,12 +9,19 @@ import {
 } from "framer-motion"
 import {
   ThreeDWheelIcon1,
+  ThreeDWheelIcon10,
+  ThreeDWheelIcon11,
+  ThreeDWheelIcon12,
+  ThreeDWheelIcon13,
+  ThreeDWheelIcon14,
   ThreeDWheelIcon2,
   ThreeDWheelIcon3,
   ThreeDWheelIcon4,
   ThreeDWheelIcon5,
   ThreeDWheelIcon6,
   ThreeDWheelIcon7,
+  ThreeDWheelIcon8,
+  ThreeDWheelIcon9,
 } from "../../../public/svg/LandingPage"
 import type * as React from "react"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
@@ -42,7 +49,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Mobile-first booking flow that converts visitors with frictionless reservations.",
     icon: ThreeDWheelIcon1,
-    image: "/images/Landing/Explore-Module.png",
+    image: "/images/Landing/explore-module-direct_connect/responsive-booking-engine.png",
   },
   {
     id: "corporate",
@@ -50,7 +57,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Negotiated rates, loyalty tiers, and travel-program portals in one place.",
     icon: ThreeDWheelIcon2,
-    image: "/images/Landing/Explore-Module.png",
+    image: "/images/Landing/explore-module-direct_connect/corporate-management.png",
   },
   {
     id: "analytics",
@@ -58,7 +65,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Real-time pace, pickup, and channel mix dashboards built for revenue teams.",
     icon: ThreeDWheelIcon3,
-    image: "/images/Landing/Explore-Module.png",
+    image: "/images/Landing/explore-module-direct_connect/analytics-reporting.png",
   },
   {
     id: "discounts",
@@ -66,7 +73,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Supports multiple rate plans, discounts, promo codes, and value add-ons to boost RevPAR and ADR.",
     icon: ThreeDWheelIcon4,
-    image: "/images/Landing/Explore-Module.png",
+    image: "/images/Landing/explore-module-direct_connect/discounts-promotion.png",
   },  
   {
     id: "events",
@@ -74,7 +81,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Sell, manage, and track events alongside room revenue without a second system.",
     icon: ThreeDWheelIcon5,
-    image: "/images/Landing/Explore-Module.png",
+    image: "/images/Landing/explore-module-direct_connect/events-ticketing.png",
   },
   {
     id: "packages",
@@ -82,7 +89,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Bundle rooms, F&B, and experiences into sellable packages with margin control.",
     icon: ThreeDWheelIcon6,
-    image: "/images/Landing/Explore-Module.png",
+    image: "/images/Landing/explore-module-direct_connect/packages-engine.png",
   },
   {
     id: "invoice",
@@ -90,34 +97,93 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Branded payment links, partial captures, and reconciliation built in.",
     icon: ThreeDWheelIcon7,
-    image: "/images/Landing/Explore-Module.png",
+    image: "/images/Landing/explore-module-direct_connect/invoice-payment.png",
   },
 ]
 
+// const channelConnectFeatures: FeatureStep[] = [
+//   {
+//     id: "inventory",
+//     label: "Master Inventory Sharing",
+//     description:
+//       "One source of truth pushed to every connected channel in real time.",
+//     icon: ThreeDWheelIcon6,
+//     image: "/images/Landing/Explore-Module.png",
+//   },
+//   {
+//     id: "otas",
+//     label: "Connect to 100+ OTAs",
+//     description:
+//       "Plug into the world's biggest demand sources without per-channel work.",
+//     icon: ThreeDWheelIcon1,
+//     image: "/images/Landing/Explore-Module.png",
+//   },
+//   {
+//     id: "realtime",
+//     label: "Real-time Updates",
+//     description:
+//       "Rate, availability, and restriction sync with sub-second propagation.",
+//     icon: ThreeDWheelIcon3,
+//     image: "/images/Landing/Explore-Module.png",
+//   },
+// ]
+
 const channelConnectFeatures: FeatureStep[] = [
   {
-    id: "inventory",
-    label: "Master Inventory Sharing",
+    id: "rate-inventory",
+    label: "Rate / Inventory Management",
     description:
-      "One source of truth pushed to every connected channel in real time.",
-    icon: ThreeDWheelIcon6,
-    image: "/images/Landing/Explore-Module.png",
+      "Stay in control across all channels. Update rates and inventory in real-time without errors.",
+    icon: ThreeDWheelIcon8,
+    image: "/images/Landing/explore-module-channel_connect/rate-inventory.png",
   },
   {
-    id: "otas",
-    label: "Connect to 100+ OTAs",
+    id: "property-management",
+    label: "Property Management",
     description:
-      "Plug into the world's biggest demand sources without per-channel work.",
-    icon: ThreeDWheelIcon1,
-    image: "/images/Landing/Explore-Module.png",
+      "Manage every property from one place. Simplify operations with centralized control and visibility.",
+    icon: ThreeDWheelIcon9,
+    image: "/images/Landing/explore-module-channel_connect/property-management.png",
   },
   {
-    id: "realtime",
-    label: "Real-time Updates",
+    id: "yield-management",
+    label: "Yield Management",
     description:
-      "Rate, availability, and restriction sync with sub-second propagation.",
-    icon: ThreeDWheelIcon3,
-    image: "/images/Landing/Explore-Module.png",
+      "Maximize revenue with smart pricing. Adjust rates dynamically based on demand and trends.",
+    icon: ThreeDWheelIcon10,
+    image: "/images/Landing/explore-module-channel_connect/yield-management.png",
+  },
+  {
+    id: "competitor-analysis",
+    label: "Competitor Analysis",
+    description:
+      "Know your market. Stay ahead. Track competitor pricing and make smarter decisions.",
+    icon: ThreeDWheelIcon11,
+    image: "/images/Landing/explore-module-channel_connect/competitor-analysis.png",
+  },
+  {
+    id: "seasonal-pricing",
+    label: "Seasonal Pricing",
+    description:
+      "Adapt pricing to every season. Optimize rates effortlessly for peak and low demand.",
+    icon: ThreeDWheelIcon12,
+    image: "/images/Landing/explore-module-channel_connect/seasonal-pricing.png",
+  },
+  {
+    id: "promotions",
+    label: "Promotions",
+    description:
+      "Launch offers that actually convert. Create and manage campaigns across all channels.",
+    icon: ThreeDWheelIcon13,
+    image: "/images/Landing/explore-module-channel_connect/promotions.png",
+  },
+  {
+    id: "reports-analytics",
+    label: "Reports & Analytics",
+    description:
+      "See what's working. Improve faster. Get deep insights into performance across channels.",
+    icon: ThreeDWheelIcon14,
+    image: "/images/Landing/explore-module-channel_connect/reports-analytics.png",
   },
 ]
 

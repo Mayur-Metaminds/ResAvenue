@@ -15,11 +15,12 @@ export function HotelWebsiteBuilderHeroSection() {
       {/* Container */}
       <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] lg:px-20">
         {/* Main Content */}
-        <div className="flex flex-1 flex-col items-center mt-[165px] justify-between gap-12 pb-12 lg:flex-row lg:gap-8 lg:pb-0">
+        <div className="flex flex-1 flex-col mt-[156px] justify-between gap-12 pb-12 lg:flex-row lg:gap-8 lg:pb-0">
           {/* Left Column: Content */}
-          <div className="flex w-full flex-col justify-start lg:w-[50%] xl:w-[45%]">
+          <div className="flex w-full flex-col items-center justify-center lg:w-[50%] xl:w-[45%]">
             <HeroContent
               eyebrow="DIRECT BOOKING PLATFORM"
+              eyebrowClassName="lg:mb-[12px] mb-[16px]"
               title={
                 <HeroTitle
                   style={
@@ -35,6 +36,7 @@ export function HotelWebsiteBuilderHeroSection() {
                   <HeroTitle.Highlight>Your #1 Booking Channel</HeroTitle.Highlight>
                 </HeroTitle>
               }
+          
               description={
                 <span className="typo-body1 text-white/55">
                   Build stunning, high-converting hotel websites designed to drive direct bookings & revenue.
@@ -55,7 +57,7 @@ export function HotelWebsiteBuilderHeroSection() {
           </div>
 
           {/* Right Column: Graphic/Dashboard Preview */}
-          <div className="relative flex w-full items-center justify-center lg:w-[50%] xl:w-[55%]">
+          <div className="relative flex w-full items-start justify-start lg:w-[50%] xl:w-[55%]">
             <div className="relative w-full max-w-[800px]">
               {/* Background Glow */}
               <div className="absolute top-1/2 left-1/2 -z-10 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ED862E]/20 blur-[100px]" />
