@@ -73,38 +73,28 @@ export function Footer() {
                 SOLUTIONS
               </h4>
               <ul className="space-y-4">
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Direct Connect
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Channel Connect
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Property Mgmt
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Revenue Mgmt
-                  </a>
-                </li>
+                {[
+                  "Direct Connect",
+                  "Channel Connect",
+                  "Property Management System",
+                  "Revenue Management",
+                  "Distribution Network",
+                  "Event Management",
+                  "Website Builder",
+                  "Tours & Packages Engine",
+                  "Mobile App Ecosystem",
+                  "Analytics & Reporting",
+                  "Guest CRM & Loyalty",
+                ].map((title) => (
+                  <li key={title}>
+                    <a
+                      href="#"
+                      className="text-sm text-gray-300 transition-colors hover:text-white"
+                    >
+                      {title}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
