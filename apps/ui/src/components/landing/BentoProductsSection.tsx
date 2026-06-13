@@ -13,6 +13,7 @@ import roomReservationAnimation from "../../../public/assets/landing/property-ma
 import hotelWebsiteAnimation from "../../../public/assets/landing/hotel-website-builder.json"
 import propertyManagementModalAnimation from "../../../public/assets/landing/system-management.json"
 import distributionNetworkModal from "../../../public/assets/landing/distribution-network_modal.json"
+import eventManagementInner from "../../../public/assets/landing/event-management_inner.json"
 
 import { SectionHeader } from "./SectionHeader"
 
@@ -195,6 +196,7 @@ const products: Product[] = [
     gridSpan: "col-span-1 md:col-span-6 lg:col-span-5",
     anchor: "bottom-left",
     href: "/event-booking",
+    modalLottieAnimation: eventManagementInner,
     modalFeatures: [
       "Ticket sales",
       "Attendee management",
