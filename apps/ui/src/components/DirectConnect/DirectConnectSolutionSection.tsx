@@ -45,7 +45,7 @@ const solutions: SolutionCard[] = [
     id: "conversion-booking",
     title: "Conversion-First Booking Engine",
     subtitle:
-      "Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless check-out experience. \n\n Enable guests to book faster with an intuitive, conversion-focused interface that reduces friction and improves completion rates. Offer personalized booking journeys, real-time availability, and responsive experiences that work seamlessly across desktop, tablet, and mobile devices.",
+      "Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless check-out experience.",
     gridSpan: "col-span-1 lg:col-span-7 h-[432px]",
     anchor: "top-left",
     modalFeatures: [
@@ -76,7 +76,7 @@ const solutions: SolutionCard[] = [
     id: "discounts-promotion",
     title: "Discounts & Promotions",
     subtitle:
-      "Create smart hotel promotions, seasonal discounts, last-minute deals, and exclusive guest offers. Easily manage special rates, and promo codes to attract more guests and increase revenue. \n\n Drive urgency and increase bookings with limited-time offers, bundled packages, and personalized promotions tailored to different guest segments. Easily manage campaigns that help improve occupancy and maximize revenue opportunities.",
+      "Create smart hotel promotions, seasonal discounts, last-minute deals, and exclusive guest offers. Easily manage special rates, and promo codes to attract more guests and increase revenue.",
     isDark: true,
     icon: <UnifiedPlatformIcon2 className="text-[#ED862E]" />,
     showLearnMore: false,
