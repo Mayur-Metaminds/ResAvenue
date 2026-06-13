@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import {
   Facebook,
   LinkedIn,
@@ -10,11 +12,11 @@ import {
 export function Footer() {
   return (
     <footer className="w-full border-t border-white/10 bg-[#010C28] pt-20 pb-10 text-white">
-      <div className="container mx-auto max-w-7xl px-4 md:px-8">
+      <div className=" px-4 md:px-8">
         {/* Main Footer Content */}
-        <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-12">
+        <div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-12">
           {/* Brand & Description (Left Column) */}
-          <div className="flex flex-col pr-8 md:col-span-5">
+          <div className="flex flex-col pr-8 lg:col-span-4 xl:col-span-4">
             <div className="mb-6 flex items-center">
               <ResAvenueWhiteLogo />
             </div>
@@ -25,7 +27,7 @@ export function Footer() {
           </div>
 
           {/* Links Columns (Right Side) */}
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8 xl:col-span-8">
             {/* Column 1: COMPANY */}
             <div className="flex flex-col">
               <h4 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
@@ -67,48 +69,7 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Column 2: SOLUTIONS */}
-            <div className="flex flex-col">
-              <h4 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
-                SOLUTIONS
-              </h4>
-              <ul className="space-y-4">
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Direct Connect
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Channel Connect
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Property Mgmt
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Revenue Mgmt
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 3: LEGAL */}
+            {/* Column 2: LEGAL */}
             <div className="flex flex-col">
               <h4 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
                 LEGAL
@@ -138,6 +99,37 @@ export function Footer() {
                     Cookie Policy
                   </a>
                 </li>
+              </ul>
+            </div>
+
+            {/* Column 3: SOLUTIONS */}
+            <div className="flex flex-col sm:col-span-2">
+              <h4 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
+                SOLUTIONS
+              </h4>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 w-full">
+                {[
+                  { title: "Direct Connect", href: "/direct-connect" },
+                  { title: "Channel Connect", href: "/channel-connect" },
+                  { title: "Property Management System", href: "/property-management" },
+                  { title: "Revenue Management", href: "/revenue-management" },
+                  { title: "Distribution Network", href: "/distribution-network" },
+                  { title: "Event Management", href: "/event-booking" },
+                  { title: "Website Builder", href: "/hotel-website-builder" },
+                  { title: "Tours & Packages Engine", href: "/tours-packages" },
+                  { title: "Mobile App Ecosystem", href: "/mobile-app" },
+                  { title: "Analytics & Reporting", href: "/analytics-reporting" },
+                  { title: "Guest CRM & Loyalty", href: "/guest-crm" },
+                ].map(({ title, href }) => (
+                  <li key={title}>
+                    <Link
+                      href={href}
+                      className="text-sm text-gray-300 transition-colors hover:text-white xl:whitespace-nowrap"
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
