@@ -182,7 +182,7 @@ export function ChannelConnectOmnichannelSection() {
                 Ecosystem
               </SectionHeader.Highlight>
             }
-            description="Power seamless connectivity between PMS, CRSs, and GDS with high performance direct integrations."
+            description="Maximize visibility across all channels with real-time API connectivity, ensuring your inventory is always available to book."
           />
         }
         renderCard={(item) => {

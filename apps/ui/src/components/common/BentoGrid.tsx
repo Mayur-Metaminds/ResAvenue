@@ -23,6 +23,7 @@ export type BentoItem = {
   imagePlaceholder?: string
   href?: string
   modalWidth?: string
+  modalHeight?: string
   /** Optional icon for the side-by-side modal layout (rendered top-left). */
   icon?: React.ReactNode
   /** Modal body layout — see BentoModalProduct.modalLayout. Default: "stacked". */

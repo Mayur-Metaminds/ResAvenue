@@ -11,7 +11,7 @@ const nextConfig = {
   // Allow LAN-IP origins to receive dev assets (HMR/RSC/chunks). Without this,
   // Next.js 15+ silently blocks dev-mode requests from non-localhost origins,
   // which renders SSR HTML but never hydrates on the client.
-  allowedDevOrigins: ["192.168.1.114", "192.168.1.123", "https://aruba-dollars-stands-representation.trycloudflare.com"],
+  allowedDevOrigins: ["192.168.1.114", "192.168.1.121", "192.168.1.123", "https://aruba-dollars-stands-representation.trycloudflare.com"],
   reactStrictMode: true,
   devIndicators: {
     position: "bottom-right",
