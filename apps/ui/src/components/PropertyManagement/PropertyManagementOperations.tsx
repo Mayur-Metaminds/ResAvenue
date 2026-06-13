@@ -1,17 +1,13 @@
 import type React from "react"
 
-import { BarChart3, BrushCleaning, Coins, Users } from "lucide-react"
-
 import { SectionHeader } from "@/components/landing/SectionHeader"
 
-// Icon badge — same style as ContactUsBody's CardIcon.
-function CardIcon({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex h-12 min-h-12 w-12 min-w-12 items-center justify-center rounded-[14px] bg-[#FEF3E2] text-[#ED862E]">
-      {children}
-    </div>
-  )
-}
+import {
+  GuestRelationship,
+  HousekeepingManagement,
+  ReportandAnalytics,
+  RevenueManagement,
+} from "../../../public/svg/Property-Management"
 
 type OperationCard = {
   id: string
@@ -25,14 +21,14 @@ type OperationCard = {
 const operationCards: OperationCard[] = [
   {
     id: "housekeeping",
-    icon: <BrushCleaning className="h-5 w-5" />,
+    icon: <HousekeepingManagement />,
     title: "Housekeeping Management",
     description: "Track room status, assign tasks, and keep your team perfectly in sync.",
     bullets: ["Live room updates", "Task tracking", "Maintenance alerts"],
   },
   {
     id: "guest-relationship",
-    icon: <Users className="h-5 w-5" />,
+    icon: <GuestRelationship />,
     title: "Guest Relationship Management",
     description:
       "Deliver personalized experiences with guest data, preferences, and automated communication.",
@@ -41,7 +37,7 @@ const operationCards: OperationCard[] = [
   },
   {
     id: "revenue",
-    icon: <Coins className="h-5 w-5" />,
+    icon: <RevenueManagement />,
     title: "Revenue Management",
     description:
       "Built-in loyalty and CRM tools to recognize repeat guests and drive long-term value through personalized offers.",
@@ -49,7 +45,7 @@ const operationCards: OperationCard[] = [
   },
   {
     id: "reporting",
-    icon: <BarChart3 className="h-5 w-5" />,
+    icon: <ReportandAnalytics />,
     title: "Reporting & Analytics",
     description: "Make smarter decisions with real-time dashboards and performance reports.",
     bullets: ["Live performance data", "Custom reports", "Export anytime"],
@@ -90,13 +86,13 @@ const PropertyManagementOperations = () => {
             className="flex flex-col rounded-[24px] border border-slate-200 bg-white p-6 transition-colors duration-200 hover:border-[#ED862E] hover:shadow-[#ED862E] hover:shadow"
           >
             <div className="flex items-start gap-3">
-              <CardIcon>{card.icon}</CardIcon>
-              <h3 className="font-plus-jakarta-700 text-[18px] leading-[24px] text-[#010E38]">
+              <span className="shrink-0">{card.icon}</span>
+              <h3 className="font-plus-jakarta-700 text-[20px] leading-[22.4px] text-[#010E38] [font-feature-settings:'liga'_off,'clig'_off] xl:leading-8">
                 {card.title}
               </h3>
             </div>
 
-            <p className="font-source-sans-400 mt-6 text-[14px] leading-[22px] text-[#475569]">
+            <p className="font-source-sans-400 mt-6 text-[16px] leading-[22.4px] text-[#64748B] xl:text-[18px] xl:leading-7">
               {card.description}
             </p>
 

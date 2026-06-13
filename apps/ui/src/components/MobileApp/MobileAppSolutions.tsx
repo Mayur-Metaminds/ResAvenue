@@ -10,7 +10,7 @@ const MobileAppSolutions = () => {
             <div className="mx-auto max-w-6xl">
                 <SectionHeader
                     eyebrow={<span>OUR SOLUTIONS</span>}
-                    eyebrowClassName="typo-body2 text-[14px] text-[#ED862E] text-center"
+                    eyebrowClassName="typo-body2 text-[12px] text-[#ED862E] text-center"
                     className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
                     descriptionClassName="typo-body1 text-center text-[#64748B]"
                     title={

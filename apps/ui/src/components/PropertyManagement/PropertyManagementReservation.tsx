@@ -1,12 +1,16 @@
+"use client"
+
 import type React from "react"
+
+import { motion } from "framer-motion"
 
 import { SectionHeader } from "@/components/landing/SectionHeader"
 
 import {
-  ChannelUpdates,
-  EliminateOverbookings,
-  InventoryControl,
-  RestrictionManagement,
+  ChannelUpdatesNoBg,
+  EliminateOverbookingsNoBg,
+  InventoryControlNoBg,
+  RestrictionManagementNoBg,
 } from "../../../public/svg/Property-Management"
 
 type ReservationCard = {
@@ -19,28 +23,28 @@ type ReservationCard = {
 const reservationCards: ReservationCard[] = [
   {
     id: "channel-updates",
-    icon: <ChannelUpdates />,
+    icon: <ChannelUpdatesNoBg />,
     title: "Real-time channel updates",
     description:
       "Access real-time insights to optimize strategies and maximize revenue with precision.",
   },
   {
     id: "rate-restriction",
-    icon: <RestrictionManagement />,
+    icon: <RestrictionManagementNoBg />,
     title: "Rate & restriction management",
     description:
       "Optimize pricing strategies and manage booking conditions effortlessly for",
   },
   {
     id: "inventory-control",
-    icon: <InventoryControl />,
+    icon: <InventoryControlNoBg />,
     title: "Centralized inventory control",
     description:
       "Maintain total control of your hotel's inventory to make data-driven decisions.",
   },
   {
     id: "eliminate-overbookings",
-    icon: <EliminateOverbookings />,
+    icon: <EliminateOverbookingsNoBg />,
     title: "Eliminate overbookings",
     description:
       "Seamlessly manage rates and availability across all channels, ensuring",
@@ -52,7 +56,7 @@ const PropertyManagementReservation = () => {
     <section
       data-nav-theme="dark"
       className="w-full bg-cover bg-center bg-no-repeat px-4 py-[60px] md:px-8 lg:py-[100px]"
-      style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
+      style={{ backgroundImage: "url('/images/Property-Management/gradiantbg.png')" }}
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
         {/* Product image (dummy placeholder — swap with the real asset). Below content on mobile, left on desktop. */}
@@ -92,23 +96,27 @@ const PropertyManagementReservation = () => {
           />
 
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {reservationCards.map((card) => (
-              <div
+            {reservationCards.map((card, i) => (
+              <motion.div
                 key={card.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
                 className="rounded-2xl border border-[#ED862E80] bg-white/5 p-5"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-start justify-start gap-3">
                   <span className="shrink-0">{card.icon}</span>
                   <div className="min-w-0">
-                    <h4 className="typo-body1 text-white lg:text-[14px]! lg:font-medium! lg:leading-[16.8px]! lg:tracking-[-0.25px]! lg:[font-family:'Public_Sans',sans-serif]!">
+                    <h4 className="text-[16px] font-normal leading-[22.4px] text-white [font-family:var(--font-source-sans)] xl:font-medium xl:leading-[19.2px] xl:tracking-[-0.25px] xl:[font-family:var(--font-plus-jakarta)]">
                       {card.title}
                     </h4>
-                    <p className="font-source-sans-400 mt-1 text-[14px] leading-[22.4px] text-white/50 lg:text-[12px] lg:font-light! lg:leading-[15.6px] lg:[font-family:'Public_Sans',sans-serif]!">
+                    <p className="mt-1 text-[14px] font-normal leading-[22.4px] text-white/50 [font-family:var(--font-source-sans)] xl:text-[12px] xl:font-medium xl:leading-[15.6px] xl:text-white/65">
                       {card.description}
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
