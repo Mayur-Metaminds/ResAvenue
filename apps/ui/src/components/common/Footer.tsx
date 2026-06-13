@@ -79,14 +79,14 @@ export function Footer() {
                   { title: "Direct Connect", href: "/direct-connect" },
                   { title: "Channel Connect", href: "/channel-connect" },
                   { title: "Property Management System", href: "/property-management" },
-                  { title: "Revenue Management", href: "/404" },
-                  { title: "Distribution Network", href: "/404" },
+                  { title: "Revenue Management", href: "/revenue-management" },
+                  { title: "Distribution Network", href: "/distribution-network" },
                   { title: "Event Management", href: "/event-booking" },
                   { title: "Website Builder", href: "/hotel-website-builder" },
-                  { title: "Tours & Packages Engine", href: "/404" },
+                  { title: "Tours & Packages Engine", href: "/tours-packages" },
                   { title: "Mobile App Ecosystem", href: "/mobile-app" },
-                  { title: "Analytics & Reporting", href: "/404" },
-                  { title: "Guest CRM & Loyalty", href: "/404" },
+                  { title: "Analytics & Reporting", href: "/analytics-reporting" },
+                  { title: "Guest CRM & Loyalty", href: "/guest-crm" },
                 ].map(({ title, href }) => (
                   <li key={title}>
                     <Link
