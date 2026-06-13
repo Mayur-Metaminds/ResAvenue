@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import {
   Facebook,
   LinkedIn,
@@ -74,25 +76,25 @@ export function Footer() {
               </h4>
               <ul className="space-y-4">
                 {[
-                  "Direct Connect",
-                  "Channel Connect",
-                  "Property Management System",
-                  "Revenue Management",
-                  "Distribution Network",
-                  "Event Management",
-                  "Website Builder",
-                  "Tours & Packages Engine",
-                  "Mobile App Ecosystem",
-                  "Analytics & Reporting",
-                  "Guest CRM & Loyalty",
-                ].map((title) => (
+                  { title: "Direct Connect", href: "/direct-connect" },
+                  { title: "Channel Connect", href: "/channel-connect" },
+                  { title: "Property Management System", href: "/property-management" },
+                  { title: "Revenue Management", href: "/404" },
+                  { title: "Distribution Network", href: "/404" },
+                  { title: "Event Management", href: "/event-booking" },
+                  { title: "Website Builder", href: "/hotel-website-builder" },
+                  { title: "Tours & Packages Engine", href: "/404" },
+                  { title: "Mobile App Ecosystem", href: "/mobile-app" },
+                  { title: "Analytics & Reporting", href: "/404" },
+                  { title: "Guest CRM & Loyalty", href: "/404" },
+                ].map(({ title, href }) => (
                   <li key={title}>
-                    <a
-                      href="#"
+                    <Link
+                      href={href}
                       className="text-sm text-gray-300 transition-colors hover:text-white"
                     >
                       {title}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
