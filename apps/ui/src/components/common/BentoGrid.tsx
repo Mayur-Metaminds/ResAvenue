@@ -26,9 +26,15 @@ export type BentoItem = {
   /** Optional icon for the side-by-side modal layout (rendered top-left). */
   icon?: React.ReactNode
   /** Modal body layout — see BentoModalProduct.modalLayout. Default: "stacked". */
-  modalLayout?: "stacked" | "side-by-side"
+  modalLayout?: "stacked" | "side-by-side" | "stacked-vertical"
   /** Show the Learn More CTA in the stacked layout. Default: true. */
   showLearnMore?: boolean
+  /** Optional override for the modal body's description. Falls back to the
+      card's own `subtitle` when not provided. */
+  modalSubtitle?: string
+  /** Optional override for the modal's Lottie animation. Falls back to the
+      card's own `lottieAnimation` when not provided. */
+  modalLottieAnimation?: unknown
 }
 
 type BentoGridProps<T extends BentoItem> = {

@@ -32,7 +32,7 @@ const carouselData: CarouselCard[] = [
     title: "Mobile-friendly booking engine with rate plans",
     linkText: "Learn More",
     linkUrl: "/direct-connect",
-    videoSrc: "/assets/videos/feature_carousal1.mp4",
+    videoSrc: "/assets/videos/booking-engine.mp4",
   },
   {
     id: "channel-manager",
@@ -40,7 +40,7 @@ const carouselData: CarouselCard[] = [
     title: "Seamlessly distribute to 100+ OTAs instantly",
     linkText: "Learn More",
     linkUrl: "/channel-connect",
-    videoSrc: "/assets/videos/feature_carousal2.mp4",
+    videoSrc: "/assets/videos/agilysys.mp4",
   },
   {
     id: "property-management",
@@ -48,32 +48,8 @@ const carouselData: CarouselCard[] = [
     title: "Central nervous system for your entire property",
     linkText: "Learn More",
     linkUrl: "/property-management",
-    videoSrc: "/assets/videos/feature_carousal3.mp4",
-  },
-    {
-    id: "booking-engine",
-    eyebrow: "DIRECT CONNECT",
-    title: "Mobile-friendly booking engine with rate plans",
-    linkText: "Learn More",
-    linkUrl: "/direct-connect",
-    videoSrc: "/assets/videos/feature_carousal1.mp4",
-  },
-  {
-    id: "channel-manager",
-    eyebrow: "CHANNEL MANAGER",
-    title: "Seamlessly distribute to 100+ OTAs instantly",
-    linkText: "Learn More",
-    linkUrl: "/channel-connect",
-    videoSrc: "/assets/videos/feature_carousal2.mp4",
-  },
-  {
-    id: "property-management",
-    eyebrow: "OPERATIONS",
-    title: "Central nervous system for your entire property",
-    linkText: "Learn More",
-    linkUrl: "/property-management",
-    videoSrc: "/assets/videos/feature_carousal3.mp4",
-  },
+    videoSrc: "/assets/videos/one-platform.mp4",
+  }
 ]
 
 export function FeatureCarouselSection() {
