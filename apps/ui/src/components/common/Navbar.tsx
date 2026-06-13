@@ -23,13 +23,10 @@ const navLinks = [
     subItems: [
       { name: "Direct Connect", href: "/direct-connect" },
       { name: "Channel Connect", href: "/channel-connect" },
-      { name: "Property management system", href: "#" },
-      { name: "Revenue Management", href: "#" },
-      { name: "Distribution Network", href: "#" },
-      { name: "Event Management", href: "#" },
-      { name: "Website Builder", href: "#" },
-      { name: "Tours & Packages Engine", href: "#" },
-      { name: "Mobile App Ecosystem", href: "#" },
+      { name: "Property Management", href: "/property-management" },
+      { name: "Event Booking", href: "/event-booking" },
+      { name: "Hotel Website Builder", href: "/hotel-website-builder" },
+      { name: "Mobile App", href: "/mobile-app" },
     ],
   },
   { name: "About Us", href: "#" },
@@ -68,22 +65,14 @@ export function Navbar() {
     const compute = () => {
       setScrolled(window.scrollY > 0)
 
-      // Re-query every call rather than capturing once: sections may be added
-      // after mount (Suspense, animations, route changes), and the captured
-      // array can't see them otherwise.
       const sections = document.querySelectorAll<HTMLElement>(
         "[data-nav-theme]"
       )
       if (sections.length === 0) {
-        // No themed sections on this page — fall back to dark default so we
-        // don't carry over a stale theme from a previous route.
         setTheme("dark")
         return
       }
 
-      // Walk sections in document order; the last one whose top is at-or-past
-      // the navbar threshold (~80px from viewport top) is the one currently
-      // under the navbar.
       const threshold = 80
       let current: NavTheme = "dark"
       for (const section of sections) {
@@ -160,22 +149,71 @@ export function Navbar() {
         </div>
 
         {/* Desktop nav */}
-        <div className="hidden items-center space-x-8 lg:flex lg:space-x-12">
-          <div className="flex items-center space-x-8 lg:space-x-10">
+        <div className="hidden items-center lg:flex lg:space-x-4 xl:space-x-8">
+          <div className="flex items-center lg:space-x-4 xl:space-x-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  "relative inline-block typo-body3 transition-colors",
-                  "hover:text-[#ED862E]",
-                  // Animated underline in the same hover color, grows from the left.
-                  "after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-[#ED862E] after:transition-[width] after:duration-300 hover:after:w-full",
-                  isDark ? "text-white/80" : "text-[#010E38]"
+              <div key={link.name} className="group relative inline-block py-2">
+                <Link
+                  href={link.href}
+                  className={cn(
+                    "relative flex items-center gap-1.5 typo-body3 transition-colors whitespace-nowrap shrink-0",
+                    "hover:text-[#ED862E]",
+                    // Animated underline in the same hover color, grows from the left.
+                    "after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-[#ED862E] after:transition-[width] after:duration-300 hover:after:w-full",
+                    isDark ? "text-white/80" : "text-[#010E38]"
+                  )}
+                >
+                  {link.name}
+                  {link.subItems && (
+                    <svg
+                      width="10"
+                      height="6"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="transition-transform duration-200 group-hover:rotate-180"
+                    >
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
+                </Link>
+
+                {link.subItems && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div className={cn(
+                      "flex flex-col w-[186px] rounded-[5px] p-[10px] gap-[8px] backdrop-blur-md",
+                      isDark 
+                        ? "bg-[rgba(0,0,0,0.22)]" 
+                        : "bg-white/90 border border-black/5 shadow-sm"
+                    )}>
+                      {link.subItems.map((sub, idx) => (
+                        <div key={sub.name} className="flex flex-col gap-[10px]">
+                          {idx > 0 && (
+                            <div className="h-[1px] w-full bg-[#D7D9D9]/40" />
+                          )}
+                          <Link
+                            href={sub.href}
+                            className={cn(
+                              "block text-left text-[14px] font-medium leading-normal transition-colors",
+                              isDark 
+                                ? "text-white/80 hover:text-white" 
+                                : "text-[#010C28]/80 hover:text-[#010C28]"
+                            )}
+                          >
+                            {sub.name}
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 )}
-              >
-                {link.name}
-              </Link>
+              </div>
             ))}
           </div>
 
