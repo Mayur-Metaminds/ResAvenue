@@ -31,7 +31,7 @@ See [Page Builder](./page-builder.md) for details.
 
 ## Strapi API Clients
 
-Two client classes handle content fetching:
+Two client classes handle content fetching :
 
 | Client                | Auth     | Use Case                |
 | --------------------- | -------- | ----------------------- |
