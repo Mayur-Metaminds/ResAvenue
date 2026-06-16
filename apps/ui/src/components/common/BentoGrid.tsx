@@ -36,6 +36,9 @@ export type BentoItem = {
   /** Optional override for the modal's Lottie animation. Falls back to the
       card's own `lottieAnimation` when not provided. */
   modalLottieAnimation?: unknown
+  /** Optional sizing override for the modal animation (side-by-side layout),
+      e.g. `"h-[80%] w-[80%]"` to render it smaller. Defaults to `"h-full w-full"`. */
+  modalAnimationClassName?: string
 }
 
 type BentoGridProps<T extends BentoItem> = {
