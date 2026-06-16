@@ -295,8 +295,8 @@ function ModalContent({
           because it's anchored to the non-scrolling root, not this wrapper. */}
       <div className="flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto lg:overflow-hidden px-[20px] pt-[72px] pb-[0px] md:px-[32px] md:pt-[88px] md:pb-[0px]">
         {/* Two-column top section (stacks on mobile via grid-cols-1) */}
-        <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-[1fr_1.3fr]">
-        {/* Left — icon + eyebrow + title + Learn More */}
+        <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-[2.2fr_1fr]">
+        {/* Left — icon + eyebrow + title + description + Learn More */}
         <div className="flex h-full flex-col items-start">
           {product.icon && (
             <div className="mb-[16px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
@@ -312,12 +312,16 @@ function ModalContent({
 
           <h3
             id={`product-modal-title-${product.id}`}
-            className="font-plus-jakarta-700 mb-[40px] text-[24px] font-bold text-[#010C28]"
+            className="font-plus-jakarta-700 mb-[16px] text-[24px] font-bold text-[#010C28]"
           >
             {product.title}
           </h3>
 
-
+          {(product.modalSubtitle ?? product.subtitle) && (
+            <p className="font-source-sans-400 mb-[32px] w-full text-[16px] leading-[26px] text-[#94A3B8] whitespace-pre-line">
+              {product.modalSubtitle ?? product.subtitle}
+            </p>
+          )}
 
           {product.showLearnMore !== false && (
             <Button
@@ -335,21 +339,15 @@ function ModalContent({
           )}
         </div>
 
-        {/* Right — description + feature checklist */}
-        <div className="flex flex-col justify-center gap-[20px]">
-          {(product.modalSubtitle ?? product.subtitle) && (
-            <p className="font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8] whitespace-pre-line">
-              {product.modalSubtitle ?? product.subtitle}
-            </p>
-          )}
-
+        {/* Right — feature checklist only */}
+        <div className="flex flex-col justify-start gap-[20px]">
           <ul className="space-y-3 md:space-y-[12px]">
             {product.modalFeatures.map((feature) => (
               <li key={feature} className="flex items-start text-gray-700">
                 <span className="mt-0.5 mr-3 flex h-5 w-5 md:h-6 md:w-6 shrink-0 items-center justify-center">
                   <CheckedIcon />
                 </span>
-                <span className="text-[16px] md:text-[16px] font-source-sans leading-relaxed text-[#45556C] font-medium md:whitespace-nowrap">
+                <span className="text-[16px] md:text-[16px] font-source-sans leading-relaxed text-[#45556C] font-medium">
                   {feature}
                 </span>
               </li>

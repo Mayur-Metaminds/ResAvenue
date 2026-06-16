@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import laptopMockupAnimation from "../../../public/assets/landing/home page.json"
+import laptopMockupAnimation from "../../../public/assets/landing/hero_section_laptop.json"
 import { HeroContent } from "./HeroContent"
 import { HeroTitle } from "./HeroTitle"
 

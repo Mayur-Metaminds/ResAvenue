@@ -3,7 +3,7 @@ import type * as React from "react"
 
 import { Eyebrow } from "@/components/common/Eyebrow"
 import Lottie from "lottie-react"
-import animationData from "../../../public/assets/pilles_animation.json"
+import animationData from "../../../public/assets/landing/pilles_animation.json"
 import { HeroTitle } from "./HeroTitle"
 
 export function SolutionSection() {

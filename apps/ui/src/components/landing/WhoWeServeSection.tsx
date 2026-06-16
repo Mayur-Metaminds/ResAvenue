@@ -202,7 +202,7 @@ export function WhoWeServeSection() {
         {segments.map((segment) => (
           <div
             key={segment.id}
-            className="absolute z-30 flex items-center gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_52px_88px_0_rgba(2,33,69,0.50)] transition-transform hover:scale-105"
+            className="absolute z-30 flex items-center cursor-pointer gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_52px_88px_0_rgba(2,33,69,0.50)] transition-transform hover:scale-105"
             style={segment.position}
           >
             <span className="text-[16px] md:text-[18px] font-plus-jakarta-500 text-gray-700">
@@ -211,7 +211,7 @@ export function WhoWeServeSection() {
             <button
               type="button"
               onClick={() => setSelectedSegment(segment.id)}
-              className="touch-manipulation transition-transform hover:scale-110 focus:outline-none"
+              className="touch-manipulation transition-transform hover:scale-110 cursor-pointer focus:outline-none"
               aria-label={`View details for ${segment.title}`}
             >
               <AddSvg />
