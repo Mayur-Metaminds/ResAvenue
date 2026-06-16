@@ -275,7 +275,7 @@ function ModalContent({
 
   return (
     <div
-      className="relative flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-hidden rounded-[16px] bg-white px-[20px] pt-[72px] pb-[0px] md:px-[32px] md:pt-[88px] md:pb-[0px]"
+      className="relative flex w-full flex-1 flex-col overflow-hidden rounded-[16px] bg-white"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -290,8 +290,12 @@ function ModalContent({
         <CloseBtn size={40} />
       </button>
 
-      {/* Two-column top section (stacks on mobile via grid-cols-1) */}
-      <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-[1fr_1.3fr]">
+      {/* Scrollable body — on the mobile variant (<lg) the content scrolls when
+          it overflows the fixed-height modal. The close button above stays put
+          because it's anchored to the non-scrolling root, not this wrapper. */}
+      <div className="flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto lg:overflow-hidden px-[20px] pt-[72px] pb-[0px] md:px-[32px] md:pt-[88px] md:pb-[0px]">
+        {/* Two-column top section (stacks on mobile via grid-cols-1) */}
+        <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-[1fr_1.3fr]">
         {/* Left — icon + eyebrow + title + Learn More */}
         <div className="flex h-full flex-col items-start">
           {product.icon && (
@@ -374,6 +378,7 @@ function ModalContent({
           }}
         />
       )}
+      </div>
     </div>
   )
 }
