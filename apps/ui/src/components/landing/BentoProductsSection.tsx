@@ -239,7 +239,7 @@ export function BentoProductsSection() {
         background:
           "linear-gradient(225deg, rgba(240, 242, 253, 0.33) 0%, rgba(61, 98, 129, 0.00) 100%)",
       }}
-      cardClassName="p-6 md:p-8 justify-between h-[460px] md:h-[400px]"
+      cardClassName="p-6 md:p-5 xl:p-8 justify-between h-[460px] md:h-[400px]"
       header={
         <SectionHeader
           className="mb-5 lg:mb-17"
@@ -259,7 +259,7 @@ export function BentoProductsSection() {
       }
       renderCard={(product) => (
         <>
-          <div className="relative z-10 mb-6 lg:pr-12">
+          <div className="relative z-10 mb-6">
             <p
               className={cn(
                 "font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] uppercase",
@@ -270,7 +270,7 @@ export function BentoProductsSection() {
             </p>
             <h3
               className={cn(
-                "font-plus-jakarta-700 mb-[2px] text-[20px] leading-8",
+                "font-plus-jakarta-700 mb-[2px] text-[20px] leading-8 lg:pr-15",
                 product.isDark ? "text-white" : "text-[#0F172A]"
               )}
             >
