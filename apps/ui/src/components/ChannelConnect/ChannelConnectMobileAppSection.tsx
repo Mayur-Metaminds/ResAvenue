@@ -55,8 +55,11 @@ export function ChannelConnectMobileAppSection() {
   return (
     <section data-nav-theme="light" className="w-full bg-white ">
       <div
-        className="flex flex-col gap-[32px] rounded-[45px] bg-white"
+        className="flex flex-col gap-[32px] rounded-[45px] bg-white max-sm:pb-30"
       >
+        {/* Scroll-driven sticky reveal at all breakpoints. Note: below lg the
+            single-column stack can exceed the pinned viewport height on short
+            screens, clipping the bottom card. */}
         <div ref={block1Ref} className="relative h-[300vh]">
           <div className="sticky top-20 flex h-[calc(100dvh-5rem)] w-full items-start lg:items-center">
             <div className="w-full">
@@ -96,7 +99,10 @@ export function ChannelConnectMobileAppSection() {
                       </div>
                     }
                   >
-                    <div className="flex lg:hidden justify-center w-full mb-3 mt-1">
+                    {/* Phone image hidden below lg so the header + all 3 cards
+                        fit within the pinned viewport (otherwise the 3rd tab
+                        falls below the fold). Shown again at lg+. */}
+                    <div className="hidden justify-center w-full mb-3 mt-1">
                       <div className="relative flex aspect-[3/4] w-[120px] md:w-[180px] items-center justify-center overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-xl">
                         <Image
                           src="/images/Channel-Connect/Hero-img.png"
