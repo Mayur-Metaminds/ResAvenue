@@ -270,7 +270,7 @@ export function BentoProductsSection() {
             </p>
             <h3
               className={cn(
-                "font-plus-jakarta-700 mb-[2px] text-[20px] leading-8 lg:pr-15",
+                "font-plus-jakarta-700 mb-[2px] max-sm:pr-12 text-[20px] leading-8 lg:pr-15",
                 product.isDark ? "text-white" : "text-[#0F172A]"
               )}
             >
