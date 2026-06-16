@@ -42,7 +42,7 @@ const navLinks = [
       { name: "Ticketing & Chat", href: "/contact-us" },
     ],
   },
-  { name: "Resources", href: "#" },
+  { name: "Resources", href: "/resource-page" },
   { name: "Partners & resellers", href: "#" },
 ]
 
