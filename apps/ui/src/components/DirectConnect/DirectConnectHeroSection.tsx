@@ -1,19 +1,19 @@
 "use client"
 
 import { ArrowRight } from "lucide-react"
-import dynamic from "next/dynamic"
 import Image from "next/image"
 
+import { LazyLottie } from "@/components/common/LazyLottie"
 import { HeroContent } from "@/components/landing/HeroContent"
 import { HeroTitle } from "@/components/landing/HeroTitle"
 import { Button } from "@/components/ui/button"
-
-import overlayBorderAnimation from "../../../public/assets/Overlay+Border+OverlayBlur jes.json"
-
-// Lottie pulls lottie-web (DOM only) — dynamic + ssr:false keeps SSR clean.
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
+import { preloadLottie } from "@/lib/lottie-preload"
+import { DC_HERO_OVERLAY_URL } from "@/lib/lottie-urls"
 
 export function DirectConnectHeroSection() {
+  // Above the fold: warm the hero animation download before hydration.
+  preloadLottie(DC_HERO_OVERLAY_URL)
+
   return (
     <section
       data-nav-theme="dark"
@@ -73,8 +73,9 @@ export function DirectConnectHeroSection() {
           {/* Right Column: Mockup */}
           <div className="relative z-20 flex h-[300px] w-full items-start justify-center self-start sm:h-[480px] lg:h-[600px] lg:w-[50%] lg:justify-end xl:h-[720px] xl:w-[55%]">
             <div className="relative flex h-full w-full max-w-[800px] items-start justify-start">
-              <Lottie
-                animationData={overlayBorderAnimation}
+              <LazyLottie
+                src={DC_HERO_OVERLAY_URL}
+                priority="eager"
                 loop
                 className="h-full w-full"
                 rendererSettings={{ preserveAspectRatio: "xMidYMin meet" }}

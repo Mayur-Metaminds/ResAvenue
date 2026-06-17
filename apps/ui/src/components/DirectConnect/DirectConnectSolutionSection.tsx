@@ -3,19 +3,24 @@
 import type * as React from "react"
 
 import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
+import { LazyLottie } from "@/components/common/LazyLottie"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { cn } from "@/lib/styles"
-import dynamic from "next/dynamic"
+import {
+  AGENT,
+  CONVERSION_FIRST_INNER,
+  CONVERSION_FIRST_OUTER,
+  DISCOUNT_INNER,
+  DISCOUNT_OUTER,
+  GOOGLE_HOTEL_ADS_OUTER,
+  INTELLIGENT_ANALYTICS_INNER,
+  INTELLIGENT_ANALYTICS_OUTER,
+  PAYMENT_INNER,
+  PAYMENT_OUTER,
+  UNLOCK_REVENUE_INNER,
+  UNLOCK_REVENUE_OUTER,
+} from "@/lib/lottie-urls"
 
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
-
-import cottageVillaAnimation from "../../../public/assets/cattage_villa.json"
-import enrichmentAnimation from "../../../public/assets/enrichment.json"
-import finalMobileScreenAnimation from "../../../public/assets/final_mobile_screen.json"
-import ghaReferenceAnimation from "../../../public/assets/GHA refrence pic 1.json"
-import intelligentAnalyticsAnimation from "../../../public/assets/intelligent_analytice.json"
-import memberDiscountAnimation from "../../../public/assets/member_discount.json"
-import paymentCardAnimation from "../../../public/assets/payment_card.json"
 import { CheckedIcon } from "../../../public/svg/commonSvg"
 import {
   UnifiedPlatformIcon1,
@@ -30,9 +35,7 @@ import {
 type SolutionCard = BentoItem & {
   subtitle: string
   icon: React.ReactNode
-  /** Optional Lottie JSON shown in the card's popup modal (replaces the
-      bottom screenshot when present). */
-  lottieAnimation?: unknown
+  // `lottieUrl` (the card/modal animation's public URL) is inherited from BentoItem.
   animationContainerClassName?: string
   textContainerClassName?: string
   lottieClassName?: string
@@ -61,7 +64,8 @@ const solutions: SolutionCard[] = [
     showLearnMore: false,
     modalLayout: "side-by-side",
     modalAnimationClassName: "h-[80%] w-[80%]",
-    lottieAnimation: finalMobileScreenAnimation,
+    lottieUrl: CONVERSION_FIRST_OUTER,
+    modalLottieUrl: CONVERSION_FIRST_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[240px] lg:pb-0 lg:max-w-[50%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[240px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:bottom-0 lg:right-0 lg:mx-0 lg:h-[380px] lg:w-[45%] lg:items-end lg:justify-center lg:pr-6",
     lottieClassName: "translate-y-8 lg:translate-y-[15%] scale-110 lg:scale-[1.15] origin-bottom",
@@ -88,10 +92,11 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     modalWidth: "w-[950px]",
     modalHeight: "h-[740px]",
-    lottieAnimation: cottageVillaAnimation,
+    lottieUrl: DISCOUNT_OUTER,
+    modalLottieUrl: DISCOUNT_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[260px]",
-    animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-12 lg:right-0 lg:mx-0 lg:h-[280px] lg:w-full lg:items-end lg:justify-center",
-    lottieClassName: "scale-100 origin-bottom translate-y-4 lg:translate-y-8",
+    animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-10 lg:bottom-0 lg:mx-0 lg:h-[280px] lg:w-auto lg:items-end lg:justify-center",
+    lottieClassName: "scale-100 origin-bottom translate-y-4 lg:translate-y-2",
     lottieRendererSettings: { preserveAspectRatio: "xMidYMax meet" },
   },
   {
@@ -115,7 +120,8 @@ const solutions: SolutionCard[] = [
     modalWidth: "w-[950px]",
     modalHeight: "h-[740px]",
     showLearnMore: false,
-    lottieAnimation: ghaReferenceAnimation,
+    lottieUrl: GOOGLE_HOTEL_ADS_OUTER,
+    modalLottieUrl: GOOGLE_HOTEL_ADS_OUTER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[60%] xl:max-w-[45%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-14 lg:right-16 lg:mx-0 lg:h-[270px] lg:w-[40%] xl:w-[50%] lg:items-end lg:justify-end",
     lottieClassName: "scale-110 lg:scale-100 origin-bottom-right",
@@ -141,7 +147,8 @@ const solutions: SolutionCard[] = [
     modalWidth: "w-[950px]",
     modalHeight: "h-[740px]",
     showLearnMore: false,
-    lottieAnimation: intelligentAnalyticsAnimation,
+    lottieUrl: INTELLIGENT_ANALYTICS_OUTER,
+    modalLottieUrl: INTELLIGENT_ANALYTICS_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[55%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:inset-y-0 lg:right-10 lg:mx-0 lg:h-auto lg:w-[40%] lg:items-center lg:justify-end lg:pr-8",
   },
@@ -165,7 +172,8 @@ const solutions: SolutionCard[] = [
     modalWidth: "w-[950px]",
     modalHeight: "h-[740px]",
     showLearnMore: false,
-    lottieAnimation: enrichmentAnimation,
+    lottieUrl: UNLOCK_REVENUE_OUTER,
+    modalLottieUrl: UNLOCK_REVENUE_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[280px]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-10 lg:-bottom-6 lg:mx-0 lg:h-[280px]",
     lottieClassName: "origin-bottom lg:scale-[1.05]",
@@ -190,7 +198,8 @@ const solutions: SolutionCard[] = [
     modalHeight: "h-[740px]",
     showLearnMore: false,
     modalLayout: "side-by-side",
-    lottieAnimation: paymentCardAnimation,
+    lottieUrl: PAYMENT_OUTER,
+    modalLottieUrl:PAYMENT_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-0 lg:max-w-[50%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:inset-y-0 lg:right-8 lg:mx-0 lg:h-full lg:w-[40%] lg:items-center lg:justify-end",
     lottieClassName: "scale-100 origin-center",
@@ -216,7 +225,7 @@ const solutions: SolutionCard[] = [
     modalWidth: "w-full",
     modalHeight: "h-[740px]",
     showLearnMore: false,
-    lottieAnimation: memberDiscountAnimation,
+    lottieUrl: AGENT,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-0 lg:max-w-[45%] xl:max-w-[40%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-6 lg:right-12 lg:mx-0 lg:h-[300px] lg:w-[50%] xl:w-[55%] lg:items-end lg:justify-end lg:pr-8",
     lottieClassName: "scale-100 origin-bottom-right",
@@ -272,11 +281,12 @@ export function DirectConnectSolutionSection() {
               </p>
             </div>
 
-            {item.lottieAnimation && (
+            {item.lottieUrl && (
               <div className={item.animationContainerClassName || "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none md:mx-0 lg:h-[240px]"}>
-                <Lottie
-                  animationData={item.lottieAnimation}
-                  loop={true}
+                <LazyLottie
+                  src={item.lottieUrl}
+                  priority="lazy"
+                  loop
                   className={cn("h-full w-full", item.lottieClassName)}
                   rendererSettings={item.lottieRendererSettings}
                 />

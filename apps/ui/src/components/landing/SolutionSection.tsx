@@ -2,8 +2,8 @@
 import type * as React from "react"
 
 import { Eyebrow } from "@/components/common/Eyebrow"
-import Lottie from "lottie-react"
-import animationData from "../../../public/assets/landing/pilles_animation.json"
+import { LazyLottie } from "@/components/common/LazyLottie"
+import { PILLES_URL } from "@/lib/lottie-urls"
 import { HeroTitle } from "./HeroTitle"
 
 export function SolutionSection() {
@@ -51,8 +51,9 @@ export function SolutionSection() {
         {/* GIF Mockup — `slice` makes the Lottie cover its container by
             zooming in, hiding the built-in canvas padding around the pills. */}
         <div className="relative z-10 h-[90%] w-[90%] md:h-[90%] md:w-[90%]">
-          <Lottie
-            animationData={animationData}
+          <LazyLottie
+            src={PILLES_URL}
+            priority="lazy"
             loop
             autoplay
             rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}

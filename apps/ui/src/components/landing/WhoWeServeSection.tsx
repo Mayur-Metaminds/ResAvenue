@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { SectionHeader } from "./SectionHeader"
 import {
@@ -28,7 +28,7 @@ const segments = [
       "Gain real-time insights on occupancy, revenue, and pricing",
     ],
     image: "/images/Landing/independent-hotel.jpeg",
-    position: { top: "10%", left: "50%", transform: "translate(-50%, -50%)" },
+    position: { top: "10%", left: "39.4%", transform: "translate(-50%, -50%)" },
     icon: WhoWeServePopupIcon1,
   },
   {
@@ -100,7 +100,7 @@ const segments = [
       "Capture attendee data for future marketing campaigns",
     ],
     image: "/images/Landing/event-organizers.jpeg",
-    position: { bottom: "18%", left: "2%", transform: "translate(0%, 50%)" },
+    position: { bottom: "43%", left: "-6%", transform: "translate(0%, 50%)" },
     icon: WhoWeServePopupIcon6,
   },
   {
@@ -115,13 +115,25 @@ const segments = [
       "Deliver seamless guest journeys from booking to check-out",
     ],
     image: "/images/Landing/resorts.jpeg",
-    position: { top: "35%", left: "-4%", transform: "translate(0%, -50%)" },
+    position: { top: "35%", left: "-23%", transform: "translate(0%, -50%)" },
     icon: WhoWeServePopupIcon2,
   },
 ]
 
 export function WhoWeServeSection() {
   const [selectedSegment, setSelectedSegment] = useState<string | null>(null)
+
+  // Lock body scroll when the modal is open
+  useEffect(() => {
+    if (selectedSegment) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [selectedSegment])
 
   const activeSegmentData = segments.find((s) => s.id === selectedSegment)
 
@@ -205,7 +217,7 @@ export function WhoWeServeSection() {
             className="absolute z-30 flex items-center cursor-pointer gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_52px_88px_0_rgba(2,33,69,0.50)] transition-transform hover:scale-105"
             style={segment.position}
           >
-            <span className="text-[16px] md:text-[18px] font-plus-jakarta-500 text-gray-700">
+            <span className="text-[16px] md:text-[18px] font-plus-jakarta-500 text-[#000]">
               {segment.title}
             </span>
             <button

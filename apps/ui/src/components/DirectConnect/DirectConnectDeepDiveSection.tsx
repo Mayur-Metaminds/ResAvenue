@@ -7,7 +7,7 @@ import {
   AnimatePresence,
   motion
 } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 
 import { Eyebrow } from "@/components/common/Eyebrow"
 import { SectionHeader } from "@/components/landing/SectionHeader"
@@ -56,11 +56,9 @@ export function DirectConnectDeepDiveSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
-  // One viewport of page scroll per accordion step — the sticky inner stays
-  // pinned for the full outer-section height, so the user "stays in" the
-  // section until they've scrolled through every step, then the next section
-  // naturally comes into view.
-  const stepsPerSection = Math.max(1, accordionData.length)
+  // One viewport of page scroll per accordion step + 1 buffer step at the end.
+  // The buffer ensures the last item doesn't instantly unpin upon reaching it.
+  const stepsPerSection = Math.max(1, accordionData.length) + 1
   const sectionHeight = `${stepsPerSection * 100}vh`
 
   // Scroll progress 0→1 across the section: 0 when the section top hits the
@@ -70,11 +68,13 @@ export function DirectConnectDeepDiveSection() {
     target: sectionRef,
     offset: ["start start", "end end"],
   })
+  
   const indexMotion = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, accordionData.length - 1]
+    [0, accordionData.length]
   )
+  
   useMotionValueEvent(indexMotion, "change", (latest) => {
     const next = Math.max(
       0,
@@ -83,10 +83,76 @@ export function DirectConnectDeepDiveSection() {
     setActiveIndex((prev) => (prev === next ? prev : next))
   })
 
+  // Smooth scroll to the exact viewport position for a given accordion item
+  const scrollToFeature = (index: number, behavior: ScrollBehavior = "smooth") => {
+    const el = sectionRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const sectionTop = rect.top + window.scrollY
+    const scrollableDistance = el.offsetHeight - window.innerHeight
+    const progress = index / accordionData.length
+    
+    window.scrollTo({ 
+      top: sectionTop + scrollableDistance * progress, 
+      behavior 
+    })
+  }
+
+  const wheelCooldownRef = useRef(0)
+  const exitLockoutRef = useRef(0)
+
+  // Wheel/trackpad hijacking — while the section is pinned, swallow wheel
+  // events and snap exactly one step at a time to prevent flickering and
+  // ensure smooth transitions between accordion items.
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+
+    const COOLDOWN_MS = 800
+    const EXIT_LOCKOUT_MS = 1000
+
+    const isPinned = () => {
+      const rect = el.getBoundingClientRect()
+      // Allow 1px tolerance for browser subpixel layout rounding
+      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1
+    }
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!isPinned()) return
+
+      const now = performance.now()
+
+      if (now < exitLockoutRef.current) return
+
+      const direction = Math.sign(e.deltaY)
+      if (direction === 0) return
+
+      const target = activeIndex + direction
+      // Boundaries: let the user scroll out of the section naturally
+      if (target < 0 || target >= accordionData.length) {
+        exitLockoutRef.current = now + EXIT_LOCKOUT_MS
+        return
+      }
+
+      if (now < wheelCooldownRef.current) {
+        e.preventDefault()
+        return
+      }
+
+      e.preventDefault()
+      wheelCooldownRef.current = now + COOLDOWN_MS
+      scrollToFeature(target, "instant")
+    }
+
+    window.addEventListener("wheel", handleWheel, { passive: false })
+
+    return () => window.removeEventListener("wheel", handleWheel)
+  }, [activeIndex])
+
   return (
     <section
       ref={sectionRef}
-      data-nav-theme="dark"
+      data-nav-theme="light"
       className="relative w-full"
       style={{ height: sectionHeight }}
     >
@@ -98,7 +164,7 @@ export function DirectConnectDeepDiveSection() {
           <div className="grid grid-cols-1 items-center gap-[16px] lg:grid-cols-2 lg:gap-[80px]">
             {/* Left Column: Image Graphic */}
             <div className="relative order-2 flex aspect-video lg:aspect-square w-full items-center justify-center rounded-[24px] lg:order-1">
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 {(() => {
                   // activeIndex is clamped to [0, accordionData.length - 1] in
                   // useMotionValueEvent so it's always a valid index — but TS
@@ -168,7 +234,7 @@ export function DirectConnectDeepDiveSection() {
                           ? "border-white/10 bg-[#061435]"
                           : "border-white/5 bg-transparent"
                       )}
-                      onClick={() => setActiveIndex(index)}
+                      onClick={() => scrollToFeature(index)}
                       style={{ cursor: 'pointer' }}
                     >
                       <div className={cn(
@@ -219,6 +285,19 @@ export function DirectConnectDeepDiveSection() {
           </div>
         </div>
       </div>
+
+      {/* 
+        This dummy div acts as a theme-trigger for the navbar. 
+        While the section is pinned, the navbar floats over the white page background above the dark card, so it uses the "light" theme (black text). 
+        When the section finishes and unpins, the dark card scrolls UP and passes under the navbar. 
+        This absolute div sits at the exact bottom of the scroll track and is exactly the height of the sticky inner (100vh - 80px). 
+        So its top reaches the 80px navbar threshold EXACTLY at the moment the dark card starts sliding under the navbar! 
+      */}
+      <div
+        data-nav-theme="dark"
+        className="absolute bottom-0 left-0 w-full pointer-events-none"
+        style={{ height: "calc(100vh - 80px)" }}
+      />
     </section>
   )
 }

@@ -1,7 +1,11 @@
 "use client"
 
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useEffect, useState } from "react"
+
 import { CountUp } from "@/components/common/CountUp"
 import { Marquee } from "@/components/common/Marquee"
+import { cn } from "@/lib/styles"
 
 import { SectionHeader } from "./SectionHeader"
 
@@ -9,7 +13,7 @@ const testimonials = [
   {
     quote:
       "The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.The PMS and Channel Manager working together is a game-changer. Our team saves 3 hours daily. Revenue management insights transformed our pricing strategy.",
-    name: "SUNITA PATEL",
+    name: "John Doe",
     title: "Revenue Director - Coastal Escapes",
     initials: "SP",
     colorClass: "bg-blue-500/20 text-blue-400",
@@ -62,28 +66,28 @@ const stats: Array<{
   format?: (n: number) => string
   label: string
 }> = [
-  {
-    target: 30,
-    suffix: "%",
-    label: "Average Increase in Direct Bookings",
-  },
-  {
-    target: 3500,
-    suffix: "+",
-    format: (n) => Math.round(n).toLocaleString(),
-    label: "Hotels Powered Across the Globe",
-  },
-  {
-    target: 25,
-    suffix: "M+",
-    label: "Room Nights Managed Annually",
-  },
-  {
-    target: 22,
-    suffix: "+",
-    label: "Countries with active properties",
-  },
-]
+    {
+      target: 30,
+      suffix: "%",
+      label: "Average Increase in Direct Bookings",
+    },
+    {
+      target: 3500,
+      suffix: "+",
+      format: (n) => Math.round(n).toLocaleString(),
+      label: "Hotels Powered Across the Globe",
+    },
+    {
+      target: 25,
+      suffix: "M+",
+      label: "Room Nights Managed Annually",
+    },
+    {
+      target: 22,
+      suffix: "+",
+      label: "Countries with active properties",
+    },
+  ]
 
 const avatars = [
   { color: "bg-orange-500", text: "HK" },
@@ -93,6 +97,168 @@ const avatars = [
   { color: "bg-pink-500", text: "HK" },
   { color: "bg-cyan-500", text: "PJ" },
 ]
+
+type Testimonial = (typeof testimonials)[number]
+
+/** Single testimonial card. Width is controlled by the parent via `className`
+ *  (fixed widths in the desktop marquee, full-width in the mobile carousel). */
+function TestimonialCard({
+  testimonial,
+  className,
+  active = false,
+  onClick,
+}: {
+  testimonial: Testimonial
+  className?: string
+  active?: boolean
+  onClick?: () => void
+}) {
+  return (
+    <div
+      onClick={onClick}
+      className={cn(
+        "flex h-[199px] flex-col justify-between rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.06] px-[20px] py-[20px] backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.08] md:h-[265px] md:px-[24px] md:py-[24px]",
+        active && "border-[#ED862E]/40 bg-white/[0.1]",
+        onClick && "cursor-pointer",
+        className
+      )}
+    >
+      <p className="line-clamp-4 text-[13px] leading-relaxed font-light text-white/60 md:line-clamp-5 md:text-[15px]">
+        {testimonial.quote}
+      </p>
+      <div className="flex items-center gap-4">
+        <div
+          className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${testimonial.colorClass}`}
+        >
+          {testimonial.initials}
+        </div>
+        <div>
+          <div className="text-[16px] font-medium text-white">
+            {testimonial.name}
+          </div>
+          <div className="mt-0.5 text-xs text-gray-500">{testimonial.title}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/** Mobile-only testimonials carousel: autoplays through cards on a seamless
+ *  infinite loop, pauses the moment the user taps a card / uses the controls,
+ *  and keeps their selection active (autoplay never overrides it again until
+ *  the page reloads).
+ *
+ *  Infinite loop: the track renders a clone of the last slide before the first
+ *  and a clone of the first after the last. Positions run 0..count+1 over this
+ *  extended track (1..count are the real slides). When the animation lands on a
+ *  clone we snap — with transitions disabled — to the matching real slide, so
+ *  there's never a visible "rewind". */
+function TestimonialsMobileCarousel({ items }: { items: Testimonial[] }) {
+  const count = items.length
+  // Position over the extended track: 0 = clone(last), 1..count = real, count+1 = clone(first).
+  const [pos, setPos] = useState(1)
+  const [isPaused, setIsPaused] = useState(false)
+  // While snapping from a clone back to its real slide, transitions are off so
+  // the jump is invisible.
+  const [snapping, setSnapping] = useState(false)
+
+  const extended: Testimonial[] =
+    count > 1 ? [items[count - 1]!, ...items, items[0]!] : items
+
+  // Autoplay — advance one card every 4s while not paused. Flipping `isPaused`
+  // true tears down the interval on the same commit, pausing immediately.
+  useEffect(() => {
+    if (isPaused || count <= 1) return
+    const id = setInterval(() => setPos((p) => p + 1), 4000)
+
+    return () => clearInterval(id)
+  }, [isPaused, count])
+
+  // Re-enable transitions one frame after a silent snap, by which point the
+  // browser has committed the no-transition jump — so nothing animates.
+  useEffect(() => {
+    if (!snapping) return
+    const raf = requestAnimationFrame(() => setSnapping(false))
+
+    return () => cancelAnimationFrame(raf)
+  }, [snapping])
+
+  // When the slide animation finishes on a clone, jump silently to the real one.
+  const handleTransitionEnd = () => {
+    if (pos === count + 1) {
+      setSnapping(true)
+      setPos(1)
+    } else if (pos === 0) {
+      setSnapping(true)
+      setPos(count)
+    }
+  }
+
+  const prev = () => {
+    setIsPaused(true)
+    setPos((p) => p - 1)
+  }
+  const next = () => {
+    setIsPaused(true)
+    setPos((p) => p + 1)
+  }
+
+  return (
+    <div
+      className="mt-12 w-full md:hidden"
+      role="group"
+      aria-roledescription="carousel"
+      aria-label="Customer testimonials"
+    >
+      <div className="overflow-hidden px-1">
+        <div
+          className="flex"
+          style={{
+            transform: `translateX(-${pos * 100}%)`,
+            transition: snapping ? "none" : "transform 500ms ease-out",
+          }}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          {extended.map((testimonial, idx) => (
+            <div
+              key={idx}
+              className="w-full shrink-0 px-1"
+              aria-hidden={idx !== pos}
+            >
+              <TestimonialCard
+                testimonial={testimonial}
+                active={idx === pos}
+                onClick={() => setIsPaused(true)}
+                className="w-full"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Controls — Prev / Next */}
+      <div className="mt-6 flex items-center justify-center gap-6">
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Previous testimonial"
+          className="flex h-10 w-10 touch-manipulation items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-colors hover:bg-white/10 active:scale-95"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Next testimonial"
+          className="flex h-10 w-10 touch-manipulation items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-colors hover:bg-white/10 active:scale-95"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+  )
+}
 
 export function TestimonialsSection() {
   return (
@@ -146,9 +312,9 @@ export function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Testimonials Marquee — auto-scrolls, pauses on card hover */}
+        {/* Desktop / tablet (md+): auto-scrolling marquee, pauses on card hover. */}
         <Marquee
-          className="relative left-1/2 mt-16 -ml-[50vw] w-[100vw]"
+          className="relative left-1/2 mt-16 -ml-[50vw] hidden w-[100vw] md:block"
           items={testimonials}
           durationSeconds={60}
           pauseOnHover
@@ -157,28 +323,16 @@ export function TestimonialsSection() {
           ariaLabel="Customer testimonials"
           getKey={(_, idx) => idx}
           renderItem={(testimonial) => (
-            <div className="flex h-[199px] justify-between w-[325px] flex-col  rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.06] px-[20px] py-[20px] backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.08] md:h-[265px] md:w-[456px] md:px-[24px] md:py-[24px]">
-              <p className="line-clamp-4 text-[13px] leading-relaxed font-light text-white/60 md:line-clamp-5 md:text-[15px]">
-                {testimonial.quote}
-              </p>
-              <div className="flex items-center gap-4">
-                <div
-                  className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${testimonial.colorClass}`}
-                >
-                  {testimonial.initials}
-                </div>
-                <div>
-                  <div className="text-[16px] font-medium text-white">
-                    {testimonial.name}
-                  </div>
-                  <div className="mt-0.5 text-xs text-gray-500">
-                    {testimonial.title}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <TestimonialCard
+              testimonial={testimonial}
+              className="w-[325px] md:w-[456px]"
+            />
           )}
         />
+
+        {/* Mobile (<md): tappable carousel — tap a card to pause autoplay and
+            keep it active; use the prev/next buttons or dots to navigate. */}
+        <TestimonialsMobileCarousel items={testimonials} />
 
         {/* Separator / Spacer */}
         <SectionHeader
