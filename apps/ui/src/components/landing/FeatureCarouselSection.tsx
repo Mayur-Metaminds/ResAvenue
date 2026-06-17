@@ -49,7 +49,23 @@ const carouselData: CarouselCard[] = [
     linkText: "Learn More",
     linkUrl: "/property-management",
     videoSrc: "/assets/videos/one-platform.mp4",
-  }
+  },
+   {
+    id: "propertyu-management",
+    eyebrow: "OPERATIONS",
+    title: "Central nervous system for your entire property",
+    linkText: "Learn More",
+    linkUrl: "/property-management",
+    videoSrc: "/assets/videos/one-platform.mp4",
+  },
+   {
+    id: "bookingu-engine",
+    eyebrow: "DIRECT CONNECT",
+    title: "Mobile-friendly booking engine with rate plans",
+    linkText: "Learn More",
+    linkUrl: "/direct-connect",
+    videoSrc: "/assets/videos/booking-engine.mp4",
+  },
 ]
 
 export function FeatureCarouselSection() {
@@ -59,8 +75,11 @@ export function FeatureCarouselSection() {
   // restore focus to it on close (a11y).
   const openerRef = useRef<HTMLButtonElement | null>(null)
 
-  // Mouse drag-to-scroll with momentum. Touch already works natively via
-  // overflow-x-auto.
+  // Mouse drag-to-scroll with snap. Touch swipes snap natively via CSS
+  // scroll-snap (snap-x snap-mandatory + snap-center on each card). For mouse
+  // we free-follow the cursor during the drag, then on release glide to the
+  // card nearest the scrollport centre — so dragging a card past ~50% lands on
+  // the next card, and anything less settles back into place.
   //
   // We capture the pointer LAZILY: pointerdown only records the start, and we
   // only call setPointerCapture once the pointer has moved past a small
@@ -72,30 +91,43 @@ export function FeatureCarouselSection() {
     dragging: false, // movement exceeded threshold; we're actively dragging
     startX: 0,
     startScrollLeft: 0,
-    lastX: 0,
-    lastT: 0,
-    velocity: 0,
   })
-  const momentumRaf = useRef<number | null>(null)
+  const restoreSnapTimer = useRef<number | null>(null)
 
-  const stopMomentum = () => {
-    if (momentumRaf.current != null) {
-      cancelAnimationFrame(momentumRaf.current)
-      momentumRaf.current = null
+  // Glide to the card whose centre is closest to the scrollport centre. Because
+  // "closest" flips at the half-way point, dragging past ~50% of a card width
+  // advances to the next card.
+  const snapToNearest = (el: HTMLDivElement) => {
+    const cards = Array.from(el.children) as HTMLElement[]
+    if (cards.length === 0) return
+    const viewportCenter = el.scrollLeft + el.clientWidth / 2
+    let target = cards[0]!
+    let min = Infinity
+    for (const card of cards) {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2
+      const dist = Math.abs(cardCenter - viewportCenter)
+      if (dist < min) {
+        min = dist
+        target = card
+      }
     }
+    el.scrollTo({
+      left: target.offsetLeft + target.offsetWidth / 2 - el.clientWidth / 2,
+      behavior: "smooth",
+    })
   }
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.pointerType !== "mouse" || e.button !== 0) return
-    stopMomentum()
+    if (restoreSnapTimer.current != null) {
+      clearTimeout(restoreSnapTimer.current)
+      restoreSnapTimer.current = null
+    }
     drag.current = {
       armed: true,
       dragging: false,
       startX: e.clientX,
       startScrollLeft: e.currentTarget.scrollLeft,
-      lastX: e.clientX,
-      lastT: performance.now(),
-      velocity: 0,
     }
   }
 
@@ -108,14 +140,10 @@ export function FeatureCarouselSection() {
       if (Math.abs(dx) < DRAG_THRESHOLD) return
       drag.current.dragging = true
       e.currentTarget.setPointerCapture(e.pointerId)
+      // Free-follow the cursor during the drag; CSS snap would fight it.
+      e.currentTarget.style.scrollSnapType = "none"
     }
 
-    const now = performance.now()
-    const dt = Math.max(1, now - drag.current.lastT)
-    const stepDx = e.clientX - drag.current.lastX
-    drag.current.velocity = drag.current.velocity * 0.4 + (-stepDx / dt) * 0.6
-    drag.current.lastX = e.clientX
-    drag.current.lastT = now
     e.currentTarget.scrollLeft = drag.current.startScrollLeft - dx
   }
 
@@ -126,8 +154,9 @@ export function FeatureCarouselSection() {
 
     if (!wasDragging) return // pure click — let it propagate to children
 
-    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
-      e.currentTarget.releasePointerCapture(e.pointerId)
+    const el = e.currentTarget
+    if (el.hasPointerCapture(e.pointerId)) {
+      el.releasePointerCapture(e.pointerId)
     }
     // Swallow the trailing click so a drag doesn't open the play-button modal.
     const swallow = (ev: MouseEvent) => {
@@ -137,32 +166,22 @@ export function FeatureCarouselSection() {
     }
     window.addEventListener("click", swallow, true)
 
-    const el = e.currentTarget
-    if (Math.abs(drag.current.velocity) < 0.05) return
-
-    const friction = 0.94
-    let lastT = performance.now()
-    let velocityPxPerMs = drag.current.velocity
-    const step = (now: number) => {
-      const dt = now - lastT
-      lastT = now
-      const before = el.scrollLeft
-      el.scrollLeft += velocityPxPerMs * dt
-      if (el.scrollLeft === before) {
-        momentumRaf.current = null
-        return
-      }
-      velocityPxPerMs *= friction
-      if (Math.abs(velocityPxPerMs) < 0.02) {
-        momentumRaf.current = null
-        return
-      }
-      momentumRaf.current = requestAnimationFrame(step)
-    }
-    momentumRaf.current = requestAnimationFrame(step)
+    // Glide to the nearest card, then hand snapping back to CSS once the glide
+    // has settled so the resting state stays snap-aligned for touch.
+    snapToNearest(el)
+    restoreSnapTimer.current = window.setTimeout(() => {
+      el.style.scrollSnapType = ""
+      restoreSnapTimer.current = null
+    }, 450)
   }
 
-  useEffect(() => stopMomentum, [])
+  useEffect(() => {
+    return () => {
+      if (restoreSnapTimer.current != null) {
+        clearTimeout(restoreSnapTimer.current)
+      }
+    }
+  }, [])
 
   const openModal = useCallback(
     (card: CarouselCard, trigger: HTMLButtonElement) => {
@@ -232,7 +251,7 @@ export function FeatureCarouselSection() {
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
-          className="hide-scrollbar flex gap-6 overflow-x-auto px-[5%] pt-4 pb-12 cursor-grab active:cursor-grabbing select-none"
+          className="hide-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto px-[5%] pt-4 pb-12 cursor-grab active:cursor-grabbing select-none"
         >
           {carouselData.map((card) => (
             <CarouselItem key={card.id} card={card} onOpen={openModal} />
@@ -273,16 +292,18 @@ function CarouselItem({
 }) {
   return (
     <div
-      className="group relative h-[400px] w-[85vw] shrink-0 overflow-hidden rounded-[24px] shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[511px] md:w-[1000px] lg:w-[1100px]"
+      className="group relative h-[400px] w-[85vw] shrink-0 snap-center overflow-hidden rounded-[24px] shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[511px] md:w-[1000px] lg:w-[1100px]"
     >
-      {/* Preview video — muted, looped, just for ambience */}
+      {/* Thumbnail — a still frame from the video (no autoplay). `#t=0.1` seeks
+          to ~0.1s so a representative frame paints instead of a black one; the
+          full video only plays in the modal after the play button is clicked.
+          Provide `posterSrc` for a hand-picked thumbnail when you want one. */}
       <video
-        src={card.videoSrc}
+        src={`${card.videoSrc}#t=0.1`}
         poster={card.posterSrc}
-        autoPlay
         muted
-        loop
         playsInline
+        preload="metadata"
         aria-hidden
         className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
       />

@@ -188,7 +188,7 @@ const channelConnectFeatures: FeatureStep[] = [
 ]
 
 export function ExploreModulesSection() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
   const [activeTab, setActiveTab] = useState<"direct" | "channel">("direct")
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -202,19 +202,19 @@ export function ExploreModulesSection() {
   // for the full outer-section height, so the user "stays in" the section until
   // they've scrolled through every step — then the section ends naturally and
   // the next section comes into view.
-  const stepsPerSection = Math.max(1, currentFeatures.length)
+  const stepsPerSection = Math.max(1, currentFeatures.length) + 1
   const sectionHeight = `${stepsPerSection * 100}vh`
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"],
+    offset: ["start 96px", "end end"],
   })
 
   // Map scroll progress (0..1) to a fractional index, then snap to nearest int.
   const indexMotion = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, Math.max(0, currentFeatures.length - 1)]
+    [0, Math.max(0, currentFeatures.length)]
   )
   useMotionValueEvent(indexMotion, "change", (latest) => {
     const next = Math.max(
@@ -229,9 +229,11 @@ export function ExploreModulesSection() {
     if (!el) return
     const rect = el.getBoundingClientRect()
     const sectionTop = rect.top + window.scrollY
-    const scrollable = el.offsetHeight - window.innerHeight
-    const progress = i / Math.max(1, currentFeatures.length - 1)
-    window.scrollTo({ top: sectionTop + scrollable * progress, behavior })
+    const stickyOffset = window.innerWidth >= 1024 ? 80 : 96
+    const pinStart = sectionTop - stickyOffset
+    const scrollable = el.offsetHeight - (window.innerHeight - stickyOffset)
+    const progress = i / Math.max(1, currentFeatures.length)
+    window.scrollTo({ top: pinStart + scrollable * progress, behavior })
   }
 
   // When the user switches tabs we preserve their RELATIVE progress (0..1)
@@ -246,10 +248,12 @@ export function ExploreModulesSection() {
     const el = sectionRef.current
     if (el) {
       const sectionTop = el.getBoundingClientRect().top + window.scrollY
-      const scrollable = el.offsetHeight - window.innerHeight
+      const stickyOffset = window.innerWidth >= 1024 ? 80 : 96
+      const pinStart = sectionTop - stickyOffset
+      const scrollable = el.offsetHeight - (window.innerHeight - stickyOffset)
       pendingProgressRef.current =
         scrollable > 0
-          ? Math.max(0, Math.min(1, (window.scrollY - sectionTop) / scrollable))
+          ? Math.max(0, Math.min(1, (window.scrollY - pinStart) / scrollable))
           : 0
     }
     setActiveTab(tab)
@@ -263,9 +267,11 @@ export function ExploreModulesSection() {
     const el = sectionRef.current
     if (!el) return
     const sectionTop = el.getBoundingClientRect().top + window.scrollY
-    const scrollable = el.offsetHeight - window.innerHeight
+    const stickyOffset = window.innerWidth >= 1024 ? 80 : 96
+    const pinStart = sectionTop - stickyOffset
+    const scrollable = el.offsetHeight - (window.innerHeight - stickyOffset)
     window.scrollTo({
-      top: sectionTop + scrollable * progress,
+      top: pinStart + scrollable * progress,
       behavior: "instant",
     })
   }, [activeTab])
@@ -287,13 +293,14 @@ export function ExploreModulesSection() {
     const el = sectionRef.current
     if (!el) return
 
-    const COOLDOWN_MS = 150
-    const EXIT_LOCKOUT_MS = 500
+    const COOLDOWN_MS = 800
+    const EXIT_LOCKOUT_MS = 1000
 
     const isPinned = () => {
       const rect = el.getBoundingClientRect()
+      const stickyOffset = window.innerWidth >= 1024 ? 80 : 96
       // Allow 1px tolerance for browser subpixel layout rounding
-      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1
+      return rect.top <= stickyOffset + 1 && rect.bottom >= window.innerHeight - 1
     }
 
     const handleWheel = (e: WheelEvent) => {
@@ -336,10 +343,8 @@ export function ExploreModulesSection() {
 
   return (
     <section
-      ref={sectionRef}
       data-nav-theme="dark"
       className="relative w-full bg-[#010C28] text-white"
-      style={{ height: sectionHeight }}
     >
       {/* Header — in normal flow, scrolls away with the page */}
       <div className="px-4 lg:px-1 pt-24 lg:pt-20">
@@ -360,8 +365,10 @@ export function ExploreModulesSection() {
         />
       </div>
 
-      {/* Sticky block — pins below the fixed navbar so the tabs row stays visible */}
-      <div className="sticky top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden">
+      {/* Sticky tracking area */}
+      <div ref={sectionRef} style={{ height: sectionHeight }}>
+        {/* Sticky block — pins below the fixed navbar so the tabs row stays visible */}
+        <div className="sticky top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden">
         <div className="flex w-full flex-col px-4 lg:px-1 h-full justify-center">
           <div className="flex h-full flex-col ">
           {/* Tabs */}
@@ -405,7 +412,7 @@ export function ExploreModulesSection() {
             </div>
 
             {/* Image */}
-            <div className="relative z-10 w-full lg:col-span-7 aspect-video lg:aspect-auto lg:h-full shrink-0 mt-2 lg:mt-0">
+            <div className="relative z-10 w-full lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 mt-4 lg:mt-0">
               <div className="pointer-events-none absolute inset-0 rounded-3xl lg:rounded-l-3xl lg:rounded-r-none bg-gradient-to-tr from-[#ED862E]/10 to-transparent opacity-60 blur-3xl" />
               <AnimatePresence mode="wait">
                 <motion.div
@@ -414,21 +421,22 @@ export function ExploreModulesSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="absolute top-0 left-0 h-full w-full lg:w-[150%] overflow-hidden"
+                  className="absolute top-0 left-0 h-full w-full lg:w-[150%] overflow-hidden flex items-center justify-center"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={activeFeature.image}
                     alt={activeFeature.label}
-                    className="h-full w-full object-contain lg:object-cover object-center lg:object-left-top p-2 lg:p-0"
+                    className="h-full w-full object-contain lg:object-cover object-center lg:object-left-top p-2 lg:p-0 scale-[1.15] lg:scale-100"
                   />
                 </motion.div>
               </AnimatePresence>
             </div>
           </div>
+            </div>
+          </div>
           </div>
         </div>
-      </div>
     </section>
   )
 }

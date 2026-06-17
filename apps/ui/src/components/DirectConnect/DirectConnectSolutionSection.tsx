@@ -3,19 +3,24 @@
 import type * as React from "react"
 
 import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
+import { LazyLottie } from "@/components/common/LazyLottie"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { cn } from "@/lib/styles"
-import dynamic from "next/dynamic"
+import {
+  AGENT,
+  CONVERSION_FIRST_INNER,
+  CONVERSION_FIRST_OUTER,
+  DISCOUNT_INNER,
+  DISCOUNT_OUTER,
+  GOOGLE_HOTEL_ADS_OUTER,
+  INTELLIGENT_ANALYTICS_INNER,
+  INTELLIGENT_ANALYTICS_OUTER,
+  PAYMENT_INNER,
+  PAYMENT_OUTER,
+  UNLOCK_REVENUE_INNER,
+  UNLOCK_REVENUE_OUTER,
+} from "@/lib/lottie-urls"
 
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
-
-import cottageVillaAnimation from "../../../public/assets/cattage_villa.json"
-import enrichmentAnimation from "../../../public/assets/enrichment.json"
-import finalMobileScreenAnimation from "../../../public/assets/final_mobile_screen.json"
-import ghaReferenceAnimation from "../../../public/assets/GHA refrence pic 1.json"
-import intelligentAnalyticsAnimation from "../../../public/assets/intelligent_analytice.json"
-import memberDiscountAnimation from "../../../public/assets/member_discount.json"
-import paymentCardAnimation from "../../../public/assets/payment_card.json"
 import { CheckedIcon } from "../../../public/svg/commonSvg"
 import {
   UnifiedPlatformIcon1,
@@ -29,11 +34,8 @@ import {
 
 type SolutionCard = BentoItem & {
   subtitle: string
-  bullets?: string[]
   icon: React.ReactNode
-  /** Optional Lottie JSON shown in the card's popup modal (replaces the
-      bottom screenshot when present). */
-  lottieAnimation?: unknown
+  // `lottieUrl` (the card/modal animation's public URL) is inherited from BentoItem.
   animationContainerClassName?: string
   textContainerClassName?: string
   lottieClassName?: string
@@ -46,15 +48,10 @@ const solutions: SolutionCard[] = [
     title: "Conversion-First Booking Engine",
     subtitle:
       "Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless check-out experience.",
+      modalSubtitle:"Designed for speed and luxury. Increase direct bookings by up to 20% with our frictionless check-out experience.\n\nEnable guests to book faster with an intuitive, conversion-focused interface that reduces friction and improves completion rates. Offer personalized booking journeys, real-time availability, and responsive experiences that work seamlessly across desktop, tablet, and mobile devices.",
     gridSpan: "col-span-1 lg:col-span-7 h-[432px]",
     anchor: "top-left",
     modalFeatures: [
-      "Mobile-friendly booking engine",
-      "Upsell & Add-on Optimization",
-      "Integrated Payment Gateway",
-      "Multi-currency & Multi-lingual",
-    ],
-    bullets: [
       "Mobile-friendly booking engine",
       "Upsell & Add-on Optimization",
       "Integrated Payment Gateway",
@@ -66,7 +63,9 @@ const solutions: SolutionCard[] = [
     modalHeight: "h-[740px]",
     showLearnMore: false,
     modalLayout: "side-by-side",
-    lottieAnimation: finalMobileScreenAnimation,
+    modalAnimationClassName: "h-[80%] w-[80%]",
+    lottieUrl: CONVERSION_FIRST_OUTER,
+    modalLottieUrl: CONVERSION_FIRST_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[240px] lg:pb-0 lg:max-w-[50%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[240px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:bottom-0 lg:right-0 lg:mx-0 lg:h-[380px] lg:w-[45%] lg:items-end lg:justify-center lg:pr-6",
     lottieClassName: "translate-y-8 lg:translate-y-[15%] scale-110 lg:scale-[1.15] origin-bottom",
@@ -77,6 +76,7 @@ const solutions: SolutionCard[] = [
     title: "Discounts & Promotions",
     subtitle:
       "Create smart hotel promotions, seasonal discounts, last-minute deals, and exclusive guest offers. Easily manage special rates, and promo codes to attract more guests and increase revenue.",
+      modalSubtitle:"Create smart hotel promotions, seasonal discounts, last-minute deals, and exclusive guest offers. Easily manage special rates, and promo codes to attract more guests and increase revenue. \n\n Drive urgency and increase bookings with limited-time offers, bundled packages, and personalized promotions tailored to different guest segments. Easily manage campaigns that help improve occupancy and maximize revenue opportunities.",
     isDark: true,
     icon: <UnifiedPlatformIcon2 className="text-[#ED862E]" />,
     showLearnMore: false,
@@ -84,41 +84,44 @@ const solutions: SolutionCard[] = [
     gridSpan: "col-span-1 lg:col-span-5 h-[432px]",
     anchor: "top-right",
     modalFeatures: [
-      "Smart promotions",
-      "Seasonal discounts",
-      "Last-minute deals",
-      "Promo codes",
+      "Dynamic Promotions & Packages",
+      "Coupon & Discount Management",
+      "Seasonal & Event-Based Pricing",
+      "Revenue-Driven Offer Strategies",
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     modalWidth: "w-[950px]",
     modalHeight: "h-[740px]",
-    lottieAnimation: cottageVillaAnimation,
+    lottieUrl: DISCOUNT_OUTER,
+    modalLottieUrl: DISCOUNT_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[260px]",
-    animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-12 lg:right-0 lg:mx-0 lg:h-[280px] lg:w-full lg:items-end lg:justify-center",
-    lottieClassName: "scale-100 origin-bottom translate-y-4 lg:translate-y-8",
+    animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-10 lg:bottom-0 lg:mx-0 lg:h-[280px] lg:w-auto lg:items-end lg:justify-center",
+    lottieClassName: "scale-100 origin-bottom translate-y-4 lg:translate-y-2",
     lottieRendererSettings: { preserveAspectRatio: "xMidYMax meet" },
   },
   {
     id: "google-hotel-ads",
-    modalLayout: "stacked-vertical",
+    modalLayout: "side-by-side",
     title: "Google Hotel Ads",
     subtitle:
       "Display your rates directly and maximize direct bookings through Google Search and Google Maps.",
-    modalSubtitle: "Increase visibility where travellers search most by displaying your direct website rates on Google Search and Google Maps. Capture high-intent travellers and encourage guests to book directly through your official websiteReduce dependency on OTAs while increasing direct revenue opportunities through metasearch visibility.Display your official website pricing alongside OTA listings and attract guests looking for the best direct booking experience. Improve click-through rates and drive commission-free bookings directly from Google’s travel ecosystem.",
+    modalSubtitle: "Increase visibility where travellers search most by displaying your direct website rates on Google Search and Google Maps. Capture high-intent travellers and encourage guests to book directly through your official websiteReduce dependency on OTAs while increasing direct revenue opportunities through metasearch visibility.  \n\n Display your official website pricing alongside OTA listings and attract guests looking for the best direct booking experience. Improve click-through rates and drive commission-free bookings directly from Google’s travel ecosystem.",
     isDark: true,
     gridSpan: "col-span-1 lg:col-span-6 min-h-[250px]",
     anchor: "top-left",
     modalFeatures: [
-      "Direct Google integration",
-      "Maximize direct bookings",
-      "Increased visibility",
+      "Display Direct Website Rates",
+      "Compete with OTAs on Google",
+      "Increase Direct Booking Visibility",
+      "Drive High-Intent Traffic"
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon3 />,
     modalWidth: "w-[950px]",
     modalHeight: "h-[740px]",
     showLearnMore: false,
-    lottieAnimation: ghaReferenceAnimation,
+    lottieUrl: GOOGLE_HOTEL_ADS_OUTER,
+    modalLottieUrl: GOOGLE_HOTEL_ADS_OUTER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[60%] xl:max-w-[45%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-14 lg:right-16 lg:mx-0 lg:h-[270px] lg:w-[40%] xl:w-[50%] lg:items-end lg:justify-end",
     lottieClassName: "scale-110 lg:scale-100 origin-bottom-right",
@@ -130,20 +133,22 @@ const solutions: SolutionCard[] = [
     title: "Intelligent Analytics",
     subtitle:
       "Keep track of your online bookings with advanced reports, statistics, and advanced tracking via one built-in dashboard.",
-    modalSubtitle: "Gain complete visibility into your booking performance, revenue trends, guest behaviour, and operational insights through one intelligent analytics dashboard.Make smarter business decisions with real-time reports and actionable data that help optimize revenue and improve overall performance. Monitor booking sources, conversion trends, promotional performance, and operational KPIs through visually rich reports and analytics tools. Turn data into actionable insights that help improve pricing strategies and business growth.",
+    modalSubtitle: "Gain complete visibility into your booking performance, revenue trends, guest behaviour, and operational insights through one intelligent analytics dashboard. \nMake smarter business decisions with real-time reports and actionable data that help optimize revenue and improve overall performance. \n\n Monitor booking sources, conversion trends, promotional performance, and operational KPIs through visually rich reports and analytics tools. Turn data into actionable insights that help improve pricing strategies and business growth.",
     gridSpan: "col-span-1 lg:col-span-6 min-h-[250px]",
     anchor: "top-right",
     modalFeatures: [
-      "Advanced reports",
-      "Real-time statistics",
-      "Built-in dashboard",
+      "Real-Time Booking Insights",
+      "Revenue & Occupancy Reports",
+      "Traffic Report",
+      "Performance Tracking Dashboard"
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon4 />,
     modalWidth: "w-[950px]",
     modalHeight: "h-[740px]",
     showLearnMore: false,
-    lottieAnimation: intelligentAnalyticsAnimation,
+    lottieUrl: INTELLIGENT_ANALYTICS_OUTER,
+    modalLottieUrl: INTELLIGENT_ANALYTICS_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[55%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:inset-y-0 lg:right-10 lg:mx-0 lg:h-auto lg:w-[40%] lg:items-center lg:justify-end lg:pr-8",
   },
@@ -153,20 +158,22 @@ const solutions: SolutionCard[] = [
     title: "Unlock New Revenue Streams",
     subtitle:
       "Designed to drive incremental revenue, it enables guests to book services as standalone offerings or alongside their stay directly through your website - enhancing both profitability and guest experience.",
-    modalSubtitle: "Go beyond room bookings by turning every guest interaction into an additional revenue opportunity. ResAvenue enables properties to sell experiences, activities, and value-added services directly through their website — bundled either with stays or as standalone offerings.Enhance guest satisfaction while increasing ancillary revenue through curated experiences and personalized upsells. Promote spa sessions, airport transfers, dining experiences, day packages, activities, wellness services, and more directly within the booking flow. Create dynamic combinations that encourage guests to spend more before arrival while simplifying service discovery and bookings.",
+    modalSubtitle: "Go beyond room bookings by turning every guest interaction into an additional revenue opportunity. ResAvenue enables properties to sell experiences, activities, and value-added services directly through their website — bundled either with stays or as standalone offerings.Enhance guest satisfaction while increasing ancillary revenue through curated experiences and personalized upsells. \n\nPromote spa sessions, airport transfers, dining experiences, day packages, activities, wellness services, and more directly within the booking flow. Create dynamic combinations that encourage guests to spend more before arrival while simplifying service discovery and bookings.",
     gridSpan: "col-span-1 lg:col-span-5 min-h-[432px]",
     anchor: "bottom-left",
     modalFeatures: [
-      "Offer Add-ons before stay",
-      "Sell Extras on checkout page",
+      "Offer Add-ons with Room Stays",
+      "Curated Guest Experiences",
+      "Sell Standalone Services Directly",
+      "Flexible Packages & Bundles",
     ],
-    bullets: ["Offer Add-ons before stay", "Sell Extras on checkout page"],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon5 />,
     modalWidth: "w-[950px]",
     modalHeight: "h-[740px]",
     showLearnMore: false,
-    lottieAnimation: enrichmentAnimation,
+    lottieUrl: UNLOCK_REVENUE_OUTER,
+    modalLottieUrl: UNLOCK_REVENUE_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[280px]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-10 lg:-bottom-6 lg:mx-0 lg:h-[280px]",
     lottieClassName: "origin-bottom lg:scale-[1.05]",
@@ -176,19 +183,14 @@ const solutions: SolutionCard[] = [
     id: "payments-security",
     title: "Payments & Security",
     subtitle:
-      "Process every payment with total peace of mind, knowing our rock-solid security protects your guests, your reputation, and your revenue.  Drive urgency and increase bookings with limited-time offers, bundled packages, and personalized promotions tailored to different guest segments. Easily manage campaigns that help improve occupancy and maximize revenue opportunities.",
+      "Process every payment with total peace of mind, knowing our rock-solid security protects your guests, your reputation, and your revenue. \n\n Drive urgency and increase bookings with limited-time offers, bundled packages, and personalized promotions tailored to different guest segments. Easily manage campaigns that help improve occupancy and maximize revenue opportunities.",
     isDark: true,
     gridSpan: "col-span-1 lg:col-span-7 min-h-[432px]",
     anchor: "bottom-right",
     modalFeatures: [
-      "Secure PCI compliant payment processing",
-      "Fully mobile optimized payments",
-      "Multiple payment flows",
-    ],
-    bullets: [
-      "Secure PCI compliant payment processing",
-      "Fully mobile optimized payments",
-      "Multiple payment flows",
+      "Secure, PCI-compliant payment processing",
+      "Fully mobile-optimized payments",
+      "Multiple Payment Modes",
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon6 />,
@@ -196,7 +198,8 @@ const solutions: SolutionCard[] = [
     modalHeight: "h-[740px]",
     showLearnMore: false,
     modalLayout: "side-by-side",
-    lottieAnimation: paymentCardAnimation,
+    lottieUrl: PAYMENT_OUTER,
+    modalLottieUrl:PAYMENT_INNER,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-0 lg:max-w-[50%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:inset-y-0 lg:right-8 lg:mx-0 lg:h-full lg:w-[40%] lg:items-center lg:justify-end",
     lottieClassName: "scale-100 origin-center",
@@ -207,21 +210,22 @@ const solutions: SolutionCard[] = [
     modalLayout: "stacked-vertical",
     title: "Agents / Member Management",
     subtitle:
-      "Reward your direct bookers with exclusive member-only rates designed to drive loyalty and repeat stays. Keep guests engaged with personalized offers, promotions, and updates while optimizing your pricing strategy to increase direct bookings and long-term customer value. Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
-    modalSubtitle: "Build stronger guest relationships and drive repeat business with exclusive member programs and agent-focused pricing strategies. Reward loyalty with personalized offers, member-only rates, and targeted promotions that encourage direct bookings over third-party channels.Create a more personalized guest journey while maximizing long-term customer value. Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
+      "Reward your direct bookers with exclusive member-only rates designed to drive loyalty and repeat stays. \n\n Keep guests engaged with personalized offers, promotions, and updates while optimizing your pricing strategy to increase direct bookings and long-term customer value. Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
+    modalSubtitle: "Build stronger guest relationships and drive repeat business with exclusive member programs and agent-focused pricing strategies. Reward loyalty with personalized offers, member-only rates, and targeted promotions that encourage direct bookings over third-party channels.Create a more personalized guest journey while maximizing long-term customer value. \n\n Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
     gridSpan: "col-span-1 lg:col-span-12 min-h-[350px]",
     anchor: "bottom-left",
     modalFeatures: [
-      "Offer exclusive rates",
-      "Offer exclusive member discounts",
+      "Exclusive Member Rates",
+      "Loyalty & Repeat Guest Benefits",
+      "Personalized Promotions & Discounts",
+      "Agent & Corporate Pricing Controls",
     ],
-    bullets: ["Offer exclusive rates", "Offer exclusive member discounts"],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon7 />,
     modalWidth: "w-full",
     modalHeight: "h-[740px]",
     showLearnMore: false,
-    lottieAnimation: memberDiscountAnimation,
+    lottieUrl: AGENT,
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-0 lg:max-w-[45%] xl:max-w-[40%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-6 lg:right-12 lg:mx-0 lg:h-[300px] lg:w-[50%] xl:w-[55%] lg:items-end lg:justify-end lg:pr-8",
     lottieClassName: "scale-100 origin-bottom-right",
@@ -277,11 +281,12 @@ export function DirectConnectSolutionSection() {
               </p>
             </div>
 
-            {item.lottieAnimation && (
+            {item.lottieUrl && (
               <div className={item.animationContainerClassName || "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none md:mx-0 lg:h-[240px]"}>
-                <Lottie
-                  animationData={item.lottieAnimation}
-                  loop={true}
+                <LazyLottie
+                  src={item.lottieUrl}
+                  priority="lazy"
+                  loop
                   className={cn("h-full w-full", item.lottieClassName)}
                   rendererSettings={item.lottieRendererSettings}
                 />

@@ -1,12 +1,8 @@
 "use client"
 
-import dynamic from "next/dynamic"
-
 import { CountUp } from "@/components/common/CountUp"
-
-import trafficReportAnimation from "../../../public/assets/traffic_report_work.json"
-
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
+import { LazyLottie } from "@/components/common/LazyLottie"
+import { INTELLIGENT_ANALYTICS_INNER } from "@/lib/lottie-urls"
 
 export function DirectConnectDashboardSection() {
   return (
@@ -60,8 +56,9 @@ export function DirectConnectDashboardSection() {
 
           {/* Right Column: Mockup Animation */}
           <div className="relative z-10 flex aspect-[4/3] w-full items-center justify-center lg:origin-right lg:scale-110">
-            <Lottie
-              animationData={trafficReportAnimation}
+            <LazyLottie
+              src={INTELLIGENT_ANALYTICS_INNER}
+              priority="lazy"
               loop
               className="h-full w-full drop-shadow-2xl"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}

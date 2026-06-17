@@ -1,25 +1,23 @@
 "use client"
 
 import { ArrowRight } from "lucide-react"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 
-import { LazyLottie } from "@/components/common/LazyLottie"
 import { HeroContent } from "@/components/landing/HeroContent"
 import { HeroTitle } from "@/components/landing/HeroTitle"
 import { Button } from "@/components/ui/button"
-import { preloadLottie } from "@/lib/lottie-preload"
-import { DC_HERO_OVERLAY_URL } from "@/lib/lottie-urls"
 
-export function DirectConnectHeroSection() {
-  // Above the fold: warm the hero animation download before hydration.
-  preloadLottie(DC_HERO_OVERLAY_URL)
+import globeAnimation from "../../../public/assets/landing/distribution-network.json"
 
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
+
+export function DistributedTechnologyHeroSection() {
   return (
     <section
       data-nav-theme="dark"
       className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#0A0A0B]"
     >
-      {/* Background image */}
       <Image
         src="/images/hero_section_bg.png"
         alt=""
@@ -30,24 +28,24 @@ export function DirectConnectHeroSection() {
         className="pointer-events-none object-cover object-center select-none"
       />
 
-      {/* Container */}
-      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] mt-[165px] lg:px-20">
-        {/* Main Content */}
+      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] mt-[200px] lg:px-20">
         <div className="flex flex-1 flex-col items-start justify-between gap-12 pb-12 lg:flex-row lg:gap-8 lg:pb-0">
-          {/* Left Column: Content */}
-          <div className="flex w-full flex-col justify-start lg:w-[50%]  xl:w-[45%]">
+          {/* Left — content */}
+          <div className="flex w-full flex-col justify-start lg:w-[50%] xl:w-[45%]">
             <HeroContent
-              eyebrow="HOTEL BOOKING ENGINE"
+
+              eyebrow="CLOUD BASED HOTEL MANAGEMENT"
               title={
                 <HeroTitle>
-                  Built for Every Stay.
+                  Expand Your Reach
                   <br />
-                  <HeroTitle.Highlight>
-                    Designed to Drive Direct Bookings.
-                  </HeroTitle.Highlight>
+                  Across{" "}
+                  <HeroTitle.Highlight>Global Distribution Networks</HeroTitle.Highlight>
+
                 </HeroTitle>
               }
-              description="From hotels and resorts to boutique properties, serviced apartments, villas, and alternative accommodations, ResAvenue Direct Connect transforms your website into a powerful direct booking engine. Deliver seamless, mobile-first booking experiences with real-time availability, dynamic pricing, exclusive offers, secure payments, and conversion-focused journeys designed to reduce OTA dependency and maximize direct revenue."
+              titleClassName="w-[550px]"
+              description="The complete hospitality ecosystem for modern revenue management. Synchronize inventory in real-time across GDS, OTAs, and Metasearch from a single source of truth."
               actions={[
                 <Button
                   key="demo"
@@ -58,31 +56,20 @@ export function DirectConnectHeroSection() {
                 >
                   Request a Demo
                 </Button>,
-                <Button
-                  key="products"
-                  variant="secondary"
-                  size="default"
-                  className="pt-[9px] pr-[16px] pb-[10px] pl-[17px] font-['Plus_Jakarta_Sans'] font-semibold text-[16px] leading-[24px] lg:pt-[17px] lg:pr-[28.6px] lg:pb-[18px] lg:pl-[29px] lg:text-[15px]"
-                >
-                  Explore Products
-                </Button>,
               ]}
             />
           </div>
 
-          {/* Right Column: Mockup */}
+          {/* Right — globe animation */}
           <div className="relative z-20 flex h-[300px] w-full items-start justify-center self-start sm:h-[480px] lg:h-[600px] lg:w-[50%] lg:justify-end xl:h-[720px] xl:w-[55%]">
             <div className="relative flex h-full w-full max-w-[800px] items-start justify-start">
-              <LazyLottie
-                src={DC_HERO_OVERLAY_URL}
-                priority="eager"
+              <Lottie
+                animationData={globeAnimation}
                 loop
                 className="h-full w-full"
                 rendererSettings={{ preserveAspectRatio: "xMidYMin meet" }}
               />
             </div>
-
-            {/* Glow */}
             <div className="bg-primary/20 absolute top-1/2 left-1/2 -z-10 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]" />
           </div>
         </div>
