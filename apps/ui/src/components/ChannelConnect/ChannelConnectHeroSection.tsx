@@ -27,6 +27,7 @@ export function ChannelConnectHeroSection() {
               eyebrow="INTUITIVE EXPERIENCE. FAST FLEXIBILITY."
               title={
                 <HeroTitle
+                  className="max-sm:w-[250px]"
                   style={
                     {
                       "--hero-title-color": "#FFFFFF",
@@ -45,7 +46,7 @@ export function ChannelConnectHeroSection() {
                   Control Every Channel. Maximize Every Booking. Simplify hotel distribution with a centralized channel management solution built for speed, accuracy, and scale. Connects to 100+ channels directly worldwide. Instantly update rates and inventory across OTAs, GDS, and metasearch platforms while optimizing performance with real-time insights.
                 </span>
               }
-              
+
               actions={[
                 <Button
                   key="demo"
