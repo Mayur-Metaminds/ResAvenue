@@ -10,6 +10,7 @@ const EventBookingCreateEvents = () => {
             description="Get started today and transform the way you manage and sell tickets."
             descriptionClassName="typo-body1 text-center text-white/50 text-[14px]! lg:text-[18px]! lg:leading-[30.6px]!"
             primaryButtonLabel={null}
+            showFooter
         />
     )
 }

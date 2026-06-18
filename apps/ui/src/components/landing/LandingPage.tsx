@@ -44,7 +44,7 @@ export default function LandingPage() {
       <TestimonialsSection />
       <PlanSelectionSection />
       <FaqSection />
-      <CtaSection />
+      <CtaSection showFooter />
     </div>
   )
 }

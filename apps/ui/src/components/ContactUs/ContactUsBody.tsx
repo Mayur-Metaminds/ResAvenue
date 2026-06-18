@@ -128,7 +128,7 @@ function ContactUsBody() {
           items={contactCards}
           containerClassName="w-full"
           gridClassName="relative grid auto-rows-fr grid-cols-1 gap-6 lg:grid-cols-12"
-          cardClassName="min-h-[150px] w-full justify-start overflow-hidden rounded-xl border border-slate-200 bg-white max-lg:px-4 max-md:p-4 md:p-4 lg:p-2 xl:p-6 transition-shadow hover:shadow-[0_12px_20px_-10px_rgba(237,134,46,0.15)]"
+          cardClassName="min-h-[150px] w-full justify-start overflow-hidden rounded-xl border border-slate-200 bg-white max-lg:px-4 max-md:p-4 md:p-4 lg:p-2 xl:p-6 "
           header={
             <SectionHeader
               className="mx-auto mb-[40px] max-w-3xl text-center lg:mb-[60px]"

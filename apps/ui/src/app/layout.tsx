@@ -3,7 +3,6 @@ import "@/styles/globals.css"
 import type { Metadata, Viewport } from "next"
 import Script from "next/script"
 
-import { Footer } from "@/components/common/Footer"
 import { Navbar } from "@/components/common/Navbar"
 import { siteConfig } from "@/config/site"
 import { fontRoboto } from "@/lib/fonts"
@@ -95,7 +94,6 @@ export default function RootLayout({
         <div className="flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1">{children}</main>
-          <Footer />
         </div>
       </body>
     </html>

@@ -22,21 +22,21 @@ const operationsData: OperationCard[] = [
     id: "direct-sales",
     title: "Drive Direct Sales",
     description:
-      "Convert more lookers into bookers with a fast, intuitive, and mobile-optimized booking engine that reduces OTA reliance.",
+      "Reduce dependency on high-commission OTAs and increase your bottom line with a high-converting direct booking site.",
     icon: <OurSolutionsIcon1 />,
   },
   {
     id: "multi-property",
     title: "Multi-Property Support",
     description:
-      "Manage inventory, rates, and promotions across multiple properties from a single, centralized dashboard with ease.",
+      "Manage thousands of rooms across different brands and regions from a single dashboard with enterprise security.",
     icon: <OurSolutionsIcon2 />,
   },
   {
     id: "guest-experience",
     title: "Enhance Guest Experience",
     description:
-      "Provide a seamless digital journey from booking to checkout with personalized offers and self-service capabilities.",
+      "Provide a seamless, personalized journey from the first click to check-out and beyond with automated engagement.",
     icon: <OurSolutionsIcon3 />,
   },
 ]
@@ -68,7 +68,7 @@ export function DirectConnectOperationsSection() {
           {operationsData.map((op) => (
             <div
               key={op.id}
-              className="group relative flex flex-col items-start overflow-hidden rounded-[24px] border border-slate-100 bg-white p-8 shadow-[0_4px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-xl lg:p-10"
+              className="cursor-pointer group relative flex flex-col items-start overflow-hidden rounded-[24px] border border-slate-100 bg-white p-8 shadow-[0_4px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-xl lg:p-10"
             >
               {/* Hover Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#ED862E] to-[#F5A962] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

@@ -43,6 +43,11 @@ export interface LazyLottieProps {
   fallback?: ReactNode
   /** Honour prefers-reduced-motion by showing a static first frame. Default true. */
   respectReducedMotion?: boolean
+  /** Static image shown while loading AND if loading ultimately fails — graceful
+      degradation on slow/flaky networks. Pass a card's `imagePlaceholder`. */
+  posterSrc?: string
+  /** Subtle pulsing skeleton while loading (when no `posterSrc`). Default true. */
+  showSkeleton?: boolean
   /** Called once with the parsed JSON when it loads (e.g. to read native w/h). */
   onReady?: (data: LottieJson) => void
   style?: CSSProperties
@@ -60,6 +65,8 @@ export function LazyLottie({
   rootMargin = "600px",
   fallback = null,
   respectReducedMotion = true,
+  posterSrc,
+  showSkeleton = true,
   onReady,
   style,
   "aria-label": ariaLabel,
@@ -67,6 +74,8 @@ export function LazyLottie({
   // Start from cache when available so a remount (reopened modal, scrolled-back
   // card) paints instantly with no flash and no refetch.
   const [data, setData] = useState<LottieJson | null>(() => peekLottie(src) ?? null)
+  const [errored, setErrored] = useState(false)
+  const retriedRef = useRef(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const onReadyRef = useRef(onReady)
   onReadyRef.current = onReady
@@ -89,7 +98,9 @@ export function LazyLottie({
       .then((d) => {
         if (alive) setData(d)
       })
-      .catch(() => {})
+      .catch(() => {
+        if (alive) setErrored(true)
+      })
 
     return () => {
       alive = false
@@ -107,7 +118,7 @@ export function LazyLottie({
           io.disconnect()
           loadLottie(src)
             .then(setData)
-            .catch(() => {})
+            .catch(() => setErrored(true))
         }
       },
       { rootMargin }
@@ -116,6 +127,24 @@ export function LazyLottie({
 
     return () => io.disconnect()
   }, [src, priority, rootMargin, data])
+
+  // One delayed retry if loading failed while mounted. loadLottie already
+  // retried 3× with backoff, so this rides out a longer network outage that
+  // recovers after the component is already on screen.
+  useEffect(() => {
+    if (!errored || retriedRef.current) return
+    retriedRef.current = true
+    const t = setTimeout(() => {
+      loadLottie(src)
+        .then((d) => {
+          setData(d)
+          setErrored(false)
+        })
+        .catch(() => {})
+    }, 4000)
+
+    return () => clearTimeout(t)
+  }, [errored, src])
 
   const reduceMotion =
     respectReducedMotion &&
@@ -133,6 +162,24 @@ export function LazyLottie({
           rendererSettings={rendererSettings}
           aria-label={ariaLabel}
           role={ariaLabel ? "img" : undefined}
+        />
+      ) : posterSrc ? (
+        // Static poster — covers both the loading window and a terminal failure.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={posterSrc}
+          alt={ariaLabel ?? ""}
+          aria-hidden={ariaLabel ? undefined : true}
+          className="h-full w-full object-contain"
+        />
+      ) : errored ? (
+        // Terminal failure with no poster: show the static fallback, never a
+        // skeleton that would pulse forever as if still loading.
+        fallback
+      ) : showSkeleton ? (
+        <div
+          aria-hidden
+          className="h-full w-full animate-pulse rounded-[inherit] bg-linear-to-br from-white/5 to-black/5"
         />
       ) : (
         fallback

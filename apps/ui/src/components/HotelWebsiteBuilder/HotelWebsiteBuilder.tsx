@@ -68,7 +68,7 @@ export default function HotelWebsiteBuilder() {
       {/* Performance Section */}
       <HotelWebsiteBuilderPerformanceSection />
 
-      <CtaSection/>
+      <CtaSection showFooter />
 
     </div>
   )

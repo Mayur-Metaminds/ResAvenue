@@ -2,6 +2,9 @@
 
 import Link from "next/link"
 
+import { CurrentYear } from "@/components/common/CurrentYear"
+import { cn } from "@/lib/styles"
+
 import {
   Facebook,
   LinkedIn,
@@ -9,9 +12,24 @@ import {
   Twitter,
 } from "../../../public/svg/commonSvg"
 
-export function Footer() {
+interface FooterProps {
+  /**
+   * Render without the footer's own opaque background so it can sit inside a
+   * section that already paints one (e.g. CtaSection) and share that backdrop.
+   */
+  nested?: boolean
+  className?: string
+}
+
+export function Footer({ nested = false, className }: FooterProps) {
   return (
-    <footer className="w-full border-t border-white/10 bg-[#010C28] pt-20 pb-10 text-white">
+    <footer
+      className={cn(
+        "w-full  text-white",
+        nested ? "pt-16 pb-10" : "bg-[#010C28] pt-20 pb-10",
+        className
+      )}
+    >
       <div className=" px-4 md:px-8">
         {/* Main Footer Content */}
         <div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-12">
@@ -36,7 +54,7 @@ export function Footer() {
               <ul className="space-y-4">
                 <li>
                   <a
-                    href="#"
+                    href="/about-us"
                     className="text-sm text-gray-300 transition-colors hover:text-white"
                   >
                     About Us
@@ -44,7 +62,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/careers"
                     className="text-sm text-gray-300 transition-colors hover:text-white"
                   >
                     Careers
@@ -52,7 +70,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/contact-us"
                     className="text-sm text-gray-300 transition-colors hover:text-white"
                   >
                     Contact
@@ -60,7 +78,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/partners"
                     className="text-sm text-gray-300 transition-colors hover:text-white"
                   >
                     Partners
@@ -77,7 +95,7 @@ export function Footer() {
               <ul className="space-y-4">
                 <li>
                   <a
-                    href="#"
+                    href="/privacy-policy"
                     className="text-sm text-gray-300 transition-colors hover:text-white"
                   >
                     Privacy Policy
@@ -85,7 +103,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/terms-of-service"
                     className="text-sm text-gray-300 transition-colors hover:text-white"
                   >
                     Terms of Service
@@ -93,7 +111,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/cookie-policy"
                     className="text-sm text-gray-300 transition-colors hover:text-white"
                   >
                     Cookie Policy
@@ -138,7 +156,7 @@ export function Footer() {
         {/* Bottom Bar: Copyright & Socials */}
         <div className="flex flex-col items-center justify-between border-t border-white/5 pt-8 md:flex-row">
           <p className="mb-4 text-xs text-[#8b949e] md:mb-0">
-            © 2026 ResAvenue. All rights reserved.
+            © <CurrentYear /> ResAvenue. All rights reserved.
           </p>
 
           <div className="flex items-center space-x-4">

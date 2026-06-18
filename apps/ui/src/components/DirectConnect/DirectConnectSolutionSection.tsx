@@ -105,7 +105,7 @@ const solutions: SolutionCard[] = [
     title: "Google Hotel Ads",
     subtitle:
       "Display your rates directly and maximize direct bookings through Google Search and Google Maps.",
-    modalSubtitle: "Increase visibility where travellers search most by displaying your direct website rates on Google Search and Google Maps. Capture high-intent travellers and encourage guests to book directly through your official websiteReduce dependency on OTAs while increasing direct revenue opportunities through metasearch visibility.  \n\n Display your official website pricing alongside OTA listings and attract guests looking for the best direct booking experience. Improve click-through rates and drive commission-free bookings directly from Google’s travel ecosystem.",
+    modalSubtitle: "Increase visibility where travellers search most by displaying your direct website rates on Google Search and Google Maps. Capture high-intent travellers and encourage guests to book directly through your official website. Reduce dependency on OTAs while increasing direct revenue opportunities through metasearch visibility.  \n\n Display your official website pricing alongside OTA listings and attract guests looking for the best direct booking experience. Improve click-through rates and drive commission-free bookings directly from Google’s travel ecosystem.",
     isDark: true,
     gridSpan: "col-span-1 lg:col-span-6 min-h-[250px]",
     anchor: "top-left",
@@ -238,7 +238,7 @@ export function DirectConnectSolutionSection() {
     <div data-nav-theme="light">
       <BentoGrid
         items={solutions}
-        sectionClassName="relative w-full pt-[50px] pb-[120px] lg:pt-[80px] lg:pb-[150px] px-4 md:px-8 bg-white isolate"
+        sectionClassName="relative w-full pt-[50px] pb-[120px] lg:pt-[80px] lg:pb-[150px] px-4 md:px-8 bg-white"
         containerClassName="container mx-auto max-w-[1300px]"
         gridClassName="relative grid grid-cols-1 gap-6 lg:grid-cols-12"
         cardClassName="px-6 py-8 md:px-6 md:py-6 lg:px-10 lg:py-[30px] rounded-[32px] shadow-[0_20px_50px_-12px_rgba(1,14,56,0.15)]"

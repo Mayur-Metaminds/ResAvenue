@@ -33,6 +33,7 @@ const PropertyManagementWrapper = () => {
         // Mobile-only type overrides; md+ restores the (correct) desktop values.
         titleClassName="max-sm:w-[295px] mx-auto [font-family:var(--font-plus-jakarta)] max-sm: leading-[51.52px] tracking-[-0.5px] md:[font-family:var(--font-source-sans)] md:leading-[1.15] md:tracking-tight"
         descriptionClassName="text-[16px] font-normal leading-[30.6px] md:text-[18px] md:font-light md:leading-relaxed"
+        showFooter
       />
     </div>
   )
