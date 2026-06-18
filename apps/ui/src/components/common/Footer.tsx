@@ -124,7 +124,7 @@ export function Footer() {
                   <li key={title}>
                     <Link
                       href={href}
-                      className="text-sm text-gray-300 transition-colors hover:text-white xl:whitespace-nowrap"
+                      className="text-sm text-gray-300 transition-colors hover:text-white"
                     >
                       {title}
                     </Link>

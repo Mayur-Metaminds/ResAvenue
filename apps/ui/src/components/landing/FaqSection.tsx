@@ -87,7 +87,7 @@ export function FaqSection({
               Frequently Asked Questions
             </SectionHeader.Highlight>
           }
-          titleClassName="!font-semibold !leading-[32px] lg:!leading-[48px]"
+          titleClassName="!font-[500] !leading-[32px] lg:!leading-[48px]"
           description={description}
           descriptionClassName="typo-body1 text-[#45556C]"
         />

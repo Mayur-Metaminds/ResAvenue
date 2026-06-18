@@ -1,17 +1,19 @@
 "use client"
 
 import { ArrowRight } from "lucide-react"
-import dynamic from "next/dynamic"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import laptopMockupAnimation from "../../../public/assets/landing/home page.json"
+import { LazyLottie } from "@/components/common/LazyLottie"
+import { preloadLottie } from "@/lib/lottie-preload"
+import { HERO_LAPTOP_URL } from "@/lib/lottie-urls"
 import { HeroContent } from "./HeroContent"
 import { HeroTitle } from "./HeroTitle"
 
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
-
-
 export function HeroSection() {
+  // Above the fold: start the (large) hero animation download as early as
+  // possible, in parallel with hydration, instead of waiting for the effect.
+  preloadLottie(HERO_LAPTOP_URL)
+
   return (
     <section
       data-nav-theme="dark"
@@ -67,12 +69,14 @@ export function HeroSection() {
           {/* Right Column: Mockup */}
           <div className="relative z-20 flex h-[210px] w-full items-start sm:h-[480px] lg:absolute lg:top-0 lg:left-[40%] lg:h-[430px] lg:w-[700px] xl:left-[42%] xl:h-[590px] xl:w-[876px]">
             {/* Dashboard laptop mockup Lottie */}
-            <Lottie
-              animationData={laptopMockupAnimation}
+            <LazyLottie
+              src={HERO_LAPTOP_URL}
+              priority="eager"
               loop
               autoplay
               className="h-full w-full"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+              aria-label="ResAvenue dashboard preview"
             />
 
             {/* Glow */}
