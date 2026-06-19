@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { CountUp } from "@/components/common/CountUp"
 import { Marquee } from "@/components/common/Marquee"
@@ -117,7 +117,7 @@ function TestimonialCard({
     <div
       onClick={onClick}
       className={cn(
-        "flex h-[199px] flex-col justify-between rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.06] px-[20px] py-[20px] backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.08] md:h-[265px] md:px-[24px] md:py-[24px]",
+        "flex h-[199px] flex-col justify-between rounded-[24px] border-[1.266px] border-white/[0.06] bg-white/[0.04] px-[20px] py-[20px] backdrop-blur-[6px] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.08] md:h-[265px] md:px-[24px] md:py-[24px]",
         active && "border-[#ED862E]/40 bg-white/[0.1]",
         onClick && "cursor-pointer",
         className
@@ -161,18 +161,51 @@ function TestimonialsMobileCarousel({ items }: { items: Testimonial[] }) {
   // While snapping from a clone back to its real slide, transitions are off so
   // the jump is invisible.
   const [snapping, setSnapping] = useState(false)
+  // Autoplay only runs while the carousel is on-screen AND the tab is visible.
+  // Off-screen / backgrounded, CSS transitions and rAF (which drive the seamless
+  // snap-back) are throttled, so `pos` could otherwise drift past the clones and
+  // leave a blank slide showing.
+  const [active, setActive] = useState(true)
+  const rootRef = useRef<HTMLDivElement>(null)
 
   const extended: Testimonial[] =
     count > 1 ? [items[count - 1]!, ...items, items[0]!] : items
 
-  // Autoplay — advance one card every 4s while not paused. Flipping `isPaused`
-  // true tears down the interval on the same commit, pausing immediately.
+  // Track whether the carousel is on-screen (IntersectionObserver) and the tab
+  // is visible (Page Visibility) — autoplay is gated on both.
   useEffect(() => {
-    if (isPaused || count <= 1) return
+    const el = rootRef.current
+    if (!el) return
+    let onScreen = true
+    const sync = () => setActive(onScreen && !document.hidden)
+    const io =
+      typeof IntersectionObserver !== "undefined"
+        ? new IntersectionObserver(
+            ([entry]) => {
+              onScreen = entry?.isIntersecting ?? true
+              sync()
+            },
+            { threshold: 0.1 }
+          )
+        : null
+    io?.observe(el)
+    document.addEventListener("visibilitychange", sync)
+    sync()
+
+    return () => {
+      io?.disconnect()
+      document.removeEventListener("visibilitychange", sync)
+    }
+  }, [])
+
+  // Autoplay — advance one card every 4s while active and not user-paused.
+  // Flipping any gate tears down the interval on the same commit.
+  useEffect(() => {
+    if (isPaused || !active || count <= 1) return
     const id = setInterval(() => setPos((p) => p + 1), 4000)
 
     return () => clearInterval(id)
-  }, [isPaused, count])
+  }, [isPaused, active, count])
 
   // Re-enable transitions one frame after a silent snap, by which point the
   // browser has committed the no-transition jump — so nothing animates.
@@ -183,14 +216,26 @@ function TestimonialsMobileCarousel({ items }: { items: Testimonial[] }) {
     return () => cancelAnimationFrame(raf)
   }, [snapping])
 
+  // Safety net: if `pos` ever lands beyond the extended track (e.g. a snap was
+  // missed while backgrounded), wrap it to the matching real slide with no
+  // animation — guaranteeing a valid slide is always on screen.
+  useEffect(() => {
+    if (count <= 1) return
+    if (pos > count + 1 || pos < 0) {
+      setSnapping(true)
+      setPos((((pos - 1) % count) + count) % count + 1)
+    }
+  }, [pos, count])
+
   // When the slide animation finishes on a clone, jump silently to the real one.
+  // `>=` / `<=` (not `===`) so an overshoot still resolves to a real slide.
   const handleTransitionEnd = () => {
-    if (pos === count + 1) {
+    if (pos >= count + 1) {
       setSnapping(true)
-      setPos(1)
-    } else if (pos === 0) {
+      setPos(pos - count)
+    } else if (pos <= 0) {
       setSnapping(true)
-      setPos(count)
+      setPos(pos + count)
     }
   }
 
@@ -205,6 +250,7 @@ function TestimonialsMobileCarousel({ items }: { items: Testimonial[] }) {
 
   return (
     <div
+      ref={rootRef}
       className="mt-12 w-full md:hidden"
       role="group"
       aria-roledescription="carousel"
@@ -214,7 +260,9 @@ function TestimonialsMobileCarousel({ items }: { items: Testimonial[] }) {
         <div
           className="flex"
           style={{
-            transform: `translateX(-${pos * 100}%)`,
+            // 88% slide width → ~12% of the next card peeks on the right. The
+            // track step must match the slide width, so translate by pos * 88%.
+            transform: `translateX(-${pos * 88}%)`,
             transition: snapping ? "none" : "transform 500ms ease-out",
           }}
           onTransitionEnd={handleTransitionEnd}
@@ -222,7 +270,7 @@ function TestimonialsMobileCarousel({ items }: { items: Testimonial[] }) {
           {extended.map((testimonial, idx) => (
             <div
               key={idx}
-              className="w-full shrink-0 px-1"
+              className="w-[88%] shrink-0 px-1"
               aria-hidden={idx !== pos}
             >
               <TestimonialCard
@@ -264,7 +312,7 @@ export function TestimonialsSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex w-full rounded-[40px] flex-col items-center justify-center overflow-hidden bg-[#010C28] py-24 lg:py-32"
+      className="relative flex w-full rounded-t-[40px] flex-col items-center justify-center overflow-hidden bg-[#010C28] py-24 lg:py-32"
     >
       {/* Background Image with Overlay */}
       <div
@@ -355,7 +403,7 @@ export function TestimonialsSection() {
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-start justify-start rounded-[20px] border border-white/5 bg-[#071330]/80 p-3 lg:p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-white/10 hover:bg-[#071330]"
+              className="flex flex-col items-start justify-start rounded-[20px] border border-white/5 bg-[#071330]/80 p-3 lg:p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-[#ED862C] hover:bg-[#071330]"
             >
               <div className="mb-3 text-[40px] font-medium tracking-tight text-white xl:text-[65px]">
                 <CountUp

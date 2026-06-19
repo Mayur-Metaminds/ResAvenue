@@ -8,7 +8,7 @@ export function DirectConnectDashboardSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative mt-[80px] w-full overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative mt-[80px] w-full overflow-hidden bg-cover bg-center bg-no-repeat md:rounded-none rounded-[32px]"
       style={{
         backgroundImage: `url('/images/demo-section-bg-img.png')`,
       }}

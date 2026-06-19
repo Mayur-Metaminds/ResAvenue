@@ -212,7 +212,7 @@ function DesktopAnchoredModal({
       className={cn(
         // Grows to fit its content (h-auto) up to the viewport (max-h); anything
         // past that is cropped, not scrolled — the visible portion is enough.
-        "z-40 flex flex-col overflow-hidden rounded-[40px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)] max-h-[calc(100vh-64px)]",
+        "z-[110] flex flex-col overflow-hidden rounded-[40px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)] max-h-[calc(100vh-64px)]",
         product.modalWidth || "w-[760px]",
         // A product can opt into a fixed height (e.g. to cover the cards behind
         // it); otherwise stacked / stacked-vertical grow to fit their animation,
@@ -224,7 +224,7 @@ function DesktopAnchoredModal({
             : "h-auto"
       )}
     >
-      <ModalContent product={product} onClose={onClose} />
+      <ModalContent product={product} onClose={onClose} isDesktop />
     </motion.div>
   )
 }
@@ -247,7 +247,7 @@ function MobileSimpleModal({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
         onClick={onClose}
-        className="fixed inset-0 z-40 touch-manipulation bg-black/40 backdrop-blur-sm"
+        className="fixed inset-0 z-[100] touch-manipulation bg-black/40 backdrop-blur-sm"
         aria-hidden
       />
 
@@ -260,9 +260,9 @@ function MobileSimpleModal({
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.96 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className="fixed inset-x-4 top-[5%] bottom-[5%] z-50 flex flex-col overflow-y-auto overflow-x-hidden rounded-[28px] bg-white shadow-2xl"
+        className="fixed inset-x-4 top-[5%] bottom-[5%] z-[110] flex flex-col overflow-y-auto overflow-x-hidden rounded-[28px] bg-white shadow-2xl"
       >
-        <ModalContent product={product} onClose={onClose} />
+        <ModalContent product={product} onClose={onClose} isDesktop={false} />
       </motion.div>
     </>
   )
@@ -273,9 +273,11 @@ function MobileSimpleModal({
 function ModalContent({
   product,
   onClose,
+  isDesktop = true,
 }: {
   product: BentoModalProduct
   onClose: () => void
+  isDesktop?: boolean
 }) {
   // Side-by-side variant: icon + title + description + bullets on the left,
   // animation filling the right column. Used on per-product detail modals
@@ -292,7 +294,7 @@ function ModalContent({
   // When the product sets a fixed modalHeight, the modal keeps that height (e.g.
   // to cover the cards behind it) and the animation fills the leftover space.
   // Otherwise the modal grows to fit a 90%-wide, aspect-ratio-sized animation.
-  const hasFixedHeight = Boolean(product.modalHeight)
+  const hasFixedHeight = Boolean(product.modalHeight) && isDesktop
   const [animationAspect, setAnimationAspect] = useState<string | undefined>(
     undefined
   )
@@ -399,6 +401,51 @@ function ModalContent({
             // Fixed-height modal: the animation fills the leftover space so the
             // taller modal has no empty gap.
             <div className="relative min-h-0 w-full flex-1 overflow-hidden rounded-2xl">
+              <LazyLottie
+                src={(product.modalLottieUrl ?? product.lottieUrl) as string}
+                priority="on-demand"
+                loop
+                className="h-full w-full"
+                rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+              />
+              {product.lottieOverlay}
+            </div>
+          ) : (
+            // Auto-height modal: a 90%-wide box sized to the animation's aspect
+            // ratio. flex-1 lets it grow into the freed space (e.g. on the fixed-
+            // height mobile modal) with the animation centered.
+            <div className="flex w-full flex-1 items-center justify-center">
+              <div
+                className="relative w-[90%] overflow-hidden rounded-2xl"
+                style={
+                  animationAspect ? { aspectRatio: animationAspect } : undefined
+                }
+              >
+                <LazyLottie
+                  src={(product.modalLottieUrl ?? product.lottieUrl) as string}
+                  priority="on-demand"
+                  loop
+                  className="h-full w-full"
+                  rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+                  onReady={(data) => setAnimationAspect(lottieAspectRatio(data))}
+                />
+                {product.lottieOverlay}
+              </div>
+            </div>
+          )
+        ) : (
+          <div
+            className="mx-auto min-h-[200px] w-[90%] flex-1 rounded-2xl md:min-h-[350px]"
+            style={{
+              background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
+            }}
+          />
+        )}
+        {(product.modalLottieUrl ?? product.lottieUrl) ? (
+          hasFixedHeight ? (
+            // Fixed-height modal: the animation fills the leftover space so the
+            // taller modal has no empty gap.
+            <div className="relative min-h-[300px] w-full flex-1 overflow-hidden rounded-2xl md:min-h-[400px]">
               <LazyLottie
                 src={(product.modalLottieUrl ?? product.lottieUrl) as string}
                 priority="on-demand"

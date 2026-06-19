@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { Footer } from "@/components/common/Footer"
 import { cn } from "@/lib/styles"
 
 interface CtaSectionProps {
@@ -25,6 +26,9 @@ interface CtaSectionProps {
   backgroundImage?: string
   // Set false to remove the dark overlay (useful when using a gradient background)
   showOverlay?: boolean
+  // Render the site Footer inside this section so it shares the CTA's background
+  // image. Set on a page's final CTA to merge the footer into the closing CTA.
+  showFooter?: boolean
   className?: string
 }
 
@@ -44,6 +48,7 @@ export function CtaSection({
   actionsClassName,
   backgroundImage = "url('/images/demo-section-bg-img.png')",
   showOverlay = true,
+  showFooter = false,
   className,
 }: CtaSectionProps) {
   const showPrimary = primaryButtonLabel !== null
@@ -53,7 +58,8 @@ export function CtaSection({
     <section
       data-nav-theme="dark"
       className={cn(
-        "relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#010C28] py-32 lg:py-40",
+        "relative flex w-full flex-col items-center overflow-hidden bg-[#010C28]",
+        showFooter ? "" : "justify-center py-32 lg:py-40",
         className
       )}
     >
@@ -71,7 +77,12 @@ export function CtaSection({
       {/* Overlay */}
       {showOverlay && <div className="absolute inset-0 z-0 bg-[#010C28]/20 mix-blend-multiply" />}
 
-      <div className="relative z-10 mx-auto w-full px-6 text-center">
+      <div
+        className={cn(
+          "relative z-10 mx-auto w-full px-6 text-center",
+          showFooter && "pt-28 pb-20 lg:pt-40 lg:pb-24"
+        )}
+      >
         {eyebrow && (
           <p
             className={cn(
@@ -145,6 +156,12 @@ export function CtaSection({
           </div>
         )}
       </div>
+
+      {showFooter && (
+        <div className="relative z-10 w-full">
+          <Footer nested />
+        </div>
+      )}
     </section>
   )
 }
