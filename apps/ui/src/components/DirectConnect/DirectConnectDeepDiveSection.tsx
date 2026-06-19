@@ -26,28 +26,28 @@ const accordionData: AccordionItemData[] = [
     id: "item-1",
     title: "Easy Mobile Bookings",
     description:
-      "Make it simple for guests no matter where they are with a seamless 2-step mobile booking experience.",
+      "Make it simple for guests no matter where they are with a seamless 3-step mobile booking experience.",
     image: "/images/DeepDiveSectionImg.png"
   },
   {
     id: "item-2",
     title: "Real-time Sync",
     description:
-      "Ensure your inventory is perfectly synced across all channels, avoiding double bookings and maintaining accurate availability.",
+      "Instantly updates the rates and inventory across multiple hotels in just few clicks.",
     image: "/images/Direct-Connect/Booking-Engine.png"
   },
   {
     id: "item-3",
-    title: "Dynamic Pricing Logic",
+    title: "Hotel Price Widget",
     description:
-      "Automatically adjust your rates based on demand, seasonality, and competitor analysis to maximize your RevPAR.",
+      "Compare real-time OTA rates with your hotel's official website rate in one view. Showcase the lowest available rate, and drive direct bookings with transparent pricing.",
     image: "/images/Direct-Connect/Unified-Intelligence-Dashboard.png"
   },
   {
     id: "item-4",
     title: "Simple payment processing",
     description:
-      "Offer multiple payment gateways and currencies to provide a frictionless checkout experience for your global guests.",
+      "Streamline your payment process with a seamless and secure PCI compliant payment gateway.",
     image: "/images/DeepDiveSectionImg.png"
   },
 ]
@@ -66,7 +66,7 @@ export function DirectConnectDeepDiveSection() {
   // viewport bottom (sticky pinning ends).
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"],
+    offset: ["start 56px", "end end"],
   })
   
   const indexMotion = useTransform(
@@ -83,17 +83,18 @@ export function DirectConnectDeepDiveSection() {
     setActiveIndex((prev) => (prev === next ? prev : next))
   })
 
-  // Smooth scroll to the exact viewport position for a given accordion item
   const scrollToFeature = (index: number, behavior: ScrollBehavior = "smooth") => {
     const el = sectionRef.current
     if (!el) return
     const rect = el.getBoundingClientRect()
     const sectionTop = rect.top + window.scrollY
-    const scrollableDistance = el.offsetHeight - window.innerHeight
+    const stickyOffset = window.innerWidth >= 1024 ? 80 : 56
+    const pinStart = sectionTop - stickyOffset
+    const scrollableDistance = el.offsetHeight - (window.innerHeight - stickyOffset)
     const progress = index / accordionData.length
     
     window.scrollTo({ 
-      top: sectionTop + scrollableDistance * progress, 
+      top: pinStart + scrollableDistance * progress, 
       behavior 
     })
   }
@@ -113,8 +114,9 @@ export function DirectConnectDeepDiveSection() {
 
     const isPinned = () => {
       const rect = el.getBoundingClientRect()
+      const stickyOffset = window.innerWidth >= 1024 ? 80 : 56
       // Allow 1px tolerance for browser subpixel layout rounding
-      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1
+      return rect.top <= stickyOffset + 1 && rect.bottom >= window.innerHeight - 1
     }
 
     const handleWheel = (e: WheelEvent) => {
@@ -141,7 +143,7 @@ export function DirectConnectDeepDiveSection() {
 
       e.preventDefault()
       wheelCooldownRef.current = now + COOLDOWN_MS
-      scrollToFeature(target, "instant")
+      scrollToFeature(target, "smooth")
     }
 
     window.addEventListener("wheel", handleWheel, { passive: false })
@@ -159,40 +161,13 @@ export function DirectConnectDeepDiveSection() {
       {/* Sticky inner — pins below the fixed navbar for the full outer-section
           height. We use items-start on mobile so the top is never cut off,
           and highly compact spacing to ensure the image at the bottom fits. */}
-      <div className="sticky top-24 lg:top-20 flex h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full flex-col items-center justify-start lg:justify-center">
-        <div className="w-full rounded-[32px] bg-[#010C28] px-4 py-[16px] transition-all duration-500 ease-in-out lg:rounded-[45px] lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
-          <div className="grid grid-cols-1 items-center gap-[16px] lg:grid-cols-2 lg:gap-[80px]">
-            {/* Left Column: Image Graphic */}
-            <div className="relative order-2 flex aspect-video lg:aspect-square w-full items-center justify-center rounded-[24px] lg:order-1">
-              <AnimatePresence>
-                {(() => {
-                  // activeIndex is clamped to [0, accordionData.length - 1] in
-                  // useMotionValueEvent so it's always a valid index — but TS
-                  // doesn't know that under noUncheckedIndexedAccess. Fall back
-                  // to the first item just in case.
-                  const item = accordionData[activeIndex] ?? accordionData[0]
-                  if (!item) return null
-                  return (
-                    <motion.img
-                      key={activeIndex}
-                      src={item.image}
-                      alt={item.title}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="absolute inset-0 h-full w-full object-contain"
-                    />
-                  )
-                })()}
-              </AnimatePresence>
-            </div>
-
-            {/* Right Column: Content & Accordion */}
-            <div className="order-1 flex w-full flex-col lg:order-2">
-              {/* Header */}
+      <div className="sticky top-[56px] lg:top-20 flex h-[calc(100dvh-56px)] lg:h-[calc(100dvh-5rem)] w-full flex-col items-center justify-start lg:justify-center">
+        <div className="flex h-full w-full flex-col rounded-[32px] bg-[#010C28] px-4 py-4 transition-all duration-500 ease-in-out lg:h-auto lg:rounded-[45px] lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
+          <div className="flex flex-1 min-h-0 flex-col gap-[12px] lg:grid lg:grid-cols-2 lg:grid-rows-[max-content_1fr] lg:items-start lg:gap-x-[80px]">
+            {/* Header */}
+            <div className="order-1 lg:col-start-2 lg:row-start-1">
               <SectionHeader
-                className="mb-[12px] lg:mb-[38px] items-start text-left"
+                className="mb-[12px] items-start text-left"
                 titleColor="#FFFFFF"
                 highlightGradient="linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)"
                 eyebrow={
@@ -217,11 +192,13 @@ export function DirectConnectDeepDiveSection() {
                     </SectionHeader.Highlight>
                   </>
                 }
-                titleClassName="mb-0"
+                titleClassName="mb-0 text-[26px] md:text-[32px] leading-[1.1] tracking-tight lg:text-[inherit] lg:leading-[inherit] lg:tracking-normal"
               />
+            </div>
 
-              {/* Accordion */}
-              <div className="flex flex-col gap-3">
+            {/* Accordion */}
+            <div className="order-2 lg:col-start-2 lg:row-start-2">
+              <div className="flex flex-col gap-2 lg:gap-3">
                 {accordionData.map((item, index) => {
                   const isOpen = activeIndex === index
 
@@ -238,7 +215,7 @@ export function DirectConnectDeepDiveSection() {
                       style={{ cursor: 'pointer' }}
                     >
                       <div className={cn(
-                        "flex gap-[12px] py-[10px] pl-[12px] pr-[7px] select-none transition-all duration-300 lg:gap-[14px] lg:py-[16px] lg:pl-[16px] lg:pr-[31px]",
+                        "flex gap-[12px] py-[8px] pl-[12px] pr-[7px] select-none transition-all duration-300 lg:gap-[14px] lg:py-[16px] lg:pl-[16px] lg:pr-[31px]",
                         isOpen ? "items-start" : "items-center"
                       )}>
                         <div
@@ -281,6 +258,32 @@ export function DirectConnectDeepDiveSection() {
                   )
                 })}
               </div>
+            </div>
+
+            {/* Left Column: Image Graphic */}
+            <div className="relative order-3 flex flex-1 min-h-0 w-full items-center justify-center rounded-[24px] lg:order-none lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:aspect-square lg:flex-none lg:self-center">
+              <AnimatePresence>
+                {(() => {
+                  // activeIndex is clamped to [0, accordionData.length - 1] in
+                  // useMotionValueEvent so it's always a valid index — but TS
+                  // doesn't know that under noUncheckedIndexedAccess. Fall back
+                  // to the first item just in case.
+                  const item = accordionData[activeIndex] ?? accordionData[0]
+                  if (!item) return null
+                  return (
+                    <motion.img
+                      key={activeIndex}
+                      src={item.image}
+                      alt={item.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="absolute inset-0 h-full w-full object-contain"
+                    />
+                  )
+                })()}
+              </AnimatePresence>
             </div>
           </div>
         </div>

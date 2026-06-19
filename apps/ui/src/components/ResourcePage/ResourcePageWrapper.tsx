@@ -12,6 +12,7 @@ export default function ResourcePageWrapper() {
                 description="Get started today and transform the way you manage and sell tickets."
                 primaryButtonLabel="Explore Solutions"
                 secondaryButtonLabel={null}
+                showFooter
             />
         </div>
     )

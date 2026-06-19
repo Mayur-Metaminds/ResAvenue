@@ -19,13 +19,13 @@ const segments = [
   {
     id: "independent-hotels",
     title: "Independent Hotels",
-    subtitle: "Increase direct bookings & simplify operations",
+    subtitle: "Increase direct bookings & Simplify operations",
     points: [
       "Increase direct bookings by up to 40% with a high-converting booking engine",
-      "Reduce OTA commissions & drive guest loyalty with promo tools",
-      "Manage bookings, rates, and guest data from one unified dashboard",
+      "Reduce OTA commissions with built-in website + rate parity tools",
+      "Manage bookings, rates, and guest from one unified dashboard",
       "Automate confirmations, payments, and guest communication",
-      "Gain real-time insights on occupancy, revenue, and pricing",
+      "Get real-time insights on occupancy, revenue, and pricing",
     ],
     image: "/images/Landing/independent-hotel.jpeg",
     position: { top: "10%", left: "39.4%", transform: "translate(-50%, -50%)" },
@@ -34,11 +34,12 @@ const segments = [
   {
     id: "serviced-apartments",
     title: "Serviced Apartments",
-    subtitle: "Support long-stay bookings with flexible pricing models",
+    subtitle: "Long-stays + occupancy optimization",
     points: [
-      "Manage inventory across multiple buildings and locations",
+      "Support long-stay bookings with flexible pricing models",
+      "Manage inventory across units, buildings, and locations",
       "Automate invoicing and recurring payments",
-      "Reduce manual work with self-service guest portals",
+      "Reduce vacancy with real-time OTA sync",
       "Track performance by unit, location, or duration",
     ],
     image: "/images/Landing/service-apartments.jpeg",
@@ -48,11 +49,12 @@ const segments = [
   {
     id: "hotel-chains",
     title: "Hotel Chains & Groups",
-    subtitle: "Manage all properties from a single, centralized dashboard",
+    subtitle: "Centralized control + scalability",
     points: [
+      "Manage multiple properties from a single, centralized dashboard",
       "Standardize pricing, inventory, and distribution across locations",
       "Gain central reporting with advanced drill-down capabilities",
-      "Role-based access for teams across locations",
+      "Role-based access for teams across regions",
       "Scale effortlessly with API integrations and automation",
     ],
     image: "/images/Landing/hotel-chains.jpeg",
@@ -63,12 +65,13 @@ const segments = [
     id: "revenue-management",
     title: "Hotel Revenue management companies",
     subtitle:
-      "Manage pricing and distribution for multiple hotels from one platform",
+      "Control + insights across clients",
     points: [
-      "Access real-time performance data across all connected properties",
-      "Adjust rates globally based on market demand and competitor data",
+      "Manage pricing and distribution for multiple hotels from one platform",
+      "Access real-time performance data across all client properties",
+      "Use AI driven pricing recommendations to maximize revPAR",
       "Monitor competitor pricing and market demand",
-      "Deliver detailed revenue and ADR reports",
+      "Deliver measurable revenue growth for clients",
     ],
     image: "/images/Landing/revenue-management.jpeg",
     position: { bottom: "25%", right: "-6%", transform: "translate(0%, 50%)" },
@@ -77,11 +80,12 @@ const segments = [
   {
     id: "tour-operators",
     title: "Tour Operators",
-    subtitle: "Access real-time hotel inventory and availability",
+    subtitle: "Inventory + package distribution",
     points: [
-      "Bundle rooms with other packages and experiences",
-      "Simple booking management for all guest programs",
-      "Secure and safe transactions with advanced confirmations",
+      "Access real-time hotel inventory and availability",
+      "Bundle stays with travel packages and experiences",
+      "Simplify booking management across multiple partners",
+      "Reduce manual coordination with automated conformations",
       "Expand distribution through connected global channels",
     ],
     image: "/images/Landing/tour-operator.jpeg",
@@ -92,12 +96,13 @@ const segments = [
     id: "event-organisers",
     title: "Event Organisers",
     subtitle:
-      "Sell event tickets/blocks with integrated booking & payment system",
+      "Ticketing + attendee management",
     points: [
-      "Dedicated custom blocks for group reservations",
+      "Sell event tickets directly with integrated booking & payment system",
+      "Enable QR based check-ins for seamless entry",
       "Track registrations, attendance, and revenue in real time",
       "Manage multiple events from a single dashboard",
-      "Capture attendee data for future marketing campaigns",
+      "Capture attendee data for future marketing and insights",
     ],
     image: "/images/Landing/event-organizers.jpeg",
     position: { bottom: "43%", left: "-6%", transform: "translate(0%, 50%)" },
@@ -107,12 +112,13 @@ const segments = [
     id: "resorts-villas",
     title: "Resorts, Villas & Boutique Properties",
     subtitle:
-      "Showcase unique experiences, and packages with an easy booking engine",
+      "Maximize premium experience + upsells",
     points: [
-      "Sell add-ons (spa, dining, activities) at the time of room booking",
-      "Manage multi-property or standalone villa inventory",
-      "Dynamic pricing based on season and demand",
-      "Deliver seamless guest journeys from booking to check-out",
+      "Showcase rooms, experiences, and packages with a visually rich booking engine",
+      "Sell add-ons spa, dining, activities directly during booking",
+      "Dynamic pricing based on seasonality and demand",
+      "Manage multi-room/villa inventory with ease",
+      "Deliver seamless guest journeys from booking to check-in",
     ],
     image: "/images/Landing/resorts.jpeg",
     position: { top: "35%", left: "-23%", transform: "translate(0%, -50%)" },
@@ -170,7 +176,7 @@ export function WhoWeServeSection() {
             Who We <SectionHeader.Highlight>Serve</SectionHeader.Highlight>
           </>
         }
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+        description="Explore how our solutions enhance guest experiences across various hospitality sectors, from upscale resorts to cozy boutique hotels."
         descriptionClassName="max-w-2xl"
       />
 
@@ -212,21 +218,22 @@ export function WhoWeServeSection() {
 
         {/* Orbital nodes */}
         {segments.map((segment) => (
-          <div
-            key={segment.id}
-            className="absolute z-30 flex items-center cursor-pointer gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_52px_88px_0_rgba(2,33,69,0.50)] transition-transform hover:scale-105"
-            style={segment.position}
-          >
-            <span className="text-[16px] md:text-[18px] font-plus-jakarta-500 text-[#000]">
-              {segment.title}
-            </span>
+          // Outer div owns the absolute position (its inline `transform:
+          // translate(...)` anchors the pill). The hover effect lives on the
+          // inner button so it doesn't fight that inline transform.
+          <div key={segment.id} className="absolute z-30" style={segment.position}>
             <button
               type="button"
               onClick={() => setSelectedSegment(segment.id)}
-              className="touch-manipulation transition-transform hover:scale-110 cursor-pointer focus:outline-none"
               aria-label={`View details for ${segment.title}`}
+              className="flex cursor-pointer items-center gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_52px_88px_0_rgba(2,33,69,0.50)] transition-transform duration-300 ease-out hover:-translate-y-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E]"
             >
-              <AddSvg />
+              <span className="text-[16px] md:text-[18px] font-plus-jakarta-500 text-[#000]">
+                {segment.title}
+              </span>
+              <span aria-hidden>
+                <AddSvg />
+              </span>
             </button>
           </div>
         ))}

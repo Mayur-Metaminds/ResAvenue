@@ -1,7 +1,10 @@
 import Link from "next/link"
 
+import { Footer } from "@/components/common/Footer"
+
 export default function NotFound() {
   return (
+    <>
     <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-4 text-center">
       <h1 className="text-9xl font-black text-zinc-200 selection:bg-transparent">
         404
@@ -26,5 +29,7 @@ export default function NotFound() {
         </Link>
       </div>
     </div>
+      <Footer />
+    </>
   )
 }

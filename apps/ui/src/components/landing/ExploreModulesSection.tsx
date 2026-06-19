@@ -26,7 +26,7 @@ import {
 import type * as React from "react"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 
-  
+
 const useIsoLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect
 
@@ -47,7 +47,7 @@ const directConnectFeatures: FeatureStep[] = [
     id: "booking-engine",
     label: "Responsive Booking Engine",
     description:
-      "Mobile-first booking flow that converts visitors with frictionless reservations.",
+      "Seamless bookings across every device. Deliver a fast, mobile-first experience that converts.",
     icon: ThreeDWheelIcon1,
     image: "/images/Landing/explore-module-direct_connect/responsive-booking-engine.png",
   },
@@ -55,7 +55,7 @@ const directConnectFeatures: FeatureStep[] = [
     id: "corporate",
     label: "Corporate & Member Management",
     description:
-      "Negotiated rates, loyalty tiers, and travel-program portals in one place.",
+      "Build loyalty that drives repeat bookings.Manage corporate clients and members with ease.",
     icon: ThreeDWheelIcon2,
     image: "/images/Landing/explore-module-direct_connect/corporate-management.png",
   },
@@ -63,7 +63,7 @@ const directConnectFeatures: FeatureStep[] = [
     id: "analytics",
     label: "Analytics & Reporting",
     description:
-      "Real-time pace, pickup, and channel mix dashboards built for revenue teams.",
+      "Turn data into smarter decisions. Track performance and unlock actionable insights instantly.",
     icon: ThreeDWheelIcon3,
     image: "/images/Landing/explore-module-direct_connect/analytics-reporting.png",
   },
@@ -71,15 +71,15 @@ const directConnectFeatures: FeatureStep[] = [
     id: "discounts",
     label: "Discounts & Promotions",
     description:
-      "Supports multiple rate plans, discounts, promo codes, and value add-ons to boost RevPAR and ADR.",
+      "Drive demand with irresistible offers. Launch targeted promotions that convert more bookings.",
     icon: ThreeDWheelIcon4,
     image: "/images/Landing/explore-module-direct_connect/discounts-promotion.png",
-  },  
+  },
   {
     id: "events",
     label: "Events & Ticketing",
     description:
-      "Sell, manage, and track events alongside room revenue without a second system.",
+      "Drive demand with irresistible offers. Launch targeted promotions that convert more bookings.",
     icon: ThreeDWheelIcon5,
     image: "/images/Landing/explore-module-direct_connect/events-ticketing.png",
   },
@@ -87,7 +87,7 @@ const directConnectFeatures: FeatureStep[] = [
     id: "packages",
     label: "Packages Engine",
     description:
-      "Bundle rooms, F&B, and experiences into sellable packages with margin control.",
+      "Sell more with curated experiences. Bundle rooms, services, and offers to boost revenue.",
     icon: ThreeDWheelIcon6,
     image: "/images/Landing/explore-module-direct_connect/packages-engine.png",
   },
@@ -95,7 +95,7 @@ const directConnectFeatures: FeatureStep[] = [
     id: "invoice",
     label: "Invoice Payments",
     description:
-      "Branded payment links, partial captures, and reconciliation built in.",
+      "Faster payments. Zero friction. Simplify invoicing with secure and seamless transactions.",
     icon: ThreeDWheelIcon7,
     image: "/images/Landing/explore-module-direct_connect/invoice-payment.png",
   },
@@ -181,7 +181,7 @@ const channelConnectFeatures: FeatureStep[] = [
     id: "reports-analytics",
     label: "Reports & Analytics",
     description:
-      "See what's working. Improve faster. Get deep insights into performance across channels.",
+      "See what’s working. Improve faster. Get deep insights into performance across channels.",
     icon: ThreeDWheelIcon14,
     image: "/images/Landing/explore-module-channel_connect/reports-analytics.png",
   },
@@ -369,74 +369,74 @@ export function ExploreModulesSection() {
       <div ref={sectionRef} style={{ height: sectionHeight }}>
         {/* Sticky block — pins below the fixed navbar so the tabs row stays visible */}
         <div className="sticky top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden">
-        <div className="flex w-full flex-col px-4 lg:px-1 h-full justify-center">
-          <div className="flex h-full flex-col ">
-          {/* Tabs */}
-          <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center">
-            <div className="flex rounded-full border border-gray-800/50 bg-[#0b142e] p-1">
-              <TabButton
-                active={activeTab === "direct"}
-                onClick={() => handleTabChange("direct")}
-              >
-                Direct Connect
-              </TabButton>
-              <TabButton
-                active={activeTab === "channel"}
-                onClick={() => handleTabChange("channel")}
-              >
-                Channel Connect
-              </TabButton>
-            </div>
-          </div>
+          <div className="flex w-full flex-col px-4 lg:px-1 h-full justify-center">
+            <div className="flex h-full flex-col ">
+              {/* Tabs */}
+              <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center">
+                <div className="flex rounded-full border border-gray-800/50 bg-[#0b142e] p-1">
+                  <TabButton
+                    active={activeTab === "direct"}
+                    onClick={() => handleTabChange("direct")}
+                  >
+                    Direct Connect
+                  </TabButton>
+                  <TabButton
+                    active={activeTab === "channel"}
+                    onClick={() => handleTabChange("channel")}
+                  >
+                    Channel Connect
+                  </TabButton>
+                </div>
+              </div>
 
-          <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
-            {/* 3D Wheel */}
-            <div
-              className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
-              style={{ perspective: "1200px" }}
-            >
-              <div
-                className="absolute inset-0 w-full origin-center lg:origin-left"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                {currentFeatures.map((feature, i) => (
-                  <WheelItem
-                    key={`${activeTab}-${feature.id}`}
-                    feature={feature}
-                    index={i}
-                    activeIndex={activeIndex}
-                    onClick={() => selectFeature(i)}
-                  />
-                ))}
+              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
+                {/* 3D Wheel */}
+                <div
+                  className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
+                  style={{ perspective: "1200px" }}
+                >
+                  <div
+                    className="absolute inset-0 w-full origin-center lg:origin-left"
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    {currentFeatures.map((feature, i) => (
+                      <WheelItem
+                        key={`${activeTab}-${feature.id}`}
+                        feature={feature}
+                        index={i}
+                        activeIndex={activeIndex}
+                        onClick={() => selectFeature(i)}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Image */}
+                <div className="relative z-10 w-full lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 mt-4 lg:mt-0">
+                  <div className="pointer-events-none absolute inset-0 rounded-3xl lg:rounded-l-3xl lg:rounded-r-none bg-gradient-to-tr from-[#ED862E]/10 to-transparent opacity-60 blur-3xl" />
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`${activeTab}-${activeFeature.id}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      className="absolute top-0 left-0 h-full w-full flex items-center justify-center"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={activeFeature.image}
+                        alt={activeFeature.label}
+                        className="h-full w-full object-contain object-center p-2 lg:p-0"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
-
-            {/* Image */}
-            <div className="relative z-10 w-full lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 mt-4 lg:mt-0">
-              <div className="pointer-events-none absolute inset-0 rounded-3xl lg:rounded-l-3xl lg:rounded-r-none bg-gradient-to-tr from-[#ED862E]/10 to-transparent opacity-60 blur-3xl" />
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`${activeTab}-${activeFeature.id}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="absolute top-0 left-0 h-full w-full lg:w-[150%] overflow-hidden flex items-center justify-center"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={activeFeature.image}
-                    alt={activeFeature.label}
-                    className="h-full w-full object-contain lg:object-cover object-center lg:object-left-top p-2 lg:p-0 scale-[1.15] lg:scale-100"
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-            </div>
-          </div>
           </div>
         </div>
+      </div>
     </section>
   )
 }
@@ -456,7 +456,7 @@ function TabButton({
       className={cn(
         "flex h-[36px] shrink-0 items-center justify-center transition-all duration-300",
 
-        "w-[148px] px-[26px] py-[10px]",
+        "w-auto px-[26px] py-[10px]",
 
         "md:w-[194px] md:pr-[25.89px] md:pl-[27px]",
 
@@ -464,9 +464,9 @@ function TabButton({
 
         active
           ? [
-              "rounded-[50px] bg-[#ED862E] text-white",
-              "shadow-[0_4px_16px_0_rgba(237,134,46,0.30)]",
-            ]
+            "rounded-[50px] bg-[#ED862E] text-white",
+            "shadow-[0_4px_16px_0_rgba(237,134,46,0.30)]",
+          ]
           : ["bg-transparent text-[#787878] hover:text-white"]
       )}
     >

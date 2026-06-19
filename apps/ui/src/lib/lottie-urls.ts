@@ -11,6 +11,7 @@ const ROOT = "/assets"
 /* ── Above-the-fold heroes (eager + preloaded) ───────────────────────────── */
 export const HERO_LAPTOP_URL = `${LANDING}/hero_section_laptop.json`
 export const DC_HERO_OVERLAY_URL = `${ROOT}/direct-connect/hero_section.json`
+export const CHANNEL_CONNECT_HERO_URL = `${ROOT}/channel-connect/hero_section.json`
 export const DISTRIBUTED_TECH_GLOBE_URL = `${LANDING}/distribution-network.json`
 export const RESOURCE_SYSTEM_MGMT_URL = `${LANDING}/system-management.json`
 
@@ -32,7 +33,7 @@ export const EVENT_INNER_URL = `${LANDING}/event_and_ticketing_inner.json`
 export const HOTEL_WEBSITE_INNER_URL = `${LANDING}/hotel_website_builder_inner.json`
 
 /* ── Landing solution section (lazy) ─────────────────────────────────────── */
-export const PILLES_URL = `${LANDING}/pilles_animation.json`
+export const PILLES_URL = `${LANDING}/pills_animation.json`
 
 /* ── /direct-connect route sections (lazy) ───────────────────────────────── */
 export const DC_TRAFFIC_REPORT_URL = `${ROOT}/traffic_report_work.json`

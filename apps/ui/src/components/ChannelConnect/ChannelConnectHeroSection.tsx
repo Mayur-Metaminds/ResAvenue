@@ -1,9 +1,13 @@
-import { ArrowRight } from "lucide-react"
-import Image from "next/image"
+"use client"
 
+import { ArrowRight } from "lucide-react"
+
+import { LazyLottie } from "@/components/common/LazyLottie"
 import { HeroContent } from "@/components/landing/HeroContent"
 import { HeroTitle } from "@/components/landing/HeroTitle"
 import { Button } from "@/components/ui/button"
+import { preloadLottie } from "@/lib/lottie-preload"
+import { CHANNEL_CONNECT_HERO_URL } from "@/lib/lottie-urls"
 
 import {
   ChannelSyncIcon,
@@ -11,6 +15,9 @@ import {
 } from "../../../public/svg/Channel-Connect"
 
 export function ChannelConnectHeroSection() {
+  // Above the fold: warm the hero animation download before hydration.
+  preloadLottie(CHANNEL_CONNECT_HERO_URL)
+
   return (
     <section
       data-nav-theme="dark"
@@ -67,14 +74,14 @@ export function ChannelConnectHeroSection() {
               {/* Background Glow */}
               <div className="absolute top-1/2 left-1/2 -z-10 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ED862E]/20 blur-[100px]" />
 
-              {/* Main Dashboard Image */}
-              <div className="relative overflow-hidden ">
-                <Image
-                  src="/images/Channel-Connect/Hero-img.png"
-                  alt="Channel Connect Dashboard Preview"
-                  width={1918}
-                  height={1934}
-                  className="h-auto w-full object-cover"
+              {/* Main Dashboard Animation */}
+              <div className="relative aspect-[1380/884] w-full overflow-hidden">
+                <LazyLottie
+                  src={CHANNEL_CONNECT_HERO_URL}
+                  priority="eager"
+                  loop
+                  className="h-full w-full"
+                  aria-label="Channel Connect Dashboard Preview"
                 />
               </div>
 

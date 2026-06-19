@@ -17,7 +17,7 @@ export default function ChannelConnect() {
       <ChannelConnectPortfolioSection />
       <ChannelConnectMobileAppSection />
       {/* <ChannelConnectCentralizeSection /> */}
-      <CtaSection primaryButtonLabel={null} />
+      <CtaSection primaryButtonLabel={null} showFooter />
     </main>
   )
 }
