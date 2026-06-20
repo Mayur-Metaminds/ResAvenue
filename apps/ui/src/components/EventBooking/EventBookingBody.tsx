@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/landing/SectionHeader"
 
 const EventBookingBody = () => {
   return (
-    <section data-nav-theme="light" className="w-full bg-[#F4F6F9] px-2 py-[60px] md:px-8 lg:py-[100px]">
+    <section data-nav-theme="light" className="w-full bg-[#F4F6F9] px-2 py-[60px] md:px-8 lg:pt-[80px]">
       <div className="mx-auto max-w-6xl">
         <SectionHeader
           className="mx-auto mb-10  text-center lg:mb-15"
@@ -37,7 +37,7 @@ const EventBookingBody = () => {
         <LazyLottie
           src="/assets/animation.json"
           priority="lazy"
-          className="mx-auto mt-10 h-75 w-full max-w-2xl"
+          className="mx-auto mt-3 h-75 w-full max-w-2xl"
           aria-label="Event management animation"
         />
       </div>

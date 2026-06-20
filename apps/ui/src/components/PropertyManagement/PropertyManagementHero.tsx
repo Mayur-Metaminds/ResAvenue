@@ -9,10 +9,10 @@ function PropertyManagementHero() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat min-[2560px]:items-center min-[2560px]:justify-center"
       style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}
     >
-      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[106px] lg:px-20">
+      <div className="relative z-10 flex w-full flex-1 flex-col px-[40px] pt-[106px] min-[2560px]:max-w-[1920px] min-[2560px]:flex-none min-[2560px]:pt-0">
         {/* Main Content */}
         <div className="flex flex-1 flex-col items-center justify-between gap-8 pb-8 md:gap-12 lg:flex-row lg:justify-evenly lg:gap-15 lg:pb-0">
           {/* Left Column: Content */}
@@ -40,8 +40,7 @@ function PropertyManagementHero() {
                 <span className="typo-body1 text-white/65 lg:w-129">
                   Your front desk, bookings, payments, housekeeping, and revenue—all
                   unified into one intelligent system.
-                  <br />
-                  Drive more direct bookings. Eliminate operational chaos. Deliver
+                  <br className="hidden lg:block" /> Drive more direct bookings. Eliminate operational chaos. Deliver
                   seamless guest experiences at scale.
                 </span>
               }
@@ -67,7 +66,7 @@ function PropertyManagementHero() {
           </div>
 
           {/* Right Column: mockup (dummy placeholder — swap with the real asset) */}
-          <div className="w-full min-w-0 flex-1 self-center lg:pt-15">
+          <div className="w-full min-w-0 flex-1 self-center">
             <div className="mx-auto aspect-square w-full max-w-[420px] rounded-3xl bg-white/5" />
           </div>
         </div>

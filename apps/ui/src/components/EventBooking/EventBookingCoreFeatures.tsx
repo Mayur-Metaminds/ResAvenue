@@ -100,7 +100,7 @@ const EventBookingCoreFeatures = () => {
           {features.map((f) => (
             <div
               key={f.id}
-              className="group rounded-[16px] lg:rounded-[21.795px] border border-slate-200 bg-white px-[10.9px] py-[9.9px] shadow-sm"
+              className="group cursor-pointer rounded-[16px] lg:rounded-[21.795px] border border-slate-200 bg-white px-[10.9px] py-[9.9px] shadow-sm"
             >
               <div className="aspect-[4/3.3] w-full overflow-hidden rounded-[21.795px] bg-slate-100">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -117,6 +117,24 @@ const EventBookingCoreFeatures = () => {
                 <p className="font-source-sans-400 mt-2 text-[16px] leading-[22.4px] text-[#666] xl:text-[16.35px] xl:leading-[26.16px]">
                   {f.description}
                 </p>
+                <span className="font-source-sans-400 mt-3 inline-flex items-center gap-1.5 text-[16px] leading-[22.4px] text-[#ED862E] opacity-0 transition-opacity duration-300 group-hover:opacity-100 xl:text-[16.35px] xl:leading-[26.16px]">
+                  Learn more
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
               </div>
             </div>
           ))}

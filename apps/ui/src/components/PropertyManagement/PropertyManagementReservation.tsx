@@ -55,7 +55,7 @@ const PropertyManagementReservation = () => {
   return (
     <section
       data-nav-theme="dark"
-      className="w-full bg-cover bg-center bg-no-repeat px-4 py-[60px] md:px-8 lg:py-[100px]"
+      className="w-full bg-cover bg-center bg-no-repeat px-4 py-[60px] md:px-8 lg:py-[118px]"
       style={{ backgroundImage: "url('/images/Property-Management/gradiantbg.png')" }}
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
@@ -80,7 +80,7 @@ const PropertyManagementReservation = () => {
               </span>
             }
             className="items-start text-left"
-            descriptionClassName="typo-body1 text-left text-white/50"
+            descriptionClassName="typo-body1 text-left text-white/50 lg:max-w-[555px]"
             title="Room & Reservation Management"
             titleHighlight="Management"
             titleColor="#FFFFFF"

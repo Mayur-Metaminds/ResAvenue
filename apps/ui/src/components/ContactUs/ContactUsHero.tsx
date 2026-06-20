@@ -61,17 +61,17 @@ import { HeroTitle } from "@/components/landing/HeroTitle"
 function ContactUsHero() {
   return (
     <section
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat min-[2560px]:justify-center"
       style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}
     >
-      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[153px] lg:pt-[163px] xl:px-20">
+      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[153px] lg:pt-[163px] xl:px-20 min-[2560px]:flex-none min-[2560px]:pt-0">
         {/* Main Content */}
         <div className="flex flex-1 flex-col items-start justify-between gap-8 md:gap-12 pb-8  lg:pb-12 lg:flex-row lg:justify-evenly lg:gap-15 lg:pb-0">
           {/* Left Column: Content */}
           <div className="flex w-full flex-col justify-start lg:w-[50%] xl:w-[45%]">
             <HeroContent
               eyebrow="CONNECTED SUPPORT. REAL-TIME RESPONSE"
-              className="px-[20px] lg:px-0 gap-[12px]"
+              className="gap-[12px]"
               eyebrowColor="#ED862E"
               eyebrowClassName="typo-body2 gap-[8px] !mb-0"
               titleClassName="lg:mb-2"

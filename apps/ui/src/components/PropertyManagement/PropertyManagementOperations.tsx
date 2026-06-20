@@ -56,7 +56,7 @@ const PropertyManagementOperations = () => {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-white px-4 py-[60px] md:px-8 lg:py-[100px]"
+      className="w-full bg-white px-4 py-[60px] md:px-8 lg:pb-[143px]"
     >
       <SectionHeader
         eyebrow="ONE PLATFORM. ENDLESS POSSIBILITIES."
@@ -85,7 +85,7 @@ const PropertyManagementOperations = () => {
             key={card.id}
             className="flex flex-col rounded-[24px] border border-slate-200 bg-white p-6 transition-colors duration-200 hover:border-[#ED862E] hover:shadow-[#ED862E] hover:shadow"
           >
-            <div className="flex items-start gap-3">
+            <div className="flex items-center md:items-start gap-3">
               <span className="shrink-0">{card.icon}</span>
               <h3 className="font-plus-jakarta-700 text-[20px] leading-[22.4px] text-[#010E38] [font-feature-settings:'liga'_off,'clig'_off] xl:leading-8">
                 {card.title}
@@ -101,7 +101,7 @@ const PropertyManagementOperations = () => {
                 {card.bullets.map((bullet) => (
                   <li
                     key={bullet}
-                    className="font-source-sans-400 text-[14px] leading-[22px] text-[#64748B]"
+                    className="font-source-sans-400 text-[16px] leading-[22.4px] text-[#64748B] xl:text-[18px] xl:leading-7"
                   >
                     • {bullet}
                   </li>

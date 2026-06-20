@@ -87,7 +87,7 @@ const EventBookingEventType = () => {
                     backgroundColor="#FFFFFF"
                     ariaLabel="Event types"
                     renderItem={(e) => (
-                        <div className="w-[280px] overflow-hidden rounded-[21.795px] border-2 border-slate-200 bg-white text-left shadow-sm transition-colors duration-200 hover:border-[#ED862E] sm:w-[320px]">
+                        <div className="w-[280px] h-[340px] md:h-[416px] overflow-hidden rounded-[21.795px] border-2 border-slate-200 bg-white text-left shadow-sm transition-colors duration-200 hover:border-[#ED862E] sm:w-[320px]">
                             <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
@@ -100,7 +100,7 @@ const EventBookingEventType = () => {
                                 <h3 className="font-plus-jakarta-700 text-[20px] leading-[22.4px] text-black xl:text-[21.795px] xl:leading-normal">
                                     {e.title}
                                 </h3>
-                                <p className="font-source-sans-400 mt-2 text-[16px] leading-[22.4px] text-[#666] xl:text-[16.35px] xl:leading-[26.16px]">
+                                <p className="font-source-sans-400 mt-2 min-h-[44.8px] text-[16px] leading-[22.4px] text-[#718096] md:min-h-[63px] md:text-[18px] md:leading-[31.5px]">
                                     {e.description}
                                 </p>
                             </div>
