@@ -344,12 +344,12 @@ function ModalContent({
             h-full only on desktop: it stretches the column to match the bullets
             column's height there, but on mobile (single column) that stretch
             just creates dead space between the description and the bullets. */}
-          <div className="flex flex-col items-start md:h-full">
-            {product.icon && (
-              <div className="mb-[16px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
-                {product.icon}
-              </div>
-            )}
+        <div className="flex flex-col items-start md:h-full">
+          {product.icon && (
+            <div className="mb-[16px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
+              {product.icon}
+            </div>
+          )}
 
             {product.eyebrow && (
               <h4 className="font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
