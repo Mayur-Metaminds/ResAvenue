@@ -1,6 +1,6 @@
-import { LayoutGrid } from "lucide-react"
 import React from "react"
 
+import { LazyLottie } from "@/components/common/LazyLottie"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 
 const EventBookingBody = () => {
@@ -33,7 +33,13 @@ const EventBookingBody = () => {
           description="Managing ticketing, marketing, operations, and revenue across disconnected systems leads to lost data, overselling, and poor attendee experiences. ResAvenue unifies everything."
         />
 
-
+        {/* Dummy Lottie animation placeholder */}
+        <LazyLottie
+          src="/assets/animation.json"
+          priority="lazy"
+          className="mx-auto mt-10 h-75 w-full max-w-2xl"
+          aria-label="Event management animation"
+        />
       </div>
     </section>
   )

@@ -21,6 +21,7 @@ function PropertyManagementHero() {
               className="lg:w-[499px]"
               eyebrow="ONE PLATFORM. TOTAL CONTROL. BETTER REVENUE."
               eyebrowColor="#fff"
+              eyebrowClassName="max-sm:w-[288px]"
               title={
                 <HeroTitle
                   style={

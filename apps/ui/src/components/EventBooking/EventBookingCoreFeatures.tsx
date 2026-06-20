@@ -76,7 +76,7 @@ const features: Feature[] = [
 const EventBookingCoreFeatures = () => {
   return (
     <section data-nav-theme="light" className="w-full bg-white px-4 py-[60px] md:px-8 lg:py-[100px]">
-      <div className="mx-auto px-10 max-sm:w-[343px] max-sm:px-0">
+      <div className="mx-auto px-10 max-sm:px-0">
         <SectionHeader
           className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
           descriptionClassName="typo-body1 text-center text-[#64748B]"
@@ -100,17 +100,17 @@ const EventBookingCoreFeatures = () => {
           {features.map((f) => (
             <div
               key={f.id}
-              className="group rounded-[21.795px] border border-slate-200 bg-white px-[10.9px] py-[9.9px] shadow-sm"
+              className="group rounded-[16px] lg:rounded-[21.795px] border border-slate-200 bg-white px-[10.9px] py-[9.9px] shadow-sm"
             >
-              <div className="aspect-[4/3] w-full overflow-hidden rounded-[21.795px] bg-slate-100">
+              <div className="aspect-[4/3.3] w-full overflow-hidden rounded-[21.795px] bg-slate-100">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={f.image}
                   alt={f.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.4]"
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.1]"
                 />
               </div>
-              <div className="p-4 md:p-5">
+              <div className="py-4 px-2 md:p-5">
                 <h3 className="font-plus-jakarta-700 text-[20px] leading-[22.4px] text-black xl:text-[21.795px] xl:leading-normal">
                   {f.title}
                 </h3>
