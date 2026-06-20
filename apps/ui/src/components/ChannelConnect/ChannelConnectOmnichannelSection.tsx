@@ -158,7 +158,7 @@ export function ChannelConnectOmnichannelSection() {
       <BentoGrid<OmnichannelCard>
         items={omnichannelCards}
         sectionClassName="w-full py-[32px] lg:py-[90px] px-[20px] lg:px-[80px] bg-white"
-        containerClassName="w-full mx-auto [&>.grid]:xl:!grid-cols-5"
+        containerClassName="mx-auto w-full max-w-[1440px] [&>.grid]:xl:!grid-cols-5"
         cardClassName="p-6 md:p-8 xl:p-10 min-h-[320px] md:min-h-[380px] justify-start"
         header={
           <SectionHeader

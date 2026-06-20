@@ -114,7 +114,7 @@ const engineeredFeatures: EngineeredFeature[] = [
 export function ChannelConnectEngineeredSection() {
   return (
     <section data-nav-theme="light" className="w-full bg-white pb-[90px]">
-      <div className="lg:mx-[80px] mx-[20px]">
+      <div className="mx-auto w-full max-w-[1440px] px-[20px] lg:px-[80px]">
         {/* Header */}
         <SectionHeader
           className="mx-auto mb-[45px] max-w-3xl text-center lg:mb-[80px]"

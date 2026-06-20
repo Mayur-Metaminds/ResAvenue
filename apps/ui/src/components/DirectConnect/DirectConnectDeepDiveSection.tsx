@@ -162,8 +162,8 @@ export function DirectConnectDeepDiveSection() {
           height. We use items-start on mobile so the top is never cut off,
           and highly compact spacing to ensure the image at the bottom fits. */}
       <div className="sticky top-[56px] lg:top-20 flex h-[calc(100dvh-56px)] lg:h-[calc(100dvh-5rem)] w-full flex-col items-center justify-start lg:justify-center">
-        <div className="flex h-full w-full flex-col rounded-[32px] bg-[#010C28] px-4 py-4 transition-all duration-500 ease-in-out lg:h-auto lg:rounded-[45px] lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
-          <div className="flex flex-1 min-h-0 flex-col gap-[12px] lg:grid lg:grid-cols-2 lg:grid-rows-[max-content_1fr] lg:items-start lg:gap-x-[80px]">
+        <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col rounded-[32px] bg-[#010C28] px-4 py-4 transition-all duration-500 ease-in-out lg:h-auto lg:rounded-[45px] lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
+          <div className="flex min-h-0 flex-1 flex-col gap-[12px] lg:grid lg:grid-cols-2 lg:grid-rows-[max-content_1fr] lg:items-start lg:gap-x-[80px]">
             {/* Header */}
             <div className="order-1 lg:col-start-2 lg:row-start-1">
               <SectionHeader
