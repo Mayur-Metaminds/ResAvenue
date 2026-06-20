@@ -38,7 +38,7 @@ export function HeroSection() {
           {/* Left Column: Content */}
           <HeroContent
             eyebrow="CLOUD BASED HOTEL MANAGEMENT"
-            className="border-red-600 h-full border"
+            className="h-full"
             title={
               <HeroTitle>
                 The Complete Revenue & Distribution Platform for{" "}
@@ -69,14 +69,14 @@ export function HeroSection() {
             ]}
           />
           {/* Right Column: Mockup */}
-          <div className="relative z-20 flex flex-1 h-full w-full border-red-600 border items-center justify-center ">
+          <div className="relative z-20 flex flex-1 h-full w-full items-center justify-center ">
             {/* Dashboard laptop mockup Lottie */}
             <LazyLottie
               src={HERO_LAPTOP_URL}
               priority="eager"
               loop
               autoplay
-              className="h-full object-top lg:scale-130 w-full"
+              className="h-full object-top scale-120 lg:scale-130 w-full"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
               aria-label="ResAvenue dashboard preview"
             />

@@ -47,7 +47,7 @@ export function DirectConnectOperationsSection() {
       data-nav-theme="light"
       className="w-full bg-[#F8FAFC] px-[16px] py-[34px] lg:px-[80px] lg:py-[50px]"
     >
-      <div className="container mx-auto max-w-[1200px]">
+      <div className="container mx-auto max-w-[1440px] lg:px-[80px]">
         {/* Header */}
         <SectionHeader
           className="mb-[24px] text-center lg:mb-[50px]"

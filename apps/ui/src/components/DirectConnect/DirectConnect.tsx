@@ -12,9 +12,9 @@ export default function DirectConnect() {
     <div className="flex min-h-screen flex-col">
       <DirectConnectHeroSection />
       <DirectConnectSolutionSection />
-      <DirectConnectDeepDiveSection />
-      <DirectConnectDashboardSection />
+      <DirectConnectDeepDiveSection />     
       <DirectConnectOperationsSection />
+      <DirectConnectDashboardSection />
       <DirectConnectBookingEngineSection />
       <CtaSection primaryButtonLabel={null} showFooter />
     </div>

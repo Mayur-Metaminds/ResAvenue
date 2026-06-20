@@ -299,8 +299,8 @@ function ModalContent({
     undefined
   )
 
-  // Learn More CTA — defined once, placed twice: in the left column on desktop,
-  // and below the bullets on mobile (where the two columns stack).
+  // Learn More CTA — rendered once at the bottom of the text content (below the
+  // title/description/bullets, above the animation), on both desktop and mobile.
   const learnMore =
     product.showLearnMore !== false ? (
       <Button
@@ -339,7 +339,7 @@ function ModalContent({
           the content exceeds the viewport height constraint. */}
       <div className="flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto px-[20px] pt-[72px] pb-[24px] md:px-[32px] md:pt-[88px] md:pb-[40px]">
         {/* Two-column top section (stacks on mobile via grid-cols-1) */}
-        <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-[2.2fr_1fr]">
+        <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] ">
         {/* Left — icon + eyebrow + title + description + Learn More.
             h-full only on desktop: it stretches the column to match the bullets
             column's height there, but on mobile (single column) that stretch
@@ -369,9 +369,6 @@ function ModalContent({
               {product.modalSubtitle ?? product.subtitle}
             </p>
           )}
-
-          {/* Desktop: Learn More sits at the bottom of the left column. */}
-          {learnMore && <div className="hidden md:block">{learnMore}</div>}
         </div>
 
         {/* Right — feature checklist only */}
@@ -391,8 +388,8 @@ function ModalContent({
         </div>
       </div>
 
-      {/* Mobile: Learn More sits below the stacked bullets. */}
-      {learnMore && <div className="md:hidden">{learnMore}</div>}
+      {/* Learn More — at the bottom of the text content, above the visual. */}
+      {learnMore && <div>{learnMore}</div>}
 
       {/* Bottom visual — Lottie if provided, otherwise the imagePlaceholder
           rendered as a cover background. */}
