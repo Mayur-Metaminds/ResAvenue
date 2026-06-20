@@ -34,6 +34,7 @@ export default function DistributedTechnologyWrapper() {
             <DistributedTechnologyDistribution />
             <DistributedTechnologyNetworks />
             <CtaSection primaryButtonLabel={null}
+                showFooter
                 title="Connect Your Property to the Global Travel Ecosystem"
                 description="Join thousands of hotels that have increased their revenue and simplified their distribution
 workflows with ResAvenue's enterprise-grade platform." />

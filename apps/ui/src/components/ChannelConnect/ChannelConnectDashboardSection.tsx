@@ -121,7 +121,7 @@ export function ChannelConnectDashboardSection() {
                   key={index}
                   onClick={() => handleCardClick(index)}
                   className={cn(
-                    "relative flex w-full cursor-pointer gap-4 overflow-hidden rounded-[18px] border bg-white p-5 transition-all duration-300",
+                    "relative flex w-full cursor-pointer gap-[9px] overflow-hidden rounded-[18px] border bg-white p-[12px] transition-all duration-300",
                     isActive
                       ? "items-start border-[#ED862E]/10 shadow-[0_55px_15px_0_rgba(236,91,19,0),0_35px_14px_0_rgba(236,91,19,0.01),0_20px_12px_0_rgba(236,91,19,0.03),0_9px_9px_0_rgba(236,91,19,0.04),0_2px_5px_0_rgba(236,91,19,0.05)]"
                       : "items-center border-[#E2E8F0] shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] hover:border-[#ED862E]/50 hover:shadow-md"

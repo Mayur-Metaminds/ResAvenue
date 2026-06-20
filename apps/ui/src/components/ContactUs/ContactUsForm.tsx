@@ -127,7 +127,7 @@ export default function ContactForm() {
           {/* First Name */}
           <div>
             <label className="typo-body5 font-normal! text-white">
-              Name<span className="text-[#F00]">*</span>
+              First Name<span className="text-[#F00]">*</span>
             </label>
 
             <input
@@ -136,7 +136,7 @@ export default function ContactForm() {
               value={formData.firstName}
               onChange={handleChange}
               placeholder="First name"
-              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.firstName && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.firstName}</p>
@@ -155,7 +155,7 @@ export default function ContactForm() {
               value={formData.lastName}
               onChange={handleChange}
               placeholder="Last name"
-              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.lastName && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.lastName}</p>
@@ -174,7 +174,7 @@ export default function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               placeholder="John@hotel.com"
-              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.email && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.email}</p>
@@ -193,7 +193,7 @@ export default function ContactForm() {
               value={formData.phone}
               onChange={handleChange}
               placeholder="+91 88888 88888"
-              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.phone && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.phone}</p>
@@ -212,7 +212,7 @@ export default function ContactForm() {
               value={formData.propertyName}
               onChange={handleChange}
               placeholder="The Grand Resort"
-              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.propertyName && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.propertyName}</p>
@@ -231,7 +231,7 @@ export default function ContactForm() {
               value={formData.siteUrl}
               onChange={handleChange}
               placeholder="https://yourcompany.com"
-              className="w-full text-white/60 typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              className="w-full text-white     typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.siteUrl && (
               <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.siteUrl}</p>
@@ -282,7 +282,7 @@ export default function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             placeholder="Write a message here..."
-            className="w-full resize-none rounded-xl border border-white/10 bg-transparent px-3 py-3 text-[8.315px] text-white transition outline-none placeholder:text-[#FFF] placeholder:typo-body5 placeholder:font-normal! focus:border-orange-400 p-[12px] md:p-[10px] md:text-sm"
+            className="w-full resize-none rounded-xl border border-white/10 bg-transparent px-3 py-3 text-[16px] text-white transition outline-none placeholder:text-[#FFF] placeholder:typo-body5 placeholder:font-normal! focus:border-orange-400 p-[12px] md:p-[10px] "
           />
           {errors.message && (
             <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.message}</p>

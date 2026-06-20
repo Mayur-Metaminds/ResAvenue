@@ -119,27 +119,27 @@ export function ChannelConnectEngineeredSection() {
         <SectionHeader
           className="mx-auto mb-[45px] max-w-3xl text-center lg:mb-[80px]"
           eyebrow="Enterprise-grade capabilities"
-          eyebrowClassName="mb-[12px]"
+          eyebrowClassName="mb-[24px] lg:mb-[12px]"
           title={
             <>
-              Engineered for{" "}
-              <SectionHeader.Highlight>Complexity</SectionHeader.Highlight>
+              <SectionHeader.Highlight>Engineered for Complexity</SectionHeader.Highlight>
             </>
           }
-          titleClassName="mb-[24px]"
+          titleClassName="lg:mb-[24px] mb-[16px]"
+          highlightGradient="linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 36.88%, #ED862E 65.29%)"
           description="Scalable solutions for multi-property operations and revenue optimization teams."
         />
 
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-[20px] md:gap-[10px] sm:grid-cols-2 lg:grid-cols-4">
           {engineeredFeatures.map((feature) => (
             <div
               key={feature.id}
-              className="group flex h-full cursor-pointer min-h-[204px] flex-col items-start gap-[19px] rounded-[16px] border border-black/5 bg-white p-[20px] text-left transition-all duration-300 hover:border-[#ED862E] hover:[background:linear-gradient(0deg,rgba(237,134,46,0.03)_0%,rgba(237,134,46,0.03)_100%),#FFF]"
+              className="group flex h-full cursor-pointer  flex-col items-start gap-[19px] rounded-[16px] border border-black/5 bg-white p-[20px] text-left transition-all duration-300 hover:border-[#ED862E] hover:[background:linear-gradient(0deg,rgba(237,134,46,0.03)_0%,rgba(237,134,46,0.03)_100%),#FFF]"
             >
-              <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl bg-[#ED862E]/10">
+              
                 {feature.icon}
-              </div>
+              
               <div className="flex flex-col gap-1">
                 <h3 className="font-plus-jakarta-700 text-[18px] leading-[1.2] text-[#010C28] transition-colors duration-300 group-hover:text-[#ED862E]">
                   {feature.title}
