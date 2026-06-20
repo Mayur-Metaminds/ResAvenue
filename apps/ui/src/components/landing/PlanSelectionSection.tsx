@@ -136,7 +136,7 @@ export function PlanSelectionSection() {
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 mx-auto w-full xl:px-[80px] ">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] xl:px-[80px] ">
         <div className="flex flex-col gap-8 rounded-[32px] py-[48px] border border-slate-100 bg-white px-[12px] lg:px-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]  lg:flex-row lg:gap-[48.34px] ">
           {/* Left Column */}
           <div className="flex w-full flex-col border-slate-300 lg:w-[336px] lg:border-r">

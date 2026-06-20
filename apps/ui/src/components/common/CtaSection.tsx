@@ -79,7 +79,7 @@ export function CtaSection({
 
       <div
         className={cn(
-          "relative z-10 mx-auto w-full px-6 text-center",
+          "relative z-10 mx-auto w-full max-w-[1440px] px-6 text-center",
           showFooter && "pt-28 pb-20 lg:pt-40 lg:pb-24"
         )}
       >

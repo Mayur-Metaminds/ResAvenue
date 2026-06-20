@@ -322,7 +322,7 @@ export function TestimonialsSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full px-[16px] lg:px-[80px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[16px] lg:px-[80px]">
         {/* Testimonials Header */}
         <div className="flex flex-col items-center text-center">
           <SectionHeader
