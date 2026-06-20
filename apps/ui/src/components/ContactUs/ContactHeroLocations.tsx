@@ -10,7 +10,7 @@ export default function OfficeLocations() {
             India Office
           </h2>
 
-          <div className="mb-2 flex items-center gap-4">
+          <div className="mb-2 flex items-start gap-4">
             <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
               <MapPin className="h-4 w-4 text-orange-400" />
             </span>
@@ -20,7 +20,7 @@ export default function OfficeLocations() {
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-start gap-4">
             <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
               <Phone className="h-4 w-4 text-orange-400" />
             </span>
@@ -37,7 +37,7 @@ export default function OfficeLocations() {
             Dubai Office
           </h2>
 
-          <div className="mb-2 flex items-center gap-4">
+          <div className="mb-2 flex items-start gap-4">
             <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
               <MapPin className="h-4 w-4 text-orange-400" />
             </span>
@@ -49,7 +49,7 @@ export default function OfficeLocations() {
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-start gap-4">
             <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
               <Phone className="h-4 w-4 text-orange-400" />
             </span>
