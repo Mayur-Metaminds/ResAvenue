@@ -1,5 +1,6 @@
 "use client"
 
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useRef, useState } from "react"
 
 import { ContactUsCheckIcon } from "../../../public/svg/commonSvg"
@@ -55,6 +56,16 @@ export default function ContactForm() {
 
   const handleServiceClick = (service: ContactService) => {
     if (!isDragging.current) setSelected(service)
+  }
+
+  const scrollTabs = (direction: "prev" | "next") => {
+    const el = tabsScrollRef.current
+    if (!el) return
+    const amount = el.clientWidth * 0.6
+    el.scrollBy({
+      left: direction === "next" ? amount : -amount,
+      behavior: "smooth",
+    })
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -241,9 +252,30 @@ export default function ContactForm() {
 
         {/* Services */}
         <div className="my-[24px]">
-          <label className="typo-body5 font-bold! mb-[7px] md:mb-[16px] block text-white">
-            Services interested in
-          </label>
+          <div className="mb-[7px] md:mb-[16px] flex items-center justify-between gap-3">
+            <label className="typo-body5 font-bold! text-white">
+              Services interested in
+            </label>
+
+            <div className="flex shrink-0 items-center gap-2">
+              <button
+                type="button"
+                aria-label="Previous services"
+                onClick={() => scrollTabs("prev")}
+                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-orange-400 hover:text-orange-400"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next services"
+                onClick={() => scrollTabs("next")}
+                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-orange-400 hover:text-orange-400"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
 
           <div
             ref={tabsScrollRef}

@@ -340,7 +340,7 @@ function ModalContent({
       <div className="flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto px-[20px] pt-[72px] pb-[24px] md:px-[32px] md:pt-[88px] md:pb-[40px]">
         {/* Two-column top section (stacks on mobile via grid-cols-1) */}
         <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] md:grid-cols-[2.2fr_1fr]">
-        {/* Left — icon + eyebrow + title + description + Learn More.
+          {/* Left — icon + eyebrow + title + description + Learn More.
             h-full only on desktop: it stretches the column to match the bullets
             column's height there, but on mobile (single column) that stretch
             just creates dead space between the description and the bullets. */}
@@ -351,96 +351,141 @@ function ModalContent({
             </div>
           )}
 
-          {product.eyebrow && (
-            <h4 className="font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
-              {product.eyebrow}
-            </h4>
-          )}
+            {product.eyebrow && (
+              <h4 className="font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
+                {product.eyebrow}
+              </h4>
+            )}
 
-          <h3
-            id={`product-modal-title-${product.id}`}
-            className="font-plus-jakarta-700 mb-[16px] text-[24px] font-bold text-[#010C28]"
-          >
-            {product.title}
-          </h3>
-
-          {(product.modalSubtitle ?? product.subtitle) && (
-            <p className="font-source-sans-400 mb-[32px] w-full text-[16px] leading-[26px] text-[#94A3B8] whitespace-pre-line">
-              {product.modalSubtitle ?? product.subtitle}
-            </p>
-          )}
-
-          {/* Desktop: Learn More sits at the bottom of the left column. */}
-          {learnMore && <div className="hidden md:block">{learnMore}</div>}
-        </div>
-
-        {/* Right — feature checklist only */}
-        <div className="flex flex-col justify-start gap-[20px]">
-          <ul className="space-y-3 md:space-y-[12px]">
-            {product.modalFeatures.map((feature) => (
-              <li key={feature} className="flex items-start text-gray-700">
-                <span className="mt-0.5 mr-3 flex h-5 w-5 md:h-6 md:w-6 shrink-0 items-center justify-center">
-                  <CheckedIcon />
-                </span>
-                <span className="text-[16px] md:text-[16px] font-source-sans leading-relaxed text-[#45556C] font-medium">
-                  {feature}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* Mobile: Learn More sits below the stacked bullets. */}
-      {learnMore && <div className="md:hidden">{learnMore}</div>}
-
-      {/* Bottom visual — Lottie if provided, otherwise the imagePlaceholder
-          rendered as a cover background. */}
-      {(product.modalLottieUrl ?? product.lottieUrl) ? (
-        hasFixedHeight ? (
-          // Fixed-height modal: the animation fills the leftover space so the
-          // taller modal has no empty gap.
-          <div className="relative min-h-[300px] w-full flex-1 overflow-hidden rounded-2xl md:min-h-[400px]">
-            <LazyLottie
-              src={(product.modalLottieUrl ?? product.lottieUrl) as string}
-              priority="on-demand"
-              loop
-              className="h-full w-full"
-              rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
-            />
-            {product.lottieOverlay}
-          </div>
-        ) : (
-          // Auto-height modal: a 90%-wide box sized to the animation's aspect
-          // ratio. flex-1 lets it grow into the freed space (e.g. on the fixed-
-          // height mobile modal) with the animation centered.
-          <div className="flex w-full flex-1 items-center justify-center">
-            <div
-              className="relative w-[90%] overflow-hidden rounded-2xl"
-              style={
-                animationAspect ? { aspectRatio: animationAspect } : undefined
-              }
+            <h3
+              id={`product-modal-title-${product.id}`}
+              className="font-plus-jakarta-700 mb-[16px] text-[24px] font-bold text-[#010C28]"
             >
+              {product.title}
+            </h3>
+
+            {(product.modalSubtitle ?? product.subtitle) && (
+              <p className="font-source-sans-400 mb-[32px] w-full text-[16px] leading-[26px] text-[#94A3B8] whitespace-pre-line">
+                {product.modalSubtitle ?? product.subtitle}
+              </p>
+            )}
+
+            {/* Desktop: Learn More sits at the bottom of the left column. */}
+            {learnMore && <div className="hidden md:block">{learnMore}</div>}
+          </div>
+
+          {/* Right — feature checklist only */}
+          <div className="flex flex-col justify-start gap-[20px]">
+            <ul className="space-y-3 md:space-y-[12px]">
+              {product.modalFeatures.map((feature) => (
+                <li key={feature} className="flex items-start text-gray-700">
+                  <span className="mt-0.5 mr-3 flex h-5 w-5 md:h-6 md:w-6 shrink-0 items-center justify-center">
+                    <CheckedIcon />
+                  </span>
+                  <span className="text-[16px] md:text-[16px] font-source-sans leading-relaxed text-[#45556C] font-medium">
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Mobile: Learn More sits below the stacked bullets. */}
+        {learnMore && <div className="md:hidden">{learnMore}</div>}
+
+        {/* Bottom visual — Lottie if provided, otherwise the imagePlaceholder
+          rendered as a cover background. */}
+        {(product.modalLottieUrl ?? product.lottieUrl) ? (
+          hasFixedHeight ? (
+            // Fixed-height modal: the animation fills the leftover space so the
+            // taller modal has no empty gap.
+            <div className="relative min-h-0 w-full flex-1 overflow-hidden rounded-2xl">
               <LazyLottie
                 src={(product.modalLottieUrl ?? product.lottieUrl) as string}
                 priority="on-demand"
                 loop
                 className="h-full w-full"
                 rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
-                onReady={(data) => setAnimationAspect(lottieAspectRatio(data))}
               />
               {product.lottieOverlay}
             </div>
-          </div>
-        )
-      ) : (
-        <div
-          className="mx-auto min-h-[200px] w-[90%] flex-1 rounded-2xl md:min-h-[350px]"
-          style={{
-            background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
-          }}
-        />
-      )}
+          ) : (
+            // Auto-height modal: a 90%-wide box sized to the animation's aspect
+            // ratio. flex-1 lets it grow into the freed space (e.g. on the fixed-
+            // height mobile modal) with the animation centered.
+            <div className="flex w-full flex-1 items-center justify-center">
+              <div
+                className="relative w-[90%] overflow-hidden rounded-2xl"
+                style={
+                  animationAspect ? { aspectRatio: animationAspect } : undefined
+                }
+              >
+                <LazyLottie
+                  src={(product.modalLottieUrl ?? product.lottieUrl) as string}
+                  priority="on-demand"
+                  loop
+                  className="h-full w-full"
+                  rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+                  onReady={(data) => setAnimationAspect(lottieAspectRatio(data))}
+                />
+                {product.lottieOverlay}
+              </div>
+            </div>
+          )
+        ) : (
+          <div
+            className="mx-auto min-h-[200px] w-[90%] flex-1 rounded-2xl md:min-h-[350px]"
+            style={{
+              background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
+            }}
+          />
+        )}
+        {(product.modalLottieUrl ?? product.lottieUrl) ? (
+          hasFixedHeight ? (
+            // Fixed-height modal: the animation fills the leftover space so the
+            // taller modal has no empty gap.
+            <div className="relative min-h-[300px] w-full flex-1 overflow-hidden rounded-2xl md:min-h-[400px]">
+              <LazyLottie
+                src={(product.modalLottieUrl ?? product.lottieUrl) as string}
+                priority="on-demand"
+                loop
+                className="h-full w-full"
+                rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+              />
+              {product.lottieOverlay}
+            </div>
+          ) : (
+            // Auto-height modal: a 90%-wide box sized to the animation's aspect
+            // ratio. flex-1 lets it grow into the freed space (e.g. on the fixed-
+            // height mobile modal) with the animation centered.
+            <div className="flex w-full flex-1 items-center justify-center">
+              <div
+                className="relative w-[90%] overflow-hidden rounded-2xl"
+                style={
+                  animationAspect ? { aspectRatio: animationAspect } : undefined
+                }
+              >
+                <LazyLottie
+                  src={(product.modalLottieUrl ?? product.lottieUrl) as string}
+                  priority="on-demand"
+                  loop
+                  className="h-full w-full"
+                  rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+                  onReady={(data) => setAnimationAspect(lottieAspectRatio(data))}
+                />
+                {product.lottieOverlay}
+              </div>
+            </div>
+          )
+        ) : (
+          <div
+            className="mx-auto min-h-[200px] w-[90%] flex-1 rounded-2xl md:min-h-[350px]"
+            style={{
+              background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
+            }}
+          />
+        )}
       </div>
     </div>
   )

@@ -9,6 +9,7 @@ export interface HeroContentProps {
   title: React.ReactNode
   titleClassName?: React.ReactNode
   description: React.ReactNode
+  descriptionClassName?: string
   actions?: React.ReactNode[]
   className?: string
   eyebrowClassName?: string
@@ -21,6 +22,7 @@ export function HeroContent({
   title,
   titleClassName,
   description,
+  descriptionClassName,
   actions,
   className,
   eyebrowClassName,
@@ -41,7 +43,7 @@ export function HeroContent({
       <div className={cn("mb-[16px] lg:mb-[24px]",titleClassName)}>{title}</div>
 
       {/* Description */}
-      <p className="typo-body1 mb-[40px] text-white opacity-55">{description}</p>
+      <p className={cn("typo-body1 mb-[40px] text-white opacity-55", descriptionClassName)}>{description}</p>
 
       {/* Actions */}
       {actions && actions.length > 0 && (
