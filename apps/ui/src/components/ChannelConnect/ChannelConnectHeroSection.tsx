@@ -85,31 +85,7 @@ export function ChannelConnectHeroSection() {
                 />
               </div>
 
-              {/* Floating Element 1 (Top Right) */}
-              <div className="animate-in fade-in slide-in-from-right-8 fill-mode-both absolute top-8 -right-4 flex items-center gap-3 rounded-full border border-slate-100 bg-white py-2.5 pr-5 pl-2.5 shadow-xl delay-300 duration-1000 md:-right-8 lg:-right-12">
-                <ChannelSyncIcon className="h-10 w-10 shrink-0" />
-                <div className="flex flex-col">
-                  <span className="font-plus-jakarta-700 text-[10px] tracking-wider text-[#64748B] uppercase">
-                    100+ CHANNELS
-                  </span>
-                  <span className="font-plus-jakarta-700 text-[13px] text-[#0F172A]">
-                    Active - 0.2s Latency
-                  </span>
-                </div>
-              </div>
-
-              {/* Floating Element 2 (Bottom Left) */}
-              <div className="animate-in fade-in slide-in-from-left-8 fill-mode-both absolute bottom-12 -left-4 flex items-center gap-3 rounded-full border border-slate-100 bg-white py-2.5 pr-5 pl-2.5 shadow-xl delay-500 duration-1000 md:-left-8 lg:-left-12">
-                <RevenueGrowthIcon className="h-10 w-10 shrink-0" />
-                <div className="flex flex-col">
-                  <span className="font-plus-jakarta-700 text-[10px] tracking-wider text-[#64748B] uppercase">
-                    REVENUE UPLIFT
-                  </span>
-                  <span className="font-plus-jakarta-700 text-[13px] text-[#0F172A]">
-                    +24.9% YoY Growth
-                  </span>
-                </div>
-              </div>
+            
             </div>
           </div>
         </div>

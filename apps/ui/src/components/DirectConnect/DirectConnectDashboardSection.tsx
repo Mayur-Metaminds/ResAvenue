@@ -13,7 +13,7 @@ export function DirectConnectDashboardSection() {
         backgroundImage: `url('/images/demo-section-bg-img.png')`,
       }}
     >
-      <div className="container mx-auto max-w-[1200px] px-[16px] py-[34px] lg:py-[60px]">
+      <div className="container mx-auto max-w-[1440px] px-[16px] py-[34px] lg:px-[80px] lg:py-[60px]">
         <div className="grid grid-cols-1 items-center gap-[34px] lg:grid-cols-2 lg:gap-8">
           {/* Left Column: Content */}
           <div className="z-10 flex flex-col gap-[24px]">

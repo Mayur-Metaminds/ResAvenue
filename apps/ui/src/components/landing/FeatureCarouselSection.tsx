@@ -1,7 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import type * as React from "react"
 import { useCallback, useEffect, useRef, useState } from "react"
@@ -74,6 +74,19 @@ export function FeatureCarouselSection() {
   // Remember which card-trigger the user opened the modal from so we can
   // restore focus to it on close (a11y).
   const openerRef = useRef<HTMLButtonElement | null>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
+
+  const scrollPrev = useCallback(() => {
+    if (!carouselRef.current) return
+    const cardWidth = carouselRef.current.firstElementChild?.clientWidth || 0
+    carouselRef.current.scrollBy({ left: -(cardWidth + 24), behavior: "smooth" })
+  }, [])
+
+  const scrollNext = useCallback(() => {
+    if (!carouselRef.current) return
+    const cardWidth = carouselRef.current.firstElementChild?.clientWidth || 0
+    carouselRef.current.scrollBy({ left: cardWidth + 24, behavior: "smooth" })
+  }, [])
 
   // Mouse drag-to-scroll with snap. Touch swipes snap natively via CSS
   // scroll-snap (snap-x snap-mandatory + snap-center on each card). For mouse
@@ -247,6 +260,7 @@ export function FeatureCarouselSection() {
       {/* Horizontal Scroll Snap Carousel */}
       <div className="relative w-full">
         <div
+          ref={carouselRef}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -257,6 +271,26 @@ export function FeatureCarouselSection() {
             <CarouselItem key={card.id} card={card} onOpen={openModal} />
           ))}
         </div>
+      </div>
+
+      {/* Navigation Controls */}
+      <div className="container mx-auto max-w-6xl px-4 md:px-8 mt-4 flex justify-end gap-4">
+        <button
+          type="button"
+          onClick={scrollPrev}
+          aria-label="Previous slide"
+          className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-all hover:border-[#ED862E] hover:text-[#ED862E] active:scale-95"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+        <button
+          type="button"
+          onClick={scrollNext}
+          aria-label="Next slide"
+          className="flex cursor-pointer h-12 w-12 items-center justify-center rounded-full border border-gray-200 hover:border-[#ED862E] bg-white text-gray-800 shadow-sm transition-all hover:text-[#ED862E] hover:shadow-md active:scale-95"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </button>
       </div>
 
       <VideoModal card={activeCard} onClose={closeModal} openerRef={openerRef} />

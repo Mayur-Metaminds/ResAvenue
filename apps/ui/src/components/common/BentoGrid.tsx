@@ -156,10 +156,6 @@ export function BentoGrid<T extends BentoItem>({
 }: BentoGridProps<T>) {
   const [selected, setSelected] = useState<ModalCapable<T> | null>(null)
   const [bounds, setBounds] = useState<ModalBounds | null>(null)
-  // `activeId` stays set for the full open + close window (selected.id while
-  // open, then held for the modal's exit duration so the source card keeps its
-  // elevated z-index during contraction). Without this, the contracting
-  // shared-layout target paints behind sibling cards.
   const [activeId, setActiveId] = useState<string | null>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({})
   const gridRef = useRef<HTMLDivElement | null>(null)
@@ -214,12 +210,6 @@ export function BentoGrid<T extends BentoItem>({
               layout
               layoutId={`bento-card-${item.id}`}
               key={item.id}
-              // Mirror the modal's transition (BentoProductModal:
-              // `duration: 0.4, ease: [0.16, 1, 0.3, 1]`) so the source card's
-              // own layout-settle animation joins seamlessly with the modal's
-              // contraction. Without this, the card uses Framer's default
-              // spring and you see a second "beat" at the end of the close.
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -4 }}
               ref={(el) => {
                 cardRefs.current[item.id] = el

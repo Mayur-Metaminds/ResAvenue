@@ -48,7 +48,7 @@ const accordionData: AccordionItemData[] = [
     title: "Simple payment processing",
     description:
       "Streamline your payment process with a seamless and secure PCI compliant payment gateway.",
-    image: "/images/DeepDiveSectionImg.png"
+    image: "/images/Direct-Connect/Booking-Engine.png"
   },
 ]
 
@@ -143,7 +143,7 @@ export function DirectConnectDeepDiveSection() {
 
       e.preventDefault()
       wheelCooldownRef.current = now + COOLDOWN_MS
-      scrollToFeature(target, "smooth")
+      scrollToFeature(target, "instant")
     }
 
     window.addEventListener("wheel", handleWheel, { passive: false })
@@ -154,16 +154,16 @@ export function DirectConnectDeepDiveSection() {
   return (
     <section
       ref={sectionRef}
-      data-nav-theme="light"
-      className="relative w-full"
+      data-nav-theme="dark"
+      className="relative w-full bg-[#010C28]"
       style={{ height: sectionHeight }}
     >
       {/* Sticky inner — pins below the fixed navbar for the full outer-section
           height. We use items-start on mobile so the top is never cut off,
           and highly compact spacing to ensure the image at the bottom fits. */}
-      <div className="sticky top-[56px] lg:top-20 flex h-[calc(100dvh-56px)] lg:h-[calc(100dvh-5rem)] w-full flex-col items-center justify-start lg:justify-center">
-        <div className="flex h-full w-full flex-col rounded-[32px] bg-[#010C28] px-4 py-4 transition-all duration-500 ease-in-out lg:h-auto lg:rounded-[45px] lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
-          <div className="flex flex-1 min-h-0 flex-col gap-[12px] lg:grid lg:grid-cols-2 lg:grid-rows-[max-content_1fr] lg:items-start lg:gap-x-[80px]">
+      <div className="sticky top-[56px] lg:top-20 flex min-h-[calc(100dvh-56px)] lg:min-h-0 lg:h-[calc(100dvh-5rem)] w-full flex-col items-center justify-start lg:justify-center">
+        <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-4 py-4 transition-all duration-500 ease-in-out lg:h-auto lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
+          <div className="flex min-h-0 flex-1 flex-col gap-[12px] lg:grid lg:grid-cols-2 lg:grid-rows-[max-content_1fr] lg:items-start lg:gap-x-[80px]">
             {/* Header */}
             <div className="order-1 lg:col-start-2 lg:row-start-1">
               <SectionHeader
@@ -262,7 +262,7 @@ export function DirectConnectDeepDiveSection() {
 
             {/* Left Column: Image Graphic */}
             <div className="relative order-3 flex flex-1 min-h-0 w-full items-center justify-center rounded-[24px] lg:order-none lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:aspect-square lg:flex-none lg:self-center">
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
                 {(() => {
                   // activeIndex is clamped to [0, accordionData.length - 1] in
                   // useMotionValueEvent so it's always a valid index — but TS

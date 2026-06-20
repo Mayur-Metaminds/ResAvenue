@@ -347,7 +347,7 @@ export function ExploreModulesSection() {
       className="relative w-full bg-[#010C28] text-white"
     >
       {/* Header — in normal flow, scrolls away with the page */}
-      <div className="px-4 lg:px-1 pt-24 lg:pt-20">
+      <div className="mx-auto w-full max-w-[1440px] px-4 lg:px-1 pt-24 lg:pt-20">
         <SectionHeader
           className="mb-[25px]"
           eyebrow="CORE FEATURES"
@@ -369,7 +369,7 @@ export function ExploreModulesSection() {
       <div ref={sectionRef} style={{ height: sectionHeight }}>
         {/* Sticky block — pins below the fixed navbar so the tabs row stays visible */}
         <div className="sticky top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden">
-          <div className="flex w-full flex-col px-4 lg:px-1 h-full justify-center">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 lg:px-1 h-full justify-center">
             <div className="flex h-full flex-col ">
               {/* Tabs */}
               <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center">
