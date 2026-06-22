@@ -102,9 +102,7 @@ export function DirectConnectDeepDiveSection() {
   const wheelCooldownRef = useRef(0)
   const exitLockoutRef = useRef(0)
 
-  // Wheel/trackpad hijacking — while the section is pinned, swallow wheel
-  // events and snap exactly one step at a time to prevent flickering and
-  // ensure smooth transitions between accordion items.
+
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return

@@ -329,7 +329,7 @@ function ModalContent({
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E]"
+        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E] [&_svg]:h-8 [&_svg]:w-8"
       >
         <CloseBtn size={40} />
       </button>
@@ -337,9 +337,9 @@ function ModalContent({
       {/* Scrollable body — on the mobile variant (<lg) the content scrolls when
           it overflows the fixed-height modal. On desktop, it also scrolls if
           the content exceeds the viewport height constraint. */}
-      <div className="flex w-full flex-1 flex-col gap-[24px] md:gap-[32px] overflow-y-auto px-[20px] pt-[72px] pb-[24px] md:px-[32px] md:pt-[88px] md:pb-[40px]">
+      <div className="flex w-full flex-col gap-[15px] px-[20px] pt-[12px] md:px-[32px] md:pt-[22px] ">
         {/* Two-column top section (stacks on mobile via grid-cols-1) */}
-        <div className="grid w-full grid-cols-1 gap-[32px] md:gap-[50px] ">
+        <div className="grid w-full grid-cols-1   ">
         {/* Left — icon + eyebrow + title + description + Learn More.
             h-full only on desktop: it stretches the column to match the bullets
             column's height there, but on mobile (single column) that stretch
@@ -371,15 +371,15 @@ function ModalContent({
           )}
         </div>
 
-          {/* Right — feature checklist only */}
+          {/* Right — feature checklist (two columns on desktop, one on mobile). */}
           <div className="flex flex-col justify-start gap-[20px]">
-            <ul className="space-y-3 md:space-y-[12px]">
+            <ul className="grid grid-cols-1 gap-x-[15px] gap-y-[12px] md:grid-cols-2">
               {product.modalFeatures.map((feature) => (
                 <li key={feature} className="flex items-start text-gray-700">
                   <span className="mt-0.5 mr-3 flex h-5 w-5 md:h-6 md:w-6 shrink-0 items-center justify-center">
                     <CheckedIcon />
                   </span>
-                  <span className="text-[16px] md:text-[16px] font-source-sans leading-relaxed text-[#45556C] font-medium">
+                  <span className="text-[14px] font-source-sans leading-relaxed text-[#45556C] font-medium">
                     {feature}
                   </span>
                 </li>
@@ -397,7 +397,7 @@ function ModalContent({
         hasFixedHeight ? (
           // Fixed-height modal: the animation fills the leftover space so the
           // taller modal has no empty gap.
-          <div className="relative min-h-[300px] w-full flex-1 overflow-hidden rounded-2xl md:min-h-[400px]">
+          <div className="relative min-h-[300px] w-full  flex-1 overflow-hidden rounded-2xl md:min-h-[400px]">
             <LazyLottie
               src={(product.modalLottieUrl ?? product.lottieUrl) as string}
               priority="on-demand"
@@ -411,7 +411,7 @@ function ModalContent({
           // Auto-height modal: a 90%-wide box sized to the animation's aspect
           // ratio. flex-1 lets it grow into the freed space (e.g. on the fixed-
           // height mobile modal) with the animation centered.
-          <div className="flex w-full flex-1 items-center justify-center">
+          <div className="flex w-full items-start justify-start">
             <div
               className="relative w-[90%] overflow-hidden rounded-2xl"
               style={
@@ -422,7 +422,7 @@ function ModalContent({
                 src={(product.modalLottieUrl ?? product.lottieUrl) as string}
                 priority="on-demand"
                 loop
-                className="h-full w-full"
+                className="h-full w-full scale-95"
                 rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                 onReady={(data) => setAnimationAspect(lottieAspectRatio(data))}
               />
@@ -467,7 +467,7 @@ function SideBySideModalContent({
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E]"
+        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E] [&_svg]:h-8 [&_svg]:w-8"
       >
         <CloseBtn size={40} />
       </button>
@@ -582,7 +582,7 @@ function StackedVerticalModalContent({
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E]"
+        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E] [&_svg]:h-8 [&_svg]:w-8"
       >
         <CloseBtn size={40} />
       </button>
@@ -639,7 +639,7 @@ function StackedVerticalModalContent({
                 src={animationUrl}
                 priority="on-demand"
                 loop
-                className="h-full w-full"
+                className="h-full w-full scale-200"
                 rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                 onReady={(data) => setAnimationAspect(lottieAspectRatio(data))}
               />

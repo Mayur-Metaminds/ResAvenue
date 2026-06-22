@@ -73,11 +73,12 @@ function PopupTrigger({
       onClick={onClick}
       aria-label={label}
       className={cn(
-        "group/popup absolute top-6 right-6 z-20 touch-manipulation rounded outline-none",
-        "focus-visible:ring-2 focus-visible:ring-[#ED862E] focus-visible:ring-offset-2"
+        "group/popup absolute  top-6 right-6 z-20 touch-manipulation rounded outline-none",
+        "focus-visible:ring-2  focus-visible:ring-[#ED862E] focus-visible:ring-offset-2"
       )}
     >
       <PopupIcon
+        className="h-9 w-9"
         rectClassName="transition-colors duration-300 group-hover/popup:[fill:#ED862E] cursor-pointer"
         topArrowClassName={cn(
           "transition-all duration-300",
