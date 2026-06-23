@@ -21,15 +21,13 @@ export function ChannelConnectHeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex min-h-screen w-full flex-col overflow-hidden  bg-cover bg-center bg-no-repeat"
+      className="relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center"
       style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
     >
       {/* Container */}
-      <div className="relative mt-[165px] z-10 flex w-full flex-1 flex-col px-[15px] lg:px-20">
-        {/* Main Content */}
-        <div className="flex flex-1 flex-col items-start justify-between gap-12 pb-12 lg:flex-row lg:gap-8 lg:pb-0">
-          {/* Left Column: Content */}
-          <div className="flex w-full flex-col justify-start  lg:w-[50%] xl:w-[45%]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20">
+        {/* Left Column: Content */}
+        <div className="relative z-10 flex w-full flex-1 flex-col items-start">
             <HeroContent
               eyebrow="INTUITIVE EXPERIENCE. FAST FLEXIBILITY."
               title={
@@ -68,8 +66,8 @@ export function ChannelConnectHeroSection() {
             />
           </div>
 
-          {/* Right Column: Graphic/Dashboard Preview */}
-          <div className="relative flex w-full items-center justify-center lg:w-[50%] xl:w-[55%]">
+        {/* Right Column: Graphic/Dashboard Preview */}
+        <div className="relative z-10 flex w-full flex-1 items-center justify-center">
             <div className="relative w-full max-w-[800px]">
               {/* Background Glow */}
               <div className="absolute top-1/2 left-1/2 -z-10 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ED862E]/20 blur-[100px]" />
@@ -87,7 +85,6 @@ export function ChannelConnectHeroSection() {
 
             
             </div>
-          </div>
         </div>
       </div>
     </section>

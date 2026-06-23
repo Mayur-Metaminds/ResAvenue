@@ -29,7 +29,7 @@ const slideInFromLeft = (i: number) => ({
 
 export function ChannelConnectPortfolioSection() {
   return (
-    <section data-nav-theme="dark" className="w-full bg-white pt-[80px]">
+    <section data-nav-theme="dark" className="w-full bg-white pt-[32px] lg:pt-[80px]">
       {/* One shared gradient card holds both blocks. `overflow-hidden` is
           OMITTED here because it would break the sticky positioning inside
           Block 1; the rounded-[45px] visually clips fine for padded content. */}
@@ -38,7 +38,7 @@ export function ChannelConnectPortfolioSection() {
         style={{ background: PORTFOLIO_GRADIENT }}
       >
         {/* Block 2 — Normal flow with slide-in-from-left CheckedRows. */}
-        <div className="relative p-[20px] md:p-16 lg:px-24 lg:pt-16 lg:pb-24">
+        <div className="relative p-[20px] md:p-16 lg:px-24 lg:pt-16 lg:pb-24 4xl:mx-auto 4xl:w-full 4xl:max-w-300">
           <div className="relative z-10">
             <FeatureShowcase
               imagePosition="left"

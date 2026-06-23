@@ -55,7 +55,7 @@ const CARDS_DATA = [
     description:
       "Connect directly to key booking engines and reservation systems without intermediaries ensuring high-performance direct integration.",
     Icon: OmnichannelCardIcon2,
-     renderGraphic: () => (
+    renderGraphic: () => (
       <div className="relative mt-[15px] md:absolute md:mt-0 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
         {["EX", "BK", "AG"].map((label) => (
           <div
@@ -81,7 +81,7 @@ const CARDS_DATA = [
     description:
       "Expand reach to corporate travellers via leading GDS platforms like Amadeus, Sabre, and Travelport.",
     Icon: OmnichannelCardIcon3,
-     renderGraphic: () => (
+    renderGraphic: () => (
       <div className="relative mt-[15px] md:absolute md:mt-0 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
         {["EX", "BK", "AG"].map((label) => (
           <div
@@ -107,7 +107,7 @@ const CARDS_DATA = [
     description:
       "Boost visibility and drive direct traffic with integrations to meta-search platforms like Google Hotel Finder.",
     Icon: OmnichannelCardIcon4,
-     renderGraphic: () => (
+    renderGraphic: () => (
       <div className="relative mt-[15px] md:absolute md:mt-0 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
         {["EX", "BK", "AG"].map((label) => (
           <div
@@ -159,7 +159,7 @@ export function ChannelConnectOmnichannelSection() {
     <div data-nav-theme="light">
       <BentoGrid<OmnichannelCard>
         items={omnichannelCards}
-        sectionClassName="w-full py-[32px] lg:py-[90px] px-[20px] lg:px-[80px] bg-white"
+        sectionClassName="w-full py-[32px] lg:py-[90px] px-[12px] lg:px-[80px] bg-white"
         containerClassName="mx-auto w-full max-w-[1440px] [&>.grid]:xl:!grid-cols-5"
         cardClassName="p-6 md:p-8 xl:p-10 min-h-[320px] md:min-h-[380px] justify-start"
         header={
@@ -168,19 +168,18 @@ export function ChannelConnectOmnichannelSection() {
             eyebrow="API-first infrastructure"
             eyebrowClassName="mb-[24px] lg:mb-[12px]"
             highlightGradient="linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 41.93%, #ED862E 60.24%)"
-            titleClassName="font-medium mb-[16px] lg:mb-[24px]"
+            titleClassName="font-medium mb-[16px] lg:mb-[24px] leading-[-1.5px]"
             title={
-              <SectionHeader.Highlight className="inline-block text-center">
+              <SectionHeader.Highlight className="text-center">
                 <span
                   className="text-[#010C28]"
                   style={{ WebkitTextFillColor: "#010C28" }}
                 >
                   Omnichannel
+                  <br className="md:hidden" />
                 </span>
-                <br className="md:hidden" />
                 Connectivity
                 <span className="md:hidden"> </span>
-                <br className="hidden md:block" />
                 Ecosystem
               </SectionHeader.Highlight>
             }
@@ -191,12 +190,12 @@ export function ChannelConnectOmnichannelSection() {
           const isActive = item.id === activeId
           return (
             <>
-              <div 
+              <div
                 className={cn(
                   "absolute inset-0 z-50",
                   isActive ? "pointer-events-none" : "cursor-pointer"
-                )} 
-                onClick={() => !isActive && setActiveId(item.id)} 
+                )}
+                onClick={() => !isActive && setActiveId(item.id)}
               />
               <div
                 className={cn(

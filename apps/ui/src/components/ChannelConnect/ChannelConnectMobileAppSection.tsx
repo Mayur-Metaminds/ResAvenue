@@ -55,7 +55,7 @@ export function ChannelConnectMobileAppSection() {
   return (
     <section data-nav-theme="light" className="w-full bg-white ">
       <div
-        className="flex flex-col gap-[32px] rounded-[45px] bg-white max-sm:pb-30"
+        className="flex flex-col gap-[32px] rounded-[45px] bg-white"
       >
         {/* Scroll-driven sticky reveal at all breakpoints. Note: below lg the
             single-column stack can exceed the pinned viewport height on short
@@ -63,7 +63,7 @@ export function ChannelConnectMobileAppSection() {
         <div ref={block1Ref} className="relative h-[200vh] lg:h-[300vh]">
           <div className="sticky top-20 flex h-[calc(100dvh-5rem)] w-full items-center justify-center">
             <div className="w-full">
-              <div className="relative p-[12px] md:px-16 lg:px-24 lg:pb-16">
+              <div className="relative p-[12px] md:px-16 lg:px-24 lg:pb-16 4xl:mx-auto 4xl:w-full 4xl:max-w-300">
                 <div className="relative z-10">
                   <FeatureShowcase
                     imagePosition="left"

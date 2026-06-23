@@ -73,7 +73,10 @@ export function ChannelConnectDashboardSection() {
     <section data-nav-theme="light" className="w-full bg-white px-4 md:px-8">
       <div className="container mx-auto max-w-[1200px]">
         <FeatureShowcase
-          className="lg:items-stretch"
+          // gap-0 on mobile: the image column is empty below lg (image moves
+          // into children), so the grid's default gap-12 would leave a phantom
+          // 48px margin under the cards. Restore the gap at lg where the image shows.
+          className="lg:items-stretch gap-0 lg:gap-16"
           imagePosition="left"
           header={{
             eyebrow: "CENTRALIZED OPERATIONS HUB",

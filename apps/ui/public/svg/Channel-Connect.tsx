@@ -391,7 +391,7 @@ export function OmnichannelCardIcon4() {
 
 export function EnterpriseGradeCapabilitiesIcon1({ className }: { className: string }) {
   return (
-    <svg width="64" height="75" viewBox="0 0 64 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="60" height="60" viewBox="2 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_6598)">
         <rect x="6" y="1" width="52" height="52" rx="10" fill="#FEFAF5" />
         <path d="M20 39V36H24.125L23.525 35.475C22.225 34.325 21.3125 33.0125 20.7875 31.5375C20.2625 30.0625 20 28.575 20 27.075C20 24.3 20.8313 21.8312 22.4938 19.6687C24.1562 17.5062 26.325 16.075 29 15.375V18.525C27.2 19.175 25.75 20.2812 24.65 21.8438C23.55 23.4062 23 25.15 23 27.075C23 28.2 23.2125 29.2937 23.6375 30.3562C24.0625 31.4188 24.725 32.4 25.625 33.3L26 33.675V30H29V39H20ZM35 38.625V35.475C36.8 34.825 38.25 33.7188 39.35 32.1562C40.45 30.5938 41 28.85 41 26.925C41 25.8 40.7875 24.7063 40.3625 23.6438C39.9375 22.5813 39.275 21.6 38.375 20.7L38 20.325V24H35V15H44V18H39.875L40.475 18.525C41.7 19.75 42.5938 21.0813 43.1562 22.5188C43.7188 23.9563 44 25.425 44 26.925C44 29.7 43.1688 32.1687 41.5063 34.3312C39.8438 36.4937 37.675 37.925 35 38.625Z" fill="#ED862E" />
@@ -429,7 +429,7 @@ export function EnterpriseGradeCapabilitiesIcon1({ className }: { className: str
 
 export function EnterpriseGradeCapabilitiesIcon2({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_7871)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path d="M19.68 31.5L18 29.9833L26.88 21.9125L31.68 26.2458L37.92 20.6667H34.8V18.5H42V25H39.6V22.1833L31.68 29.3333L26.88 25L19.68 31.5Z" fill="#ED862E" />
@@ -468,7 +468,7 @@ export function EnterpriseGradeCapabilitiesIcon2({ className }: { className: str
 
 export function EnterpriseGradeCapabilitiesIcon3({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_7990)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path d="M18.334 13.334H41.6673" stroke="#ED862E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -512,7 +512,7 @@ export function EnterpriseGradeCapabilitiesIcon3({ className }: { className: str
 
 export function EnterpriseGradeCapabilitiesIcon4({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_6537)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path d="M22.5 32.5H25.5V25H22.5V32.5ZM34.5 32.5H37.5V17.5H34.5V32.5ZM28.5 32.5H31.5V28H28.5V32.5ZM28.5 25H31.5V22H28.5V25ZM19.5 38.5C18.675 38.5 17.9688 38.2062 17.3813 37.6187C16.7938 37.0312 16.5 36.325 16.5 35.5V14.5C16.5 13.675 16.7938 12.9688 17.3813 12.3813C17.9688 11.7938 18.675 11.5 19.5 11.5H40.5C41.325 11.5 42.0312 11.7938 42.6187 12.3813C43.2062 12.9688 43.5 13.675 43.5 14.5V35.5C43.5 36.325 43.2062 37.0312 42.6187 37.6187C42.0312 38.2062 41.325 38.5 40.5 38.5H19.5ZM19.5 35.5H40.5V14.5H19.5V35.5ZM19.5 14.5V35.5V14.5Z" fill="#ED862E" />
@@ -551,7 +551,7 @@ export function EnterpriseGradeCapabilitiesIcon4({ className }: { className: str
 
 export function EnterpriseGradeCapabilitiesIcon5({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_8008)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path d="M39.925 19.5992L39.8875 19.4867C39.8321 19.3488 39.7467 19.225 39.6375 19.1242L33.3875 12.8742C33.2787 12.7689 33.1516 12.6841 33.0125 12.6242L32.9 12.5867C32.7914 12.5487 32.6775 12.5277 32.5625 12.5242C32.5375 12.5242 32.5125 12.5117 32.5 12.5117H22.5C21.125 12.5117 20 13.6367 20 15.0117V35.0117C20 36.3867 21.125 37.5117 22.5 37.5117H37.5C38.875 37.5117 40 36.3867 40 35.0117V20.0117C40 20.0117 39.9875 19.9617 39.9875 19.9367C39.9875 19.8242 39.9625 19.7242 39.925 19.6117V19.5992ZM22.5 34.9992V14.9992H31.25V19.9992C31.25 20.6867 31.8125 21.2492 32.5 21.2492H37.5V34.9992H22.5Z" fill="#ED862E" />
@@ -592,7 +592,7 @@ export function EnterpriseGradeCapabilitiesIcon5({ className }: { className: str
 
 export function EnterpriseGradeCapabilitiesIcon6({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_8022)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path d="M25 27.0625V17.5H28.75V27.0625L26.875 25.3125L25 27.0625ZM31.25 28.9375V12.5H35V25.1875L31.25 28.9375ZM18.75 33.25V22.5H22.5V29.5L18.75 33.25ZM18.75 36.3125L26.8125 28.25L31.25 32.0625L38.25 25.0625H36.25V22.5625H42.5V28.8125H40V26.8125L31.375 35.4375L26.9375 31.625L22.25 36.3125H18.75Z" fill="#ED862E" />
@@ -632,7 +632,7 @@ export function EnterpriseGradeCapabilitiesIcon6({ className }: { className: str
 
 export function EnterpriseGradeCapabilitiesIcon7({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_8030)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path d="M30 25C33.4518 25 36.25 22.2018 36.25 18.75C36.25 15.2982 33.4518 12.5 30 12.5C26.5482 12.5 23.75 15.2982 23.75 18.75C23.75 22.2018 26.5482 25 30 25Z" stroke="#ED862E" stroke-width="2.5" />
@@ -673,7 +673,7 @@ export function EnterpriseGradeCapabilitiesIcon7({ className }: { className: str
 
 export function EnterpriseGradeCapabilitiesIcon8({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_5753)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path fill-rule="evenodd" clip-rule="evenodd" d="M20 15C20 14.337 20.2634 13.7011 20.7322 13.2322C21.2011 12.7634 21.837 12.5 22.5 12.5H37.5C38.163 12.5 38.7989 12.7634 39.2678 13.2322C39.7366 13.7011 40 14.337 40 15V35C40 35.663 39.7366 36.2989 39.2678 36.7678C38.7989 37.2366 38.163 37.5 37.5 37.5H22.5C21.837 37.5 21.2011 37.2366 20.7322 36.7678C20.2634 36.2989 20 35.663 20 35V15ZM37.5 15H22.5V35H37.5V15ZM29.435 18.4538C29.6693 18.6882 29.801 19.006 29.801 19.3375C29.801 19.669 29.6693 19.9868 29.435 20.2213L27.0037 22.65C26.7108 22.9427 26.3135 23.1072 25.8994 23.1072C25.4852 23.1072 25.088 22.9427 24.795 22.65L23.69 21.545C23.5706 21.4297 23.4754 21.2918 23.4099 21.1393C23.3444 20.9868 23.3099 20.8227 23.3084 20.6568C23.307 20.4908 23.3386 20.3262 23.4015 20.1726C23.4643 20.0189 23.5571 19.8794 23.6745 19.762C23.7919 19.6446 23.9314 19.5518 24.0851 19.489C24.2387 19.4261 24.4033 19.3945 24.5693 19.3959C24.7352 19.3974 24.8993 19.4319 25.0518 19.4974C25.2043 19.5629 25.3422 19.6581 25.4575 19.7775L25.9 20.22L27.6675 18.4525C27.9019 18.2182 28.2198 18.0865 28.5512 18.0865C28.8827 18.0865 29.2006 18.2194 29.435 18.4538ZM31.25 21.25C31.25 20.9185 31.3817 20.6005 31.6161 20.3661C31.8505 20.1317 32.1685 20 32.5 20H35C35.3315 20 35.6495 20.1317 35.8839 20.3661C36.1183 20.6005 36.25 20.9185 36.25 21.25C36.25 21.5815 36.1183 21.8995 35.8839 22.1339C35.6495 22.3683 35.3315 22.5 35 22.5H32.5C32.1685 22.5 31.8505 22.3683 31.6161 22.1339C31.3817 21.8995 31.25 21.5815 31.25 21.25ZM23.75 26.875C23.75 26.3777 23.9475 25.9008 24.2992 25.5492C24.6508 25.1975 25.1277 25 25.625 25H28.125C28.6223 25 29.0992 25.1975 29.4508 25.5492C29.8025 25.9008 30 26.3777 30 26.875V29.375C30 29.8723 29.8025 30.3492 29.4508 30.7008C29.0992 31.0525 28.6223 31.25 28.125 31.25H25.625C25.1277 31.25 24.6508 31.0525 24.2992 30.7008C23.9475 30.3492 23.75 29.8723 23.75 29.375V26.875ZM26.25 27.5V28.75H27.5V27.5H26.25ZM31.25 28.125C31.25 27.7935 31.3817 27.4755 31.6161 27.2411C31.8505 27.0067 32.1685 26.875 32.5 26.875H35C35.3315 26.875 35.6495 27.0067 35.8839 27.2411C36.1183 27.4755 36.25 27.7935 36.25 28.125C36.25 28.4565 36.1183 28.7745 35.8839 29.0089C35.6495 29.2433 35.3315 29.375 35 29.375H32.5C32.1685 29.375 31.8505 29.2433 31.6161 29.0089C31.3817 28.7745 31.25 28.4565 31.25 28.125Z" fill="#ED862E" />
@@ -714,7 +714,7 @@ export function EnterpriseGradeCapabilitiesIcon8({ className }: { className: str
 
 export function EnterpriseGradeCapabilitiesIcon9({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_5945)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path d="M29.6375 12.8625C29.5207 12.7467 29.3822 12.655 29.2299 12.5928C29.0776 12.5306 28.9145 12.4991 28.75 12.5H22.5C22.1625 12.5 21.85 12.6375 21.6125 12.8625L17.8625 16.6125C17.7467 16.7293 17.655 16.8678 17.5928 17.0201C17.5306 17.1724 17.4991 17.3355 17.5 17.5V23.75C17.5 24.0875 17.6375 24.4 17.8625 24.6375L30.3625 37.1375C30.6125 37.3875 30.925 37.5 31.25 37.5C31.575 37.5 31.8875 37.375 32.1375 37.1375L42.1375 27.1375C42.2534 27.0219 42.3453 26.8845 42.4081 26.7333C42.4708 26.5821 42.5031 26.42 42.5031 26.2563C42.5031 26.0926 42.4708 25.9305 42.4081 25.7792C42.3453 25.628 42.2534 25.4907 42.1375 25.375L29.6375 12.8625ZM31.25 34.475L20 23.2375V18.025L23.0125 15.0125H28.225L39.475 26.2625L31.2375 34.5L31.25 34.475Z" fill="#ED862E" />
@@ -755,7 +755,7 @@ export function EnterpriseGradeCapabilitiesIcon9({ className }: { className: str
 
 export function EnterpriseGradeCapabilitiesIcon10({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_8147)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path d="M21.9357 23.5234L19.6532 25.5422C19.3467 25.8125 19.1433 26.1807 19.0776 26.5841C19.012 26.9875 19.0882 27.4011 19.2932 27.7547L21.3595 31.3797C21.562 31.7302 21.8794 32 22.258 32.1433C22.6366 32.2866 23.0531 32.2946 23.437 32.1659L26.3082 31.1872L21.9357 23.5234Z" stroke="#ED862E" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round" />
@@ -795,7 +795,7 @@ export function EnterpriseGradeCapabilitiesIcon10({ className }: { className: st
 
 export function EnterpriseGradeCapabilitiesIcon11({ className }: { className: string }) {
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_8163)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <g clip-path="url(#clip0_4903_8163)">
@@ -843,7 +843,7 @@ export function EnterpriseGradeCapabilitiesIcon11({ className }: { className: st
 export function EnterpriseGradeCapabilitiesIcon12({ className }: { className: string }) {
 
   return (
-    <svg width="60" height="71" viewBox="0 0 60 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="56" height="56" viewBox="2 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_dddd_4903_5935)">
         <rect x="6" y="1" width="48" height="48" rx="10" fill="#FEFAF5" />
         <path d="M23.75 38.75C23.0625 38.75 22.4742 38.5054 21.985 38.0163C21.4958 37.5271 21.2508 36.9383 21.25 36.25V13.75C21.25 13.0625 21.495 12.4742 21.985 11.985C22.475 11.4958 23.0633 11.2508 23.75 11.25H36.25C36.9375 11.25 37.5263 11.495 38.0163 11.985C38.5063 12.475 38.7508 13.0633 38.75 13.75V17.625C39.125 17.7708 39.4271 18 39.6562 18.3125C39.8854 18.625 40 18.9792 40 19.375V21.875C40 22.2708 39.8854 22.625 39.6562 22.9375C39.4271 23.25 39.125 23.4792 38.75 23.625V36.25C38.75 36.9375 38.5054 37.5263 38.0163 38.0163C37.5271 38.5063 36.9383 38.7508 36.25 38.75H23.75ZM23.75 36.25H36.25V13.75H23.75V36.25ZM30.8913 17.14C31.1304 16.9008 31.25 16.6042 31.25 16.25C31.25 15.8958 31.13 15.5992 30.89 15.36C30.65 15.1208 30.3533 15.0008 30 15C29.6467 14.9992 29.35 15.1192 29.11 15.36C28.87 15.6008 28.75 15.8975 28.75 16.25C28.75 16.6025 28.87 16.8996 29.11 17.1412C29.35 17.3829 29.6467 17.5025 30 17.5C30.3533 17.4975 30.6504 17.3775 30.8913 17.14Z" fill="#ED862E" />
