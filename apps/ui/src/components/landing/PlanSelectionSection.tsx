@@ -101,10 +101,17 @@ const services = [
 ]
 
 export function PlanSelectionSection() {
-  const [selectedId, setSelectedId] = useState<string | null>(null)
+  // Multi-select: each service toggles on/off independently of the others.
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
 
-  const selectService = (id: string) => {
-    setSelectedId((prev) => (prev === id ? null : id))
+  const toggleService = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+
+      return next
+    })
   }
 
 
@@ -184,13 +191,15 @@ export function PlanSelectionSection() {
 
             <div className="flex flex-wrap gap-1 lg:gap-4">
               {services.map((service) => {
-                const isSelected = selectedId === service.id
+                const isSelected = selectedIds.has(service.id)
                 const Icon = service.icon
 
                 return (
                   <button
                     key={service.id}
-                    onClick={() => selectService(service.id)}
+                    type="button"
+                    aria-pressed={isSelected}
+                    onClick={() => toggleService(service.id)}
                     className={`group relative cursor-pointer flex min-h-[171px] w-full flex-col items-start gap-4 rounded-[16px] bg-[#010C28] p-[21px] text-left transition-all duration-300 outline-none sm:w-[243px] ${isSelected
                         ? "border-2 border-[#ED862E] shadow-[0_0_20px_rgba(237,134,46,0.15)]"
                         : "border-2 border-transparent hover:border-slate-700"

@@ -510,7 +510,7 @@ function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
       transition={{ type: "spring", stiffness: 220, damping: 30, mass: 0.6 }}
       style={{
         position: "absolute",
-        top: "50%",
+        top: "25%",
         left: 0,
         translate: "0 -50%",
         transformOrigin: "center left",

@@ -17,7 +17,7 @@ export function HeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex lg:min-h-screen w-full flex-col overflow-hidden bg-[#0A0A0B]"
+      className="relative flex py-18 w-full flex-col overflow-hidden bg-[#0A0A0B]"
     >
       {/* Background image */}
       <Image
@@ -81,8 +81,7 @@ export function HeroSection() {
               aria-label="ResAvenue dashboard preview"
             />
 
-            {/* Glow */}
-            <div className="bg-primary/20 absolute top-1/2 left-1/2 -z-10 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]" />
+            
           </div>
         </div>
       </div>      
