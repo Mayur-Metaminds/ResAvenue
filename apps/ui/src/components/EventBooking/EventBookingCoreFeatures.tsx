@@ -75,8 +75,8 @@ const features: Feature[] = [
 
 const EventBookingCoreFeatures = () => {
   return (
-    <section data-nav-theme="light" className="w-full bg-white px-4 py-[60px] md:px-8 lg:py-[100px]">
-      <div className="mx-auto px-10 max-sm:px-0">
+    <section data-nav-theme="light" className="w-full bg-white px-4 py-[60px] md:px-8 lg:px-10 4xl:px-50 lg:py-[100px]">
+      <div className="mx-auto max-sm:px-0">
         <SectionHeader
           className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
           descriptionClassName="typo-body1 text-center text-[#64748B]"
@@ -107,7 +107,7 @@ const EventBookingCoreFeatures = () => {
                 <img
                   src={f.image}
                   alt={f.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.1]"
+                  className="h-full w-full object-fit transition-transform duration-300 group-hover:scale-[1.1]"
                 />
               </div>
               <div className="py-4 px-2 md:p-5">

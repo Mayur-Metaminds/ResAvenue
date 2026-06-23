@@ -9,10 +9,10 @@ import React from 'react'
 
 const EventBookingHero = () => {
   return (
-    <div data-nav-theme="dark" className='relative flex min-h-screen w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center'
+    <div data-nav-theme="dark" className='relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center'
       style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}>
-      <div className='flex flex-col lg:flex-row lg:justify-between'>
-        <div className='relative z-10 flex w-full flex-1 flex-col px-[20px] pt-[106px] lg:px-20 items-start'>
+      <div className='mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20'>
+        <div className='relative z-10 flex w-full flex-1 flex-col items-start'>
           <HeroContent
             eyebrow='Enterprise Analytics'
             title={
@@ -51,7 +51,7 @@ with a single, powerful enterprise solution designed for scale.'
         </div>
 
         {/* Right Column: Dummy Lottie animation placeholder */}
-        <div className="relative z-10 flex w-full flex-1 items-center justify-center px-[15px] pt-10 lg:pt-[106px] lg:px-20">
+        <div className="relative z-10 flex w-full flex-1 items-center justify-center">
           <LazyLottie
             src={CHANNEL_CONNECT_HERO_URL}
             priority="lazy"

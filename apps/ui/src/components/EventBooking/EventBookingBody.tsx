@@ -33,10 +33,10 @@ const EventBookingBody = () => {
           description="Managing ticketing, marketing, operations, and revenue across disconnected systems leads to lost data, overselling, and poor attendee experiences. ResAvenue unifies everything."
         />
 
-        {/* Dummy Lottie animation placeholder */}
         <LazyLottie
-          src="/assets/animation.json"
+          src="/assets/landing/event_and_ticketing_outer.json"
           priority="lazy"
+          loop
           className="mx-auto mt-3 h-75 w-full max-w-2xl"
           aria-label="Event management animation"
         />

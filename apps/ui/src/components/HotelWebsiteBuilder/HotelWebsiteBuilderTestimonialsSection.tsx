@@ -50,17 +50,17 @@ export function HotelWebsiteBuilderTestimonialsSection() {
           eyebrowClassName="mb-[16px] md:mb-[32px] typo-body2"
           title={
             <SectionHeader.Highlight
+              className="px-2 md:px-0"
               style={{
                 WebkitBoxDecorationBreak: "clone",
                 boxDecorationBreak: "clone",
               }}
             >
-              Loved by Hospitality Teams
-              <br />
-              Around the World
+
+              Loved by Hospitality Teams Around the World
             </SectionHeader.Highlight>
           }
-          titleClassName="mb-[24px] md:mb-[12px]"
+          titleClassName="mb-[24px] md:mb-[12px] tracking-[-1.5px]!"
           highlightGradient="linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 57.71%, #ED862E 68.44%)"
           description="Empowering hotels around the world to deliver seamless digital experiences, smarter operations, and guest journeys designed to convert."
           descriptionClassName="typo-body1 text-[#464554]"

@@ -56,7 +56,7 @@ const PropertyManagementOperations = () => {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-white px-4 py-[60px] md:px-8 lg:pb-[143px]"
+      className="w-full bg-white px-4 py-[80px] md:px-8 lg:pb-[143px]"
     >
       <SectionHeader
         eyebrow="ONE PLATFORM. ENDLESS POSSIBILITIES."

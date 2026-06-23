@@ -115,7 +115,10 @@ export function HotelWebsiteBuilderOpportunitySection() {
           <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16 w-full">
             
             {/* ════════════════════ LEFT COLUMN: IMAGE ════════════════════ */}
-            <motion.div variants={itemYVariants} className="relative w-full lg:w-1/2 flex items-center justify-center">
+            {/* Hidden below lg (two-column row layout only starts at lg). On
+                mobile/tablet it would stack above the list and push the lower
+                accordion points out of the pinned 100dvh frame. */}
+            <motion.div variants={itemYVariants} className="relative hidden w-full lg:flex lg:w-1/2 items-center justify-center">
               <div className="relative aspect-[4/3] w-full max-w-[600px] overflow-hidden rounded-[24px] bg-white shadow-xl border border-gray-100">
                 {SCREEN_IMGS.map((src, i) => {
                   // Crossfade images based on scroll progress
@@ -155,7 +158,7 @@ export function HotelWebsiteBuilderOpportunitySection() {
                   titleHighlight="Built to Convert."
                   description="Deliver seamless, lightning-fast booking experiences across mobile, tablet, and desktop — optimized to maximize direct conversions at every touchpoint."
                   className="text-left items-start [&_div]:text-left [&_p]:text-left"
-                  titleClassName="text-[28px] md:text-[40px] lg:text-[48px] leading-[1.1] text-left"
+                  titleClassName="text-left tracking-[-1.5px]!"
                   descriptionClassName="text-sm md:text-base text-[#4E4E4E] max-w-[500px] text-left mx-0"
                 />
               </motion.div>

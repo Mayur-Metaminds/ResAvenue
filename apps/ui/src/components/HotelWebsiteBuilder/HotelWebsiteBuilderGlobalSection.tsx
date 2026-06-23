@@ -26,7 +26,7 @@ function CheckedRow({ text }: { text: React.ReactNode }) {
 export function HotelWebsiteBuilderGlobalSection() {
   return (
     <section className="relative w-full bg-[#0B1527]">
-      <div className="relative p-[20px] md:p-16 lg:px-24 lg:pt-24 lg:pb-32 max-w-[1440px] mx-auto">
+      <div className="relative py-[34px] px-[10px] md:p-16 lg:px-24 lg:pt-24 lg:pb-32 max-w-[1440px] mx-auto">
         <div className="relative z-10">
           <FeatureShowcase
             imagePosition="left"

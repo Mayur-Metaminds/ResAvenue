@@ -17,7 +17,7 @@ const REVENUE_CARDS = [
     label: "PROMOTIONS",
     title: "Drive Bookings with Smart Offers",
     description: "Launch targeted discounts, promo codes, and seasonal deals to boost conversions and fill occupancy faster.",
-    image: "/images/Hotel-Website-Builder/Hotel-Website-Builder5.png", 
+    image: "/images/Hotel-Website-Builder/Hotel-Website-Builder5.png",
   },
   {
     id: "upsells",
@@ -30,34 +30,35 @@ const REVENUE_CARDS = [
 
 export function HotelWebsiteBuilderRevenueSection() {
   return (
-    <section className="relative w-full bg-white py-16 md:py-24">
-      <div className="container mx-auto max-w-[1200px] px-4 md:px-8">
-        
+    <section className="relative w-full bg-white py-8 md:py-20">
+      <div className="container mx-auto max-w-[1200px] px-[12px] md:px-8">
+
         {/* Header Content */}
-        <div className="mx-auto mb-12 md:mb-16 w-full max-w-3xl">
+        <div className="mx-auto mb-8 md:mb-16 w-full max-w-3xl">
           <SectionHeader
             eyebrow="Optimized for conversions"
             title={"Maximize Revenue from\nEvery Guest"}
             titleHighlight="Revenue"
             description="Go beyond room bookings — increase your revenue with smart packages, targeted promotions, and high-converting add-ons."
+            titleClassName="tracking-[-1.5px]!"
           />
         </div>
 
         {/* 3-Column Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-10">
+        <div className="grid grid-cols-1 gap-[30px] md:grid-cols-3 lg:gap-10">
           {REVENUE_CARDS.map((card) => (
             <div key={card.id} className="flex flex-col w-full group">
-              
+
               {/* Image & Label Box */}
               <div className="flex w-full flex-col overflow-hidden rounded-[32px] border border-gray-200 bg-white pt-6 md:pt-8 lg:pt-10 shadow-sm transition-shadow hover:shadow-md">
-                
+
                 {/* Top Label */}
-                <span className="mb-6 text-sm font-bold uppercase tracking-widest text-[#ED862E]">
+                <span className="mb-6 pl-[33px] text-[11px] font-bold uppercase leading-[17.6px] tracking-[1.5px] text-[#ED862E] [font-family:var(--font-plus-jakarta)]">
                   {card.label}
                 </span>
 
                 {/* Image */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-50">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-b-2xl bg-gray-50">
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -68,11 +69,11 @@ export function HotelWebsiteBuilderRevenueSection() {
               </div>
 
               {/* Text Content (Outside the box) */}
-              <div className="flex flex-col gap-3 mt-8 px-2">
-                <h3 className="text-2xl font-bold text-[#1E293B]">
+              <div className="flex flex-col gap-[6px] mt-8 px-2">
+                <h3 className="font-plus-jakarta-700 text-[20px] leading-7 text-[#191C1E]">
                   {card.title}
                 </h3>
-                <p className="text-base leading-relaxed text-[#64748B]">
+                <p className="typo-body4 text-[#464554]">
                   {card.description}
                 </p>
               </div>
