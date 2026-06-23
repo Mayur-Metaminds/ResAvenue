@@ -109,7 +109,7 @@ export function FaqSection({
               >
                 <button
                   onClick={() => toggleFaq(index)}
-                  className="flex w-full items-center justify-between p-6 text-left outline-none focus-visible:bg-gray-50"
+                  className="flex w-full cursor-pointer  items-center justify-between p-6 text-left outline-none focus-visible:bg-gray-50"
                   aria-expanded={isOpen}
                 >
                   <span className="typo-body3 text-[16px] text-[#0F172B]">

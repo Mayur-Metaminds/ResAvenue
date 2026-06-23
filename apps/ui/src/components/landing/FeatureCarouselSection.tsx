@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import type * as React from "react"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 
 import { Eyebrow } from "@/components/common/Eyebrow"
 
@@ -75,6 +75,19 @@ export function FeatureCarouselSection() {
   // restore focus to it on close (a11y).
   const openerRef = useRef<HTMLButtonElement | null>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
+  const hasCenteredInitially = useRef(false)
+
+  // Center the second card on initial load
+  useLayoutEffect(() => {
+    if (hasCenteredInitially.current || !carouselRef.current) return
+    const el = carouselRef.current
+    const cards = Array.from(el.children) as HTMLElement[]
+    if (cards.length > 1) {
+      const target = cards[1]!
+      el.scrollLeft = target.offsetLeft + target.offsetWidth / 2 - el.clientWidth / 2
+      hasCenteredInitially.current = true
+    }
+  }, [])
 
   const scrollPrev = useCallback(() => {
     if (!carouselRef.current) return
@@ -215,7 +228,7 @@ export function FeatureCarouselSection() {
     >
       <div className="container mx-auto max-w-6xl px-4 md:px-8">
         {/* Header */}
-        <div className="lg:mb-[52px] flex flex-col items-center text-center">
+        <div className="mb-8 lg:mb-[52px] flex flex-col items-center text-center">
           <Eyebrow
             className="mb-4"
             showDot
@@ -259,6 +272,26 @@ export function FeatureCarouselSection() {
 
       {/* Horizontal Scroll Snap Carousel */}
       <div className="relative w-full">
+        {/* Navigation Controls */}
+        <div className="container mx-auto flex max-w-6xl justify-end gap-4 px-4 pb-4 md:px-8">
+          <button
+            type="button"
+            onClick={scrollPrev}
+            aria-label="Previous slide"
+            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-all hover:border-[#ED862E] hover:text-[#ED862E] active:scale-95"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            type="button"
+            onClick={scrollNext}
+            aria-label="Next slide"
+            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-all hover:border-[#ED862E] hover:shadow-md hover:text-[#ED862E] active:scale-95"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </div>
+
         <div
           ref={carouselRef}
           onPointerDown={onPointerDown}
@@ -273,25 +306,7 @@ export function FeatureCarouselSection() {
         </div>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="container mx-auto max-w-6xl px-4 md:px-8 mt-4 flex justify-end gap-4">
-        <button
-          type="button"
-          onClick={scrollPrev}
-          aria-label="Previous slide"
-          className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-all hover:border-[#ED862E] hover:text-[#ED862E] active:scale-95"
-        >
-          <ChevronLeft className="h-6 w-6" />
-        </button>
-        <button
-          type="button"
-          onClick={scrollNext}
-          aria-label="Next slide"
-          className="flex cursor-pointer h-12 w-12 items-center justify-center rounded-full border border-gray-200 hover:border-[#ED862E] bg-white text-gray-800 shadow-sm transition-all hover:text-[#ED862E] hover:shadow-md active:scale-95"
-        >
-          <ChevronRight className="h-6 w-6" />
-        </button>
-      </div>
+      {/* Navigation Controls were moved to the top right of the header */}
 
       <VideoModal card={activeCard} onClose={closeModal} openerRef={openerRef} />
 

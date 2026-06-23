@@ -16,7 +16,7 @@ function ContactUsWrapper() {
         <Marquee<TrustedLogo>
           items={[...trustedLogos]}
           getKey={(logo) => logo.name}
-          durationSeconds={60}
+          durationSeconds={110}
           pauseOnHover={false}
           edgeFade
           gapPx={96}

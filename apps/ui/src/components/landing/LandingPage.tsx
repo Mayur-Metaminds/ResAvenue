@@ -21,7 +21,7 @@ export default function LandingPage() {
         className="w-full pb-[30px] pt-[30px] "
         items={[...trustedLogos]}
         getKey={(logo) => logo.name}
-        durationSeconds={60}
+        durationSeconds={110}
         pauseOnHover={false}
         edgeFade
         gapPx={96}

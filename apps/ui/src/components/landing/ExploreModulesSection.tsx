@@ -389,10 +389,10 @@ export function ExploreModulesSection() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
+              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
                 {/* 3D Wheel */}
                 <div
-                  className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
+                  className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:self-center lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
                   style={{ perspective: "1200px" }}
                 >
                   <div
@@ -427,7 +427,7 @@ export function ExploreModulesSection() {
                       <img
                         src={activeFeature.image}
                         alt={activeFeature.label}
-                        className="h-full w-full object-contain object-center p-2 lg:p-0"
+                        className="h-full w-full rounded-[20px] object-contain object-center p-2 lg:p-0"
                       />
                     </motion.div>
                   </AnimatePresence>
@@ -510,7 +510,7 @@ function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
       transition={{ type: "spring", stiffness: 220, damping: 30, mass: 0.6 }}
       style={{
         position: "absolute",
-        top: "25%",
+        top: "50%",
         left: 0,
         translate: "0 -50%",
         transformOrigin: "center left",
