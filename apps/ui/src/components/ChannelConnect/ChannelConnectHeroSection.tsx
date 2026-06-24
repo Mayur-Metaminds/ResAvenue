@@ -30,6 +30,7 @@ export function ChannelConnectHeroSection() {
         <div className="relative z-10 flex w-full flex-1 flex-col items-start">
             <HeroContent
               eyebrow="INTUITIVE EXPERIENCE. FAST FLEXIBILITY."
+              eyebrowClassName="typo-body2"
               title={
                 <HeroTitle
                   className="max-sm:w-[250px]"
