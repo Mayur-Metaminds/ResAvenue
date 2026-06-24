@@ -108,7 +108,7 @@ function ContactUsHero() {
                   backgroundColor: "var(--eyebrow-dot-color, #ED862E)",
                 }}
               />
-              <span className="typo-body2 text-[#ED862E] text-[12px]! tracking-[2.5px]! uppercase">
+              <span className="typo-body2 text-[#ED862E] text-[12px]! tracking-[0.7px]! uppercase">
                 CONNECTED SUPPORT. REAL
               </span>
               <span className="h-[1px] flex-1 bg-[#FFFFFF66]" />

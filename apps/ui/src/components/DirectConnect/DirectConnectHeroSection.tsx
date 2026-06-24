@@ -17,7 +17,7 @@ export function DirectConnectHeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex  w-full flex-col overflow-hidden bg-[#0A0A0B]"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#0A0A0B]"
     >
       {/* Background image */}
       <Image

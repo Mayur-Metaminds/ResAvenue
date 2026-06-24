@@ -74,12 +74,11 @@ export function DirectConnectBookingEngineSection() {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-white px-4 py-[32px] md:px-8 lg:py-[80px] lg:py-[120px] overflow-hidden"
+      className="w-full bg-white px-4 py-[32px] md:px-8 lg:py-[80px] lg:py-[120px]"
     >
-      <div className="container mx-auto max-w-[1440px] px-4 md:px-8 xl:px-[80px]">
+      <div className="container mx-auto max-w-[1440px] lg:px-[80px]">
         <FeatureShowcase
-          className="lg:items-stretch xl:grid-cols-[1fr_1.3fr]"
-          imageClassName="h-full flex items-center justify-center lg:justify-end"
+          imageClassName="justify-end items-end"
           header={{
             className: "mb-[36px]",
             eyebrow: "OPTIMIZED FOR CONVERSIONS",
@@ -104,12 +103,12 @@ export function DirectConnectBookingEngineSection() {
               {/* Mockup Image — keyed on activeFeature.id so React remounts the
                   <img> when the user clicks a different card, giving a fresh
                   load + native crossfade as the src changes. */}
-              <div className="relative z-10 flex h-full w-full items-center justify-start lg:justify-center">
+              <div className="relative z-10 flex h-full max-h-[600px] w-full items-center justify-center">
                 <img
                   key={activeFeature?.id}
                   src={activeFeature?.image ?? FALLBACK_IMAGE}
                   alt={activeFeature?.title ?? "Booking Engine Mockup"}
-                  className="h-auto w-full lg:h-full lg:w-auto lg:max-w-none object-contain lg:object-left drop-shadow-2xl transition-opacity duration-300 lg:translate-x-8 xl:translate-x-12"
+                  className="h-full w-full object-contain drop-shadow-2xl transition-opacity duration-300"
                 />
               </div>
             </>

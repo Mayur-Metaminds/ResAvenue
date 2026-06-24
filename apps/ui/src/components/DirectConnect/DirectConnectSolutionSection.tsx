@@ -20,6 +20,8 @@ import {
   UNLOCK_REVENUE_INNER,
   UNLOCK_REVENUE_OUTER,
 } from "@/lib/lottie-urls"
+
+import { CheckedIcon } from "../../../public/svg/commonSvg"
 import {
   UnifiedPlatformIcon1,
   UnifiedPlatformIcon2,
@@ -33,6 +35,7 @@ import {
 type SolutionCard = BentoItem & {
   subtitle: string
   icon: React.ReactNode
+  // `lottieUrl` (the card/modal animation's public URL) is inherited from BentoItem.
   animationContainerClassName?: string
   textContainerClassName?: string
   lottieClassName?: string
@@ -204,7 +207,7 @@ const solutions: SolutionCard[] = [
   },
   {
     id: "agents-member",
-    modalLayout: "side-by-side",
+    modalLayout: "stacked-vertical",
     title: "Agents / Member Management",
     subtitle:
       "Reward your direct bookers with exclusive member-only rates designed to drive loyalty and repeat stays. \n\n Keep guests engaged with personalized offers, promotions, and updates while optimizing your pricing strategy to increase direct bookings and long-term customer value. Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
@@ -220,10 +223,9 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon7 />,
     modalWidth: "w-full",
-    modalHeight: "h-[600px]",
+    modalHeight: "h-[740px]",
     showLearnMore: false,
     lottieUrl: AGENT,
-    modalAnimationClassName: "h-full w-full scale-90 origin-top",
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-0 lg:max-w-[45%] xl:max-w-[40%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-6 lg:right-12 lg:mx-0 lg:h-[300px] lg:w-[50%] xl:w-[55%] lg:items-end lg:justify-end lg:pr-8",
     lottieClassName: "scale-100 origin-bottom-right",

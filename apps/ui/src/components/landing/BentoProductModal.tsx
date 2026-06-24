@@ -212,7 +212,7 @@ function DesktopAnchoredModal({
       className={cn(
         // Grows to fit its content (h-auto) up to the viewport (max-h); anything
         // past that is cropped, not scrolled — the visible portion is enough.
-        "z-[110] flex flex-col overflow-hidden rounded-[20px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)] max-h-[calc(100vh-64px)]",
+        "z-[110] flex flex-col overflow-hidden rounded-[40px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)] max-h-[calc(100vh-64px)]",
         product.modalWidth || "w-[760px]",
         // A product can opt into a fixed height (e.g. to cover the cards behind
         // it); otherwise stacked / stacked-vertical grow to fit their animation,
@@ -260,7 +260,7 @@ function MobileSimpleModal({
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.96 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className="fixed inset-x-4 top-[5%] bottom-[5%] z-[110] flex flex-col overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] rounded-[20px] bg-white shadow-2xl"
+        className="fixed inset-x-4 top-[5%] bottom-[5%] z-[110] flex flex-col overflow-y-auto overflow-x-hidden rounded-[28px] bg-white shadow-2xl"
       >
         <ModalContent product={product} onClose={onClose} isDesktop={false} />
       </motion.div>
@@ -306,7 +306,7 @@ function ModalContent({
       <Button
         variant="primary"
         size="default"
-        className="w-fit gap-2 rounded-[6px] md:rounded-[10px] px-[20px] py-[10px] md:px-[32px] md:py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
+        className="w-fit gap-2 rounded-[16px] px-[32px] py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
         icon={<ArrowRight className="h-4 w-4" />}
         onClick={() => {
           onClose()
@@ -319,7 +319,7 @@ function ModalContent({
 
   return (
     <div
-      className="relative flex w-full flex-1 flex-col overflow-hidden rounded-[20px] bg-white"
+      className="relative flex w-full flex-1 flex-col overflow-hidden rounded-[16px] bg-white"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -329,9 +329,9 @@ function ModalContent({
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105  focus-visible:ring-2 focus-visible:ring-[#ED862E] [&_svg]:h-[28px] [&_svg]:w-[28px]"
+        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E] [&_svg]:h-8 [&_svg]:w-8"
       >
-        <CloseBtn size={62} />
+        <CloseBtn size={40} />
       </button>
 
       {/* Scrollable body — on the mobile variant (<lg) the content scrolls when
@@ -346,7 +346,7 @@ function ModalContent({
             just creates dead space between the description and the bullets. */}
         <div className="flex flex-col items-start md:h-full">
           {product.icon && (
-            <div className="mb-[12px] flex h-[42px] w-[42px] items-center justify-center rounded-[12px] bg-[#FDFAEE] [&>svg]:w-[22px] [&>svg]:h-[22px]">
+            <div className="mb-[16px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
               {product.icon}
             </div>
           )}
@@ -359,13 +359,13 @@ function ModalContent({
 
             <h3
               id={`product-modal-title-${product.id}`}
-              className="font-plus-jakarta-700 mb-[12px] text-[20px] font-bold text-[#010C28]"
+              className="font-plus-jakarta-700 mb-[16px] text-[24px] font-bold text-[#010C28]"
             >
               {product.title}
             </h3>
 
           {(product.modalSubtitle ?? product.subtitle) && (
-            <p className="font-source-sans-400 mb-[14px] w-full text-[14px] leading-[22px] text-[#94A3B8] whitespace-pre-line">
+            <p className="font-source-sans-400 mb-[32px] w-full text-[16px] leading-[26px] text-[#94A3B8] whitespace-pre-line">
               {product.modalSubtitle ?? product.subtitle}
             </p>
           )}
@@ -376,10 +376,10 @@ function ModalContent({
             <ul className="grid grid-cols-1 gap-x-[15px] gap-y-[12px] md:grid-cols-2">
               {product.modalFeatures.map((feature) => (
                 <li key={feature} className="flex items-start text-gray-700">
-                  <span className="mt-0.5 mr-3 flex h-4 w-4 md:h-5 md:w-5 shrink-0 items-center justify-center">
+                  <span className="mt-0.5 mr-3 flex h-5 w-5 md:h-6 md:w-6 shrink-0 items-center justify-center">
                     <CheckedIcon />
                   </span>
-                  <span className="text-[13px] font-source-sans leading-relaxed text-[#45556C] font-medium">
+                  <span className="text-[14px] font-source-sans leading-relaxed text-[#45556C] font-medium">
                     {feature}
                   </span>
                 </li>
@@ -457,7 +457,7 @@ function SideBySideModalContent({
 }) {
   return (
     <div
-      className="relative flex w-full flex-col rounded-[16px] bg-white px-[20px] pt-[12px] pb-[24px] md:flex-1 md:overflow-hidden md:px-[40px]  md:pb-[0px]"
+      className="relative flex w-full flex-col rounded-[16px] bg-white px-[20px] pt-[72px] pb-[24px] md:flex-1 md:overflow-y-auto md:px-[40px] md:pt-[88px] md:pb-[0px]"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -467,29 +467,29 @@ function SideBySideModalContent({
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E] [&_svg]:h-[28px] [&_svg]:w-[28px]"
+        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E] [&_svg]:h-8 [&_svg]:w-8"
       >
-        <CloseBtn size={32} />
+        <CloseBtn size={40} />
       </button>
 
       <div className="grid min-h-0 w-full grid-cols-1 gap-[32px] md:h-full md:gap-[40px] md:grid-cols-2 md:grid-rows-[minmax(0,1fr)]">
         {/* Left — icon + title + description + bullets */}
         <div className="flex min-h-0 flex-col items-start">
           {product.icon && (
-            <div className="mb-[16px] flex h-[42px] w-[42px] items-center justify-center rounded-[12px]  [&>svg]:w-[32px] [&>svg]:h-[32px]">
+            <div className="mb-[20px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
               {product.icon}
             </div>
           )}
 
           <h3
             id={`product-modal-title-${product.id}`}
-            className="font-plus-jakarta-700 mb-[12px] text-[20px] font-bold text-[#010C28] md:text-[22px]"
+            className="font-plus-jakarta-700 mb-[12px] text-[22px] font-bold text-[#010C28] md:text-[24px]"
           >
             {product.title}
           </h3>
 
           {(product.modalSubtitle ?? product.subtitle) && (
-            <p className="mb-[20px] font-source-sans-400 text-[13px] leading-[20px] text-[#64748B] md:text-[14px] md:leading-[22px] whitespace-pre-line">
+            <p className="mb-[24px] font-source-sans-400 text-[14px] leading-[22px] text-[#64748B] md:text-[15px] md:leading-[24px] whitespace-pre-line">
               {product.modalSubtitle ?? product.subtitle}
             </p>
           )}
@@ -499,10 +499,10 @@ function SideBySideModalContent({
             <ul className="space-y-[12px]">
               {product.modalFeatures.map((feature) => (
                 <li key={feature} className="flex items-start text-gray-700">
-                  <span className="mt-0.5 mr-3 flex h-4 w-4 shrink-0 items-center justify-center md:h-5 md:w-5">
+                  <span className="mt-0.5 mr-3 flex h-5 w-5 shrink-0 items-center justify-center md:h-6 md:w-6">
                     <CheckedIcon />
                   </span>
-                  <span className="font-source-sans-400 text-[13px] leading-[20px] text-[#45556C] font-medium md:text-[14px] md:leading-[22px]">
+                  <span className="font-source-sans-400 text-[14px] leading-[22px] text-[#45556C] font-medium md:text-[15px] md:leading-[24px]">
                     {feature}
                   </span>
                 </li>
@@ -572,7 +572,7 @@ function StackedVerticalModalContent({
 
   return (
     <div
-      className="relative flex w-full flex-col rounded-[16px] bg-white px-[20px] pt-[12px] pb-[24px] md:px-[40px]  md:pb-[40px] overflow-hidden"
+      className="relative flex w-full flex-col rounded-[16px] bg-white px-[20px] pt-[72px] pb-[24px] md:px-[40px] md:pt-[88px] md:pb-[40px] overflow-y-auto"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -582,15 +582,15 @@ function StackedVerticalModalContent({
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E] [&_svg]:h-[28px] [&_svg]:w-[28px]"
+        className="absolute cursor-pointer top-4 right-4 md:top-6 md:right-6 z-10 touch-manipulation rounded-full transition-transform outline-none hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#ED862E] [&_svg]:h-8 [&_svg]:w-8"
       >
-        <CloseBtn size={32} />
+        <CloseBtn size={40} />
       </button>
 
       <div className="flex w-full flex-col ">
         {/* Icon (chip) */}
         {product.icon && (
-          <div className="flex h-[42px] w-[42px] items-center justify-center rounded-[12px] mb-[12px] [&>svg]:w-[32px] [&>svg]:h-[32px]">
+          <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[10px] mb-[16px] bg-[#FDFAEE]">
             {product.icon}
           </div>
         )}
@@ -598,14 +598,14 @@ function StackedVerticalModalContent({
         {/* Title */}
         <h3
           id={`product-modal-title-${product.id}`}
-          className="font-plus-jakarta-700 text-[20px] font-bold text-[#010C28] md:text-[22px] mb-[12px]"
+          className="font-plus-jakarta-700 text-[22px] font-bold text-[#010C28] md:text-[24px] mb-[16px]"
         >
           {product.title}
         </h3>
 
         {/* Description */}
         {(product.modalSubtitle ?? product.subtitle) && (
-          <p className="font-source-sans-400 text-[13px] leading-[20px] text-[#64748B] mb-[16px] md:text-[14px] md:leading-[22px] whitespace-pre-line">
+          <p className="font-source-sans-400 text-[14px] leading-[22px] text-[#64748B] mb-[20px] md:text-[16px] md:leading-[26px] whitespace-pre-line">
             {product.modalSubtitle ?? product.subtitle}
           </p>
         )}
@@ -615,10 +615,10 @@ function StackedVerticalModalContent({
           <ul className="grid grid-cols-1 gap-x-[24px] gap-y-[16px] md:w-fit md:grid-cols-2 md:gap-x-[60px]">
             {product.modalFeatures.map((feature) => (
               <li key={feature} className="flex items-start text-gray-700">
-                <span className="mt-0.5 mr-3 flex h-4 w-4 shrink-0 items-center justify-center md:h-5 md:w-5">
+                <span className="mt-0.5 mr-3 flex h-5 w-5 shrink-0 items-center justify-center md:h-6 md:w-6">
                   <CheckedIcon />
                 </span>
-                <span className="font-source-sans-400 text-[13px] leading-[20px] text-[#45556C] font-medium md:text-[14px] md:leading-[22px]">
+                <span className="font-source-sans-400 text-[14px] leading-[22px] text-[#45556C] font-medium md:text-[16px] md:leading-[24px]">
                   {feature}
                 </span>
               </li>
@@ -639,7 +639,7 @@ function StackedVerticalModalContent({
                 src={animationUrl}
                 priority="on-demand"
                 loop
-                className={product.modalAnimationClassName ?? "h-full w-full"}
+                className="h-full w-full scale-200"
                 rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                 onReady={(data) => setAnimationAspect(lottieAspectRatio(data))}
               />

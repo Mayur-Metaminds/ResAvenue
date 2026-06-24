@@ -304,33 +304,33 @@ export function WhoWeServeSection() {
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedSegment(null)}
-                  className="absolute top-5 cursor-pointer right-5 z-10 text-gray-400 transition-transform hover:scale-105 hover:text-gray-700 focus:outline-none lg:top-6 lg:right-6"
+                  className="absolute top-6 right-6 z-10 text-gray-400 transition-transform hover:scale-105 hover:text-gray-700 focus:outline-none lg:top-8 lg:right-8"
                 >
-                  <CloseBtn size={24} />
+                  <CloseBtn size={48} />
                 </button>
 
-                <div className="overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] p-3 md:p-8 lg:p-10">
+                <div className="overflow-y-auto p-3 md:p-10 lg:p-12">
                   {/* Icon */}
-                  <div className="mb-4 flex lg:mt-0 lg:ml-0 ml-2.5 mt-3 h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-2xl bg-[#FEFAF5] [&>svg]:w-6 [&>svg]:h-6 lg:[&>svg]:w-8 lg:[&>svg]:h-8">
+                  <div className="mb-6 flex lg:mt-0 lg:ml-0 ml-2.5 mt-3 h-12 w-12 lg:h-16 lg:w-16 items-center justify-center rounded-2xl bg-[#FEFAF5]">
                     <activeSegmentData.icon />
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="mb-2 lg:ml-0 ml-2.5 text-[20px] lg:text-[22px] font-semibold tracking-tight text-[#010C28]">
+                  <h3 className="mb-2 lg:ml-0 ml-2.5 text-2xl font-semibold tracking-tight text-[#010C28]">
                     {activeSegmentData.title}
                   </h3>
-                  <p className="mb-4 lg:mb-6 lg:ml-0 ml-2.5 pr-6 text-[13px] lg:text-[14px] font-medium text-[#8BA0B2]">
+                  <p className="mb-4 lg:mb-8 lg:ml-0 ml-2.5 pr-6 text-[14px] font-medium text-[#8BA0B2]">
                     {activeSegmentData.subtitle}
                   </p>
 
                   {/* Points */}
-                  <ul className="mb-8 lg:ml-0 ml-2.5 space-y-3 lg:space-y-[12px]">
+                  <ul className="mb-10 lg:ml-0 ml-2.5 space-y-[14px] lg:space-y-4">
                     {activeSegmentData.points.map((point, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <div className="mt-1 shrink-0 [&>svg]:w-4 [&>svg]:h-4">
+                        <div className="mt-1 shrink-0">
                           <CheckedIcon />
                         </div>
-                        <span className="text-[13px] lg:text-[15px] leading-relaxed text-[#475467]">
+                        <span className="text-[14px] lg:text-[16px] leading-relaxed text-[#475467]">
                           {point}
                         </span>
                       </li>
@@ -338,12 +338,7 @@ export function WhoWeServeSection() {
                   </ul>
 
                   {/* Image */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ type: "spring", damping: 22, stiffness: 300, delay: 0.1 }}
-                    className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl"
-                  >
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl">
                     <Image
                       src={activeSegmentData.image}
                       alt={activeSegmentData.title}
@@ -352,7 +347,7 @@ export function WhoWeServeSection() {
                       priority
                       className="object-cover"
                     />
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </motion.div>

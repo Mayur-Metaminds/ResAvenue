@@ -56,9 +56,10 @@ export function DirectConnectDeepDiveSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
-  // Half a viewport of page scroll per accordion step + 0.5 buffer step at the end.
-  // This reduces the total height significantly so the user doesn't have to scroll forever.
-  const stepsPerSection = Math.max(1, accordionData.length) * 0.5 + 0.5
+  // One viewport of page scroll per accordion step + 1 buffer step at the end.
+  // The buffer ensures the last item doesn't instantly unpin upon reaching it.
+  const stepsPerSection = Math.max(1, accordionData.length) + 1
+  const sectionHeight = `${stepsPerSection * 100}vh`
 
   // Scroll progress 0→1 across the section: 0 when the section top hits the
   // viewport top (sticky pinning starts), 1 when the section bottom hits the
@@ -153,16 +154,16 @@ export function DirectConnectDeepDiveSection() {
       ref={sectionRef}
       data-nav-theme="dark"
       className="relative w-full bg-[#010C28]"
-      style={{ height: `calc(100vh * ${stepsPerSection})` }}
+      style={{ height: sectionHeight }}
     >
       {/* Sticky inner — pins below the fixed navbar for the full outer-section
           height. We use items-start on mobile so the top is never cut off,
           and highly compact spacing to ensure the image at the bottom fits. */}
-      <div className="sticky top-[56px] lg:top-20 flex w-full h-[calc(100vh-56px)] lg:h-[calc(100vh-80px)] flex-col items-center justify-start lg:justify-center">
-        <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col justify-center px-4 py-4 transition-all duration-500 ease-in-out lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
-          <div className="flex min-h-0 flex-1 flex-col gap-[12px] lg:grid lg:grid-cols-2 lg:flex-none lg:content-center lg:items-center lg:gap-x-[80px]">
+      <div className="sticky top-[56px] lg:top-20 flex min-h-[calc(100dvh-56px)] lg:min-h-0 lg:h-[calc(100dvh-5rem)] w-full flex-col items-center justify-start lg:justify-center">
+        <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-4 py-4 transition-all duration-500 ease-in-out lg:h-auto lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
+          <div className="flex min-h-0 flex-1 flex-col gap-[12px] lg:grid lg:grid-cols-2 lg:grid-rows-[max-content_1fr] lg:items-start lg:gap-x-[80px]">
             {/* Header */}
-            <div className="order-1 lg:col-start-2 lg:row-start-1 lg:self-end">
+            <div className="order-1 lg:col-start-2 lg:row-start-1">
               <SectionHeader
                 className="mb-[12px] items-start text-left"
                 titleColor="#FFFFFF"
@@ -194,7 +195,7 @@ export function DirectConnectDeepDiveSection() {
             </div>
 
             {/* Accordion */}
-            <div className="order-2 lg:col-start-2 lg:row-start-2 lg:self-start">
+            <div className="order-2 lg:col-start-2 lg:row-start-2">
               <div className="flex flex-col gap-2 lg:gap-3">
                 {accordionData.map((item, index) => {
                   const isOpen = activeIndex === index

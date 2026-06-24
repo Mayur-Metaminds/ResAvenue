@@ -33,12 +33,11 @@ type Product = BentoItem & {
   renderBottom?: () => React.ReactNode
 }
 
-// Every card's modal opens to exactly 900px. This height provides enough room
-// for the longest text content (Direct Connect) while comfortably fitting the
-// 400px minimum height of the Lottie animations without clipping them.
-// We use !max-h-none to prevent BentoProductModal's viewport clamp from shrinking
-// it on smaller laptop screens, ensuring the animation is always fully visible.
-const MODAL_HEIGHT = "h-[900px] !max-h-none"
+// Every card's modal opens to this height. It's viewport-relative (not a fixed
+// px) so it renders consistently on every device — a fixed 824px got clamped by
+// the modal's max-h on shorter laptops, making it look different per screen.
+// `100vh - 96px` leaves a small margin top+bottom; the animation fills the rest.
+const MODAL_HEIGHT = "h-[calc(100vh-96px)]"
 
 const products: Product[] = [
   {

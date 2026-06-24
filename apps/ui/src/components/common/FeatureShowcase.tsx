@@ -32,7 +32,7 @@ function FeatureShowcaseRoot({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 items-center gap-10 lg:grid-cols-2",
+        "grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24",
         className
       )}
     >
@@ -119,58 +119,45 @@ function FeatureShowcaseCard({
   }
 
   if (variant === "interactive") {
-    const collapse = !isActive
     return (
       <Comp
         className={cn(
-          "group flex w-full items-start gap-[12px] rounded-[14px] border py-[12px] px-[16px] text-left transition-all duration-300 outline-none cursor-pointer",
+          "flex w-full items-start gap-4 rounded-2xl border p-6 text-left transition-all duration-300",
           isActive
-            ? "border-[#ED862E]/50 bg-gradient-to-r from-[#FFF5ED] to-white shadow-[0_2px_12px_-4px_rgba(237,134,46,0.15)] ring-1 ring-[#ED862E]/10 items-start"
-            : "border-[#E2E8F0] bg-transparent hover:border-[#ED862E]/40 hover:bg-slate-50 hover:shadow-sm items-center",
+            ? "border-[#ED862E] bg-[rgba(255,240,226,0.68)] shadow-[0_4px_4px_0_rgba(237,134,46,0.15)]"
+            : "border-[#E2E8F0] bg-transparent hover:border-[#ED862E]/30 hover:bg-white/50",
           className
         )}
         {...rest}
       >
         <div
           className={cn(
-            "flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-[8px] transition-all duration-300 [&>svg]:w-[18px] [&>svg]:h-[18px]",
+            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-colors",
             isActive
-              ? "bg-[#ED862E]/15 text-[#ED862E] scale-105"
-              : "bg-slate-100 text-[#94A3B8] group-hover:bg-slate-200/50 group-hover:text-[#64748B]"
+              ? "bg-[#ED862E]/10 text-[#ED862E]"
+              : "bg-white text-[#94A3B8]"
           )}
         >
           {icon}
         </div>
-        <div className={cn("flex flex-col gap-0", isActive ? "pt-0.5" : "pt-0")}>
+        <div className="flex flex-col gap-1 pt-1">
           <h3
             className={cn(
-              "font-plus-jakarta-700 text-[14px] lg:text-[15px] transition-colors duration-300",
-              isActive ? "text-[#010C28]" : "text-[#64748B] group-hover:text-[#475569]"
+              "font-plus-jakarta-700 text-[18px]",
+              isActive ? "text-[#010C28]" : "text-[#64748B]"
             )}
           >
             {title}
           </h3>
           {subtitle && (
-            <div
+            <p
               className={cn(
-                "grid overflow-hidden transition-all duration-300 ease-in-out",
-                collapse ? "grid-rows-[0fr] opacity-0" : "grid-rows-[1fr] opacity-100"
+                "font-source-sans-400 text-[14px] leading-[24px]",
+                isActive ? "text-[#475569]" : "text-[#94A3B8]"
               )}
             >
-              <div className="min-h-0">
-                <p
-                  className={cn(
-                    // Reserve a fixed 2-line height so every card's expanded
-                    // subtitle is the same height — switching the active card no
-                    // longer changes the column height, so the title can't shift.
-                    "font-source-sans-400 mt-[2px] min-h-[32px] text-[12px] leading-[16px] transition-colors duration-300",
-                    isActive ? "text-[#475569]" : "text-[#94A3B8] group-hover:text-[#64748B]"
-                  )}
-                >
-                  {subtitle}
-                </p>
-              </div>
-            </div>
+              {subtitle}
+            </p>
           )}
         </div>
       </Comp>
