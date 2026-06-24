@@ -209,15 +209,36 @@ function FeatureShowcaseCard({
     return (
       <Comp
         className={cn(
-          "flex items-start gap-4 rounded-[16px] border border-slate-200 bg-white p-5 transition-all hover:bg-slate-50 shadow-sm",
+          "relative flex items-start gap-4 overflow-hidden rounded-[16px] border bg-white p-5 transition-all hover:bg-slate-50 shadow-sm",
+          isActive ? "border-transparent" : "border-slate-200",
           className
         )}
         {...rest}
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+        {/* Active state: partial orange gradient border (#ED862E → transparent)
+            via mask-composite, plus a subtle orange fill. Mirrors the active
+            tab effect in ExploreModulesSection's WheelItem. */}
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-0 z-0 rounded-[16px] transition-opacity duration-300",
+            isActive ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-[rgba(237,134,46,0.08)] to-transparent" />
+          <div
+            className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-[#ED862E] to-transparent p-[1px]"
+            style={{
+              WebkitMask:
+                "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              WebkitMaskComposite: "xor",
+              maskComposite: "exclude",
+            }}
+          />
+        </div>
+        <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
           {icon}
         </div>
-        <div className="flex flex-col pt-2 text-left">
+        <div className="relative z-10 flex flex-col pt-2 text-left">
           <h3 className="font-plus-jakarta-700 text-[16px] text-[#010C28]">
             {title}
           </h3>
