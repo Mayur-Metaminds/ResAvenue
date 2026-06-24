@@ -59,7 +59,7 @@ export function Eyebrow({
         />
       )}
       <span
-        className="text-[12px] typo-body2 uppercase"
+        className="text-[12px] typo-body2 tracking-widest uppercase"
         style={{ color: eyebrowColor ?? "var(--eyebrow-color, #FFFFFF)" }}
       >
         {children}

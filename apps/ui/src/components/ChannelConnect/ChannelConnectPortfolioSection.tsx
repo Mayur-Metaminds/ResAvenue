@@ -54,7 +54,7 @@ export function ChannelConnectPortfolioSection() {
                 highlightGradient: "linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)",
                 titleColor: "#F5F4F0",
                 description: (
-                  <span className="font-source-sans-400 text-[16px] leading-[26px] lg:leading-[32.5px] text-[#94A3B8]">
+                  <span className="font-source-sans-400 text-[16px] leading-[26px] text-[#94A3B8]">
                     Our advanced analytics suite breaks down your revenue performance by
                     channel, region, and segment in real time.
                   </span>
