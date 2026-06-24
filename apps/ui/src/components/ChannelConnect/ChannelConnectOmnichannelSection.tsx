@@ -161,7 +161,8 @@ export function ChannelConnectOmnichannelSection() {
         items={omnichannelCards}
         sectionClassName="w-full py-[32px] lg:py-[90px] px-[12px] lg:px-[80px] bg-white"
         containerClassName="mx-auto w-full max-w-[1440px] [&>.grid]:xl:!grid-cols-5"
-        cardClassName="p-6 md:p-8 xl:p-10 min-h-[320px] md:min-h-[380px] justify-start"
+        gridClassName="relative grid auto-rows-min grid-cols-1 gap-6 md:auto-rows-fr md:grid-cols-12"
+        cardClassName="p-6 md:p-8 xl:p-10 md:min-h-[380px] justify-start"
         header={
           <SectionHeader
             className="mx-auto max-w-3xl text-center md:py-0 py-[24px] mb-[45px] lg:mb-[28px]"
