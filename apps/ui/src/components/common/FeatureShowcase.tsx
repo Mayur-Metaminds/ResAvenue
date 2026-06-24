@@ -123,9 +123,9 @@ function FeatureShowcaseCard({
     return (
       <Comp
         className={cn(
-          "group flex w-full items-start gap-[12px] rounded-[14px] border py-[12px] px-[16px] text-left transition-all duration-300 outline-none cursor-pointer",
+          "group flex w-full gap-[12px] rounded-[14px] border py-[10px] px-[16px] text-left transition-all duration-300 outline-none cursor-pointer",
           isActive
-            ? "border-[#ED862E]/50 bg-gradient-to-r from-[#FFF5ED] to-white shadow-[0_2px_12px_-4px_rgba(237,134,46,0.15)] ring-1 ring-[#ED862E]/10 items-start"
+            ? "border-[#ED862E]/50 bg-gradient-to-r from-[#FFF5ED] to-white shadow-[0_2px_12px_-4px_rgba(237,134,46,0.15)] ring-1 ring-[#ED862E]/10 items-center"
             : "border-[#E2E8F0] bg-transparent hover:border-[#ED862E]/40 hover:bg-slate-50 hover:shadow-sm items-center",
           className
         )}
@@ -141,7 +141,7 @@ function FeatureShowcaseCard({
         >
           {icon}
         </div>
-        <div className={cn("flex flex-col gap-0", isActive ? "pt-0.5" : "pt-0")}>
+        <div className="flex flex-col gap-0">
           <h3
             className={cn(
               "font-plus-jakarta-700 text-[14px] lg:text-[15px] transition-colors duration-300",
