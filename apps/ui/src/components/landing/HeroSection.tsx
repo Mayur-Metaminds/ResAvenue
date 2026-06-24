@@ -38,6 +38,7 @@ export function HeroSection() {
           {/* Left Column: Content */}
           <HeroContent
             eyebrow="CLOUD BASED HOTEL MANAGEMENT"
+            eyebrowClassName="typo-body2"
             className="h-full"
             title={
               <HeroTitle>

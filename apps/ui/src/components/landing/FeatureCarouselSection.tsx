@@ -263,7 +263,7 @@ export function FeatureCarouselSection() {
               Nothing It Doesn&apos;t.
             </HeroTitle.Highlight>
           </HeroTitle>
-          <p className="typo-body1 max-w-xl text-gray-500">
+          <p className="typo-body1 max-w-xl text-[#64748B]">
             Seven powerful modules designed to work together as one intelligent
             system.
           </p>

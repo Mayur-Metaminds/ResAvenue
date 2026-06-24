@@ -365,7 +365,7 @@ function ModalContent({
             </h3>
 
           {(product.modalSubtitle ?? product.subtitle) && (
-            <p className="font-source-sans-400 mb-[14px] w-full text-[14px] leading-[22px] text-[#94A3B8] whitespace-pre-line">
+            <p className="font-source-sans-400 mb-[14px] w-full text-[14px] leading-[22px] text-[#64748B] whitespace-pre-line">
               {product.modalSubtitle ?? product.subtitle}
             </p>
           )}
