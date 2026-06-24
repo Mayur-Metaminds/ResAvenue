@@ -344,12 +344,12 @@ function ModalContent({
             h-full only on desktop: it stretches the column to match the bullets
             column's height there, but on mobile (single column) that stretch
             just creates dead space between the description and the bullets. */}
-        <div className="flex flex-col items-start md:h-full">
-          {product.icon && (
-            <div className="mb-[16px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
-              {product.icon}
-            </div>
-          )}
+          <div className="flex flex-col items-start md:h-full">
+            {product.icon && (
+              <div className="mb-[16px] flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#FDFAEE]">
+                {product.icon}
+              </div>
+            )}
 
             {product.eyebrow && (
               <h4 className="font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] text-[#ED862E] uppercase">
@@ -364,12 +364,12 @@ function ModalContent({
               {product.title}
             </h3>
 
-          {(product.modalSubtitle ?? product.subtitle) && (
-            <p className="font-source-sans-400 mb-[32px] w-full text-[16px] leading-[26px] text-[#94A3B8] whitespace-pre-line">
-              {product.modalSubtitle ?? product.subtitle}
-            </p>
-          )}
-        </div>
+            {(product.modalSubtitle ?? product.subtitle) && (
+              <p className="font-source-sans-400 mb-[14px] w-full text-[14px] leading-[22px] text-[#64748B] whitespace-pre-line">
+                {product.modalSubtitle ?? product.subtitle}
+              </p>
+            )}
+          </div>
 
           {/* Right — feature checklist (two columns on desktop, one on mobile). */}
           <div className="flex flex-col justify-start gap-[20px]">

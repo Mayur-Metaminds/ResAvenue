@@ -104,7 +104,7 @@ export function FaqSection({
             titleClassName
           )}
           description={description}
-          descriptionClassName="typo-body1 text-[#45556C]"
+          descriptionClassName="typo-body1 text-[#64748B]"
         />
 
         {/* FAQ Accordion */}

@@ -138,7 +138,7 @@ export function PlanSelectionSection() {
             </>
           }
           description="Explore powerful tools designed to simplify operations, increase bookings, and maximize revenue."
-          descriptionClassName="typo-body-1 text-slate-400"
+          descriptionClassName="typo-body-1 text-[#64748B]"
         />
       </div>
 
@@ -150,7 +150,7 @@ export function PlanSelectionSection() {
             <h3 className=" typo-h1 text-[24px] lg:text-[30px] text-[#010C28] mr-[23px]">
               Ready to get started?
             </h3>
-            <p className="mb-0 lg:mb-10 typo-body1 leading-[22.8px] text-[14px] lg:w-[287px] text-slate-400">
+            <p className="mb-0 lg:mb-10 typo-body1 leading-[22.8px] text-[14px] lg:w-[287px] text-[#64748B]">
               Our specialists will build a custom package based on your
               team&apos;s specific requirements.
             </p>
@@ -161,7 +161,7 @@ export function PlanSelectionSection() {
                 className={buttonVariants({
                   variant: "primary",
                   size: "default",
-                  className: "gap-3 px-8 py-4 typo-body5 !rounded-[16px]",
+                  className: "gap-3 px-[15px] py-[15px] typo-body5 !rounded-[6px]",
                 })}
               >
                 Request Custom Quote
@@ -183,7 +183,7 @@ export function PlanSelectionSection() {
               <h4 className="mb-[4px] typo-h2 text-[20px] font-medium text-[#010C28]">
                 Select your core services
               </h4>
-              <p className="typo-body3 font-normal text-slate-400">
+              <p className="typo-body3 font-normal text-[#64748B]">
                 Organize your operational stack by choosing the professional
                 modules you need.
               </p>

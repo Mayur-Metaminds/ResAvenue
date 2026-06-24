@@ -118,8 +118,8 @@ const products: Product[] = [
       "Streamline Every Guest Touchpoint",
       "Manage Every Booking, Automate Payments, Effortlessly",
       "Contactless Convenience for faster Check ins",
+      "Smarter Operations. Better Performance",
       "Automate communications for Stronger Guest Relationships",
-      "Smarter Operations. Better Performance"
     ],
     imagePlaceholder: "/images/placeholder-pms.png",
     lottieUrl: PROPERTY_MANAGEMENT_OUTER_URL,
@@ -231,11 +231,11 @@ const products: Product[] = [
     modalHeight: MODAL_HEIGHT,
     modalFeatures: [
       "Stop Managing Events. Start Monetizing Them.",
-      "Sell faster with Instant form generation",
-      "Configure ticket sales in multiple ways - time slots, category, option selections",
+      "Sell faster with Instant form generation",    
       "QR Code-Based Digital Ticketing & Contactless Check-In",
       "From Tickets to Insights — Everything in One Place.",
       "Run Events That Actually Pay Off.",
+      "Configure ticket sales in multiple ways - time slots, category, option selections",
     ],
     imagePlaceholder: "/images/placeholder-events.png",
     // The event animation is very wide (1238×224, ~5.5:1), so in the bottom
@@ -264,10 +264,10 @@ const products: Product[] = [
     anchor: "bottom-right",
     modalFeatures: [
       "High-conversion, mobile-first brand websites ",
-      "Choose from customisable template or opt for full custom design. ",
       "Easy-to-use CMS to update content and images",
       "Engineered for Speed, SEO, and Revenue Growth",
       "Designed to Convert. Built to Book.",
+      "Choose from customisable template or opt for full custom design.",
     ],
     imagePlaceholder: "/images/placeholder-website.png",
     lottieUrl: HOTEL_WEBSITE_OUTER_URL,
