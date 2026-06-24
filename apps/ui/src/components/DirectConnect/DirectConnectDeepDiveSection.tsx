@@ -203,16 +203,32 @@ export function DirectConnectDeepDiveSection() {
                     <div
                       key={item.id}
                       className={cn(
-                        "flex flex-col overflow-hidden rounded-[16px] border transition-all duration-300",
-                        isOpen
-                          ? "border-white/10 bg-[#061435]"
-                          : "border-white/5 bg-transparent"
+                        "relative flex flex-col overflow-hidden rounded-[8px] transition-all duration-300",
+                        !isOpen && "border border-white/5 bg-transparent"
                       )}
                       onClick={() => scrollToFeature(index)}
                       style={{ cursor: 'pointer' }}
                     >
+                      {/* Active State Background & Border Layer */}
+                      <div
+                        className={cn(
+                          "pointer-events-none absolute inset-0 z-0 rounded-[8px] transition-opacity duration-300",
+                          isOpen ? "opacity-100" : "opacity-0"
+                        )}
+                      >
+                        <div className="absolute inset-0 rounded-[8px] bg-gradient-to-r from-[rgba(237,134,46,0.08)] to-transparent" />
+                        <div
+                          className="absolute inset-0 rounded-[8px] bg-gradient-to-r from-[#ED862E] to-transparent p-[1px]"
+                          style={{
+                            WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                            WebkitMaskComposite: "xor",
+                            maskComposite: "exclude",
+                          }}
+                        />
+                      </div>
+
                       <div className={cn(
-                        "flex gap-[12px] py-[8px] pl-[12px] pr-[7px] select-none transition-all duration-300 lg:gap-[14px] lg:py-[16px] lg:pl-[16px] lg:pr-[31px]",
+                        "relative z-10 flex gap-[12px] py-[8px] pl-[12px] pr-[7px] select-none transition-all duration-300 lg:gap-[14px] lg:py-[16px] lg:pl-[16px] lg:pr-[31px]",
                         isOpen ? "items-start" : "items-center"
                       )}>
                         <div
