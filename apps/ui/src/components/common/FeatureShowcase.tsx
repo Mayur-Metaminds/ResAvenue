@@ -125,7 +125,7 @@ function FeatureShowcaseCard({
         className={cn(
           "group flex w-full gap-[12px] rounded-[14px] border py-[10px] px-[16px] text-left transition-all duration-300 outline-none cursor-pointer",
           isActive
-            ? "border-[#ED862E]/50 bg-gradient-to-r from-[#FFF5ED] to-white shadow-[0_2px_12px_-4px_rgba(237,134,46,0.15)] ring-1 ring-[#ED862E]/10 items-center"
+            ? "min-h-[76px] border-[#ED862E]/50 bg-gradient-to-r from-[#FFF5ED] to-white shadow-[0_2px_12px_-4px_rgba(237,134,46,0.15)] ring-1 ring-[#ED862E]/10 items-center"
             : "border-[#E2E8F0] bg-transparent hover:border-[#ED862E]/40 hover:bg-slate-50 hover:shadow-sm items-center",
           className
         )}
@@ -160,10 +160,11 @@ function FeatureShowcaseCard({
               <div className="min-h-0">
                 <p
                   className={cn(
-                    // Reserve a fixed 2-line height so every card's expanded
-                    // subtitle is the same height — switching the active card no
-                    // longer changes the column height, so the title can't shift.
-                    "font-source-sans-400 mt-[2px] min-h-[32px] text-[12px] leading-[16px] transition-colors duration-300",
+                    // Height is natural here; the active button reserves a fixed
+                    // min-h-[76px] (title + 2-line subtitle + padding) so every
+                    // active card is the same height AND `items-center` can put
+                    // the icon at the true vertical midpoint of the text.
+                    "font-source-sans-400 mt-[2px] text-[12px] leading-[16px] transition-colors duration-300",
                     isActive ? "text-[#475569]" : "text-[#94A3B8] group-hover:text-[#64748B]"
                   )}
                 >
