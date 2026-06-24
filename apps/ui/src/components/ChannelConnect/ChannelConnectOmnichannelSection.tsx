@@ -171,14 +171,10 @@ export function ChannelConnectOmnichannelSection() {
             titleClassName="font-medium mb-[16px] lg:mb-[24px] leading-[-1.5px]"
             title={
               <SectionHeader.Highlight className="text-center">
-                <span
-                  className="text-[#010C28]"
-                  style={{ WebkitTextFillColor: "#010C28" }}
-                >
-                  Omnichannel
-                  <br className="md:hidden" />
-                </span>
+                Omnichannel
+                <br className="md:hidden" />
                 Connectivity
+                <br className="hidden md:block" />
                 <span className="md:hidden"> </span>
                 Ecosystem
               </SectionHeader.Highlight>
