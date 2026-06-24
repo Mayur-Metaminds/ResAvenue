@@ -19,7 +19,7 @@ const CAROUSEL_CARDS = [
     id: "checkin",
     title: "Guest check-in/out",
     description: "Give guests the freedom to check in and out their way.",
-    image: "/images/Landing/Direct-Connect-Preview.png", 
+    image: "/images/Landing/Direct-Connect-Preview.png",
   },
   {
     id: "upsells",
@@ -63,7 +63,7 @@ export function HotelWebsiteBuilderCarouselSection() {
     if (!scrollContainerRef.current) return
     const container = scrollContainerRef.current
     const scrollAmount = container.clientWidth * 0.8 // Scroll 80% of container width
-    
+
     container.scrollBy({
       left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth"
@@ -71,11 +71,11 @@ export function HotelWebsiteBuilderCarouselSection() {
   }
 
   return (
-    <section className="relative w-full bg-white py-16 md:py-24 overflow-hidden">
+    <section className="relative w-full bg-white py-16 md:py-[80px] overflow-hidden">
       <div className="container mx-auto max-w-[1200px] px-4 md:px-8">
-        
+
         {/* Header & Controls */}
-        <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div className="mb-12.5 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
             <SectionHeader
               eyebrow="Optimized for conversions"
@@ -84,7 +84,7 @@ export function HotelWebsiteBuilderCarouselSection() {
               className="items-start text-left [&_div]:text-left [&_p]:text-left"
             />
           </div>
-          
+
           {/* Navigation Arrows */}
           <div className="flex gap-4">
             <button
@@ -92,8 +92,8 @@ export function HotelWebsiteBuilderCarouselSection() {
               disabled={!canScrollLeft}
               className={cn(
                 "flex h-12 w-12 items-center justify-center rounded-full border transition-all",
-                canScrollLeft 
-                  ? "border-[#ED862E] text-[#ED862E] hover:bg-[#ED862E] hover:text-white cursor-pointer" 
+                canScrollLeft
+                  ? "border-[#ED862E] text-[#ED862E] hover:bg-[#ED862E] hover:text-white cursor-pointer"
                   : "border-gray-200 text-gray-300 cursor-not-allowed"
               )}
               aria-label="Scroll left"
@@ -105,8 +105,8 @@ export function HotelWebsiteBuilderCarouselSection() {
               disabled={!canScrollRight}
               className={cn(
                 "flex h-12 w-12 items-center justify-center rounded-full border transition-all",
-                canScrollRight 
-                  ? "border-[#ED862E] text-[#ED862E] hover:bg-[#ED862E] hover:text-white cursor-pointer" 
+                canScrollRight
+                  ? "border-[#ED862E] text-[#ED862E] hover:bg-[#ED862E] hover:text-white cursor-pointer"
                   : "border-gray-200 text-gray-300 cursor-not-allowed"
               )}
               aria-label="Scroll right"
@@ -120,19 +120,19 @@ export function HotelWebsiteBuilderCarouselSection() {
 
       {/* Full bleed Carousel */}
       <div className="w-full relative">
-        <div 
+        <div
           ref={scrollContainerRef}
           onScroll={checkScroll}
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-12 pt-4 px-4 md:px-8 xl:px-[calc((100vw-1200px)/2+32px)] hide-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {CAROUSEL_CARDS.map((card) => (
-            <div 
-              key={card.id} 
+            <div
+              key={card.id}
               className="flex flex-col shrink-0 snap-start w-[280px] md:w-[380px] lg:w-[420px] rounded-[32px] border border-[#FDE6D5] bg-white transition-shadow hover:shadow-lg"
             >
               <div className="flex flex-col h-full p-8 md:p-10">
-                
+
                 {/* Text Content */}
                 <div className="flex flex-col gap-3 mb-8">
                   <h3 className="text-xl md:text-2xl font-bold text-[#1E293B]">
@@ -161,9 +161,10 @@ export function HotelWebsiteBuilderCarouselSection() {
           <div className="shrink-0 w-4 md:w-8" aria-hidden="true" />
         </div>
       </div>
-      
+
       {/* Global CSS to hide webkit scrollbar in carousel */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
