@@ -241,7 +241,7 @@ export function DirectConnectSolutionSection() {
         sectionClassName="relative w-full pt-[50px] pb-[120px] lg:pt-[80px] lg:pb-[150px] px-4 md:px-8 bg-white"
         containerClassName="mx-auto w-full max-w-[1440px] lg:px-[80px]"
         gridClassName="relative grid grid-cols-1 gap-6 lg:grid-cols-12"
-        cardClassName="px-6 py-8 md:px-6 md:py-6 lg:px-10 lg:py-[30px] rounded-[32px] shadow-[0_20px_50px_-12px_rgba(1,14,56,0.15)]"
+        cardClassName="px-6 py-8 md:px-6 md:py-6 lg:p-[30px] rounded-[20px] shadow-[0_20px_50px_-12px_rgba(1,14,56,0.15)]"
         header={
           <SectionHeader
             className="mx-auto mb-12 max-w-3xl text-center lg:mb-[40px]"

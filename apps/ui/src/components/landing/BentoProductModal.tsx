@@ -457,7 +457,7 @@ function SideBySideModalContent({
 }) {
   return (
     <div
-      className="relative flex w-full flex-col rounded-[16px] bg-white px-[20px] pt-[72px] pb-[24px] md:flex-1 md:overflow-y-auto md:px-[40px] md:pt-[88px] md:pb-[0px]"
+      className="relative flex w-full flex-col rounded-[20px] bg-white px-[20px] pt-[12px] pb-[24px] md:flex-1 md:overflow-hidden md:px-[40px]  md:pb-[0px]"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
@@ -572,7 +572,7 @@ function StackedVerticalModalContent({
 
   return (
     <div
-      className="relative flex w-full flex-col rounded-[16px] bg-white px-[20px] pt-[72px] pb-[24px] md:px-[40px] md:pt-[88px] md:pb-[40px] overflow-y-auto"
+      className="relative flex w-full flex-col rounded-[20px] bg-white px-[20px] pt-[12px] pb-[24px] md:px-[40px]  md:pb-[40px] overflow-hidden"
       style={{
         boxShadow:
           "0 0 100px -3px rgba(1, 14, 56, 0.15), 0 14px 28.6px -4px rgba(1, 14, 56, 0.25)",
