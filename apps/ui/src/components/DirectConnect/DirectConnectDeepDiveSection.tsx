@@ -158,9 +158,9 @@ export function DirectConnectDeepDiveSection() {
       {/* Sticky inner — pins below the fixed navbar for the full outer-section
           height. We use items-start on mobile so the top is never cut off,
           and highly compact spacing to ensure the image at the bottom fits. */}
-      <div className="sticky top-[56px] lg:top-20 flex w-full h-[calc(100vh-56px)] lg:h-[calc(100vh-80px)] flex-col items-center justify-start lg:justify-start">
-        <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col justify-start px-4 py-4 transition-all duration-500 ease-in-out lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
-          <div className="flex min-h-0 flex-1 flex-col gap-[12px] lg:grid lg:grid-cols-2 lg:flex-none lg:content-start lg:items-start lg:gap-x-[80px]">
+      <div className="sticky top-[56px] lg:top-20 flex w-full h-[calc(100vh-56px)] lg:h-[calc(100vh-80px)] flex-col items-center justify-start lg:justify-center">
+        <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col justify-start lg:justify-center px-4 py-4 transition-all duration-500 ease-in-out lg:px-[65px] lg:py-[60px] lg:pr-[80px]">
+          <div className="flex min-h-0 flex-1 flex-col gap-[12px] lg:grid lg:grid-cols-2 lg:flex-none lg:content-center lg:items-center lg:gap-x-[80px]">
             {/* Header */}
             <div className="order-1 lg:col-start-2 lg:row-start-1 lg:self-start">
               <SectionHeader

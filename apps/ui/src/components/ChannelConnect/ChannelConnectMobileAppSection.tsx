@@ -73,7 +73,7 @@ export function ChannelConnectMobileAppSection() {
   })
 
   return (
-    <section data-nav-theme="light" className="w-full bg-white ">
+    <section data-nav-theme="light" className="w-full bg-white mt-[50px]">
       <div
         className="flex flex-col gap-[32px] rounded-[45px] bg-white"
       >
@@ -90,7 +90,7 @@ export function ChannelConnectMobileAppSection() {
               className="items-start gap-[12px] text-left"
             />
           </div>
-          <div className="sticky top-20 flex h-[calc(100dvh-5rem)] w-full items-start justify-center overflow-hidden lg:items-center">
+          <div className="sticky top-20 flex  w-full items-start justify-center overflow-hidden lg:items-center">
             <div className="w-full">
               <div className="relative p-[12px] pb-[56px] md:px-16 lg:px-24 lg:pb-16 4xl:mx-auto 4xl:w-full 4xl:max-w-300">
                 <div className="relative z-10">
@@ -103,7 +103,7 @@ export function ChannelConnectMobileAppSection() {
                     }}
                     imageSlot={
                       <div className="hidden lg:flex justify-center w-full">
-                        <div className="relative flex aspect-[3/4] w-full max-w-[320px] items-center justify-center overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl">
+                        <div className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl">
                           <Image
                             src="/images/Channel-Connect/Hero-img.png"
                             alt="Mobile App"

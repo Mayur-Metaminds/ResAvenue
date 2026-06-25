@@ -42,6 +42,12 @@ export function ChannelConnectPortfolioSection() {
           <div className="relative z-10">
             <FeatureShowcase
               imagePosition="left"
+              // The desktop image lives in `imageSlot` (hidden on mobile); the
+              // mobile image is rendered inside `children` instead. Hide the
+              // whole image column on mobile so the grid doesn't keep an empty
+              // second row + its `gap-10`, which left ~40px of dead gradient
+              // space below the bullets.
+              imageClassName="hidden lg:flex"
               header={{
                 className: "mb-[24px]",
                 eyebrowDotColor: "#FFF",

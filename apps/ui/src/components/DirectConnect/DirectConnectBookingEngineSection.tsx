@@ -64,6 +64,20 @@ const features: FeatureItem[] = [
     Icon: BookingEngineIcon5,
     image: FALLBACK_IMAGE,
   },
+   {
+    id: "invoicing-payment-collect",
+    title: "Invoicing / Payment Collect",
+    subtitle: "Collect secure online payments instantly through a simple payment link",
+    Icon: BookingEngineIcon5,
+    image: FALLBACK_IMAGE,
+  },
+   {
+    id: "retargeting-abandoned-bookings",
+    title: "Retargeting - Abandoned Bookings",
+    subtitle: "Convert abandoned bookings into confirmed reservations with real-time guest retargeting ",
+    Icon: BookingEngineIcon5,
+    image: FALLBACK_IMAGE,
+  },
 ]
 
 export function DirectConnectBookingEngineSection() {
@@ -109,7 +123,7 @@ export function DirectConnectBookingEngineSection() {
                   key={activeFeature?.id}
                   src={activeFeature?.image ?? FALLBACK_IMAGE}
                   alt={activeFeature?.title ?? "Booking Engine Mockup"}
-                  className="h-auto w-full lg:h-full lg:w-auto lg:max-w-none object-contain lg:object-left drop-shadow-2xl transition-opacity duration-300 lg:translate-x-8 xl:translate-x-12"
+                  className="h-auto w-full lg:h-full lg:max-h-[500px] lg:w-auto lg:max-w-none object-contain lg:object-left drop-shadow-2xl transition-opacity duration-300 lg:translate-x-8 xl:translate-x-12"
                 />
               </div>
             </>
