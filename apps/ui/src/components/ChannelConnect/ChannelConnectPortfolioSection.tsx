@@ -38,7 +38,7 @@ export function ChannelConnectPortfolioSection() {
         style={{ background: PORTFOLIO_GRADIENT }}
       >
         {/* Block 2 — Normal flow with slide-in-from-left CheckedRows. */}
-        <div className="relative p-[20px] md:p-16 lg:px-24 lg:pt-16 lg:pb-24 4xl:mx-auto 4xl:w-full 4xl:max-w-300">
+        <div className="relative py-[40px]  px-[20px] md:p-16 lg:px-24 lg:pt-16 lg:pb-24 4xl:mx-auto 4xl:w-full 4xl:max-w-300">
           <div className="relative z-10">
             <FeatureShowcase
               imagePosition="left"

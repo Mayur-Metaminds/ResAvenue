@@ -77,6 +77,12 @@ export interface FeatureShowcaseCardProps
   title: React.ReactNode
   subtitle?: React.ReactNode
   isActive?: boolean
+  /**
+   * Opt-in (light variant only): when true, the active card shows the orange
+   * partial-gradient border + subtle fill. Defaults to false so other callers
+   * of the light variant keep the plain bordered active state.
+   */
+  activeEffect?: boolean
   variant?: "default" | "compact" | "interactive" | "dark" | "light"
   as?: "div" | "button"
 }
@@ -86,6 +92,7 @@ function FeatureShowcaseCard({
   title,
   subtitle,
   isActive = false,
+  activeEffect = false,
   variant = "default",
   as = "div",
   className,
@@ -219,18 +226,46 @@ function FeatureShowcaseCard({
 
   if (variant === "light") {
     const collapse = isActive === false
+    const showActiveEffect = activeEffect && isActive
     return (
       <Comp
         className={cn(
-          "flex items-start gap-4 rounded-[16px] border border-slate-200 bg-white p-5 transition-all hover:bg-slate-50 shadow-sm",
+          "relative flex items-start gap-4 rounded-[16px] border bg-white p-5 transition-all hover:bg-slate-50 shadow-sm",
+          showActiveEffect ? "border-transparent" : "border-slate-200",
           className
         )}
         {...rest}
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+        {/* Active state (opt-in via `activeEffect`): partial orange gradient
+            border (#ED862E → transparent) via mask-composite, plus a subtle
+            orange fill. The overlay is offset -1px so the border sits on the
+            card's outer edge (aligned with the shadow) and reads as a single
+            border instead of a ring inset from the edge. */}
+        {activeEffect && (
+          <div
+            className={cn(
+              "pointer-events-none absolute -inset-px z-0 transition-opacity duration-300",
+              isActive ? "opacity-100" : "opacity-0"
+            )}
+          >
+            {/* Subtle orange fill, inset to the card's padding box. */}
+            <div className="absolute inset-px rounded-[16px] bg-gradient-to-r from-[rgba(237,134,46,0.08)] to-transparent" />
+            {/* 1px orange gradient border on the card's outer edge. */}
+            <div
+              className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-[#ED862E] to-transparent p-px"
+              style={{
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+                maskComposite: "exclude",
+              }}
+            />
+          </div>
+        )}
+        <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
           {icon}
         </div>
-        <div className="flex flex-col pt-2 text-left">
+        <div className="relative z-10 flex flex-col pt-2 text-left">
           <h3 className="font-plus-jakarta-700 text-[16px] text-[#010C28]">
             {title}
           </h3>
