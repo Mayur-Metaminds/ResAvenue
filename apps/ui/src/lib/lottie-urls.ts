@@ -49,3 +49,8 @@ export const UNLOCK_REVENUE_INNER = `${ROOT}/direct-connect/unlock_new_revenue_i
 export const PAYMENT_OUTER = `${ROOT}/direct-connect/payment_security_outer.json`
 export const PAYMENT_INNER = `${ROOT}/direct-connect/payment_security_inner.json`
 export const AGENT = `${ROOT}/direct-connect/agent.json`
+
+/* ── /channel-connect route sections (lazy) ──────────────────────────────── */
+export const CHANNEL_CONNECT_RESERVATION_URL = `${ROOT}/channel-connect/central_reservation.json`
+export const CHANNEL_CONNECT_DATA_DRIVEN_URL = `${ROOT}/channel-connect/date_driven_decisions.json`
+export const CONTROL_YOUR_PORTFOLIO_URL = `${ROOT}/channel-connect/control_your_portfolio.json`

@@ -248,12 +248,16 @@ export function ChannelConnectOmnichannelSection() {
                 </p>
               </div>
 
+              {/* No exit animation: the graphic must unmount immediately when a
+                  card deactivates so its height drops in sync with the newly
+                  active card's graphic mounting. With an exit fade it lingered
+                  ~300ms, briefly making the column taller and jittering the
+                  layout back into place when switching cards (mobile). */}
               <AnimatePresence>
                 {isActive && item?.renderGraphic && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
                     {item.renderGraphic()}

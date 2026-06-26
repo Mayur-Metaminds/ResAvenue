@@ -18,6 +18,11 @@ export interface FeatureShowcaseProps {
   imagePosition?: "left" | "right"
   /** Content alignment for the header */
   headerAlignment?: "left" | "center"
+  /** Where the image sits on MOBILE (below lg). Defaults to "bottom" — the
+      image stacks under the content. Set to "top" to render the image above
+      the children (e.g. at the top of an interactive points list) on mobile;
+      the desktop two-column layout is unchanged either way. */
+  imageMobilePosition?: "top" | "bottom"
 }
 
 function FeatureShowcaseRoot({
@@ -28,11 +33,14 @@ function FeatureShowcaseRoot({
   imageClassName,
   imagePosition = "right",
   headerAlignment = "left",
+  imageMobilePosition = "bottom",
 }: FeatureShowcaseProps) {
+  const imageOnTopMobile = imageMobilePosition === "top"
+
   return (
     <div
       className={cn(
-        "grid grid-cols-1 items-center gap-10 lg:grid-cols-2",
+        "grid grid-cols-1 items-center gap-16 lg:grid-cols-2",
         className
       )}
     >
@@ -55,14 +63,24 @@ function FeatureShowcaseRoot({
             )}
           />
         )}
+        {/* Mobile-only: render the image at the top of the content (e.g. above
+            an interactive points list). On desktop it's hidden here and shown
+            in its own column. Opt in via `imageMobilePosition="top"`. */}
+        {imageOnTopMobile && (
+          <div className="relative mb-4 w-full lg:hidden">{imageSlot}</div>
+        )}
         <div className="flex w-full flex-col gap-4 ">{children}</div>
       </div>
 
-      {/* Image Column */}
+      {/* Image Column — hidden on mobile when the image is shown on top. The
+          `hidden lg:flex` is appended AFTER imageClassName so it wins over a
+          caller's `flex` (cn = twMerge keeps the last conflicting class). */}
       <div
         className={cn(
           "relative flex w-full items-center justify-center",
-          imagePosition === "left" ? "order-2 lg:order-1" : "order-2 lg:order-2", imageClassName
+          imagePosition === "left" ? "order-2 lg:order-1" : "order-2 lg:order-2",
+          imageClassName,
+          imageOnTopMobile && "hidden lg:flex"
         )}
       >
         {imageSlot}

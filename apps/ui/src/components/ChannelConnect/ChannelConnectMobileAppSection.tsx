@@ -5,9 +5,10 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion"
-import Image from "next/image"
 import { useRef, useState } from "react"
 
+import { LazyLottie } from "@/components/common/LazyLottie"
+import { CONTROL_YOUR_PORTFOLIO_URL } from "@/lib/lottie-urls"
 import { FeatureShowcase } from "@/components/common/FeatureShowcase"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { PortfolioIcon1, PortfolioIcon2, PortfolioIcon3 } from "../../../public/svg/Channel-Connect"
@@ -77,9 +78,11 @@ export function ChannelConnectMobileAppSection() {
       <div
         className="flex flex-col gap-[32px] rounded-[45px] bg-white"
       >
-        {/* Scroll-driven sticky reveal at all breakpoints. Note: below lg the
-            single-column stack can exceed the pinned viewport height on short
-            screens, clipping the bottom card. */}
+        {/* Scroll-driven sticky reveal at all breakpoints. The sticky pane is a
+            fixed height (viewport minus the nav) that centers its content, so it
+            never grows as the active card expands on scroll. On very short
+            screens the stack can still exceed that height — overflow-hidden
+            clips it rather than letting the pane grow. */}
         <div ref={block1Ref} className="relative h-[200vh] lg:h-[300vh]">
           {/* On mobile the eyebrow + title scroll out of view before the pin
               engages, freeing the pinned viewport for the phone image + cards.
@@ -90,9 +93,9 @@ export function ChannelConnectMobileAppSection() {
               className="items-start gap-[12px] text-left"
             />
           </div>
-          <div className="sticky top-20 flex  w-full items-start justify-center overflow-hidden lg:items-center">
+          <div className="sticky top-20 flex w-full h-[calc(100svh-80px)] items-center justify-center overflow-hidden">
             <div className="w-full">
-              <div className="relative p-[12px] pb-[56px] md:px-16 lg:px-24 lg:pb-16 4xl:mx-auto 4xl:w-full 4xl:max-w-300">
+              <div className="relative p-[12px] pb-[56px] md:px-16 lg:px-24 lg:pb-16 3xl:mx-auto 3xl:w-full 3xl:max-w-300">
                 <div className="relative z-10">
                   <FeatureShowcase
                     imagePosition="left"
@@ -103,27 +106,29 @@ export function ChannelConnectMobileAppSection() {
                     }}
                     imageSlot={
                       <div className="hidden lg:flex justify-center w-full">
-                        <div className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl">
-                          <Image
-                            src="/images/Channel-Connect/Hero-img.png"
-                            alt="Mobile App"
-                            fill
-                            className="object-cover"
+                        <div className="relative w-full  overflow-hidden rounded-[24px]">
+                          <LazyLottie
+                            src={CONTROL_YOUR_PORTFOLIO_URL}
+                            priority="lazy"
+                            loop
+                            className="h-full w-full"
+                            rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                           />
                         </div>
                       </div>
                     }
                   >
-                    {/* Phone image shown below lg (above the cards) since the
-                        desktop imageSlot is hidden on mobile. Hidden at lg+
-                        where imageSlot renders the full-size image on the left. */}
+                    {/* Portfolio animation shown below lg (above the cards)
+                        since the desktop imageSlot is hidden on mobile. Hidden
+                        at lg+ where imageSlot renders the visual on the left. */}
                     <div className="flex lg:hidden justify-center w-full mb-2 mt-0">
-                      <div className="relative flex aspect-[3/4] h-[calc(100svh-30rem)] max-h-[200px] min-h-0 w-auto md:h-auto md:max-h-none md:w-[180px] items-center justify-center overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-xl">
-                        <Image
-                          src="/images/Channel-Connect/Hero-img.png"
-                          alt="Mobile App"
-                          fill
-                          className="object-cover"
+                      <div className="relative w-full max-w-[520px] aspect-[1468/695] overflow-hidden rounded-[20px]">
+                        <LazyLottie
+                          src={CONTROL_YOUR_PORTFOLIO_URL}
+                          priority="lazy"
+                          loop
+                          className="h-full w-full"
+                          rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                         />
                       </div>
                     </div>

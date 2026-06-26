@@ -12,6 +12,8 @@ import {
   BookingEngineIcon3,
   BookingEngineIcon4,
   BookingEngineIcon5,
+  BookingEngineIcon6,
+  BookingEngineIcon7,
 } from "../../../public/svg/Direct-Connect"
 
 type FeatureItem = {
@@ -68,14 +70,14 @@ const features: FeatureItem[] = [
     id: "invoicing-payment-collect",
     title: "Invoicing / Payment Collect",
     subtitle: "Collect secure online payments instantly through a simple payment link",
-    Icon: BookingEngineIcon5,
+    Icon: BookingEngineIcon6,
     image: FALLBACK_IMAGE,
   },
    {
     id: "retargeting-abandoned-bookings",
     title: "Retargeting - Abandoned Bookings",
     subtitle: "Convert abandoned bookings into confirmed reservations with real-time guest retargeting ",
-    Icon: BookingEngineIcon5,
+    Icon: BookingEngineIcon7,
     image: FALLBACK_IMAGE,
   },
 ]
@@ -93,6 +95,7 @@ export function DirectConnectBookingEngineSection() {
       <div className="container mx-auto max-w-[1440px] px-4 md:px-8 xl:px-[80px]">
         <FeatureShowcase
           className="lg:items-stretch xl:grid-cols-[1fr_1.3fr]"
+          imageMobilePosition="top"
           imageClassName="h-full flex items-center justify-center lg:justify-end"
           header={{
             className: "mb-[36px]",

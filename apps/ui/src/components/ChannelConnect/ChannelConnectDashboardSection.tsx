@@ -2,17 +2,15 @@
 
 import * as React from "react"
 import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/styles"
+import { CHANNEL_CONNECT_RESERVATION_URL } from "@/lib/lottie-urls"
 
+import { LazyLottie } from "@/components/common/LazyLottie"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { FeatureShowcase } from "@/components/common/FeatureShowcase"
 
 import {
-  OmniChannelManagementIcon,
-  BulkInventoryControlIcon,
-  IntegratedPaymentsIcon,
   ReservationDashboardIcon1,
   ReservationDashboardIcon2,
   ReservationDashboardIcon3,
@@ -62,12 +60,18 @@ export function ChannelConnectDashboardSection() {
     startTimer() // Reset timer so it doesn't immediately advance
   }
 
-  const images = [
-    "/images/Channel-Connect/Hero-img.png",
-    "/images/Direct-Connect/Unified-Intelligence-Dashboard.png",
-    "/images/Direct-Connect/Booking-Engine.png",
-  ] as const
-  const activeImage = images[activeIndex] ?? images[0]
+  // A single looping animation for the visual — intentionally NOT tied to the
+  // active card/pointer. Reused in the desktop image column and the mobile
+  // slot above the cards.
+  const reservationLottie = (
+    <LazyLottie
+      src={CHANNEL_CONNECT_RESERVATION_URL}
+      priority="lazy"
+      loop
+      className="h-full w-full"
+      rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+    />
+  )
 
   return (
     <section data-nav-theme="light" className="w-full bg-white px-4 md:px-8">
@@ -93,29 +97,15 @@ export function ChannelConnectDashboardSection() {
             description: "Control your entire inventory across all channels from one intuitive interface.",
           }}
           imageSlot={
-            <div className="hidden lg:block relative h-full w-full lg:absolute lg:inset-0">
-              <Image
-                key={activeImage}
-                src={activeImage}
-                alt="Central Reservation Dashboard"
-                width={1918}
-                height={1934}
-                className="h-auto w-full object-cover lg:absolute lg:inset-0 lg:h-full lg:w-full lg:rounded-[24px]"
-              />
+            <div className="hidden lg:block relative h-full w-full overflow-hidden lg:absolute lg:inset-0 lg:rounded-[24px]">
+              {reservationLottie}
             </div>
           }
         >
           <div className="flex flex-col gap-4 mt-4 lg:mt-0">
-            {/* Mobile Image */}
-            <div className="block lg:hidden mb-2 w-full">
-              <Image
-                key={activeImage}
-                src={activeImage}
-                alt="Central Reservation Dashboard"
-                width={1918}
-                height={1934}
-                className="h-auto w-full object-cover rounded-[16px]"
-              />
+            {/* Mobile animation */}
+            <div className="block lg:hidden mb-2 w-full aspect-[1184/906] overflow-hidden rounded-[16px]">
+              {reservationLottie}
             </div>
             {features.map((feature, index) => {
               const isActive = activeIndex === index
