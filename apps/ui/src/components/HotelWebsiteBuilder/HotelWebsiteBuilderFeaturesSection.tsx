@@ -46,15 +46,17 @@ export const HOTEL_WEBSITE_BUILDER_CARDS: ScrollRevealCard[] = [
 export function HotelWebsiteBuilderFeaturesSection() {
   return (
     <ScrollRevealShowcase
+    bgClassName="pt-[51px]"
       header={{
         eyebrow: "Optimized for conversions",
+        eyebrowClassName:"mb-[32px]",
         title: "Everything You Need to Build,\nManage, and Convert",
         titleHighlight: "Build,\nManage, and Convert",
         highlightGradient:
           "linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 57.71%, #ED862E 68.44%)",
         description:
           "From website creation to direct bookings, manage your entire digital experience on one powerful platform.",
-        titleClassName: "!mb-2 md:!mb-6 text-[28px] md:text-[40px] lg:text-[48px] leading-tight",
+        titleClassName: "!mb-2 md:!mb-[12px] text-[28px] md:text-[40px] lg:text-[48px] leading-tight",
         descriptionClassName: "text-sm md:text-lg",
       }}
       cards={HOTEL_WEBSITE_BUILDER_CARDS}

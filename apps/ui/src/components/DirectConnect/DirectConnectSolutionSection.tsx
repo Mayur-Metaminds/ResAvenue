@@ -37,6 +37,7 @@ type SolutionCard = BentoItem & {
   textContainerClassName?: string
   lottieClassName?: string
   lottieRendererSettings?: any
+  modalAnimationWrapperClassName?: string
 }
 
 const solutions: SolutionCard[] = [
@@ -146,6 +147,7 @@ const solutions: SolutionCard[] = [
     showLearnMore: false,
     lottieUrl: INTELLIGENT_ANALYTICS_OUTER,
     modalLottieUrl: INTELLIGENT_ANALYTICS_INNER,
+    modalAnimationWrapperClassName: "-mt-[16px] md:-mt-[32px]",
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[55%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:inset-y-0 lg:right-10 lg:mx-0 lg:h-auto lg:w-[40%] lg:items-center lg:justify-end lg:pr-8",
   },
@@ -271,7 +273,7 @@ export function DirectConnectSolutionSection() {
 
               <p
                 className={cn(
-                  "font-source-sans-400 mb-4 pr-2 lg:pr-4 text-[14px] leading-[1.6] lg:leading-[20px] whitespace-pre-line",
+                  "font-source-sans-400 pr-2 lg:pr-4 text-[14px] leading-[1.6] lg:leading-[20px] whitespace-pre-line",
                   item.isDark ? "text-white/80" : "text-[#64748B]"
                 )}
               >
