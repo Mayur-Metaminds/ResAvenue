@@ -67,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <Script id="csr-config" strategy="beforeInteractive">
           {`
@@ -86,6 +86,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
+        suppressHydrationWarning
         className={cn(
           "min-h-screen font-sans antialiased",
           fontRoboto.variable

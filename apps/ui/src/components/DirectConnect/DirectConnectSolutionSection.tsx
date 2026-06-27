@@ -171,9 +171,9 @@ const solutions: SolutionCard[] = [
     showLearnMore: false,
     lottieUrl: UNLOCK_REVENUE_OUTER,
     modalLottieUrl: UNLOCK_REVENUE_INNER,
-    textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[280px]",
+    textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[210px]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-10 lg:-bottom-6 lg:mx-0 lg:h-[280px]",
-    lottieClassName: "origin-bottom lg:scale-[1.05]",
+    lottieClassName: "origin-bottom lg:scale-[1.08]",
     lottieRendererSettings: { preserveAspectRatio: "xMidYMax meet" },
   },
   {
@@ -271,7 +271,7 @@ export function DirectConnectSolutionSection() {
 
               <p
                 className={cn(
-                  "font-source-sans-400 mb-4 lg:mb-8 pr-2 lg:pr-4 text-[14px] leading-[1.6] lg:leading-[20px] whitespace-pre-line",
+                  "font-source-sans-400 mb-4 pr-2 lg:pr-4 text-[14px] leading-[1.6] lg:leading-[20px] whitespace-pre-line",
                   item.isDark ? "text-white/80" : "text-[#64748B]"
                 )}
               >

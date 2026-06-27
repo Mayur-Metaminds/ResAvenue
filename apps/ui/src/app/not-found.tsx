@@ -5,7 +5,7 @@ import { Footer } from "@/components/common/Footer"
 export default function NotFound() {
   return (
     <>
-    <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-4 text-center">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-4 text-center" data-nav-theme="light">
       <h1 className="text-9xl font-black text-zinc-200 selection:bg-transparent">
         404
       </h1>
