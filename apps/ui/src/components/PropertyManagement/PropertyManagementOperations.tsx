@@ -61,6 +61,7 @@ const PropertyManagementOperations = () => {
       <SectionHeader
         eyebrow="ONE PLATFORM. ENDLESS POSSIBILITIES."
         eyebrowColor="#ED862E"
+        eyebrowClassName="text-nowrap max-sm:[&>span:last-child]:!tracking-[0.7px]"
         className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
         descriptionClassName="typo-body1 text-center text-[#64748B]"
         title={

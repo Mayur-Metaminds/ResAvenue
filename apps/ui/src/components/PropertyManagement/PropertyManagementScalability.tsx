@@ -25,7 +25,7 @@ const PropertyManagementScalability = () => {
     <section
       ref={sectionRef}
       data-nav-theme="light"
-      className="w-full bg-white px-3 py-[60px] md:px-8 lg:py-[80px] md:text-nowrap"
+      className="w-full bg-white px-3 py-[30px] pt-[60] md:px-8 lg:py-[80px] md:text-nowrap"
     >
       <SectionHeader
         eyebrow="CLOUD-NATIVE INFRASTRUCTURE"
