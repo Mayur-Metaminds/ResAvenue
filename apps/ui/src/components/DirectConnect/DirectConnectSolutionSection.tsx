@@ -20,8 +20,6 @@ import {
   UNLOCK_REVENUE_INNER,
   UNLOCK_REVENUE_OUTER,
 } from "@/lib/lottie-urls"
-
-import { CheckedIcon } from "../../../public/svg/commonSvg"
 import {
   UnifiedPlatformIcon1,
   UnifiedPlatformIcon2,
@@ -35,11 +33,11 @@ import {
 type SolutionCard = BentoItem & {
   subtitle: string
   icon: React.ReactNode
-  // `lottieUrl` (the card/modal animation's public URL) is inherited from BentoItem.
   animationContainerClassName?: string
   textContainerClassName?: string
   lottieClassName?: string
   lottieRendererSettings?: any
+  modalAnimationWrapperClassName?: string
 }
 
 const solutions: SolutionCard[] = [
@@ -149,6 +147,7 @@ const solutions: SolutionCard[] = [
     showLearnMore: false,
     lottieUrl: INTELLIGENT_ANALYTICS_OUTER,
     modalLottieUrl: INTELLIGENT_ANALYTICS_INNER,
+    modalAnimationWrapperClassName: "-mt-[16px] md:-mt-[32px]",
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[55%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:inset-y-0 lg:right-10 lg:mx-0 lg:h-auto lg:w-[40%] lg:items-center lg:justify-end lg:pr-8",
   },
@@ -174,9 +173,9 @@ const solutions: SolutionCard[] = [
     showLearnMore: false,
     lottieUrl: UNLOCK_REVENUE_OUTER,
     modalLottieUrl: UNLOCK_REVENUE_INNER,
-    textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[280px]",
+    textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-[210px]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-10 lg:-bottom-6 lg:mx-0 lg:h-[280px]",
-    lottieClassName: "origin-bottom lg:scale-[1.05]",
+    lottieClassName: "origin-bottom lg:scale-[1.08]",
     lottieRendererSettings: { preserveAspectRatio: "xMidYMax meet" },
   },
   {
@@ -207,7 +206,7 @@ const solutions: SolutionCard[] = [
   },
   {
     id: "agents-member",
-    modalLayout: "stacked-vertical",
+    modalLayout: "side-by-side",
     title: "Agents / Member Management",
     subtitle:
       "Reward your direct bookers with exclusive member-only rates designed to drive loyalty and repeat stays. \n\n Keep guests engaged with personalized offers, promotions, and updates while optimizing your pricing strategy to increase direct bookings and long-term customer value. Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
@@ -223,9 +222,10 @@ const solutions: SolutionCard[] = [
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon7 />,
     modalWidth: "w-full",
-    modalHeight: "h-[740px]",
+    modalHeight: "h-[600px]",
     showLearnMore: false,
     lottieUrl: AGENT,
+    modalAnimationClassName: "h-full w-full scale-90 origin-top",
     textContainerClassName: "relative z-10 flex grow flex-col pb-[200px] lg:pb-0 lg:max-w-[45%] xl:max-w-[40%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-6 lg:right-12 lg:mx-0 lg:h-[300px] lg:w-[50%] xl:w-[55%] lg:items-end lg:justify-end lg:pr-8",
     lottieClassName: "scale-100 origin-bottom-right",
@@ -239,9 +239,9 @@ export function DirectConnectSolutionSection() {
       <BentoGrid
         items={solutions}
         sectionClassName="relative w-full pt-[50px] pb-[120px] lg:pt-[80px] lg:pb-[150px] px-4 md:px-8 bg-white"
-        containerClassName="container mx-auto max-w-[1300px]"
+        containerClassName="mx-auto w-full max-w-[1440px] lg:px-[80px]"
         gridClassName="relative grid grid-cols-1 gap-6 lg:grid-cols-12"
-        cardClassName="px-6 py-8 md:px-6 md:py-6 lg:px-10 lg:py-[30px] rounded-[32px] shadow-[0_20px_50px_-12px_rgba(1,14,56,0.15)]"
+        cardClassName="px-6 py-8 md:px-6 md:py-6 lg:p-[30px] rounded-[20px] shadow-[0_20px_50px_-12px_rgba(1,14,56,0.15)]"
         header={
           <SectionHeader
             className="mx-auto mb-12 max-w-3xl text-center lg:mb-[40px]"
@@ -273,7 +273,7 @@ export function DirectConnectSolutionSection() {
 
               <p
                 className={cn(
-                  "font-source-sans-400 mb-4 lg:mb-8 pr-2 lg:pr-4 text-[14px] leading-[1.6] lg:leading-[20px] whitespace-pre-line",
+                  "font-source-sans-400 pr-2 lg:pr-4 text-[14px] leading-[1.6] lg:leading-[20px] whitespace-pre-line",
                   item.isDark ? "text-white/80" : "text-[#64748B]"
                 )}
               >

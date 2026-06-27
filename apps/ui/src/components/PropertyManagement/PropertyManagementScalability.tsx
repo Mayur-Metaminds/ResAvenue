@@ -25,13 +25,14 @@ const PropertyManagementScalability = () => {
     <section
       ref={sectionRef}
       data-nav-theme="light"
-      className="w-full bg-white px-4 py-[60px] md:px-8 lg:py-[100px] md:text-nowrap"
+      className="w-full bg-white px-3 py-[30px] pt-[60] md:px-8 lg:py-[80px] md:text-nowrap"
     >
       <SectionHeader
         eyebrow="CLOUD-NATIVE INFRASTRUCTURE"
         eyebrowClassName="lg:text-[14px]"
         eyebrowColor="#ED862E"
         className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
+        titleClassName="tracking-[-1.5px]!"
         descriptionClassName="font-source-sans-400 text-center text-[18px] leading-[31.5px] text-[#64748B]"
         title={
           <SectionHeader.Highlight

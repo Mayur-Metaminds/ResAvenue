@@ -47,7 +47,7 @@ export function SolutionSection() {
       </div>
 
       {/* Animation Box / Horizontal Lines */}
-      <div className="relative mx-auto mb-[34px] mt-[34px] flex h-[200px] w-full items-center justify-center overflow-hidden md:container md:h-[440px] md:px-8  lg:px-4">
+      <div className="relative mx-auto mb-[34px] mt-[34px] flex h-[200px] w-full items-center justify-center overflow-hidden md:container h-full md:px-8  lg:px-4">
         {/* GIF Mockup — `slice` makes the Lottie cover its container by
             zooming in, hiding the built-in canvas padding around the pills. */}
         <div className="relative z-10 h-[90%] w-[100%] md:h-[100%] md:w-[100%]">

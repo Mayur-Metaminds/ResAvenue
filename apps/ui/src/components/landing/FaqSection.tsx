@@ -53,12 +53,21 @@ type FaqSectionProps = {
   description?: string
   /** Which item starts open. Default 0 (first open); pass null for all closed. */
   defaultOpenIndex?: number | null
+  /** Extra classes for each FAQ card (e.g. to override the default white background). */
+  cardClassName?: string
+  /** Extra classes for the section wrapper (e.g. to override the default background). */
+  className?: string
+  /** Extra classes for the title (merged over the default title styling). */
+  titleClassName?: string
 }
 
 export function FaqSection({
   faqs = defaultFaqs,
   description = "Everything you need to know about ResAvenue",
   defaultOpenIndex = 0,
+  cardClassName,
+  className,
+  titleClassName,
 }: FaqSectionProps = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex)
 
@@ -69,7 +78,10 @@ export function FaqSection({
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-[#F8FAFC] px-4 py-[54px] lg:py-[120px] md:px-8"
+      className={cn(
+        "w-full bg-[#F8FAFC] px-4 py-[54px] lg:py-[120px] md:px-8",
+        className
+      )}
     >
       <div className="container mx-auto flex max-w-3xl flex-col items-center">
         {/* Header */}
@@ -87,9 +99,12 @@ export function FaqSection({
               Frequently Asked Questions
             </SectionHeader.Highlight>
           }
-          titleClassName="!font-[500] !leading-[32px] lg:!leading-[48px]"
+          titleClassName={cn(
+            "!font-[500] !leading-[32px] lg:!leading-[48px]",
+            titleClassName
+          )}
           description={description}
-          descriptionClassName="typo-body1 text-[#45556C]"
+          descriptionClassName="typo-body1 text-[#64748B]"
         />
 
         {/* FAQ Accordion */}
@@ -104,12 +119,13 @@ export function FaqSection({
                   "w-full overflow-hidden rounded-2xl border bg-white transition-all duration-300",
                   isOpen
                     ? "border-[#ED862E]/30 shadow-md"
-                    : "border-gray-100 shadow-sm hover:border-gray-200"
+                    : "border-gray-100 shadow-sm hover:border-gray-200",
+                  cardClassName
                 )}
               >
                 <button
                   onClick={() => toggleFaq(index)}
-                  className="flex w-full items-center justify-between p-6 text-left outline-none focus-visible:bg-gray-50"
+                  className="flex w-full cursor-pointer  items-center justify-between p-6 text-left outline-none focus-visible:bg-gray-50"
                   aria-expanded={isOpen}
                 >
                   <span className="typo-body3 text-[16px] text-[#0F172B]">

@@ -1,15 +1,12 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import type * as React from "react"
-import { useCallback, useEffect, useRef, useState } from "react"
-
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 import { Eyebrow } from "@/components/common/Eyebrow"
-
 import { CloseBtn, PlayButton } from "../../../public/svg/commonSvg"
-
 import { HeroTitle } from "./HeroTitle"
 
 // Mock Data Structure
@@ -74,6 +71,71 @@ export function FeatureCarouselSection() {
   // Remember which card-trigger the user opened the modal from so we can
   // restore focus to it on close (a11y).
   const openerRef = useRef<HTMLButtonElement | null>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const hasCenteredInitially = useRef(false)
+
+  // Disable a nav button once the carousel reaches that end of the line.
+  const [canScrollPrev, setCanScrollPrev] = useState(false)
+  const [canScrollNext, setCanScrollNext] = useState(true)
+
+  // Enable prev/next based on which card is nearest the viewport centre — i.e.
+  // is there a card on that side. Index-based (not raw scrollLeft) so it stays
+  // correct even though the first/last card can't fully centre on wide screens.
+  const updateScrollButtons = useCallback(() => {
+    const el = carouselRef.current
+    if (!el) return
+    const cards = Array.from(el.children) as HTMLElement[]
+    if (cards.length === 0) return
+    const viewportCenter = el.scrollLeft + el.clientWidth / 2
+    let nearest = 0
+    let min = Infinity
+    cards.forEach((card, i) => {
+      const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - viewportCenter)
+      if (dist < min) {
+        min = dist
+        nearest = i
+      }
+    })
+    setCanScrollPrev(nearest > 0)
+    setCanScrollNext(nearest < cards.length - 1)
+  }, [])
+
+  // Center the second card on initial load
+  useLayoutEffect(() => {
+    if (hasCenteredInitially.current || !carouselRef.current) return
+    const el = carouselRef.current
+    const cards = Array.from(el.children) as HTMLElement[]
+    if (cards.length > 1) {
+      const target = cards[1]!
+      el.scrollLeft = target.offsetLeft + target.offsetWidth / 2 - el.clientWidth / 2
+      hasCenteredInitially.current = true
+    }
+    updateScrollButtons()
+  }, [updateScrollButtons])
+
+  // Keep the buttons in sync as the carousel scrolls (buttons, drag, swipe) or resizes.
+  useEffect(() => {
+    const el = carouselRef.current
+    if (!el) return
+    el.addEventListener("scroll", updateScrollButtons, { passive: true })
+    window.addEventListener("resize", updateScrollButtons)
+    return () => {
+      el.removeEventListener("scroll", updateScrollButtons)
+      window.removeEventListener("resize", updateScrollButtons)
+    }
+  }, [updateScrollButtons])
+
+  const scrollPrev = useCallback(() => {
+    if (!carouselRef.current) return
+    const cardWidth = carouselRef.current.firstElementChild?.clientWidth || 0
+    carouselRef.current.scrollBy({ left: -(cardWidth + 24), behavior: "smooth" })
+  }, [])
+
+  const scrollNext = useCallback(() => {
+    if (!carouselRef.current) return
+    const cardWidth = carouselRef.current.firstElementChild?.clientWidth || 0
+    carouselRef.current.scrollBy({ left: cardWidth + 24, behavior: "smooth" })
+  }, [])
 
   // Mouse drag-to-scroll with snap. Touch swipes snap natively via CSS
   // scroll-snap (snap-x snap-mandatory + snap-center on each card). For mouse
@@ -202,7 +264,7 @@ export function FeatureCarouselSection() {
     >
       <div className="container mx-auto max-w-6xl px-4 md:px-8">
         {/* Header */}
-        <div className="lg:mb-[52px] flex flex-col items-center text-center">
+        <div className="mb-8 lg:mb-[52px] flex flex-col items-center text-center">
           <Eyebrow
             className="mb-4"
             showDot
@@ -237,7 +299,7 @@ export function FeatureCarouselSection() {
               Nothing It Doesn&apos;t.
             </HeroTitle.Highlight>
           </HeroTitle>
-          <p className="typo-body1 max-w-xl text-gray-500">
+          <p className="typo-body1 max-w-xl text-[#64748B]">
             Seven powerful modules designed to work together as one intelligent
             system.
           </p>
@@ -246,7 +308,30 @@ export function FeatureCarouselSection() {
 
       {/* Horizontal Scroll Snap Carousel */}
       <div className="relative w-full">
+        {/* Navigation Controls */}
+        <div className="container mx-auto flex max-w-6xl justify-end gap-4 px-4 pb-4 md:px-8">
+          <button
+            type="button"
+            onClick={scrollPrev}
+            disabled={!canScrollPrev}
+            aria-label="Previous slide"
+            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-all hover:border-[#ED862E] hover:text-[#ED862E] active:scale-95 disabled:pointer-events-none disabled:opacity-40"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            type="button"
+            onClick={scrollNext}
+            disabled={!canScrollNext}
+            aria-label="Next slide"
+            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-all hover:border-[#ED862E] hover:shadow-md hover:text-[#ED862E] active:scale-95 disabled:pointer-events-none disabled:opacity-40"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </div>
+
         <div
+          ref={carouselRef}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -258,6 +343,8 @@ export function FeatureCarouselSection() {
           ))}
         </div>
       </div>
+
+      {/* Navigation Controls were moved to the top right of the header */}
 
       <VideoModal card={activeCard} onClose={closeModal} openerRef={openerRef} />
 
@@ -319,7 +406,7 @@ function CarouselItem({
           type="button"
           onClick={(e) => onOpen(card, e.currentTarget)}
           aria-label={`Play video: ${card.title}`}
-          className="rounded-full transition-transform duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E] focus-visible:ring-offset-2"
+          className="rounded-full cursor-pointer transition-transform duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E] focus-visible:ring-offset-2"
         >
           <PlayButton className="h-20 w-20 drop-shadow-lg" />
         </button>
@@ -431,7 +518,7 @@ function VideoModal({
               type="button"
               onClick={onClose}
               aria-label="Close video"
-              className="absolute -top-12 right-0 z-10 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E] focus-visible:ring-offset-2 md:-top-14"
+              className="absolute cursor-pointer -top-12 right-0 z-10 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E] focus-visible:ring-offset-2 md:-top-14"
             >
               <CloseBtn size={44} />
             </button>

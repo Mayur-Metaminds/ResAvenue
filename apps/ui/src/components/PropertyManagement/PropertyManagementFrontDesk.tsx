@@ -72,8 +72,14 @@ function FrontDeskHeader({ className }: { className?: string }) {
       eyebrowColor="#FFFFFF"
       className={cn("items-start text-left", className)}
       descriptionClassName="typo-body1 text-left text-[#FFFFFF80]"
-      title="Front Desk Operations ."
-      titleHighlight="Operations ."
+      title={
+        <>
+          Front Desk{" "}
+          <SectionHeader.Highlight>
+            Operations<span className="hidden lg:inline"> .</span>
+          </SectionHeader.Highlight>
+        </>
+      }
       titleColor="#FFFFFF"
       highlightGradient="linear-gradient(90deg, #ED862E 0%, #ED862E 100%)"
       description={

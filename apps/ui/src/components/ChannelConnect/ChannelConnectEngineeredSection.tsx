@@ -1,5 +1,7 @@
 "use client"
 
+import { useState } from "react"
+
 import { SectionHeader } from "@/components/landing/SectionHeader"
 
 import {
@@ -111,35 +113,41 @@ const engineeredFeatures: EngineeredFeature[] = [
   },
 ]
 
+const MOBILE_VISIBLE_COUNT = 4
+
 export function ChannelConnectEngineeredSection() {
+  const [showAll, setShowAll] = useState(false)
+
   return (
     <section data-nav-theme="light" className="w-full bg-white pb-[90px]">
-      <div className="lg:mx-[80px] mx-[20px]">
+      <div className="mx-auto w-full max-w-[1440px] px-[20px] lg:px-[80px]">
         {/* Header */}
         <SectionHeader
           className="mx-auto mb-[45px] max-w-3xl text-center lg:mb-[80px]"
           eyebrow="Enterprise-grade capabilities"
-          eyebrowClassName="mb-[12px]"
+          eyebrowClassName="mb-[24px] lg:mb-[12px]"
           title={
             <>
-              Engineered for{" "}
-              <SectionHeader.Highlight>Complexity</SectionHeader.Highlight>
+              <SectionHeader.Highlight>Engineered for Complexity</SectionHeader.Highlight>
             </>
           }
-          titleClassName="mb-[24px]"
+          titleClassName="lg:mb-[24px] mb-[16px]"
+          highlightGradient="linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 36.88%, #ED862E 65.29%)"
           description="Scalable solutions for multi-property operations and revenue optimization teams."
         />
 
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {engineeredFeatures.map((feature) => (
+        <div className="grid grid-cols-1 gap-[20px] md:gap-[10px] sm:grid-cols-2 lg:grid-cols-4">
+          {engineeredFeatures.map((feature, index) => (
             <div
               key={feature.id}
-              className="group flex h-full cursor-pointer min-h-[204px] flex-col items-start gap-[19px] rounded-[16px] border border-black/5 bg-white p-[20px] text-left transition-all duration-300 hover:border-[#ED862E] hover:[background:linear-gradient(0deg,rgba(237,134,46,0.03)_0%,rgba(237,134,46,0.03)_100%),#FFF]"
+              className={`group flex h-full cursor-pointer  flex-col items-start gap-[19px] rounded-[16px] border border-black/5 bg-white p-[20px] text-left transition-all duration-300 hover:border-[#ED862E] max-sm:drop-shadow-sm hover:[background:linear-gradient(0deg,rgba(237,134,46,0.03)_0%,rgba(237,134,46,0.03)_100%),#FFF] ${
+                !showAll && index >= MOBILE_VISIBLE_COUNT ? "max-sm:hidden" : ""
+              }`}
             >
-              <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl bg-[#ED862E]/10">
-                {feature.icon}
-              </div>
+
+              <div className="flex w-[48px] h-[48px]">{feature.icon}</div>
+
               <div className="flex flex-col gap-1">
                 <h3 className="font-plus-jakarta-700 text-[18px] leading-[1.2] text-[#010C28] transition-colors duration-300 group-hover:text-[#ED862E]">
                   {feature.title}
@@ -151,6 +159,20 @@ export function ChannelConnectEngineeredSection() {
             </div>
           ))}
         </div>
+
+        {/* Mobile-only "View More" toggle */}
+        {!showAll && engineeredFeatures.length > MOBILE_VISIBLE_COUNT && (
+          <button
+            type="button"
+            onClick={() => setShowAll(true)}
+            className="mx-auto mt-[45px] flex items-center justify-center gap-[6px] font-plus-jakarta-600 text-[14px] leading-none text-[#ED862E] sm:hidden"
+          >
+            View More
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+            </svg>
+          </button>
+        )}
       </div>
     </section>
   )

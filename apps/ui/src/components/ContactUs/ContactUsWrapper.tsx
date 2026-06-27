@@ -9,14 +9,14 @@ import { trustedLogos, type TrustedLogo } from "@/types/trustedLogos"
 function ContactUsWrapper() {
   return (
     <>
-    <div className="flex min-h-screen flex-col bg-white pb-10">
+    <div className="flex flex-col bg-white pb-10">
       <ContactUsHero />
       <ContactUsBody />
       <div className="w-full py-[30px] lg:px-[70px]">
         <Marquee<TrustedLogo>
           items={[...trustedLogos]}
           getKey={(logo) => logo.name}
-          durationSeconds={60}
+          durationSeconds={110}
           pauseOnHover={false}
           edgeFade
           gapPx={96}

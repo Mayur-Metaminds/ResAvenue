@@ -17,7 +17,7 @@ export function HeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#0A0A0B]"
+      className="relative flex py-18 w-full flex-col overflow-hidden bg-[#0A0A0B]"
     >
       {/* Background image */}
       <Image
@@ -31,12 +31,15 @@ export function HeroSection() {
       />
 
       {/* Container */}
-      <div className="relative z-10 lg:mx-[80px] mx-[16px] mt-[165px] flex flex-1 flex-col">
+      {/* Container */}
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[16px] lg:px-[80px] py-[70px] flex flex-1 flex-col">
         {/* Main Content */}
-        <div className="grid flex-1 grid-cols-1 items-start gap-12 lg:grid-cols-2 ">
+        <div className="grid flex-1 grid-cols-1 lg:grid-cols-2 items-start gap-12 lg:gap-1 lg:grid-cols-2  ">
           {/* Left Column: Content */}
           <HeroContent
             eyebrow="CLOUD BASED HOTEL MANAGEMENT"
+            eyebrowClassName="typo-body2"
+            className="h-full"
             title={
               <HeroTitle>
                 The Complete Revenue & Distribution Platform for{" "}
@@ -67,20 +70,19 @@ export function HeroSection() {
             ]}
           />
           {/* Right Column: Mockup */}
-          <div className="relative z-20 flex h-[210px] w-full items-start sm:h-[480px] lg:absolute lg:top-0 lg:left-[40%] lg:h-[430px] lg:w-[700px] xl:left-[42%] xl:h-[590px] xl:w-[876px]">
+          <div className="relative z-20 flex flex-1 h-full w-full items-center justify-center ">
             {/* Dashboard laptop mockup Lottie */}
             <LazyLottie
               src={HERO_LAPTOP_URL}
               priority="eager"
               loop
               autoplay
-              className="h-full w-full"
+              className="h-full object-top scale-120 lg:scale-130 w-full"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
               aria-label="ResAvenue dashboard preview"
             />
 
-            {/* Glow */}
-            <div className="bg-primary/20 absolute top-1/2 left-1/2 -z-10 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]" />
+            
           </div>
         </div>
       </div>      

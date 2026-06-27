@@ -30,7 +30,7 @@ export function Footer({ nested = false, className }: FooterProps) {
         className
       )}
     >
-      <div className=" px-4 md:px-8">
+      <div className="mx-auto w-full max-w-[1440px] px-4 md:px-8">
         {/* Main Footer Content */}
         <div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-12">
           {/* Brand & Description (Left Column) */}

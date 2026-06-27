@@ -6,9 +6,10 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion"
-import Image from "next/image"
 import { useRef, useState, useSyncExternalStore } from "react"
 
+import { CHANNEL_CONNECT_DATA_DRIVEN_URL } from "@/lib/lottie-urls"
+import { LazyLottie } from "@/components/common/LazyLottie"
 import { FeatureShowcase } from "@/components/common/FeatureShowcase"
 import { CheckedIcon } from "../../../public/svg/commonSvg"
 
@@ -29,7 +30,7 @@ const slideInFromLeft = (i: number) => ({
 
 export function ChannelConnectPortfolioSection() {
   return (
-    <section data-nav-theme="dark" className="w-full bg-white pt-[80px]">
+    <section data-nav-theme="dark" className="w-full bg-white pt-[32px] lg:pt-[80px]">
       {/* One shared gradient card holds both blocks. `overflow-hidden` is
           OMITTED here because it would break the sticky positioning inside
           Block 1; the rounded-[45px] visually clips fine for padded content. */}
@@ -38,10 +39,16 @@ export function ChannelConnectPortfolioSection() {
         style={{ background: PORTFOLIO_GRADIENT }}
       >
         {/* Block 2 — Normal flow with slide-in-from-left CheckedRows. */}
-        <div className="relative p-[20px] md:p-16 lg:px-24 lg:pt-16 lg:pb-24">
+        <div className="relative py-[40px]  px-[20px] md:p-16 lg:px-24 lg:pt-16 lg:pb-24 3xl:mx-auto 3xl:w-full 3xl:max-w-300">
           <div className="relative z-10">
             <FeatureShowcase
               imagePosition="left"
+              // The desktop image lives in `imageSlot` (hidden on mobile); the
+              // mobile image is rendered inside `children` instead. Hide the
+              // whole image column on mobile so the grid doesn't keep an empty
+              // second row + its `gap-10`, which left ~40px of dead gradient
+              // space below the bullets.
+              imageClassName="hidden lg:flex"
               header={{
                 className: "mb-[24px]",
                 eyebrowDotColor: "#FFF",
@@ -62,26 +69,25 @@ export function ChannelConnectPortfolioSection() {
               }}
               imageSlot={
                 <div className="hidden lg:flex justify-center w-full lg:justify-end">
-                  <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[24px] border border-slate-700 bg-slate-800 shadow-2xl">
-                    <Image
-                      src="/images/Channel-Connect/Hero-img.png"
-                      alt="Dashboard Dummy"
-                      fill
-                      className="object-cover opacity-80"
-                    />
-                  </div>
+                  <LazyLottie
+                    src={CHANNEL_CONNECT_DATA_DRIVEN_URL}
+                    priority="lazy"
+                    loop
+                    className="h-full w-full"
+                    rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+                  />
                 </div>
               }
             >
               <div className="flex lg:hidden justify-center w-full mb-6 mt-4">
-                <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[24px] border border-slate-700 bg-slate-800 shadow-2xl">
-                  <Image
-                    src="/images/Channel-Connect/Hero-img.png"
-                    alt="Dashboard Dummy"
-                    fill
-                    className="object-cover opacity-80"
-                  />
-                </div>
+
+                <LazyLottie
+                  src={CHANNEL_CONNECT_DATA_DRIVEN_URL}
+                  priority="lazy"
+                  loop
+                  className="h-full w-full"
+                  rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+                />
               </div>
               <motion.div {...slideInFromLeft(0)}>
                 <CheckedRow text="Track booking sources and identify top-performing channels." />

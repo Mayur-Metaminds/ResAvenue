@@ -44,6 +44,9 @@ const MobileAppWrapper = () => {
         faqs={mobileAppFaqs}
         description="Everything you need to know about ResAvenue Mobile."
         defaultOpenIndex={null}
+        cardClassName="bg-[#F8FAFC]"
+        className="bg-white lg:py-[40px]"
+        titleClassName="tracking-[-1.5px]! lg:text-[36px]! lg:leading-[40px]! lg:tracking-normal!"
       />
       <CtaSection
         title="Create unforgettable events with less effort and more impact."

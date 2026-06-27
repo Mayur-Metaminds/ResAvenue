@@ -33,6 +33,13 @@ type Product = BentoItem & {
   renderBottom?: () => React.ReactNode
 }
 
+// Every card's modal opens to exactly 900px. This height provides enough room
+// for the longest text content (Direct Connect) while comfortably fitting the
+// 400px minimum height of the Lottie animations without clipping them.
+// We use !max-h-none to prevent BentoProductModal's viewport clamp from shrinking
+// it on smaller laptop screens, ensuring the animation is always fully visible.
+const MODAL_HEIGHT = "h-[900px] !max-h-none"
+
 const products: Product[] = [
   {
     id: "direct-connect",
@@ -52,18 +59,15 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-direct-connect.png",
     lottieUrl: DIRECT_CONNECT_OUTER_URL,
     modalLottieUrl: DIRECT_CONNECT_INNER_URL,
-    // Direct Connect's Lottie is 1.66:1. We fill the card width via `slice`
-    // (crops top + bottom equally). A taller slot (~2.2:1) keeps it width-
-    // filling while revealing ~75% of the animation's height instead of ~60%,
-    // and — being bottom-anchored — extends the visible top upward.
+    modalHeight: MODAL_HEIGHT,
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-8 flex h-[160px] md:h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 lg:h-[300px]">
+      <div className="pointer-events-none relative mt-4 z-0 w-full aspect-[796/284] overflow-hidden transition-transform duration-500 group-hover:scale-105">
         <LazyLottie
           src={DIRECT_CONNECT_OUTER_URL}
           priority="lazy"
           loop
           className="h-full w-full"
-          rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
+          rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
         />
       </div>
     ),
@@ -89,15 +93,14 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-channel-connect.png",
     lottieUrl: CHANNEL_CONNECT_OUTER_URL,
     modalLottieUrl: CHANNEL_CONNECT_INNER_URL,
-    // Match Direct Connect's gutters (mx-8) instead of falling through to the
-    // default renderCard fallback, which uses `md:mx-0` (edge-to-edge at md+).
+    modalHeight: MODAL_HEIGHT,
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-8 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 lg:h-[240px]">
+      <div className="pointer-events-none relative mt-4 z-0 mx-8 flex h-[160px] md:h-[200px] lg:h-[300px] items-end justify-center transition-transform duration-500 group-hover:scale-105">
         <LazyLottie
           src={CHANNEL_CONNECT_OUTER_URL}
           priority="lazy"
           loop
-          className="h-full w-full"
+          className="h-full w-full scale-110"
           rendererSettings={{ preserveAspectRatio: "xMidYMax meet" }}
         />
       </div>
@@ -116,14 +119,15 @@ const products: Product[] = [
       "Streamline Every Guest Touchpoint",
       "Manage Every Booking, Automate Payments, Effortlessly",
       "Contactless Convenience for faster Check ins",
+      "Smarter Operations. Better Performance",
       "Automate communications for Stronger Guest Relationships",
-      "Smarter Operations. Better Performance"
     ],
     imagePlaceholder: "/images/placeholder-pms.png",
     lottieUrl: PROPERTY_MANAGEMENT_OUTER_URL,
     modalLottieUrl: PROPERTY_MANAGEMENT_INNER_URL,
+    modalHeight: MODAL_HEIGHT,
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[160px] md:top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
+      <div className="pointer-events-none relative z-0  flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
         <div className="flex h-[198px] w-full items-center justify-center rounded-[20px]  bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
           <LazyLottie
             src={PROPERTY_MANAGEMENT_OUTER_URL}
@@ -148,21 +152,22 @@ const products: Product[] = [
     modalFeatures: [
       "Track Market Insights Before You Act",
       "AI-Driven Rates That Adjust to Demand",
-      ",Manage Revenue, Occupancy, and Trends",
-      ",Project Revenue Potential With Confidence",
+      "Manage Revenue, Occupancy, and Trends",
+      "Project Revenue Potential With Confidence",
       "AI-Powered Dynamic Discounts to Boost Booking",
-      "Price smarter.Earn more."
+      "Price smarter. Earn more."
     ],
     imagePlaceholder: "/images/placeholder-revenue.png",
     lottieUrl: GRAPH_URL,
+    modalHeight: MODAL_HEIGHT,
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[160px] md:top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
-        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
+      <div className="pointer-events-none relative mt-4 w-full z-0 flex items-start justify-start transition-transform duration-500 px-4 group-hover:scale-105">
+        <div className="flex h-[200px] lg:h-[240px] w-full items-start justify-start rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
           <LazyLottie
             src={GRAPH_URL}
             priority="lazy"
             loop
-            className="h-full w-full"
+            className="h-full w-full md:scale-125"
             rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
           />
         </div>
@@ -189,15 +194,16 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-distribution.png",
     lottieUrl: DISTRIBUTION_NETWORK_URL,
     modalLottieUrl: DISTRIBUTION_NETWORK_INNER_URL,
+    modalHeight: MODAL_HEIGHT,
 
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-6 top-[160px] md:top-[120px] z-0 mx-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 md:bottom-8 lg:top-[190px]">
+      <div className="pointer-events-none relative z-0  flex items-center justify-center transition-transform duration-500 group-hover:scale-105 ">
         <div className="relative flex h-[198px] w-full items-center justify-center rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
           <LazyLottie
             src={DISTRIBUTION_NETWORK_URL}
             priority="lazy"
             loop
-            className="h-full w-full"
+            className="h-full w-full scale-105"
             rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
           />
           {/* Absolutely-centered count-up overlay */}
@@ -223,20 +229,21 @@ const products: Product[] = [
     href: "/event-booking",
     lottieUrl: EVENT_OUTER_URL,
     modalLottieUrl: EVENT_INNER_URL,
+    modalHeight: MODAL_HEIGHT,
     modalFeatures: [
       "Stop Managing Events. Start Monetizing Them.",
-      "Sell faster with Instant form generation",
-      "Configure ticket sales in multiple ways - time slots, category, option selections",
+      "Sell faster with Instant form generation",    
       "QR Code-Based Digital Ticketing & Contactless Check-In",
       "From Tickets to Insights — Everything in One Place.",
       "Run Events That Actually Pay Off.",
+      "Configure ticket sales in multiple ways - time slots, category, option selections",
     ],
     imagePlaceholder: "/images/placeholder-events.png",
     // The event animation is very wide (1238×224, ~5.5:1), so in the bottom
     // slot it shrinks to a short strip and hugs the bottom (xMidYMax) with a
     // big gap above. Center it vertically so it sits higher in the card.
     renderBottom: () => (
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 lg:mx-10 lg:h-[240px]">
+      <div className="pointer-events-none relative mt-4 z-0 mx-6 flex h-[200px] items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 lg:mx-10 lg:h-[240px]">
         <LazyLottie
           src={EVENT_OUTER_URL}
           priority="lazy"
@@ -258,17 +265,15 @@ const products: Product[] = [
     anchor: "bottom-right",
     modalFeatures: [
       "High-conversion, mobile-first brand websites ",
-      "Choose from customisable template or opt for full custom design. ",
       "Easy-to-use CMS to update content and images",
       "Engineered for Speed, SEO, and Revenue Growth",
       "Designed to Convert. Built to Book.",
+      "Choose from customisable template or opt for full custom design.",
     ],
     imagePlaceholder: "/images/placeholder-website.png",
     lottieUrl: HOTEL_WEBSITE_OUTER_URL,
     modalLottieUrl: HOTEL_WEBSITE_INNER_URL,
-    // Fixed height so the expanded modal covers the two cards behind it
-    // (Intelligence + Distribution row). ~2 card rows + the gap between them.
-    modalHeight: "h-[824px]",
+    modalHeight: MODAL_HEIGHT,
   },
 ]
 
@@ -281,7 +286,8 @@ export function BentoProductsSection() {
         background:
           "linear-gradient(225deg, rgba(240, 242, 253, 0.33) 0%, rgba(61, 98, 129, 0.00) 100%)",
       }}
-      cardClassName="p-6 md:p-5 xl:p-8 justify-between h-[400px]"
+      cardClassName="pt-6 md:pt-5 xl:pt-8 px-6 md:px-5 xl:px-8"
+      gridClassName="relative grid grid-cols-1 gap-6 md:grid-cols-12"
       header={
         <SectionHeader
           className="mb-5 lg:mb-17"
@@ -301,7 +307,7 @@ export function BentoProductsSection() {
       }
       renderCard={(product) => (
         <>
-          <div className="relative z-10 mb-6">
+          <div className="relative z-10">
             <p
               className={cn(
                 "font-plus-jakarta-700 mb-[6px] text-[12px] leading-[17.6px] tracking-[1.5px] uppercase",
@@ -331,19 +337,19 @@ export function BentoProductsSection() {
           {product.renderBottom ? (
             product.renderBottom()
           ) : product.lottieUrl ? (
-            <div className="absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[200px] items-end justify-center transition-transform duration-500 group-hover:scale-105 pointer-events-none md:mx-0 lg:h-[240px]">
+            <div className="relative mt-8 px-4 z-0 flex h-[200px] items-center justify-center pointer-events-none">
               <LazyLottie
                 src={product.lottieUrl}
                 priority="lazy"
                 loop
-                className="h-full w-full"
+                className="h-full w-full scale-125"
                 rendererSettings={{ preserveAspectRatio: "xMidYMax meet" }}
               />
             </div>
           ) : (
             <div
               className={cn(
-                "absolute right-0 bottom-0 left-0 z-0 mx-6 h-[180px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105 md:mx-8 lg:h-[220px]",
+                "relative mt-auto z-0 mx-6 h-[180px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105 md:mx-8 lg:h-[220px]",
                 product.isDark ? "opacity-90" : "opacity-100"
               )}
               style={{

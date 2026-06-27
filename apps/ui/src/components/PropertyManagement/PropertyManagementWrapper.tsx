@@ -30,8 +30,9 @@ const PropertyManagementWrapper = () => {
         primaryButtonClassName="text-nowrap bg-[#ED862E] text-white shadow-[0_8px_24px_rgba(237,134,46,0.45)] hover:bg-[#d97726] hover:bg-none justify-center max-md:px-2.5 max-md:py-[8.5px]"
         secondaryButtonClassName="text-nowrap inline-flex items-center justify-center max-md:px-4 max-md:py-2.25"
         actionsClassName="flex-col min-[330px]:flex-row"
-        // Mobile-only type overrides; md+ restores the (correct) desktop values.
-        titleClassName="max-sm:w-[295px] mx-auto [font-family:var(--font-plus-jakarta)] max-sm: leading-[51.52px] tracking-[-0.5px] md:[font-family:var(--font-source-sans)] md:leading-[1.15] md:tracking-tight"
+        // Plus Jakarta Sans, 500 weight, 51.52px line-height, -0.5px tracking on
+        // both breakpoints; only the font-size changes (32px mobile, 48px desktop).
+        titleClassName="max-sm:w-[295px] mx-auto [font-family:var(--font-plus-jakarta)] font-medium text-[32px] md:text-[48px] lg:text-[48px] leading-[51.52px] tracking-[-0.5px]"
         descriptionClassName="text-[16px] font-normal leading-[30.6px] md:text-[18px] md:font-light md:leading-relaxed"
         showFooter
       />

@@ -101,10 +101,17 @@ const services = [
 ]
 
 export function PlanSelectionSection() {
-  const [selectedId, setSelectedId] = useState<string | null>(null)
+  // Multi-select: each service toggles on/off independently of the others.
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
 
-  const selectService = (id: string) => {
-    setSelectedId((prev) => (prev === id ? null : id))
+  const toggleService = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+
+      return next
+    })
   }
 
 
@@ -131,19 +138,19 @@ export function PlanSelectionSection() {
             </>
           }
           description="Explore powerful tools designed to simplify operations, increase bookings, and maximize revenue."
-          descriptionClassName="typo-body-1 text-slate-400"
+          descriptionClassName="typo-body-1 text-[#64748B]"
         />
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 mx-auto w-full xl:px-[80px] ">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] xl:px-[80px] ">
         <div className="flex flex-col gap-8 rounded-[32px] py-[48px] border border-slate-100 bg-white px-[12px] lg:px-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]  lg:flex-row lg:gap-[48.34px] ">
           {/* Left Column */}
           <div className="flex w-full flex-col border-slate-300 lg:w-[336px] lg:border-r">
             <h3 className=" typo-h1 text-[24px] lg:text-[30px] text-[#010C28] mr-[23px]">
               Ready to get started?
             </h3>
-            <p className="mb-0 lg:mb-10 typo-body1 leading-[22.8px] text-[14px] lg:w-[287px] text-slate-400">
+            <p className="mb-0 lg:mb-10 typo-body1 leading-[22.8px] text-[14px] lg:w-[287px] text-[#64748B]">
               Our specialists will build a custom package based on your
               team&apos;s specific requirements.
             </p>
@@ -154,7 +161,7 @@ export function PlanSelectionSection() {
                 className={buttonVariants({
                   variant: "primary",
                   size: "default",
-                  className: "gap-3 px-8 py-4 typo-body5 !rounded-[16px]",
+                  className: "gap-3 px-[15px] py-[15px] typo-body5 !rounded-[6px]",
                 })}
               >
                 Request Custom Quote
@@ -176,7 +183,7 @@ export function PlanSelectionSection() {
               <h4 className="mb-[4px] typo-h2 text-[20px] font-medium text-[#010C28]">
                 Select your core services
               </h4>
-              <p className="typo-body3 font-normal text-slate-400">
+              <p className="typo-body3 font-normal text-[#64748B]">
                 Organize your operational stack by choosing the professional
                 modules you need.
               </p>
@@ -184,13 +191,15 @@ export function PlanSelectionSection() {
 
             <div className="flex flex-wrap gap-1 lg:gap-4">
               {services.map((service) => {
-                const isSelected = selectedId === service.id
+                const isSelected = selectedIds.has(service.id)
                 const Icon = service.icon
 
                 return (
                   <button
                     key={service.id}
-                    onClick={() => selectService(service.id)}
+                    type="button"
+                    aria-pressed={isSelected}
+                    onClick={() => toggleService(service.id)}
                     className={`group relative cursor-pointer flex min-h-[171px] w-full flex-col items-start gap-4 rounded-[16px] bg-[#010C28] p-[21px] text-left transition-all duration-300 outline-none sm:w-[243px] ${isSelected
                         ? "border-2 border-[#ED862E] shadow-[0_0_20px_rgba(237,134,46,0.15)]"
                         : "border-2 border-transparent hover:border-slate-700"

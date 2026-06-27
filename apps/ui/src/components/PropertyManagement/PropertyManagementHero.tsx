@@ -2,25 +2,26 @@ import type React from "react"
 
 import { ArrowRight } from "lucide-react"
 
+import { LazyLottie } from "@/components/common/LazyLottie"
 import { HeroContent } from "@/components/landing/HeroContent"
 import { HeroTitle } from "@/components/landing/HeroTitle"
+import { CHANNEL_CONNECT_HERO_URL } from "@/lib/lottie-urls"
 
 function PropertyManagementHero() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center"
       style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}
     >
-      <div className="relative z-10 flex w-full flex-1 flex-col px-[15px] pt-[106px] lg:px-20">
-        {/* Main Content */}
-        <div className="flex flex-1 flex-col items-center justify-between gap-8 pb-8 md:gap-12 lg:flex-row lg:justify-evenly lg:gap-15 lg:pb-0">
-          {/* Left Column: Content */}
-          <div className="my-auto flex w-full flex-col justify-center lg:w-[50%] lg:py-20 xl:w-[45%]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20">
+        {/* Left Column: Content */}
+        <div className="relative z-10 flex w-full flex-1 flex-col items-start">
             <HeroContent
               className="lg:w-[499px]"
               eyebrow="ONE PLATFORM. TOTAL CONTROL. BETTER REVENUE."
               eyebrowColor="#fff"
+              eyebrowClassName="max-sm:w-[288px]"
               title={
                 <HeroTitle
                   style={
@@ -39,8 +40,7 @@ function PropertyManagementHero() {
                 <span className="typo-body1 text-white/65 lg:w-129">
                   Your front desk, bookings, payments, housekeeping, and revenue—all
                   unified into one intelligent system.
-                  <br />
-                  Drive more direct bookings. Eliminate operational chaos. Deliver
+                  <br className="hidden lg:block" /> Drive more direct bookings. Eliminate operational chaos. Deliver
                   seamless guest experiences at scale.
                 </span>
               }
@@ -65,10 +65,15 @@ function PropertyManagementHero() {
             />
           </div>
 
-          {/* Right Column: mockup (dummy placeholder — swap with the real asset) */}
-          <div className="w-full min-w-0 flex-1 self-center lg:pt-15">
-            <div className="mx-auto aspect-square w-full max-w-[420px] rounded-3xl bg-white/5" />
-          </div>
+        {/* Right Column: mockup (dummy placeholder — swap with the real asset) */}
+        <div className="relative z-10 flex w-full flex-1 items-center justify-center">
+          <LazyLottie
+            src={CHANNEL_CONNECT_HERO_URL}
+            priority="lazy"
+            loop
+            className="h-full w-full max-w-2xl"
+            aria-label="Property management animation"
+          />
         </div>
       </div>
     </section>

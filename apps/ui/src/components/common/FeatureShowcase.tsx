@@ -18,6 +18,11 @@ export interface FeatureShowcaseProps {
   imagePosition?: "left" | "right"
   /** Content alignment for the header */
   headerAlignment?: "left" | "center"
+  /** Where the image sits on MOBILE (below lg). Defaults to "bottom" — the
+      image stacks under the content. Set to "top" to render the image above
+      the children (e.g. at the top of an interactive points list) on mobile;
+      the desktop two-column layout is unchanged either way. */
+  imageMobilePosition?: "top" | "bottom"
 }
 
 function FeatureShowcaseRoot({
@@ -28,11 +33,14 @@ function FeatureShowcaseRoot({
   imageClassName,
   imagePosition = "right",
   headerAlignment = "left",
+  imageMobilePosition = "bottom",
 }: FeatureShowcaseProps) {
+  const imageOnTopMobile = imageMobilePosition === "top"
+
   return (
     <div
       className={cn(
-        "grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24",
+        "grid grid-cols-1 items-center gap-16 lg:grid-cols-2",
         className
       )}
     >
@@ -55,14 +63,24 @@ function FeatureShowcaseRoot({
             )}
           />
         )}
+        {/* Mobile-only: render the image at the top of the content (e.g. above
+            an interactive points list). On desktop it's hidden here and shown
+            in its own column. Opt in via `imageMobilePosition="top"`. */}
+        {imageOnTopMobile && (
+          <div className="relative mb-4 w-full lg:hidden">{imageSlot}</div>
+        )}
         <div className="flex w-full flex-col gap-4 ">{children}</div>
       </div>
 
-      {/* Image Column */}
+      {/* Image Column — hidden on mobile when the image is shown on top. The
+          `hidden lg:flex` is appended AFTER imageClassName so it wins over a
+          caller's `flex` (cn = twMerge keeps the last conflicting class). */}
       <div
         className={cn(
           "relative flex w-full items-center justify-center",
-          imagePosition === "left" ? "order-2 lg:order-1" : "order-2 lg:order-2", imageClassName
+          imagePosition === "left" ? "order-2 lg:order-1" : "order-2 lg:order-2",
+          imageClassName,
+          imageOnTopMobile && "hidden lg:flex"
         )}
       >
         {imageSlot}
@@ -77,6 +95,12 @@ export interface FeatureShowcaseCardProps
   title: React.ReactNode
   subtitle?: React.ReactNode
   isActive?: boolean
+  /**
+   * Opt-in (light variant only): when true, the active card shows the orange
+   * partial-gradient border + subtle fill. Defaults to false so other callers
+   * of the light variant keep the plain bordered active state.
+   */
+  activeEffect?: boolean
   variant?: "default" | "compact" | "interactive" | "dark" | "light"
   as?: "div" | "button"
 }
@@ -86,6 +110,7 @@ function FeatureShowcaseCard({
   title,
   subtitle,
   isActive = false,
+  activeEffect = false,
   variant = "default",
   as = "div",
   className,
@@ -119,45 +144,59 @@ function FeatureShowcaseCard({
   }
 
   if (variant === "interactive") {
+    const collapse = !isActive
     return (
       <Comp
         className={cn(
-          "flex w-full items-start gap-4 rounded-2xl border p-6 text-left transition-all duration-300",
+          "group flex w-full gap-[12px] rounded-[14px] border py-[10px] px-[16px] text-left transition-all duration-300 outline-none cursor-pointer",
           isActive
-            ? "border-[#ED862E] bg-[rgba(255,240,226,0.68)] shadow-[0_4px_4px_0_rgba(237,134,46,0.15)]"
-            : "border-[#E2E8F0] bg-transparent hover:border-[#ED862E]/30 hover:bg-white/50",
+            ? "min-h-[76px] border-[#ED862E]/50 bg-gradient-to-r from-[#FFF5ED] to-white shadow-[0_2px_12px_-4px_rgba(237,134,46,0.15)] ring-1 ring-[#ED862E]/10 items-center"
+            : "border-[#E2E8F0] bg-transparent hover:border-[#ED862E]/40 hover:bg-slate-50 hover:shadow-sm items-center",
           className
         )}
         {...rest}
       >
         <div
           className={cn(
-            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-colors",
+            "flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-[8px] transition-all duration-300 [&>svg]:w-[18px] [&>svg]:h-[18px]",
             isActive
-              ? "bg-[#ED862E]/10 text-[#ED862E]"
-              : "bg-white text-[#94A3B8]"
+              ? "bg-[#ED862E]/15 text-[#ED862E] scale-105"
+              : "bg-slate-100 text-[#94A3B8] group-hover:bg-slate-200/50 group-hover:text-[#64748B]"
           )}
         >
           {icon}
         </div>
-        <div className="flex flex-col gap-1 pt-1">
+        <div className="flex flex-col gap-0">
           <h3
             className={cn(
-              "font-plus-jakarta-700 text-[18px]",
-              isActive ? "text-[#010C28]" : "text-[#64748B]"
+              "font-plus-jakarta-700 text-[14px] lg:text-[15px] transition-colors duration-300",
+              isActive ? "text-[#010C28]" : "text-[#64748B] group-hover:text-[#475569]"
             )}
           >
             {title}
           </h3>
           {subtitle && (
-            <p
+            <div
               className={cn(
-                "font-source-sans-400 text-[14px] leading-[24px]",
-                isActive ? "text-[#475569]" : "text-[#94A3B8]"
+                "grid overflow-hidden transition-all duration-300 ease-in-out",
+                collapse ? "grid-rows-[0fr] opacity-0" : "grid-rows-[1fr] opacity-100"
               )}
             >
-              {subtitle}
-            </p>
+              <div className="min-h-0">
+                <p
+                  className={cn(
+                    // Height is natural here; the active button reserves a fixed
+                    // min-h-[76px] (title + 2-line subtitle + padding) so every
+                    // active card is the same height AND `items-center` can put
+                    // the icon at the true vertical midpoint of the text.
+                    "font-source-sans-400 mt-[2px] text-[12px] leading-[16px] transition-colors duration-300",
+                    isActive ? "text-[#475569]" : "text-[#94A3B8] group-hover:text-[#64748B]"
+                  )}
+                >
+                  {subtitle}
+                </p>
+              </div>
+            </div>
           )}
         </div>
       </Comp>
@@ -206,18 +245,46 @@ function FeatureShowcaseCard({
 
   if (variant === "light") {
     const collapse = isActive === false
+    const showActiveEffect = activeEffect && isActive
     return (
       <Comp
         className={cn(
-          "flex items-start gap-4 rounded-[16px] border border-slate-200 bg-white p-5 transition-all hover:bg-slate-50 shadow-sm",
+          "relative flex items-start gap-4 rounded-[16px] border bg-white p-5 transition-all hover:bg-slate-50 shadow-sm",
+          showActiveEffect ? "border-transparent" : "border-slate-200",
           className
         )}
         {...rest}
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+        {/* Active state (opt-in via `activeEffect`): partial orange gradient
+            border (#ED862E → transparent) via mask-composite, plus a subtle
+            orange fill. The overlay is offset -1px so the border sits on the
+            card's outer edge (aligned with the shadow) and reads as a single
+            border instead of a ring inset from the edge. */}
+        {activeEffect && (
+          <div
+            className={cn(
+              "pointer-events-none absolute -inset-px z-0 transition-opacity duration-300",
+              isActive ? "opacity-100" : "opacity-0"
+            )}
+          >
+            {/* Subtle orange fill, inset to the card's padding box. */}
+            <div className="absolute inset-px rounded-[16px] bg-gradient-to-r from-[rgba(237,134,46,0.08)] to-transparent" />
+            {/* 1px orange gradient border on the card's outer edge. */}
+            <div
+              className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-[#ED862E] to-transparent p-px"
+              style={{
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+                maskComposite: "exclude",
+              }}
+            />
+          </div>
+        )}
+        <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
           {icon}
         </div>
-        <div className="flex flex-col pt-2 text-left">
+        <div className="relative z-10 flex flex-col pt-2 text-left">
           <h3 className="font-plus-jakarta-700 text-[16px] text-[#010C28]">
             {title}
           </h3>

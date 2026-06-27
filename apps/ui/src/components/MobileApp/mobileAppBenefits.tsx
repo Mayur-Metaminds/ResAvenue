@@ -27,7 +27,7 @@ const benefits = [
 
 const mobileAppBenefits = () => {
     return (
-        <section data-nav-theme="light" className='bg-white w-full px-4 md:px-8 py-[60px] '>
+        <section data-nav-theme="light" className='bg-white w-full px-4 md:px-8 py-[40px] '>
             <SectionHeader
                 eyebrow={<span>BENEFITS</span>}
                 eyebrowClassName="typo-body2 text-[14px] text-[#ED862E] text-center"

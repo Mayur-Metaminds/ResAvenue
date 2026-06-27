@@ -52,7 +52,7 @@ const PropertyManagementHousekeeping = () => {
   return (
     <section
       data-nav-theme="dark"
-      className="w-full bg-cover bg-center bg-no-repeat px-4 py-[60px] md:px-8 lg:py-[100px]"
+      className="w-full bg-cover bg-center bg-no-repeat px-4 py-[60px] md:px-[42px] lg:py-[108px]"
       style={{ backgroundImage: "url('/images/Property-Management/gradiantbg.png')" }}
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">

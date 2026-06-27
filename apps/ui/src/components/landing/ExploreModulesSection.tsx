@@ -347,7 +347,7 @@ export function ExploreModulesSection() {
       className="relative w-full bg-[#010C28] text-white"
     >
       {/* Header — in normal flow, scrolls away with the page */}
-      <div className="px-4 lg:px-1 pt-24 lg:pt-20">
+      <div className="mx-auto w-full max-w-[1440px] px-4 lg:px-1 pt-24 lg:pt-20">
         <SectionHeader
           className="mb-[25px]"
           eyebrow="CORE FEATURES"
@@ -369,7 +369,7 @@ export function ExploreModulesSection() {
       <div ref={sectionRef} style={{ height: sectionHeight }}>
         {/* Sticky block — pins below the fixed navbar so the tabs row stays visible */}
         <div className="sticky top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden">
-          <div className="flex w-full flex-col px-4 lg:px-1 h-full justify-center">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 lg:px-1 h-full justify-center">
             <div className="flex h-full flex-col ">
               {/* Tabs */}
               <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center">
@@ -389,10 +389,10 @@ export function ExploreModulesSection() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
+              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
                 {/* 3D Wheel */}
                 <div
-                  className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
+                  className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:self-center lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
                   style={{ perspective: "1200px" }}
                 >
                   <div
@@ -427,7 +427,7 @@ export function ExploreModulesSection() {
                       <img
                         src={activeFeature.image}
                         alt={activeFeature.label}
-                        className="h-full w-full object-contain object-center p-2 lg:p-0"
+                        className="h-full w-full rounded-[20px] object-contain object-center p-2 lg:p-0"
                       />
                     </motion.div>
                   </AnimatePresence>

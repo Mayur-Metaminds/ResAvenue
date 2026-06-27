@@ -5,11 +5,32 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion"
-import Image from "next/image"
 import { useRef, useState } from "react"
 
+import { LazyLottie } from "@/components/common/LazyLottie"
+import { CONTROL_YOUR_PORTFOLIO_URL } from "@/lib/lottie-urls"
 import { FeatureShowcase } from "@/components/common/FeatureShowcase"
+import { SectionHeader } from "@/components/landing/SectionHeader"
 import { PortfolioIcon1, PortfolioIcon2, PortfolioIcon3 } from "../../../public/svg/Channel-Connect"
+
+const portfolioHeader = {
+  eyebrow: "PORTFOLIO CONTROL, SIMPLIFIED",
+  eyebrowColor: "#ED862E",
+  eyebrowClassName: "mb-0",
+  eyebrowDotColor: "#ED862E",
+  title: "Control Your Portfolio\nOn the Go",
+  titleClassName: "mb-0",
+  titleHighlight: "Control Your Portfolio",
+  titleColor: "#010C28",
+  highlightGradient: "linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)",
+  description: (
+    <span className="hidden lg:block font-source-sans-400 text-[16px] leading-[26px] text-[#475569]">
+      Never miss a critical update. Our premium mobile application
+      gives revenue managers real-time alerts and &quot;One-Touch&quot; rate
+      overriding capabilities.
+    </span>
+  ),
+}
 
 const portfolioCards = [
   {
@@ -53,62 +74,61 @@ export function ChannelConnectMobileAppSection() {
   })
 
   return (
-    <section data-nav-theme="light" className="w-full bg-white ">
+    <section data-nav-theme="light" className="w-full bg-white mt-[50px]">
       <div
-        className="flex flex-col gap-[32px] rounded-[45px] bg-white max-sm:pb-30"
+        className="flex flex-col gap-[32px] rounded-[45px] bg-white"
       >
-        {/* Scroll-driven sticky reveal at all breakpoints. Note: below lg the
-            single-column stack can exceed the pinned viewport height on short
-            screens, clipping the bottom card. */}
-        <div ref={block1Ref} className="relative h-[300vh]">
-          <div className="sticky top-20 flex h-[calc(100dvh-5rem)] w-full items-start lg:items-center">
+        {/* Scroll-driven sticky reveal at all breakpoints. The sticky pane is a
+            fixed height (viewport minus the nav) that centers its content, so it
+            never grows as the active card expands on scroll. On very short
+            screens the stack can still exceed that height — overflow-hidden
+            clips it rather than letting the pane grow. */}
+        <div ref={block1Ref} className="relative h-[200vh] lg:h-[300vh]">
+          {/* On mobile the eyebrow + title scroll out of view before the pin
+              engages, freeing the pinned viewport for the phone image + cards.
+              Hidden at lg+, where the header renders inside FeatureShowcase. */}
+          <div className="px-[12px] pt-[8px] pb-[20px] lg:hidden">
+            <SectionHeader
+              {...portfolioHeader}
+              className="items-start gap-[12px] text-left"
+            />
+          </div>
+          <div className="sticky top-20 flex w-full h-[calc(100svh-80px)] items-center justify-center overflow-hidden">
             <div className="w-full">
-              <div className="relative p-[12px] md:px-16 lg:px-24 lg:pb-16">
+              <div className="relative p-[12px] pb-[56px] md:px-16 lg:px-24 lg:pb-16 3xl:mx-auto 3xl:w-full 3xl:max-w-300">
                 <div className="relative z-10">
                   <FeatureShowcase
                     imagePosition="left"
+                    imageClassName="hidden lg:flex"
                     header={{
-                      className: "mb-[16px] lg:mb-[24px]",
-                      eyebrow: "PORTFOLIO CONTROL, SIMPLIFIED",
-                      eyebrowColor: "#ED862E",
-                      eyebrowClassName: "mb-0",
-                      eyebrowDotColor: "#ED862E",
-                      title: "Control Your Portfolio\nOn the Go",
-                      titleClassName: "mb-0",
-                      titleHighlight: "Control Your Portfolio",
-                      titleColor: "#010C28",
-                      highlightGradient: "linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)",
-                      description: (
-                        <span className="hidden lg:block font-source-sans-400 text-[16px] leading-[26px] text-[#475569]">
-                          Never miss a critical update. Our premium mobile application
-                          gives revenue managers real-time alerts and &quot;One-Touch&quot; rate
-                          overriding capabilities.
-                        </span>
-                      ),
+                      ...portfolioHeader,
+                      className: "hidden lg:flex mb-[16px] lg:mb-[24px]",
                     }}
                     imageSlot={
                       <div className="hidden lg:flex justify-center w-full">
-                        <div className="relative flex aspect-[3/4] w-full max-w-[320px] items-center justify-center overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl">
-                          <Image
-                            src="/images/Channel-Connect/Hero-img.png"
-                            alt="Mobile App"
-                            fill
-                            className="object-cover"
+                        <div className="relative w-full  overflow-hidden rounded-[24px]">
+                          <LazyLottie
+                            src={CONTROL_YOUR_PORTFOLIO_URL}
+                            priority="lazy"
+                            loop
+                            className="h-full w-full"
+                            rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                           />
                         </div>
                       </div>
                     }
                   >
-                    {/* Phone image hidden below lg so the header + all 3 cards
-                        fit within the pinned viewport (otherwise the 3rd tab
-                        falls below the fold). Shown again at lg+. */}
-                    <div className="hidden justify-center w-full mb-3 mt-1">
-                      <div className="relative flex aspect-[3/4] w-[120px] md:w-[180px] items-center justify-center overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-xl">
-                        <Image
-                          src="/images/Channel-Connect/Hero-img.png"
-                          alt="Mobile App"
-                          fill
-                          className="object-cover"
+                    {/* Portfolio animation shown below lg (above the cards)
+                        since the desktop imageSlot is hidden on mobile. Hidden
+                        at lg+ where imageSlot renders the visual on the left. */}
+                    <div className="flex lg:hidden justify-center w-full mb-2 mt-0">
+                      <div className="relative w-full max-w-[520px] aspect-[1468/695] overflow-hidden rounded-[20px]">
+                        <LazyLottie
+                          src={CONTROL_YOUR_PORTFOLIO_URL}
+                          priority="lazy"
+                          loop
+                          className="h-full w-full"
+                          rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                         />
                       </div>
                     </div>
@@ -120,6 +140,7 @@ export function ChannelConnectMobileAppSection() {
                         title={card.title}
                         subtitle={card.subtitle}
                         isActive={activeIndex === i}
+                        activeEffect
                       />
                     ))}
                   </FeatureShowcase>

@@ -145,12 +145,12 @@ const PropertyManagementTools = () => {
         onMouseMove={onMouseMove}
         onMouseUp={stopDrag}
         onMouseLeave={stopDrag}
-        className="flex cursor-grab gap-4 overflow-x-auto pt-6 select-none snap-x snap-mandatory active:cursor-grabbing sm:gap-6 sm:px-4 lg:px-20 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-4 overflow-x-auto pt-6 select-none snap-x snap-mandatory sm:gap-6 sm:px-4 lg:px-20 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {toolCards.map((card) => (
           <div
             key={card.id}
-            className="flex h-[365px] w-[calc(100vw-80px)] shrink-0 snap-center flex-col rounded-2xl border border-[#ED862E80] bg-white p-5 first:ml-10 last:mr-10 sm:h-118 sm:w-102.5 sm:first:ml-0 sm:last:mr-0"
+            className="group cursor-pointer flex h-[365px] w-[calc(100vw-80px)] shrink-0 snap-center flex-col rounded-2xl border border-[#ED862E80] bg-white p-5 first:ml-10 last:mr-10 sm:h-118 sm:w-102.5 sm:first:ml-0 sm:last:mr-0"
           >
             <div className="flex items-start gap-3">
               <span className="inline-flex shrink-0 items-center justify-center rounded-[12px] bg-[#FEF3E2] p-2.5 text-[#ED862E]">
@@ -166,15 +166,19 @@ const PropertyManagementTools = () => {
               </div>
             </div>
 
-            {card.learnMore && (
-              <Button
-                type="button"
-                variant="secondary"
-                className="mt-4 self-start rounded-full border border-black/20 bg-transparent px-5 py-[11.25px] text-[12.7px] font-bold uppercase leading-[19.5px] tracking-[0.39px] text-[#000] [font-family:'Inter',sans-serif] hover:border-[#ED862E] hover:text-[#ED862E]"
-              >
-                LEARN MORE
-              </Button>
-            )}
+            {/* Button is hidden by default (image gets the extra space) and
+                reveals on hover for every card, collapsing the image to make room. */}
+            <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-in-out group-hover:grid-rows-[1fr] group-hover:opacity-100">
+              <div className="overflow-hidden">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="hover:cursor-pointer mt-4 self-start rounded-full border border-black/20 bg-transparent px-5 py-[11.25px] text-[12.7px] font-bold uppercase leading-[19.5px] tracking-[0.39px] text-[#000] [font-family:'Inter',sans-serif] hover:border-[#ED862E] hover:text-[#ED862E]"
+                >
+                  LEARN MORE
+                </Button>
+              </div>
+            </div>
 
             {/* Illustration */}
             <div className="relative mt-5 w-full flex-1 overflow-hidden rounded-xl">
