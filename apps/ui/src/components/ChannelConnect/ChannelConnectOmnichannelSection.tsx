@@ -177,9 +177,9 @@ export function ChannelConnectOmnichannelSection() {
                   style={{ WebkitTextFillColor: "#010C28" }}
                 >
                   Omnichannel
-                  <br className="md:hidden" />
+                  <br className="" />
                 </span>
-                Connectivity
+                Connectivity{" "}
                 <span className="md:hidden"> </span>
                 Ecosystem
               </SectionHeader.Highlight>
