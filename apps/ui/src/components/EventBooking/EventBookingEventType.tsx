@@ -57,10 +57,11 @@ const eventTypes: EventType[] = [
 
 const EventBookingEventType = () => {
     return (
-        <section data-nav-theme="light" className="w-full overflow-hidden bg-white px-4 py-[60px] md:px-8 lg:py-[60px]">
+        <section data-nav-theme="light" className="w-full overflow-hidden bg-white px-4 py-[30px] md:px-8 lg:py-[40px]">
             <div className="mx-auto">
                 <SectionHeader
                     className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
+                    eyebrowClassName="mb-0"
                     descriptionClassName="typo-body1 text-center text-[#64748B]"
                     titleClassName="xl:leading-[56.5px] xl:tracking-normal"
                     title={
