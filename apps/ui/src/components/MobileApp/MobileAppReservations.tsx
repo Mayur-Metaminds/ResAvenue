@@ -13,7 +13,7 @@ const MobileAppReservations = () => {
     return (
         <section
             data-nav-theme="dark"
-            className='w-full bg-cover bg-center bg-no-repeat py-[34px] sm:py-[40px]'
+            className='w-full bg-cover bg-center bg-no-repeat py-[34px] sm:py-[40px] overflow-x-hidden'
             style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
         >
             <div className='mx-auto flex w-full max-w-[1920px] gap-[17px] lg:gap-16 flex-col lg:flex-row px-[16px] sm:px-[80px]'>

@@ -11,7 +11,7 @@ const alertsPoints = [
 
 const MobileAppAlerts = () => {
     return (
-        <section data-nav-theme="light" className='bg-white w-full py-[34px] sm:py-[40px]'>
+        <section data-nav-theme="light" className='bg-white w-full py-[34px] sm:py-[40px] overflow-x-hidden'>
             <div className='mx-auto flex w-full max-w-[1920px] gap-[17px] lg:gap-16 flex-col lg:flex-row px-[16px] sm:px-[80px]'>
                 <div className='sm:flex-1 min-w-0 sm:py-[60px] lg:py-[100px] text-left'>
                     <SectionHeader
