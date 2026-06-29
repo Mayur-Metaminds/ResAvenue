@@ -39,12 +39,14 @@ with a single, powerful enterprise solution designed for scale.'
 
           <div className="mt-6 flex justify-center md:mt-8">
             <Button
+              key="demo"
               variant="primary"
               size="default"
               icon={<ArrowRight className="h-4 w-4" />}
-              className="h-[44px] gap-[7.6px] pt-[9px] pr-[26.5px] pb-[10px] pl-[25.5px] font-['Plus_Jakarta_Sans'] font-semibold text-[16px] leading-[24px] lg:px-[28px] lg:pt-[17px] lg:pb-[18px] lg:text-[15px]"
+              // Exact pixel paddings & gap applied responsively
+              className="gap-[7.6px] pt-[8.5px] pr-[12px] lg:pr-[10.5px] pb-[8.5px] pl-[11px] lg:pl-[9.5px] font-['Plus_Jakarta_Sans'] font-semibold text-[16px] leading-[24px] lg:px-[28px] lg:pt-[17px] lg:pb-[18px] lg:text-[15px]"
             >
-              Request Demo
+              Request a Demo
             </Button>
           </div>
 
