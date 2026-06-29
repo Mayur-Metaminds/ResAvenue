@@ -181,9 +181,8 @@ function EventBookingCoreFeatures() {
                 <motion.div
                   layout
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className={`w-full overflow-hidden rounded-[21.795px] bg-slate-100 ${
-                    isExpanded ? "min-h-[200px] flex-1" : "aspect-[4/3.3]"
-                  }`}
+                  className={`w-full overflow-hidden rounded-[21.795px] bg-slate-100 ${isExpanded ? "min-h-[200px] flex-1" : "aspect-[4/3.3]"
+                    }`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -192,7 +191,7 @@ function EventBookingCoreFeatures() {
                     className="object-fit h-full w-full transition-transform duration-300 group-hover:scale-[1.1]"
                   />
                 </motion.div>
-                <div className="px-2 py-4 md:p-5">
+                <div className="flex flex-1 flex-col px-2 py-4 md:p-5">
                   <h3 className="font-plus-jakarta-700 text-[20px] leading-[22.4px] text-black xl:text-[21.795px] xl:leading-normal">
                     {f.title}
                   </h3>
@@ -221,7 +220,7 @@ function EventBookingCoreFeatures() {
                     type="button"
                     onClick={() => toggleFeature(f.id)}
                     aria-expanded={isExpanded}
-                    className="font-source-sans-400 mt-3 inline-flex items-center gap-1.5 text-[16px] leading-[22.4px] text-[#ED862E] opacity-100 transition-opacity duration-300 lg:opacity-0 lg:group-hover:opacity-100 xl:text-[16.35px] xl:leading-[26.16px]"
+                    className="font-source-sans-400 mt-auto inline-flex items-center gap-1.5 pt-3 text-[16px] leading-[22.4px] text-[#ED862E] opacity-100 transition-opacity duration-300 lg:opacity-0 lg:group-hover:opacity-100 xl:text-[16.35px] xl:leading-[26.16px]"
                   >
                     {isExpanded ? "Show less" : "Learn more"}
                     <svg
@@ -234,9 +233,8 @@ function EventBookingCoreFeatures() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       aria-hidden="true"
-                      className={`transition-transform duration-300 group-hover:translate-x-1 ${
-                        isExpanded ? "rotate-90" : ""
-                      }`}
+                      className={`transition-transform duration-300 group-hover:translate-x-1 ${isExpanded ? "rotate-90" : ""
+                        }`}
                     >
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
