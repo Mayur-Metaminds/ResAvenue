@@ -125,10 +125,10 @@ export function ScrollRevealShowcase({
                 is active. Below lg the stacked list is the layout, so the image
                 is hidden to keep all 4 points within the pinned screen (it was
                 clipping them at the md/tablet breakpoint). */}
-            <div className="relative z-10 hidden h-full w-full lg:block lg:w-2/4">
+            <div className="relative z-10 hidden h-full w-full lg:flex lg:items-center lg:justify-center lg:w-2/4">
               <div
                 className={cn(
-                  "relative mx-auto h-full w-full overflow-hidden",
+                  "relative mx-auto w-full aspect-[4/3] max-h-[60vh] xl:max-h-[70vh] 3xl:max-h-[800px] overflow-hidden rounded-[16px]",
                   imageClassName
                 )}
               >
