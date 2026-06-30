@@ -103,7 +103,7 @@ export function HotelWebsiteBuilderCarouselSection() {
 
   return (
     <section data-nav-theme="light" className="relative w-full bg-white py-[80px] md:py-24 overflow-hidden">
-      <div className="container  max-w-[1200px] px-4 md:px-8">
+      <div className="container mx-auto max-w-[1440px] px-4 md:px-8">
         {/* Header & Controls */}
         <div className="mb-[50px] flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
@@ -128,7 +128,7 @@ export function HotelWebsiteBuilderCarouselSection() {
         <div
           ref={scrollContainerRef}
           onScroll={checkScroll}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-12 px-4 md:px-8 xl:px-[calc((100vw-1200px)/2+32px)] hide-scrollbar"
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-12 px-4 md:px-8 xl:px-[calc((100vw-1440px)/2+32px)] hide-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {CAROUSEL_CARDS.map((card) => (
