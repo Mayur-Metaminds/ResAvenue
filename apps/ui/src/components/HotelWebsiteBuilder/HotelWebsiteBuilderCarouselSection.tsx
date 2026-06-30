@@ -102,15 +102,8 @@ export function HotelWebsiteBuilderCarouselSection() {
   )
 
   return (
-<<<<<<< HEAD
-    <section data-nav-theme="light" className="relative w-full bg-white py-16 md:py-24 overflow-hidden">
-      <div className="container mx-auto max-w-[1200px] px-4 md:px-8">
-        
-=======
     <section data-nav-theme="light" className="relative w-full bg-white py-[80px] md:py-24 overflow-hidden">
       <div className="container  max-w-[1200px] px-4 md:px-8">
-
->>>>>>> 310d5f0ad91388056276b3eea4bdc10f6faf67ea
         {/* Header & Controls */}
         <div className="mb-[50px] flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
