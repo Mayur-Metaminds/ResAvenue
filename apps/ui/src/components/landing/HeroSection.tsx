@@ -77,7 +77,7 @@ export function HeroSection() {
               priority="eager"
               loop
               autoplay
-              className="h-full object-top scale-120 lg:scale-130 w-full"
+              className="h-full object-top scale-120 lg:scale-95 w-full"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
               aria-label="ResAvenue dashboard preview"
             />

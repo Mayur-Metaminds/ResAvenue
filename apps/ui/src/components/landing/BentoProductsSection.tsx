@@ -18,6 +18,7 @@ import {
   HOTEL_WEBSITE_OUTER_URL,
   PROPERTY_MANAGEMENT_INNER_URL,
   PROPERTY_MANAGEMENT_OUTER_URL,
+  REVENUE_MANAGEMENT_INNER,
 } from "@/lib/lottie-urls"
 import type * as React from "react"
 
@@ -159,6 +160,7 @@ const products: Product[] = [
     ],
     imagePlaceholder: "/images/placeholder-revenue.png",
     lottieUrl: GRAPH_URL,
+    modalLottieUrl: REVENUE_MANAGEMENT_INNER,
     modalHeight: MODAL_HEIGHT,
     renderBottom: () => (
       <div className="pointer-events-none relative mt-4 w-full z-0 flex items-start justify-start transition-transform duration-500 px-4 group-hover:scale-105">

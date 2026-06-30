@@ -10,16 +10,17 @@ export function HotelWebsiteBuilderHeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center"
+      className="relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat pt-[156px] pb-[45px] md:pb-[95px] px-[8px] md:px-0"
       style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
     >
       {/* Container */}
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 lg:flex-row lg:justify-between md:px-[80px] px-[20px]">
         {/* Left Column: Content */}
-        <div className="relative z-10 flex w-full flex-1 flex-col items-start">
+        <div className="relative z-10 flex w-full flex-1 flex-col justify-center">
           <HeroContent
+
             eyebrow="DIRECT BOOKING PLATFORM"
-            eyebrowClassName="lg:mb-[12px] mb-[16px]"
+            eyebrowClassName="mb-[16px] md:mb-[24px]"
             title={
               <HeroTitle
                 style={
@@ -30,19 +31,19 @@ export function HotelWebsiteBuilderHeroSection() {
                   } as React.CSSProperties
                 }
               >
-                Turn Your Website Into
+                Turn Your Website Into {" "}
                 <br className="hidden lg:block" />
                 <HeroTitle.Highlight>Your #1 Booking Channel</HeroTitle.Highlight>
               </HeroTitle>
             }
-
+            titleClassName="typo-h1 tracking-normal leading-normal"
             description={
               <span className="typo-body1 text-white/55">
                 Build stunning, high-converting hotel websites designed to drive direct bookings & revenue.
               </span>
             }
 
-            descriptionClassName="mb-4"
+            descriptionClassName="mb-[16px] md:mb-[24px] typo-body1 text-[rgba(255,255,255,0.55)]"
 
             actions={[
               <Button
@@ -59,7 +60,7 @@ export function HotelWebsiteBuilderHeroSection() {
         </div>
 
         {/* Right Column: Graphic/Dashboard Preview */}
-        <div className="relative z-10 flex w-full flex-1 items-center justify-center">
+        <div className="relative z-10 flex w-full flex-1 items-start justify-start">
           <LazyLottie
             src={CHANNEL_CONNECT_HERO_URL}
             priority="lazy"

@@ -34,23 +34,39 @@ export function HotelWebsiteBuilderRevenueSection() {
       <div className="container mx-auto max-w-[1200px] px-[12px] md:px-8">
 
         {/* Header Content */}
-        <div className="mx-auto mb-8 md:mb-16 w-full max-w-3xl">
+        <div className="mx-auto mb-8 md:mb-[32px] w-full max-w-3xl">
           <SectionHeader
             eyebrow="Optimized for conversions"
-            title={"Maximize Revenue from\nEvery Guest"}
-            titleHighlight="Revenue"
+            eyebrowClassName="md:mb-[32px]"
+            title={
+              <>
+              
+              <SectionHeader.Highlight>
+               Maximize Revenue from             
+               </SectionHeader.Highlight>
+
+               <br />
+               Every {" "}
+               <SectionHeader.Highlight>
+                Guest
+               </SectionHeader.Highlight>
+              </>
+              
+            }
+            highlightGradient="linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 57.71%, #ED862E 68.44%)"
             description="Go beyond room bookings — increase your revenue with smart packages, targeted promotions, and high-converting add-ons."
-            titleClassName="tracking-[-1.5px]!"
+            descriptionClassName="typo-body4 text-[#464554]"
+            titleClassName="mb-[12px] tracking-[-1.5px]!"
           />
         </div>
 
         {/* 3-Column Grid */}
         <div className="grid grid-cols-1 gap-[30px] md:grid-cols-3 lg:gap-10">
           {REVENUE_CARDS.map((card) => (
-            <div key={card.id} className="flex flex-col w-full group">
+            <div key={card.id} className="flex flex-col w-full group ">
 
               {/* Image & Label Box */}
-              <div className="flex w-full flex-col overflow-hidden rounded-[32px] border border-gray-200 bg-white pt-6 md:pt-8 lg:pt-10 shadow-sm transition-shadow hover:shadow-md">
+              <div className="flex w-full flex-col overflow-hidden rounded-[20px] border-[0.5px] border-solid border-[#ED862E] bg-white pt-6 md:pt-8 lg:pt-10 shadow-sm transition-shadow hover:shadow-md">
 
                 {/* Top Label */}
                 <span className="mb-6 pl-[33px] text-[11px] font-bold uppercase leading-[17.6px] tracking-[1.5px] text-[#ED862E] [font-family:var(--font-plus-jakarta)]">
@@ -69,8 +85,8 @@ export function HotelWebsiteBuilderRevenueSection() {
               </div>
 
               {/* Text Content (Outside the box) */}
-              <div className="flex flex-col gap-[6px] mt-8 px-2">
-                <h3 className="font-plus-jakarta-700 text-[20px] leading-7 text-[#191C1E]">
+              <div className="flex flex-col gap-[6px] mt-[12px] p-[16px]">
+                <h3 className="typo-body1 text-[20px] font-bold leading-7 text-[#191C1E]">
                   {card.title}
                 </h3>
                 <p className="typo-body4 text-[#464554]">

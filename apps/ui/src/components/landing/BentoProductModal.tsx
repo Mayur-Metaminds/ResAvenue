@@ -70,6 +70,8 @@ export interface BentoModalProduct {
       layout). Defaults to `"h-full w-full"`. Use e.g. `"h-[80%] w-[80%]"` to
       render a smaller, centered animation. */
   modalAnimationClassName?: string
+  /** Optional override for the wrapper div around the animation. */
+  modalAnimationWrapperClassName?: string
   /** Optional icon displayed at the top of the left column in the
       "side-by-side" layout (e.g., UnifiedPlatformIcon1). Ignored in the
       default "stacked" layout. */
@@ -632,7 +634,10 @@ function StackedVerticalModalContent({
             inside the flex column so it's never squished — on desktop the modal
             grows to fit it; on mobile the body scrolls down to it. */}
         <div
-          className="relative mt-[8px] w-full shrink-0 overflow-hidden rounded-2xl"
+          className={cn(
+            "relative w-full shrink-0 overflow-hidden rounded-2xl",
+            product.modalAnimationWrapperClassName
+          )}
           style={animationAspect ? { aspectRatio: animationAspect } : undefined}
         >
           {animationUrl ? (

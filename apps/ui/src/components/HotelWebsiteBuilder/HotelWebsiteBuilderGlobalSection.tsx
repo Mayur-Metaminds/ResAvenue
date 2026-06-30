@@ -25,16 +25,17 @@ function CheckedRow({ text }: { text: React.ReactNode }) {
 
 export function HotelWebsiteBuilderGlobalSection() {
   return (
-    <section className="relative w-full bg-[#0B1527]">
-      <div className="relative py-[34px] px-[10px] md:p-16 lg:px-24 lg:pt-24 lg:pb-32 max-w-[1440px] mx-auto">
+    <section data-nav-theme="dark" className="relative w-full bg-[#0B1527]">
+      <div className="relative py-[34px] px-[10px] md:p-16 lg:px-24 lg:py-24 max-w-[1440px] mx-auto">
         <div className="relative z-10">
           <FeatureShowcase
+          className="gap-[87px] md:gap-0"
             imagePosition="left"
             header={{
-              className: "mb-[24px]",
-              eyebrowDotColor: "#FFF",
-              eyebrowClassName: "mb-0",
-              titleClassName: "mb-0",
+              className: "gap-0",
+              eyebrowDotColor: "#ED862E",
+              eyebrowClassName: "mb-[24px]",
+              titleClassName: "mb-[24px]",
               eyebrow: "MULTI-LANGUAGE / MULTI-CURRENCY",
               eyebrowColor: "#FFF",
               title: "Go Global with Ease",
@@ -47,8 +48,9 @@ export function HotelWebsiteBuilderGlobalSection() {
                 </span>
               ),
             }}
+            imageMobilePosition="top"
             imageSlot={
-              <div className="hidden lg:flex justify-center w-full lg:justify-end pr-8">
+              <div className="flex justify-center w-full lg:justify-end lg:pr-8">
                 <div className="relative flex aspect-[4/3] w-full max-w-[600px] items-center justify-center overflow-hidden rounded-[24px] border border-slate-700 bg-slate-800 shadow-2xl">
                   <Image
                     src="/images/Hotel-Website-Builder/Hotel-Website-Builder6.png" // Placeholder
@@ -60,25 +62,13 @@ export function HotelWebsiteBuilderGlobalSection() {
               </div>
             }
           >
-            {/* Mobile Image Slot */}
-            <div className="flex lg:hidden justify-center w-full mb-8 mt-4">
-              <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[24px] border border-slate-700 bg-slate-800 shadow-2xl">
-                <Image
-                  src="/images/Landing/Direct-Connect-Preview.png" // Placeholder
-                  alt="Multi Language Multi Currency"
-                  fill
-                  className="object-cover opacity-90"
-                />
-              </div>
-            </div>
-
             {/* List of features */}
-            <div className="flex flex-col gap-6 mt-8 lg:mt-10">
+            <div className="flex flex-col gap-6 mt-[24px] px-[16px] lg:mt-10">
               <motion.div {...slideInFromLeft(0)}>
                 <CheckedRow
                   text={
                     <>
-                      <span className="font-semibold text-white">Global Guests</span>{" - Welcome guests from around the world"}
+                      <span className="font-source-sans-500 text-[18px] leading-[24px] text-white">Global Guests- Welcome guests from around the world</span>
                     </>
                   }
                 />
@@ -87,7 +77,7 @@ export function HotelWebsiteBuilderGlobalSection() {
                 <CheckedRow
                   text={
                     <>
-                      <span className="font-semibold text-white">Multi-Currency</span>{" - Show prices in your guest’s currency"}
+                      <span className="font-source-sans-500 text-[18px] leading-[24px] text-white">Multi-Currency- Show prices in your guest’s currency</span>
                     </>
                   }
                 />
@@ -96,7 +86,7 @@ export function HotelWebsiteBuilderGlobalSection() {
                 <CheckedRow
                   text={
                     <>
-                      <span className="font-semibold text-white">Multi-Language</span>{" - Speak your guest’s language"}
+                      <span className="font-source-sans-500 text-[18px] leading-[24px] text-white">Multi-Language- Speak your guest’s language</span>
                     </>
                   }
                 />
