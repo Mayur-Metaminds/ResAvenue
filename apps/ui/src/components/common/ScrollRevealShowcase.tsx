@@ -98,25 +98,23 @@ export function ScrollRevealShowcase({
 
   return (
     <section
-      className={cn("relative w-full", bgClassName)}
+      className={cn("relative w-full lg:h-[var(--desktop-height)]", bgClassName)}
       ref={containerRef}
-      style={{ height: `${cards.length * 100}vh` }}
+      style={{ '--desktop-height': `${cards.length * 100}vh` } as React.CSSProperties}
     >
-      {/* Sticky pinned frame at every size. On phones the image is hidden (below)
-          so the header + all 4 points fit on one screen and the scroll-driven
-          focus can move through them while pinned. */}
-      <div className="sticky top-0 left-0 flex h-dvh w-full flex-col items-start justify-start overflow-hidden px-4 py-10 md:px-8 md:py-0">
-        <div className="container mx-auto max-w-[1200px] flex h-full flex-col py-8 md:py-12">
+      {/* Sticky pinned frame at every size on desktop. On phones it flows normally. */}
+      <div className="lg:sticky lg:top-0 lg:left-0 flex lg:h-dvh w-full flex-col items-start justify-start lg:overflow-hidden">
+        <div className="container mx-auto flex h-full flex-col items-start justify-start ">
           {header && (
-            <div className="mx-auto mb-2 md:mb-16 w-full max-w-3xl">
+            <div className="mx-auto mb-[32px] md:mb-[27.56px] w-full">
               <SectionHeader {...header} />
             </div>
           )}
 
           {/* Grid Layout (Desktop Sticky, Mobile Stacked via Tailwind) */}
-          <div className="relative flex flex-col items-center justify-between gap-3 md:gap-8 lg:flex-row lg:items-stretch lg:gap-12.5">
+          <div className="relative flex w-full flex-col items-center max-w-[1440px] mx-auto justify-between gap-3 md:gap-8 lg:flex-row lg:items-stretch lg:gap-12.5 lg:flex-1 lg:min-h-0 lg:pb-8">
             {/* Left Features */}
-            <div className="hidden w-full flex-col justify-start gap-[30px] pb-[58px] lg:flex lg:w-1/4">
+            <div className="hidden w-full flex-col justify-center gap-[40px] lg:flex lg:w-1/4">
               {leftCards.map(
                 (card) =>
                   card && <RevealCard key={card.position} progress={progress} card={card} activeColor={activeColor} />
@@ -130,7 +128,7 @@ export function ScrollRevealShowcase({
             <div className="relative z-10 hidden h-full w-full lg:block lg:w-2/4">
               <div
                 className={cn(
-                  "relative mx-auto h-full w-full max-w-[502px] overflow-hidden rounded-[16px] border border-[#010E38]/5 bg-white shadow-xl",
+                  "relative mx-auto h-full w-full overflow-hidden",
                   imageClassName
                 )}
               >
@@ -141,7 +139,7 @@ export function ScrollRevealShowcase({
             </div>
 
             {/* Right Features */}
-            <div className="hidden w-full flex-col justify-start gap-[30px] pb-[58px] lg:flex lg:w-1/4">
+            <div className="hidden w-full flex-col justify-center gap-[40px] lg:flex lg:w-1/4">
               {rightCards.map(
                 (card) =>
                   card && <RevealCard key={card.position} progress={progress} card={card} activeColor={activeColor} />
@@ -149,7 +147,13 @@ export function ScrollRevealShowcase({
             </div>
 
             {/* Mobile/Tablet Layout (Scroll Highlighted List) */}
-            <div className="flex w-full flex-col gap-2 md:gap-6 lg:hidden mt-0 md:mt-4">
+            <div className="flex w-full flex-col gap-[32px]  lg:hidden mt-0 md:mt-4">
+              {/* Mobile Image */}
+              <div className="flex flex-col h-[225px] py-[24px] justify-center items-center self-stretch rounded-t-[16px] border-[3px] border-[rgba(1,14,56,0.05)] relative overflow-hidden shrink-0 mb-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100" />
+                <Image src={image.src} alt={image.alt} fill className="object-cover object-center" />
+              </div>
+
               {/* Each card owns the progress slice [i, i+1] (progress spans
                   [0, cards.length]). This keeps every card's deactivation point
                   within range — so the second-last greys out when the last
@@ -160,8 +164,6 @@ export function ScrollRevealShowcase({
                   icon={card.icon}
                   title={card.title}
                   description={card.description}
-                  progress={progress}
-                  activeRange={[i, i + 1]}
                   activeColor={activeColor}
                   inactiveColor={inactiveColor}
                 />
@@ -193,18 +195,18 @@ function RevealCard({
     <motion.div
       style={{ opacity, y }}
       className={cn(
-        "flex flex-col items-start gap-4",
+        "flex flex-col items-start gap-[12px] pt-[8px]",
         card.offsetClassName ?? DEFAULT_OFFSET[card.position]
       )}
     >
       <div
-        className="mb-2 flex items-center justify-start [&>svg]:w-8 [&>svg]:h-8"
+        className="flex items-center justify-start [&>svg]:w-8 [&>svg]:h-8"
         style={{ color: activeColor }}
       >
         {card.icon}
       </div>
-      <h3 className="text-[24px] leading-[28px] font-semibold text-[#191C1E]">{card.title}</h3>
-      <p className="text-[14px] leading-[22px] text-[#64748B]">{card.description}</p>
+      <h3 className="typo-h2 text-[#191C1E]">{card.title}</h3>
+      <p className="typo-body1 text-[#464554]">{card.description}</p>
     </motion.div>
   )
 }
@@ -213,45 +215,26 @@ function MobileFeatureItem({
   icon,
   title,
   description,
-  progress,
-  activeRange,
   activeColor,
-  inactiveColor,
 }: {
   icon: React.ReactNode
   title: React.ReactNode
   description: React.ReactNode
-  progress: MotionValue<number>
-  activeRange: [number, number]
   activeColor: string
   inactiveColor: string
 }) {
-  // Opacity peaks when progress is within the activeRange.
-  const opacity = useTransform(
-    progress,
-    [activeRange[0] - 0.5, activeRange[0], activeRange[1], activeRange[1] + 0.5],
-    [0.4, 1, 1, 0.4]
-  )
-
-  // Title color transitions to brand active color when active.
-  const color = useTransform(
-    progress,
-    [activeRange[0] - 0.5, activeRange[0], activeRange[1], activeRange[1] + 0.5],
-    [inactiveColor, activeColor, activeColor, inactiveColor]
-  )
-
   return (
-    <motion.div style={{ opacity }} className="flex flex-col items-start gap-1">
+    <div className="flex flex-col items-start gap-[8px]">
       <div
-        className="mb-2 flex items-center justify-start [&>svg]:w-6 [&>svg]:h-6"
+        className=" flex items-center justify-start [&>svg]:w-6 [&>svg]:h-6"
         style={{ color: activeColor }}
       >
         {icon}
       </div>
-      <motion.h3 style={{ color }} className="text-base font-bold leading-tight">
+      <h3 className="typo-h2 text-[#191C1E]">
         {title}
-      </motion.h3>
-      <p className="text-xs leading-snug text-[#64748B]">{description}</p>
-    </motion.div>
+      </h3>
+      <p className="font-source-sans-400 text-[14px] leading-[22.4px] text-[#464554]">{description}</p>
+    </div>
   )
 }

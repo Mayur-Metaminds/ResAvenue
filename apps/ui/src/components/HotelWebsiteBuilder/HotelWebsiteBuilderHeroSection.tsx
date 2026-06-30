@@ -10,17 +10,17 @@ export function HotelWebsiteBuilderHeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat pt-[156px] pb-[45px] md:pb-[95px]"
+      className="relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat pt-[156px] pb-[45px] md:pb-[95px] px-[8px] md:px-0"
       style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
     >
       {/* Container */}
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] lg:flex-row lg:justify-between lg:px-20">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 lg:flex-row lg:justify-between md:px-[80px] px-[20px]">
         {/* Left Column: Content */}
         <div className="relative z-10 flex w-full flex-1 flex-col justify-center">
           <HeroContent
 
             eyebrow="DIRECT BOOKING PLATFORM"
-            eyebrowClassName="lg:mb-[12px] mb-[24px]"
+            eyebrowClassName="mb-[16px] md:mb-[24px]"
             title={
               <HeroTitle
                 style={
@@ -31,7 +31,7 @@ export function HotelWebsiteBuilderHeroSection() {
                   } as React.CSSProperties
                 }
               >
-                Turn Your Website Into
+                Turn Your Website Into {" "}
                 <br className="hidden lg:block" />
                 <HeroTitle.Highlight>Your #1 Booking Channel</HeroTitle.Highlight>
               </HeroTitle>
@@ -43,7 +43,7 @@ export function HotelWebsiteBuilderHeroSection() {
               </span>
             }
 
-            descriptionClassName="mb-6 typo-body1 text-[rgba(255,255,255,0.55)]"
+            descriptionClassName="mb-[16px] md:mb-[24px] typo-body1 text-[rgba(255,255,255,0.55)]"
 
             actions={[
               <Button
