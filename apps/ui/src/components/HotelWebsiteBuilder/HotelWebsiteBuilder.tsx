@@ -68,7 +68,14 @@ export default function HotelWebsiteBuilder() {
       {/* Performance Section */}
       <HotelWebsiteBuilderPerformanceSection />
 
-      <CtaSection showFooter />
+      <CtaSection 
+        title="Turn Your Website Into Your Most Profitable Channel" 
+        description="Join hotels driving more direct bookings, reducing OTA commissions, and unlocking higher revenue with ResAvenue." 
+        primaryButtonLabel={null}
+        secondaryButtonLabel="Get Started Today"
+        secondaryButtonHref="/contact-us"
+        showFooter 
+      />
 
     </div>
   )

@@ -63,6 +63,12 @@ const bullets = [
   },
 ]
 
+const previewImages = [
+  "/images/Mobile-App/mobileAppReservations.png",
+  "/images/Mobile-App/mobileAppInventory.png",
+  "/images/Mobile-App/mobileAppAlerts.png",
+]
+
 // Shared header — rendered above the panel on mobile (normal flow, scrolls out
 // before the sticky panel pins) and inside the right column on desktop.
 function FrontDeskHeader({ className }: { className?: string }) {
@@ -126,7 +132,7 @@ const PropertyManagementFrontDesk = () => {
     <section
       ref={sectionRef}
       data-nav-theme="dark"
-      className="relative h-[calc(var(--fd-section-h)_+_60vh)] w-full bg-[#010C28] lg:h-[var(--fd-section-h)]"
+      className="relative h-[calc(var(--fd-section-h)_+_60vh)] w-full bg-[#010C28] lg:h-[var(--fd-section-h)] max-[769px]:pb-20"
       style={{ "--fd-section-h": sectionHeight } as React.CSSProperties}
     >
       {/* Mobile-only header — normal flow above the panel, so the sticky panel
@@ -148,9 +154,13 @@ const PropertyManagementFrontDesk = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="h-full w-full rounded-3xl border border-white/10 bg-white/5 flex items-center justify-center"
+                className="relative h-full w-full overflow-hidden rounded-3xl max-[769px]:mt-20"
               >
-                <span className="text-white/20 text-sm">{activeBullet?.id}</span>
+                <img
+                  src={previewImages[activeIndex] ?? previewImages[0]}
+                  alt={`${activeBullet?.id ?? "front-desk"} preview`}
+                  className="h-full w-full object-contain lg:w-[90%] lg:mx-auto"
+                />
               </motion.div>
             </AnimatePresence>
           </div>

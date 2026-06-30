@@ -31,7 +31,7 @@ export function HeroContent({
   return (
     <div className={cn("flex max-w-xl flex-col justify-center", className)}>
       {/* Eyebrow — wraps string content in <Eyebrow />, or renders a passed node as-is for full control. */}
-      <div className={cn("mb-[16px] lg:mb-[12px]", eyebrowClassName)}>
+      <div className={cn("mb-[16px] md:mb-[12px]", eyebrowClassName)}>
         {typeof eyebrow === "string" ? (
           <Eyebrow eyebrowColor={eyebrowColor}>{eyebrow}</Eyebrow>
         ) : (

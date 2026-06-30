@@ -155,10 +155,11 @@ export function LazyLottie({
     <div ref={containerRef} className={cn("h-full w-full", className)} style={style}>
       {data ? (
         <Lottie
+         
           animationData={data}
           loop={reduceMotion ? false : loop}
           autoplay={reduceMotion ? false : autoplay}
-          className="h-full w-full"
+          className="h-full w-full "
           rendererSettings={rendererSettings}
           aria-label={ariaLabel}
           role={ariaLabel ? "img" : undefined}
