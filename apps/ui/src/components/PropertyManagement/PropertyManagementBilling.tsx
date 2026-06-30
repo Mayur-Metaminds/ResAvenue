@@ -11,7 +11,7 @@ const PropertyManagementBilling = () => {
     // centered sticky frame instead of leaving a half-viewport gap above the cards.
     // TODO: swap in billing-specific cards/image — reusing the Hotel Website
     // Builder content as a placeholder for now.
-    <div data-nav-theme="light">
+    <div data-nav-theme="light" className="py-[34px] px-4 lg:px-10 lg:py-15">
       <ScrollRevealShowcase
         header={{
           eyebrow: "GET PAID FASTER, WITHOUT THE HASSLE",
