@@ -64,7 +64,7 @@ export function HotelWebsiteBuilderGlobalSection() {
           >
             {/* List of features */}
             <div className="flex flex-col gap-6 mt-[24px] px-[16px] lg:mt-10">
-              <motion.div {...slideInFromLeft(0)}>
+              <motion.div {...slideInFromLeft(0)} className="border-b border-[rgba(237,134,46,0.50)] pb-[24px]">
                 <CheckedRow
                   text={
                     <>
@@ -73,7 +73,7 @@ export function HotelWebsiteBuilderGlobalSection() {
                   }
                 />
               </motion.div>
-              <motion.div {...slideInFromLeft(1)}>
+              <motion.div {...slideInFromLeft(1)} className="border-b border-[rgba(237,134,46,0.50)] pb-[24px]">
                 <CheckedRow
                   text={
                     <>
@@ -82,7 +82,7 @@ export function HotelWebsiteBuilderGlobalSection() {
                   }
                 />
               </motion.div>
-              <motion.div {...slideInFromLeft(2)}>
+              <motion.div {...slideInFromLeft(2)} className="border-b border-[rgba(237,134,46,0.50)] pb-[24px]">
                 <CheckedRow
                   text={
                     <>
