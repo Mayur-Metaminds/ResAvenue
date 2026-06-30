@@ -15,7 +15,7 @@ function MobileAppHero() {
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20">
         {/* Left Column: Content */}
-        <div className="relative z-10 flex w-full flex-1 flex-col items-start">
+        <div className="relative z-10 flex w-full flex-1 flex-col items-start lg:pt-6">
           <HeroContent
             eyebrow="CLOUD-BASED HOTEL MANAGEMENT"
             eyebrowColor="#FFF"
@@ -43,7 +43,7 @@ function MobileAppHero() {
             }
           />
 
-          <div className="flex justify-start pt-[39px] md:pt-[20px]">
+          <div className="flex justify-start pt-[12px] md:pt-[20px]">
             <Button
               key="demo"
               variant="primary"

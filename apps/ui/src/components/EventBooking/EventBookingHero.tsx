@@ -8,11 +8,13 @@ import { CHANNEL_CONNECT_HERO_URL } from '@/lib/lottie-urls'
 import React from 'react'
 
 const EventBookingHero = () => {
+  const heroAnimationUrl = CHANNEL_CONNECT_HERO_URL
+
   return (
     <div data-nav-theme="dark" className='relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center'
       style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}>
       <div className='mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20'>
-        <div className='relative z-10 flex w-full flex-1 flex-col items-start'>
+        <div className='relative z-10 flex w-full flex-1 flex-col items-start lg:pt-6'>
           <HeroContent
             eyebrow='Enterprise Analytics'
             title={
@@ -34,10 +36,10 @@ const EventBookingHero = () => {
             }
             description='Streamline your Ticketing, Payments, and Event Management
 with a single, powerful enterprise solution designed for scale.'
-            descriptionClassName='typo-body1 mb-0 md:mb-[40px] text-white opacity-55' />
+            descriptionClassName='typo-body1 mb-0 mb-[30px] md:mb-[20px] text-white opacity-55' />
 
 
-          <div className="mt-6 flex justify-center md:mt-8">
+          <div className="mt-5 flex justify-center">
             <Button
               key="demo"
               variant="primary"
@@ -55,7 +57,7 @@ with a single, powerful enterprise solution designed for scale.'
         {/* Right Column: Dummy Lottie animation placeholder */}
         <div className="relative z-10 flex w-full flex-1 items-center justify-center">
           <LazyLottie
-            src={CHANNEL_CONNECT_HERO_URL}
+            src={heroAnimationUrl}
             priority="lazy"
             loop
             className="h-full w-full max-w-2xl"

@@ -24,7 +24,7 @@ const MobileAppReservations = () => {
                             src="/images/Mobile-App/mobileAppReservations.png" alt="" />
                     </AppearOnScroll>
                 </div>
-                <div className='sm:flex-1 min-w-0 sm:py-[60px] lg:py-[100px] text-left'>
+                <div className='sm:flex-1 min-w-0 sm:py-[60px] lg:py-[100px] text-left py-[34px]'>
                     <SectionHeader
                         eyebrow={<span>OPERATIONS</span>}
                         eyebrowClassName="typo-body2 text-[14px] text-[#ED862E]"

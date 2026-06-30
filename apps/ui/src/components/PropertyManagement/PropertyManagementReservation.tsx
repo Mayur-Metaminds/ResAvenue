@@ -59,9 +59,15 @@ const PropertyManagementReservation = () => {
       style={{ backgroundImage: "url('/images/Property-Management/gradiantbg.png')" }}
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
-        {/* Product image (dummy placeholder — swap with the real asset). Below content on mobile, left on desktop. */}
+        {/* Product image. Below content on mobile, left on desktop. */}
         <div className="order-last min-w-0 lg:order-none lg:flex-[0.8]">
-          <div className="aspect-[4/3] w-full rounded-2xl bg-white/5" />
+          <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <img
+              src="/images/Mobile-App/mobileAppReservations.png"
+              alt="Reservation management illustration"
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Right: content */}

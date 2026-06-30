@@ -56,9 +56,14 @@ const PropertyManagementHousekeeping = () => {
       style={{ backgroundImage: "url('/images/Property-Management/gradiantbg.png')" }}
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
-        {/* Product image (dummy placeholder — not given yet). Below content on mobile, left on desktop. */}
-        <div className="min-w-0 lg:flex-2">
-          <div className="aspect-[4/3] w-full rounded-2xl bg-white/5" />
+        <div className="hidden min-w-0 md:block lg:flex-2">
+          <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <img
+              src="/images/Mobile-App/mobileAppInventory.png"
+              alt="Housekeeping management illustration"
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Right: content */}
@@ -91,6 +96,14 @@ const PropertyManagementHousekeeping = () => {
               </>
             }
           />
+
+          <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:hidden">
+            <img
+              src="/images/Mobile-App/mobileAppInventory.png"
+              alt="Housekeeping management illustration"
+              className="h-full w-full object-cover"
+            />
+          </div>
 
           <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {housekeepingCards.map((card, i) => (

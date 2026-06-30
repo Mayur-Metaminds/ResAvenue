@@ -175,6 +175,7 @@ function runCommand(command, args, options = {}) {
       cwd: appDir,
       env: process.env,
       stdio: "inherit",
+      shell: process.platform === "win32", // ADD THIS LINE
     })
 
     child.on("error", reject)
