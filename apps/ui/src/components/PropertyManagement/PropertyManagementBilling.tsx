@@ -36,7 +36,7 @@ const PropertyManagementBilling = () => {
         }}
         cards={HOTEL_WEBSITE_BUILDER_CARDS}
         image={HOTEL_WEBSITE_BUILDER_IMAGE}
-        bgClassName="bg-white"
+        bgClassName="bg-white max-lg:pb-10"
       />
     </div>
   )

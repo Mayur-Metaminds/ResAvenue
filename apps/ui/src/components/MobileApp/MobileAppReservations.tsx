@@ -13,7 +13,7 @@ const MobileAppReservations = () => {
     return (
         <section
             data-nav-theme="dark"
-            className='w-full bg-cover bg-center bg-no-repeat py-[34px] sm:py-[40px]'
+            className='w-full bg-cover bg-center bg-no-repeat py-[34px] sm:py-[40px] overflow-x-hidden'
             style={{ backgroundImage: "url('/images/hero_section_bg.png')" }}
         >
             <div className='mx-auto flex w-full max-w-[1920px] gap-[17px] lg:gap-16 flex-col lg:flex-row px-[16px] sm:px-[80px]'>
@@ -24,7 +24,7 @@ const MobileAppReservations = () => {
                             src="/images/Mobile-App/mobileAppReservations.png" alt="" />
                     </AppearOnScroll>
                 </div>
-                <div className='sm:flex-1 min-w-0 sm:py-[60px] lg:py-[100px] text-left'>
+                <div className='sm:flex-1 min-w-0 sm:py-[60px] lg:py-[100px] text-left py-[34px]'>
                     <SectionHeader
                         eyebrow={<span>OPERATIONS</span>}
                         eyebrowClassName="typo-body2 text-[14px] text-[#ED862E]"

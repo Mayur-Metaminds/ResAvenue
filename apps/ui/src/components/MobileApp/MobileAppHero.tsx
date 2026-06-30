@@ -4,6 +4,8 @@ import { LazyLottie } from "@/components/common/LazyLottie"
 import { HeroContent } from "@/components/landing/HeroContent"
 import { HeroTitle } from "@/components/landing/HeroTitle"
 import { CHANNEL_CONNECT_HERO_URL } from "@/lib/lottie-urls"
+import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 function MobileAppHero() {
   return (
@@ -13,40 +15,47 @@ function MobileAppHero() {
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20">
         {/* Left Column: Content */}
-        <div className="relative z-10 flex w-full flex-1 flex-col items-start">
-            <HeroContent
-              eyebrow="CLOUD-BASED HOTEL MANAGEMENT"
-              eyebrowColor="#FFF"
-              title={
-                <HeroTitle
-                  style={
-                    {
-                      "--hero-title-color": "#FFFFFF",
-                      "--hero-title-gradient":
-                        "linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)",
-                    } as React.CSSProperties
-                  }
-                >
-                  Manage Your Hotel
-                  <br />
-                  <HeroTitle.Highlight>Anytime, Anywhere</HeroTitle.Highlight>
-                </HeroTitle>
-              }
-              description={
-                <span className="typo-body1 text-white/65">
-                  Empower your team with full control of rates, inventory, and
-                  reservations directly from their pocket. The ultimate mobile
-                  companion for hoteliers.
-                </span>
-              }
-            />
+        <div className="relative z-10 flex w-full flex-1 flex-col items-start lg:pt-6">
+          <HeroContent
+            eyebrow="CLOUD-BASED HOTEL MANAGEMENT"
+            eyebrowColor="#FFF"
+            title={
+              <HeroTitle
+                style={
+                  {
+                    "--hero-title-color": "#FFFFFF",
+                    "--hero-title-gradient":
+                      "linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)",
+                  } as React.CSSProperties
+                }
+              >
+                Manage Your Hotel
+                <br />
+                <HeroTitle.Highlight>Anytime, Anywhere</HeroTitle.Highlight>
+              </HeroTitle>
+            }
+            description={
+              <span className="typo-body1 text-white/65">
+                Empower your team with full control of rates, inventory, and
+                reservations directly from their pocket. The ultimate mobile
+                companion for hoteliers.
+              </span>
+            }
+          />
 
-            <div className="flex justify-start pt-[39px] md:pt-[32px]">
-              <button type="submit" className="font-plus-jakarta-700 cursor-pointer rounded-full bg-[#ED862E] px-5 md:px-6 py-3 text-[8.909px] leading-[14.255px] text-white shadow-lg transition hover:bg-orange-600 md:px-10 md:py-4 lg:text-[15px] lg:leading-6">
-                Request a Demo →
-              </button>
-            </div>
+          <div className="flex justify-start pt-[12px] md:pt-[20px]">
+            <Button
+              key="demo"
+              variant="primary"
+              size="default"
+              icon={<ArrowRight className="h-4 w-4" />}
+              // Exact pixel paddings & gap applied responsively
+              className="gap-[7.6px] pt-[8.5px] pr-[12px] lg:pr-[10.5px] pb-[8.5px] pl-[11px] lg:pl-[9.5px] font-['Plus_Jakarta_Sans'] font-semibold text-[16px] leading-[24px] lg:px-[28px] lg:pt-[17px] lg:pb-[18px] lg:text-[15px]"
+            >
+              Request a Demo
+            </Button>
           </div>
+        </div>
 
         {/* Right Column: Mobile mockup */}
         <div className="relative z-10 flex w-full flex-1 items-center justify-center">

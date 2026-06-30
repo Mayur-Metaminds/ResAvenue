@@ -6,13 +6,13 @@ import { SectionHeader } from "@/components/landing/SectionHeader"
 
 const MobileAppSolutions = () => {
     return (
-        <section data-nav-theme="light" className="w-full bg-[#F6F7FB] px-4 py-[96px] md:px-8">
+        <section data-nav-theme="light" className="w-full bg-[#F6F7FB] px-4 py-[40px] lg:py-[96px] md:px-8">
             <div className="mx-auto max-w-6xl">
                 <SectionHeader
                     eyebrow={<span>OUR SOLUTIONS</span>}
                     eyebrowClassName="typo-body2 text-[12px] text-[#ED862E] text-center"
-                    className="mx-auto mb-10 max-w-3xl text-center lg:mb-15"
-                    descriptionClassName="typo-body1 text-center text-[#64748B]"
+                    className="mx-auto mb-5 max-w-3xl text-center lg:mb-15"
+                    descriptionClassName="typo-body1 text-center mb-0 text-[#64748B]"
                     title={
                         <SectionHeader.Highlight
                             style={{
