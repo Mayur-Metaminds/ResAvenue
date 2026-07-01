@@ -35,15 +35,33 @@ export interface ScrollRevealShowcaseProps {
   bgClassName?: string
   /** Extra classes for the center image frame. */
   imageClassName?: string
+  /** Extra classes for the cards layout wrapper (left/center/right grid + mobile stack). Merged on top of the default layout classes. */
+  cardsWrapperClassName?: string
+  /** Extra classes for each individual card (the icon+title+description block). Applied to every desktop card in this showcase — e.g. to give them a bordered/white "card" look, or switch from the default vertical (icon-on-top) layout to a horizontal one (icon-beside-text) via `flex-row`. */
+  cardClassName?: string
+  /** Extra classes for the icon's wrapper box on desktop cards — e.g. to give it a colored rounded badge background behind the icon. */
+  iconWrapperClassName?: string
+  /** Extra classes for the icon's wrapper box in the mobile/tablet stacked list (below `lg`). Defaults to a 24px icon; pass e.g. `"[&>svg]:w-10 [&>svg]:h-10"` to size up. */
+  mobileIconWrapperClassName?: string
+  /** Extra classes for the title+description wrapper — controls the gap between title and description independent of the icon/text gap. */
+  textWrapperClassName?: string
+  /** Extra classes for the feature title `<h3>`, applied on both desktop cards and the mobile stacked list. */
+  featureTitleClassName?: string
+  /** Extra classes for the feature description `<p>`, applied on both desktop cards and the mobile stacked list. */
+  descriptionClassName?: string
   /** The hex color used for the active/highlighted state (e.g. icons, active title). Defaults to #ED862E. */
   activeColor?: string
   /** The hex color used for the inactive state (e.g. inactive mobile titles). Defaults to #94A3B8. */
   inactiveColor?: string
 }
 
-// Reveal order follows reading-flow. Each position maps to a logical scroll
-// "step": card N fades + slides up over the first 80% of step N.
-const REVEAL_STEP: Record<CardPosition, number> = {
+// Canonical reading-flow order for positions. This is used to SORT the cards
+// that are actually present — it is no longer used directly as the numeric
+// scroll "step", since that must be re-indexed to however many cards exist
+// (see `useRevealSteps` below). Otherwise a card whose canonical slot is 3
+// (bottom-right) but which is, say, the 3rd of only 3 cards passed in, would
+// never reach an achievable scroll step and would stay invisible forever.
+const POSITION_ORDER: Record<CardPosition, number> = {
   "top-left": 0,
   "top-right": 1,
   "bottom-left": 2,
@@ -60,12 +78,35 @@ const DEFAULT_OFFSET: Record<CardPosition, string> = {
   "bottom-right": "",
 }
 
+/**
+ * Re-indexes whichever positions are actually present (in canonical
+ * reading-flow order) to consecutive integers 0..N-1. This guarantees every
+ * card's reveal step falls within the achievable `progress` range of
+ * `[0, cards.length]`, regardless of which positions were skipped.
+ */
+function useRevealSteps(cards: ScrollRevealCard[]): Partial<Record<CardPosition, number>> {
+  return React.useMemo(() => {
+    const present = (Object.keys(POSITION_ORDER) as CardPosition[])
+      .filter((pos) => cards.some((c) => c.position === pos))
+      .sort((a, b) => POSITION_ORDER[a] - POSITION_ORDER[b])
+
+    return Object.fromEntries(present.map((pos, i) => [pos, i]))
+  }, [cards])
+}
+
 export function ScrollRevealShowcase({
   header,
   cards,
   image,
   bgClassName = "bg-[#FAFAFA]",
   imageClassName,
+  cardsWrapperClassName,
+  cardClassName,
+  iconWrapperClassName,
+  mobileIconWrapperClassName,
+  textWrapperClassName,
+  featureTitleClassName,
+  descriptionClassName,
   activeColor = "#ED862E",
   inactiveColor = "#94A3B8",
 }: ScrollRevealShowcaseProps) {
@@ -87,13 +128,15 @@ export function ScrollRevealShowcase({
 
   const progress = useTransform(smoothScrollY, [0, 1], [0, cards.length])
 
+  const revealSteps = useRevealSteps(cards)
+
   const cardAt = (position: CardPosition) => cards.find((c) => c.position === position)
   const leftCards = ["top-left", "bottom-left"].map((p) => cardAt(p as CardPosition))
   const rightCards = ["top-right", "bottom-right"].map((p) => cardAt(p as CardPosition))
 
   // Mobile list follows the same reveal order as desktop.
   const mobileCards = [...cards].sort(
-    (a, b) => REVEAL_STEP[a.position] - REVEAL_STEP[b.position]
+    (a, b) => POSITION_ORDER[a.position] - POSITION_ORDER[b.position]
   )
 
   return (
@@ -112,12 +155,30 @@ export function ScrollRevealShowcase({
           )}
 
           {/* Grid Layout (Desktop Sticky, Mobile Stacked via Tailwind) */}
-          <div className="relative flex w-full flex-col items-center max-w-[1440px] mx-auto justify-between gap-3 md:gap-8 lg:flex-row lg:items-stretch lg:gap-12.5 lg:flex-1 lg:min-h-0 lg:pb-8">
+          <div
+            className={cn(
+              "relative flex w-full flex-col items-center max-w-[1440px] mx-auto justify-between gap-3 md:gap-8 lg:flex-row lg:items-stretch lg:gap-12.5 lg:flex-1 lg:min-h-0 lg:pb-8",
+              cardsWrapperClassName
+            )}
+          >
             {/* Left Features */}
             <div className="hidden w-full flex-col justify-center gap-[40px] lg:flex lg:w-1/4">
               {leftCards.map(
                 (card) =>
-                  card && <RevealCard key={card.position} progress={progress} card={card} activeColor={activeColor} />
+                  card && (
+                    <RevealCard
+                      key={card.position}
+                      progress={progress}
+                      card={card}
+                      activeColor={activeColor}
+                      step={revealSteps[card.position] ?? 0}
+                      cardClassName={cardClassName}
+                      iconWrapperClassName={iconWrapperClassName}
+                      textWrapperClassName={textWrapperClassName}
+                      featureTitleClassName={featureTitleClassName}
+                      descriptionClassName={descriptionClassName}
+                    />
+                  )
               )}
             </div>
 
@@ -142,7 +203,20 @@ export function ScrollRevealShowcase({
             <div className="hidden w-full flex-col justify-center gap-[40px] lg:flex lg:w-1/4">
               {rightCards.map(
                 (card) =>
-                  card && <RevealCard key={card.position} progress={progress} card={card} activeColor={activeColor} />
+                  card && (
+                    <RevealCard
+                      key={card.position}
+                      progress={progress}
+                      card={card}
+                      activeColor={activeColor}
+                      step={revealSteps[card.position] ?? 0}
+                      cardClassName={cardClassName}
+                      iconWrapperClassName={iconWrapperClassName}
+                      textWrapperClassName={textWrapperClassName}
+                      featureTitleClassName={featureTitleClassName}
+                      descriptionClassName={descriptionClassName}
+                    />
+                  )
               )}
             </div>
 
@@ -166,6 +240,9 @@ export function ScrollRevealShowcase({
                   description={card.description}
                   activeColor={activeColor}
                   inactiveColor={inactiveColor}
+                  featureTitleClassName={featureTitleClassName}
+                  descriptionClassName={descriptionClassName}
+                  iconWrapperClassName={mobileIconWrapperClassName}
                 />
               ))}
             </div>
@@ -180,12 +257,23 @@ function RevealCard({
   progress,
   card,
   activeColor,
+  step,
+  cardClassName,
+  iconWrapperClassName,
+  textWrapperClassName,
+  featureTitleClassName,
+  descriptionClassName,
 }: {
   progress: MotionValue<number>
   card: ScrollRevealCard
   activeColor: string
+  step: number
+  cardClassName?: string
+  iconWrapperClassName?: string
+  textWrapperClassName?: string
+  featureTitleClassName?: string
+  descriptionClassName?: string
 }) {
-  const step = REVEAL_STEP[card.position]
   // Fade + slide up over the first 80% of the card's step, leaving a brief
   // "settle" tail before the next card starts.
   const opacity = useTransform(progress, [step, step + 0.8], [0, 1])
@@ -196,17 +284,23 @@ function RevealCard({
       style={{ opacity, y }}
       className={cn(
         "flex flex-col items-start gap-[12px] pt-[8px]",
-        card.offsetClassName ?? DEFAULT_OFFSET[card.position]
+        card.offsetClassName ?? DEFAULT_OFFSET[card.position],
+        cardClassName
       )}
     >
       <div
-        className="flex items-center justify-start [&>svg]:w-8 [&>svg]:h-8"
+        className={cn(
+          "flex items-center justify-start w-8 h-8",
+          iconWrapperClassName
+        )}
         style={{ color: activeColor }}
       >
         {card.icon}
       </div>
-      <h3 className="typo-h2 text-[#191C1E]">{card.title}</h3>
-      <p className="typo-body1 text-[#464554]">{card.description}</p>
+      <div className={cn("flex flex-col items-start gap-[12px]", textWrapperClassName)}>
+        <h3 className={cn("typo-h2 text-[#191C1E]", featureTitleClassName)}>{card.title}</h3>
+        <p className={cn("typo-body1 text-[#464554]", descriptionClassName)}>{card.description}</p>
+      </div>
     </motion.div>
   )
 }
@@ -216,25 +310,31 @@ function MobileFeatureItem({
   title,
   description,
   activeColor,
+  featureTitleClassName,
+  descriptionClassName,
+  iconWrapperClassName,
 }: {
   icon: React.ReactNode
   title: React.ReactNode
   description: React.ReactNode
   activeColor: string
-  inactiveColor: string
+  inactiveColor?: string
+  featureTitleClassName?: string
+  descriptionClassName?: string
+  iconWrapperClassName?: string
 }) {
   return (
     <div className="flex flex-col items-start gap-[8px]">
       <div
-        className=" flex items-center justify-start [&>svg]:w-6 [&>svg]:h-6"
+        className={cn("flex items-center justify-start [&>svg]:w-6 [&>svg]:h-6", iconWrapperClassName)}
         style={{ color: activeColor }}
       >
         {icon}
       </div>
-      <h3 className="typo-h2 text-[#191C1E]">
+      <h3 className={cn("typo-h2 text-[#191C1E]", featureTitleClassName)}>
         {title}
       </h3>
-      <p className="font-source-sans-400 text-[14px] leading-[22.4px] text-[#464554]">{description}</p>
+      <p className={cn("font-source-sans-400 text-[14px] leading-[22.4px] text-[#464554]", descriptionClassName)}>{description}</p>
     </div>
   )
 }
