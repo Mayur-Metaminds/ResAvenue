@@ -121,7 +121,7 @@ function ContactUsBody() {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-white px-4 py-15 md:px-8 lg:py-25"
+      className="w-full bg-white px-4 py-12.5 md:px-8 lg:py-[60px]"
     >
       <div className="">
         <BentoGrid<ContactCard>

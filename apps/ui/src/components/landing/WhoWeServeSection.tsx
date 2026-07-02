@@ -21,7 +21,7 @@ const segments = [
     title: "Independent Hotels",
     subtitle: "Increase direct bookings & Simplify operations",
     points: [
-      "Increase direct bookings by up to 40% with a high-converting booking engine",
+      "Increase direct bookings by up to 40% with a smarter booking engine.",
       "Reduce OTA commissions with built-in website + rate parity tools",
       "Manage bookings, rates, and guest from one unified dashboard",
       "Automate confirmations, payments, and guest communication",
@@ -114,7 +114,7 @@ const segments = [
     subtitle:
       "Maximize premium experience + upsells",
     points: [
-      "Showcase rooms, experiences, and packages with a visually rich booking engine",
+      "Display rooms, experiences, and packages in a visually rich booking engine.",
       "Sell add-ons spa, dining, activities directly during booking",
       "Dynamic pricing based on seasonality and demand",
       "Manage multi-room/villa inventory with ease",

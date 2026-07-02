@@ -119,13 +119,13 @@ export function ChannelConnectEngineeredSection() {
   const [showAll, setShowAll] = useState(false)
 
   return (
-    <section data-nav-theme="light" className="w-full bg-white pb-[90px]">
+    <section data-nav-theme="light" className="w-full bg-white pt-5 pb-[60px] lg:pt-0">
       <div className="mx-auto w-full max-w-[1440px] px-[20px] lg:px-[80px]">
         {/* Header */}
         <SectionHeader
-          className="mx-auto mb-[45px] max-w-3xl text-center lg:mb-[80px]"
+          className="mx-auto mb-[45px] max-w-3xl text-center lg:mb-[50px]"
           eyebrow="Enterprise-grade capabilities"
-          eyebrowClassName="mb-[24px] lg:mb-[12px]"
+          eyebrowClassName="mb-[15px] lg:mb-[12px]"
           title={
             <>
               <SectionHeader.Highlight>Engineered for Complexity</SectionHeader.Highlight>
@@ -141,9 +141,8 @@ export function ChannelConnectEngineeredSection() {
           {engineeredFeatures.map((feature, index) => (
             <div
               key={feature.id}
-              className={`group flex h-full cursor-pointer  flex-col items-start gap-[19px] rounded-[16px] border border-black/5 bg-white p-[20px] text-left transition-all duration-300 hover:border-[#ED862E] max-sm:drop-shadow-sm hover:[background:linear-gradient(0deg,rgba(237,134,46,0.03)_0%,rgba(237,134,46,0.03)_100%),#FFF] ${
-                !showAll && index >= MOBILE_VISIBLE_COUNT ? "max-sm:hidden" : ""
-              }`}
+              className={`group flex h-full cursor-pointer  flex-col items-start gap-[19px] rounded-[16px] border border-black/5 bg-white p-[20px] text-left transition-all duration-300 hover:border-[#ED862E] max-sm:drop-shadow-sm hover:[background:linear-gradient(0deg,rgba(237,134,46,0.03)_0%,rgba(237,134,46,0.03)_100%),#FFF] ${!showAll && index >= MOBILE_VISIBLE_COUNT ? "max-sm:hidden" : ""
+                }`}
             >
 
               <div className="flex w-[48px] h-[48px]">{feature.icon}</div>

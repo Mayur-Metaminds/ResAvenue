@@ -12,7 +12,7 @@ function ContactUsWrapper() {
       <div className="flex flex-col bg-white pb-10">
         <ContactUsHero />
         <ContactUsBody />
-        <div className="w-full py-[30px] lg:px-[70px]">
+        <div className="w-full lg:px-[70px]">
           <Marquee<TrustedLogo>
             items={[...trustedLogos]}
             getKey={(logo) => logo.name}

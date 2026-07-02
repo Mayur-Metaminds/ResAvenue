@@ -49,7 +49,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Seamless bookings across every device. Deliver a fast, mobile-first experience that converts.",
     icon: ThreeDWheelIcon1,
-    image: "/images/Landing/explore-module-direct_connect/responsive-booking-engine.png",
+    image: "/images/Landing/explore-module-direct_connect/booking-engine.png",
   },
   {
     id: "corporate",

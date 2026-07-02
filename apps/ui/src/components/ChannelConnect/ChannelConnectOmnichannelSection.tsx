@@ -159,7 +159,7 @@ export function ChannelConnectOmnichannelSection() {
     <div data-nav-theme="light">
       <BentoGrid<OmnichannelCard>
         items={omnichannelCards}
-        sectionClassName="w-full py-[32px] lg:py-[90px] px-[12px] lg:px-[80px] bg-white"
+        sectionClassName="w-full py-[32px] lg:py-[60px] px-[12px] lg:px-[80px] bg-white"
         containerClassName="mx-auto w-full max-w-[1440px] [&>.grid]:xl:!grid-cols-5"
         gridClassName="relative grid auto-rows-min grid-cols-1 gap-6 md:auto-rows-fr md:grid-cols-12"
         cardClassName="p-6 md:p-8 xl:p-10 md:min-h-[380px] justify-start"
@@ -167,7 +167,7 @@ export function ChannelConnectOmnichannelSection() {
           <SectionHeader
             className="mx-auto max-w-3xl text-center md:py-0 py-[24px] mb-[45px] lg:mb-[28px]"
             eyebrow="API-first infrastructure"
-            eyebrowClassName="mb-[24px] lg:mb-[12px]"
+            eyebrowClassName="mb-[15px] lg:mb-[12px]"
             highlightGradient="linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 41.93%, #ED862E 60.24%)"
             titleClassName="font-medium mb-[16px] lg:mb-[24px] leading-[-1.5px]"
             title={

@@ -37,7 +37,7 @@ export interface ContactSubmissionInput {
   propertyName: string
   /** Optional. Empty string is also accepted by the schema. */
   siteUrl?: string
-  service: ContactService
+  service: ContactService[]
   message?: string
 }
 

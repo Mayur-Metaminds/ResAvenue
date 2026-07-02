@@ -28,7 +28,7 @@ export const contactSubmissionSchema = z.object({
   phone: z.string().min(1, "Phone number is required").max(32),
   propertyName: z.string().min(1, "Property name is required").max(200),
   siteUrl: z.url("Invalid URL").max(500).optional().or(z.literal("")),
-  service: z.enum(CONTACT_SERVICE_OPTIONS),
+  service: z.array(z.enum(CONTACT_SERVICE_OPTIONS)).min(1, "Please select at least one service"),
   message: z.string().optional(),
 }) satisfies z.ZodType<ContactSubmissionInput>
 

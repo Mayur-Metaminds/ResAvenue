@@ -18,7 +18,7 @@ import type {
 } from "@/types/api"
 
 export default function ContactForm() {
-  const [selected, setSelected] = useState<ContactService>("Direct Connect")
+  const [selected, setSelected] = useState<ContactService[]>([])
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -55,7 +55,12 @@ export default function ContactForm() {
   }
 
   const handleServiceClick = (service: ContactService) => {
-    if (!isDragging.current) setSelected(service)
+    if (!isDragging.current)
+      setSelected((prev) =>
+        prev.includes(service)
+          ? prev.filter((s) => s !== service)
+          : [...prev, service]
+      )
   }
 
   const scrollTabs = (direction: "prev" | "next") => {
@@ -118,7 +123,7 @@ export default function ContactForm() {
         siteUrl: "",
         message: "",
       })
-      setSelected("Direct Connect")
+      setSelected([])
     } catch (err) {
       setStatus({
         kind: "error",
@@ -146,7 +151,7 @@ export default function ContactForm() {
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              placeholder="First name"
+              placeholder="john"
               className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.firstName && (
@@ -165,7 +170,7 @@ export default function ContactForm() {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              placeholder="Last name"
+              placeholder="Doe"
               className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.lastName && (
@@ -184,7 +189,7 @@ export default function ContactForm() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="John@hotel.com"
+              placeholder="john@hotel.com"
               className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.email && (
@@ -222,7 +227,7 @@ export default function ContactForm() {
               name="propertyName"
               value={formData.propertyName}
               onChange={handleChange}
-              placeholder="The Grand Resort"
+              placeholder="Your Hotel Name"
               className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.propertyName && (
@@ -241,7 +246,7 @@ export default function ContactForm() {
               name="siteUrl"
               value={formData.siteUrl}
               onChange={handleChange}
-              placeholder="https://yourcompany.com"
+              placeholder="https://yourhotel.com"
               className="w-full text-white     typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
             />
             {errors.siteUrl && (
@@ -291,19 +296,22 @@ export default function ContactForm() {
                   key={service}
                   type="button"
                   onClick={() => handleServiceClick(service)}
-                  className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-3 py-1.5 leading-[19.6px] transition-all duration-200 md:px-5 md:py-2 ${selected === service
+                  className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-3 py-1.5 leading-[19.6px] transition-all duration-200 md:px-5 md:py-2 ${selected.includes(service)
                     ? "border-white/40 bg-[#ED862E] text-white"
                     : "border-white/20 text-white hover:border-orange-400"
                     }`}
                 >
                   <span className="grid">
                     <span aria-hidden="true" className="invisible col-start-1 row-start-1 font-source-sans-600 text-[16px] leading-[19.6px]">{service}</span>
-                    <span className={`col-start-1 row-start-1 text-[16px] leading-[19.6px] ${selected === service ? "font-source-sans-600" : "font-source-sans-400"}`}>{service}</span>
+                    <span className={`col-start-1 row-start-1 text-[16px] leading-[19.6px] ${selected.includes(service) ? "font-source-sans-600" : "font-source-sans-400"}`}>{service}</span>
                   </span>
                 </button>
               ))}
             </div>
           </div>
+          {errors.service && (
+            <p className="font-plus-jakarta-500 mt-2 text-[8.315px] text-red-400 md:text-xs">{errors.service}</p>
+          )}
         </div>
 
         {/* Message */}
@@ -341,7 +349,7 @@ export default function ContactForm() {
             className="typo-body5 gap-[4px] md:py-[14px] md:px-[32px] py-[8px] px-[16px]"
             icon={status.kind !== "submitting" && <NextIcon />}
           >
-            {status.kind === "submitting" ? "Sending…" : "Contact Resavenue"}
+            {status.kind === "submitting" ? "Sending…" : "Contact ResAvenue"}
           </Button>
         </div>
 

@@ -12,17 +12,17 @@ export default function OfficeLocations() {
 
           <div className="mb-2 flex items-start gap-4">
             <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
-              <MapPin className="h-4 w-4 text-orange-400" />
+              <MapPin className="h-4 w-4 text-white" />
             </span>
             <p className="typo-body1 text-[#FFF] xl:text-[16px]! xl:leading-[22.75px]!">
               AvenuesAI Ltd, Level II, Plaza Asiad, S. V. Road,
-              Santa Cruz (West), Mumbai - 400054, India.
+              Santa Cruz (West),<br className="hidden lg:block" /> Mumbai - 400054, India.
             </p>
           </div>
 
           <div className="flex items-start gap-4">
             <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
-              <Phone className="h-4 w-4 text-orange-400" />
+              <Phone className="h-4 w-4 text-white" />
             </span>
             <p className="typo-body1 text-[#FFF] xl:text-[16px]! xl:leading-[22.75px]!">
               +91-22-67425555 / 26000816 / 26000846 / 26491524 / 32913622 /
@@ -39,7 +39,7 @@ export default function OfficeLocations() {
 
           <div className="mb-2 flex items-start gap-4">
             <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
-              <MapPin className="h-4 w-4 text-orange-400" />
+              <MapPin className="h-4 w-4 text-white" />
             </span>
             <p className="typo-body1 text-[#FFF] xl:text-[16px]! xl:leading-[22.75px]!">
               Avenues World FZ - LLC., Dubai Internet City, Building # 17, Level
@@ -51,7 +51,7 @@ export default function OfficeLocations() {
 
           <div className="flex items-start gap-4">
             <span className="flex h-[22.4px] shrink-0 items-center xl:h-[22.75px]">
-              <Phone className="h-4 w-4 text-orange-400" />
+              <Phone className="h-4 w-4 text-white" />
             </span>
             <p className="typo-body1 text-[#FFF] xl:text-[16px]! xl:leading-[22.75px]!">
               +971 4 5531029
