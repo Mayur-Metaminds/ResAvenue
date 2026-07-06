@@ -27,28 +27,28 @@ const accordionData: AccordionItemData[] = [
     title: "Easy Mobile Bookings",
     description:
       "Make it simple for guests no matter where they are with a seamless 3-step mobile booking experience.",
-    image: "/images/DeepDiveSectionImg.png"
+    image: "/images/direct-connect/easymobilebookings.png"
   },
   {
     id: "item-2",
     title: "Real-time Sync",
     description:
       "Instantly updates the rates and inventory across multiple hotels in just few clicks.",
-    image: "/images/Direct-Connect/Booking-Engine.png"
+    image: "/images/direct-connect/realtimesync.png"
   },
   {
     id: "item-3",
     title: "Hotel Price Widget",
     description:
       "Compare real-time OTA rates with your hotel's official website rate in one view. Showcase the lowest available rate, and drive direct bookings with transparent pricing.",
-    image: "/images/Direct-Connect/Unified-Intelligence-Dashboard.png"
+    image: "/images/direct-connect/hotelpricewidget.png"
   },
   {
     id: "item-4",
     title: "Simple payment processing",
     description:
       "Streamline your payment process with a seamless and secure PCI compliant payment gateway.",
-    image: "/images/Direct-Connect/Booking-Engine.png"
+    image: "/images/direct-connect/simplePaymentProcessing.png"
   },
 ]
 
@@ -67,13 +67,13 @@ export function DirectConnectDeepDiveSection() {
     target: sectionRef,
     offset: ["start 56px", "end end"],
   })
-  
+
   const indexMotion = useTransform(
     scrollYProgress,
     [0, 1],
     [0, accordionData.length]
   )
-  
+
   useMotionValueEvent(indexMotion, "change", (latest) => {
     const next = Math.max(
       0,
@@ -91,10 +91,10 @@ export function DirectConnectDeepDiveSection() {
     const pinStart = sectionTop - stickyOffset
     const scrollableDistance = el.offsetHeight - (window.innerHeight - stickyOffset)
     const progress = index / accordionData.length
-    
-    window.scrollTo({ 
-      top: pinStart + scrollableDistance * progress, 
-      behavior 
+
+    window.scrollTo({
+      top: pinStart + scrollableDistance * progress,
+      behavior
     })
   }
 

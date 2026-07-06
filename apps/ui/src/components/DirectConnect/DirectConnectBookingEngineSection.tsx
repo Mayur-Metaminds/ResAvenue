@@ -33,52 +33,52 @@ const FALLBACK_IMAGE = "/images/Direct-Connect/Booking-Engine.png"
 const features: FeatureItem[] = [
   {
     id: "live-availability",
-    title: "Live Availability & Smart Pricing",
+    title: "Live Inventory & Smart Pricing",
     subtitle: "Real-time room availability and dynamic pricing",
     Icon: BookingEngineIcon1,
-    image: FALLBACK_IMAGE,
+    image: "/images/direct-connect/liveInventory.png",
   },
   {
     id: "promotions",
     title: "Promotions & Flash Sales Engine",
     subtitle: "Advanced promo codes and flash sale features",
     Icon: BookingEngineIcon2,
-    image: FALLBACK_IMAGE,
+    image: "/images/direct-connect/promotionsFlash.png",
   },
   {
     id: "upsell",
     title: "Upsell & Add-on Optimization",
     subtitle: "Industry upsell features for room upgrades & add-ons",
     Icon: BookingEngineIcon3,
-    image: FALLBACK_IMAGE,
+    image: "/images/direct-connect/upsells.png",
   },
   {
     id: "global-support",
     title: "Global Accessibility Support",
     subtitle: "Multi-language and multi-currency support",
     Icon: BookingEngineIcon4,
-    image: FALLBACK_IMAGE,
+    image: "/images/direct-connect/globalAccessibility.png",
   },
   {
     id: "automated-engagement",
     title: "Automated Guest Engagement",
     subtitle: "Automated guest communication flow",
     Icon: BookingEngineIcon5,
-    image: FALLBACK_IMAGE,
+    image: "/images/direct-connect/automatedGuest.png",
   },
-   {
+  {
     id: "invoicing-payment-collect",
     title: "Invoicing / Payment Collect",
     subtitle: "Collect secure online payments instantly through a simple payment link",
     Icon: BookingEngineIcon6,
-    image: FALLBACK_IMAGE,
+    image: "/images/direct-connect/collections.png",
   },
-   {
+  {
     id: "retargeting-abandoned-bookings",
     title: "Retargeting - Abandoned Bookings",
     subtitle: "Convert abandoned bookings into confirmed reservations with real-time guest retargeting ",
     Icon: BookingEngineIcon7,
-    image: FALLBACK_IMAGE,
+    image: "/images/direct-connect/retargetting.png",
   },
 ]
 
@@ -111,7 +111,7 @@ export function DirectConnectBookingEngineSection() {
               </>
             ),
             description: "A high-conversion, mobile-optimized engine delivering a seamless booking journey from discovery to payment.",
-            descriptionClassName:"leading-[28px]"
+            descriptionClassName: "leading-[28px]"
           }}
           imageSlot={
             <>
