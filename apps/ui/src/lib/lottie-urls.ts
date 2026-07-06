@@ -34,7 +34,7 @@ export const HOTEL_WEBSITE_INNER_URL = `${LANDING}/hotel_website_builder_inner.j
 export const REVENUE_MANAGEMENT_INNER = `${LANDING}/revenue_management_inner.json`
 
 /* ── Landing solution section (lazy) ─────────────────────────────────────── */
-export const PILLES_URL = `${LANDING}/pills_animation.json`
+export const PILLES_URL = `${LANDING}/pill_1.json`
 
 /* ── /direct-connect route sections (lazy) ───────────────────────────────── */
 export const DC_TRAFFIC_REPORT_URL = `${ROOT}/traffic_report_work.json`
