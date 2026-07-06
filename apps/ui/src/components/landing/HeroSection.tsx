@@ -34,7 +34,7 @@ export function HeroSection() {
       {/* Container */}
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[16px] lg:px-[80px] py-[70px] flex flex-1 flex-col">
         {/* Main Content */}
-        <div className="grid flex-1 grid-cols-1 lg:grid-cols-2 items-start gap-12 lg:gap-1 lg:grid-cols-2  ">
+        <div className="grid flex-1 grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-1 lg:grid-cols-2">
           {/* Left Column: Content */}
           <HeroContent
             eyebrow="CLOUD BASED HOTEL MANAGEMENT"
@@ -70,22 +70,26 @@ export function HeroSection() {
             ]}
           />
           {/* Right Column: Mockup */}
-          <div className="relative z-20 flex flex-1 h-full w-full items-center justify-center ">
-            {/* Dashboard laptop mockup Lottie */}
-            <LazyLottie
-              src={HERO_LAPTOP_URL}
-              priority="eager"
-              loop
-              autoplay
-              className="h-full object-top scale-120 lg:scale-95 w-full"
-              rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
-              aria-label="ResAvenue dashboard preview"
-            />
+          <div className="relative z-20 flex h-[300px] w-full items-center justify-center sm:h-[480px] lg:h-[600px] lg:justify-end">
+            <div className="relative w-full max-w-[800px]">
+              {/* Glow effect behind the image */}
+              <div className="absolute top-1/2 left-1/2 -z-10 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ED862E]/15 blur-[80px]" />
 
-            
+              <div className="relative aspect-[1380/884] w-full overflow-hidden">
+                <LazyLottie
+                  src={HERO_LAPTOP_URL}
+                  priority="eager"
+                  loop
+                  autoplay
+                  className="h-full w-full object-contain lg:scale-95"
+                  rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+                  aria-label="ResAvenue dashboard preview"
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>      
+      </div>
     </section>
   )
 }
