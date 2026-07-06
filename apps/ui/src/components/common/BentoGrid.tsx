@@ -42,6 +42,8 @@ export type BentoItem = {
   /** Optional sizing override for the modal animation (side-by-side layout),
       e.g. `"h-[80%] w-[80%]"` to render it smaller. Defaults to `"h-full w-full"`. */
   modalAnimationClassName?: string
+  /** The ID of the bento card this modal should vertically expand to cover. */
+  expandToId?: string
 }
 
 type BentoGridProps<T extends BentoItem> = {
@@ -97,29 +99,48 @@ function PopupTrigger({
 
 function computeBoundsForAnchor(
   anchor: ModalAnchor,
-  card: DOMRect,
-  grid: DOMRect
+  card: HTMLElement,
+  grid: HTMLElement,
+  expandToCard?: HTMLElement | null
 ): ModalBounds {
-  const topInGrid = card.top - grid.top
-  const leftInGrid = card.left - grid.left
-  const rightInGrid = grid.right - card.right
-  const bottomInGrid = grid.bottom - card.bottom
+  const topInGrid = card.offsetTop
+  const leftInGrid = card.offsetLeft
+  const rightInGrid = grid.clientWidth - (card.offsetLeft + card.offsetWidth)
+  const bottomInGrid = grid.clientHeight - (card.offsetTop + card.offsetHeight)
+
+  let expandBottom: number | "auto" = "auto"
+  let expandTop: number | "auto" = "auto"
+
+  if (expandToCard) {
+    expandBottom = grid.clientHeight - (expandToCard.offsetTop + expandToCard.offsetHeight)
+    expandTop = expandToCard.offsetTop
+  }
 
   switch (anchor) {
     case "top-left":
-      return { top: topInGrid, left: leftInGrid, right: "auto", bottom: "auto" }
+      return { 
+        top: topInGrid, 
+        left: leftInGrid, 
+        right: "auto", 
+        bottom: expandBottom 
+      }
     case "top-right":
       return {
         top: topInGrid,
         left: "auto",
         right: rightInGrid,
-        bottom: "auto",
+        bottom: expandBottom
       }
     case "bottom-left":
-      return { top: "auto", left: leftInGrid, right: "auto", bottom: bottomInGrid }
+      return { 
+        top: expandTop, 
+        left: leftInGrid, 
+        right: "auto", 
+        bottom: bottomInGrid 
+      }
     case "bottom-right":
       return {
-        top: "auto",
+        top: expandTop,
         left: "auto",
         right: rightInGrid,
         bottom: bottomInGrid,
@@ -174,8 +195,9 @@ export function BentoGrid<T extends BentoItem>({
     setBounds(
       computeBoundsForAnchor(
         item.anchor,
-        card.getBoundingClientRect(),
-        grid.getBoundingClientRect()
+        card,
+        grid,
+        item.expandToId ? cardRefs.current[item.expandToId] : undefined
       )
     )
     setActiveId(item.id)

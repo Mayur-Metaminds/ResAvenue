@@ -34,12 +34,8 @@ type Product = BentoItem & {
   renderBottom?: () => React.ReactNode
 }
 
-// Every card's modal opens to exactly 900px. This height provides enough room
-// for the longest text content (Direct Connect) while comfortably fitting the
-// 400px minimum height of the Lottie animations without clipping them.
-// We use !max-h-none to prevent BentoProductModal's viewport clamp from shrinking
-// it on smaller laptop screens, ensuring the animation is always fully visible.
-const MODAL_HEIGHT = "h-[900px] !max-h-none"
+// We removed the fixed MODAL_HEIGHT constraint so the modals can stretch dynamically
+// across rows based on their `expandToId` property.
 
 const products: Product[] = [
   {
@@ -60,7 +56,7 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-direct-connect.png",
     lottieUrl: DIRECT_CONNECT_OUTER_URL,
     modalLottieUrl: DIRECT_CONNECT_INNER_URL,
-    modalHeight: MODAL_HEIGHT,
+    expandToId: "property-management",
     renderBottom: () => (
       <div className="pointer-events-none relative mt-4 z-0 w-full aspect-[796/284] overflow-hidden transition-transform duration-500 group-hover:scale-105">
         <LazyLottie
@@ -94,7 +90,7 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-channel-connect.png",
     lottieUrl: CHANNEL_CONNECT_OUTER_URL,
     modalLottieUrl: CHANNEL_CONNECT_INNER_URL,
-    modalHeight: MODAL_HEIGHT,
+    expandToId: "distribution-network",
     renderBottom: () => (
       <div className="pointer-events-none relative mt-4 z-0 mx-8 flex h-[160px] md:h-[200px] lg:h-[300px] items-end justify-center transition-transform duration-500 group-hover:scale-105">
         <LazyLottie
@@ -126,7 +122,7 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-pms.png",
     lottieUrl: PROPERTY_MANAGEMENT_OUTER_URL,
     modalLottieUrl: PROPERTY_MANAGEMENT_INNER_URL,
-    modalHeight: MODAL_HEIGHT,
+    expandToId: "event-management",
     renderBottom: () => (
       <div className="pointer-events-none relative z-0  flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
         <div className="flex h-[198px] w-full items-center justify-center rounded-[20px]  bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
@@ -161,7 +157,7 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-revenue.png",
     lottieUrl: GRAPH_URL,
     modalLottieUrl: REVENUE_MANAGEMENT_INNER,
-    modalHeight: MODAL_HEIGHT,
+    expandToId: "event-management",
     renderBottom: () => (
       <div className="pointer-events-none relative mt-4 w-full z-0 flex items-start justify-start transition-transform duration-500 px-4 group-hover:scale-105">
         <div className="flex h-[200px] lg:h-[240px] w-full items-start justify-start rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
@@ -196,7 +192,7 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-distribution.png",
     lottieUrl: DISTRIBUTION_NETWORK_URL,
     modalLottieUrl: DISTRIBUTION_NETWORK_INNER_URL,
-    modalHeight: MODAL_HEIGHT,
+    expandToId: "hotel-website",
 
     renderBottom: () => (
       <div className="pointer-events-none relative z-0  flex items-center justify-center transition-transform duration-500 group-hover:scale-105 ">
@@ -231,7 +227,7 @@ const products: Product[] = [
     href: "/event-booking",
     lottieUrl: EVENT_OUTER_URL,
     modalLottieUrl: EVENT_INNER_URL,
-    modalHeight: MODAL_HEIGHT,
+    expandToId: "property-management",
     modalFeatures: [
       "Stop Managing Events. Start Monetizing Them.",
       "Sell faster with Instant form generation",    
@@ -275,7 +271,7 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-website.png",
     lottieUrl: HOTEL_WEBSITE_OUTER_URL,
     modalLottieUrl: HOTEL_WEBSITE_INNER_URL,
-    modalHeight: MODAL_HEIGHT,
+    expandToId: "distribution-network",
   },
 ]
 

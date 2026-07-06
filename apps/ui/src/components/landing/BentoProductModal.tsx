@@ -93,6 +93,8 @@ export interface BentoModalProduct {
       Set to `false` on the Direct Connect page modals where the user is
       already on a detail page and a deeper navigation isn't relevant. */
   showLearnMore?: boolean
+  /** The ID of the bento card this modal should vertically expand to cover. */
+  expandToId?: string
 }
 
 
@@ -212,16 +214,17 @@ function DesktopAnchoredModal({
         bottom: bounds.bottom,
       }}
       className={cn(
-        // Grows to fit its content (h-auto) up to the viewport (max-h); anything
-        // past that is cropped, not scrolled — the visible portion is enough.
-        "z-40 flex flex-col overflow-hidden rounded-[20px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)] max-h-[calc(100vh-64px)]",
+        // Grows to fit its content (h-auto) or stretches between top/bottom bounds.
+        // We removed the max-h constraint so the modal can physically span across rows
+        // even if that exceeds the viewport height (the page scroll handles it).
+        "z-40 flex flex-col overflow-hidden rounded-[20px] border border-gray-100 bg-white shadow-2xl max-w-[calc(100vw-32px)]",
         product.modalWidth || "w-[760px]",
         // A product can opt into a fixed height (e.g. to cover the cards behind
         // it); otherwise stacked / stacked-vertical grow to fit their animation,
         // and side-by-side falls back to a fixed default for its 2-column grid.
         product.modalHeight
           ? product.modalHeight
-          : product.modalLayout === "side-by-side"
+          : product.modalLayout === "side-by-side" && !product.expandToId
             ? "h-[824px]"
             : "h-auto"
       )}
@@ -293,10 +296,11 @@ function ModalContent({
   }
 
   const router = useRouter()
-  // When the product sets a fixed modalHeight, the modal keeps that height (e.g.
-  // to cover the cards behind it) and the animation fills the leftover space.
-  // Otherwise the modal grows to fit a 90%-wide, aspect-ratio-sized animation.
-  const hasFixedHeight = Boolean(product.modalHeight) && isDesktop
+  // A modal has a "fixed" height (which means its animation visual should `flex-1`
+  // to fill the remaining space) if it either has an explicit `modalHeight` constraint,
+  // OR if it's anchored across multiple rows (`expandToId` is set).
+  const isStretching = isDesktop && Boolean(product.expandToId)
+  const hasFixedHeight = (Boolean(product.modalHeight) || isStretching) && isDesktop
   const [animationAspect, setAnimationAspect] = useState<string | undefined>(
     undefined
   )

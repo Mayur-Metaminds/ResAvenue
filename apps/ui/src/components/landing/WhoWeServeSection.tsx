@@ -300,31 +300,34 @@ export function WhoWeServeSection() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="fixed top-1/2 left-1/2 z-50 w-full max-w-[680px] -translate-x-1/2 -translate-y-1/2 px-4"
             >
-              <div className="relative flex max-h-[90vh] flex-col overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedSegment(null)}
-                  className="absolute top-5 cursor-pointer right-5 z-10 text-gray-400 transition-transform hover:scale-105 hover:text-gray-700 focus:outline-none lg:top-6 lg:right-6"
-                >
-                  <CloseBtn size={24} />
-                </button>
-
-                <div className="overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] p-3 md:p-8 lg:p-10">
-                  {/* Icon */}
-                  <div className="mb-4 flex lg:mt-0 lg:ml-0 ml-2.5 mt-3 h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-2xl bg-[#FEFAF5] [&>svg]:w-6 [&>svg]:h-6 lg:[&>svg]:w-8 lg:[&>svg]:h-8">
+              <div className="flex flex-col max-h-[90vh] overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
+                {/* Sticky Icon + Close Button row */}
+                <div className="shrink-0 flex items-center justify-between bg-white px-5 pt-5 pb-4 md:px-8 lg:px-10 lg:pt-6 lg:pb-4">
+                  <div className="flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-2xl bg-[#FEFAF5] [&>svg]:w-6 [&>svg]:h-6 lg:[&>svg]:w-8 lg:[&>svg]:h-8">
                     <activeSegmentData.icon />
                   </div>
+                  <button
+                    onClick={() => setSelectedSegment(null)}
+                    className="cursor-pointer text-gray-400 transition-transform hover:scale-105 hover:text-gray-700 focus:outline-none"
+                  >
+                    <CloseBtn size={24} />
+                  </button>
+                </div>
 
+                {/* Scrollable area:
+                    - mobile (<lg): scrolls everything — title, subtitle, bullets AND image
+                    - desktop (lg+): scrolls only title, subtitle, bullets; image is pinned below */}
+                <div className="overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-5 pb-5 md:px-8 md:pb-8 lg:px-10 lg:pb-0">
                   {/* Title & Subtitle */}
-                  <h3 className="mb-2 lg:ml-0 ml-2.5 text-[20px] lg:text-[22px] font-semibold tracking-tight text-[#010C28]">
+                  <h3 className="mb-2 text-[20px] lg:text-[22px] font-semibold tracking-tight text-[#010C28]">
                     {activeSegmentData.title}
                   </h3>
-                  <p className="mb-4 lg:mb-6 lg:ml-0 ml-2.5 pr-6 text-[13px] lg:text-[14px] font-medium text-[#8BA0B2]">
+                  <p className="mb-4 lg:mb-6 pr-6 text-[13px] lg:text-[14px] font-medium text-[#8BA0B2]">
                     {activeSegmentData.subtitle}
                   </p>
 
                   {/* Points */}
-                  <ul className="mb-8 lg:ml-0 ml-2.5 space-y-3 lg:space-y-[12px]">
+                  <ul className="space-y-3 lg:space-y-[12px]">
                     {activeSegmentData.points.map((point, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <div className="mt-1 shrink-0 [&>svg]:w-4 [&>svg]:h-4">
@@ -337,7 +340,26 @@ export function WhoWeServeSection() {
                     ))}
                   </ul>
 
-                  {/* Image */}
+                  {/* Image inside scroll — mobile only */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ type: "spring", damping: 22, stiffness: 300, delay: 0.1 }}
+                    className="lg:hidden relative mt-4 aspect-[16/6] w-full overflow-hidden rounded-3xl"
+                  >
+                    <Image
+                      src={activeSegmentData.image}
+                      alt={activeSegmentData.title}
+                      fill
+                      sizes="100vw"
+                      priority
+                      className="object-cover"
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Image pinned at bottom — desktop only */}
+                <div className="hidden lg:block shrink-0 px-10 pt-4 pb-10">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -348,7 +370,7 @@ export function WhoWeServeSection() {
                       src={activeSegmentData.image}
                       alt={activeSegmentData.title}
                       fill
-                      sizes="(min-width: 768px) 680px, 100vw"
+                      sizes="680px"
                       priority
                       className="object-cover"
                     />
