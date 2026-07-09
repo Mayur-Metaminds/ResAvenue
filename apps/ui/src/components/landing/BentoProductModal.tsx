@@ -409,6 +409,7 @@ function ModalContent({
                 priority="on-demand"
                 loop
                 className="h-full w-full"
+                lottieClassName={product.modalAnimationClassName}
                 rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
               />
               {product.lottieOverlay}

@@ -90,6 +90,7 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-channel-connect.png",
     lottieUrl: CHANNEL_CONNECT_OUTER_URL,
     modalLottieUrl: CHANNEL_CONNECT_INNER_URL,
+    modalAnimationClassName: "h-full w-full lg:-mt-9",
     expandToId: "distribution-network",
     renderBottom: () => (
       <div className="pointer-events-none relative mt-4 z-0 mx-8 flex h-[160px] md:h-[200px] lg:h-[300px] items-end justify-center transition-transform duration-500 group-hover:scale-105">
@@ -192,6 +193,7 @@ const products: Product[] = [
     imagePlaceholder: "/images/placeholder-distribution.png",
     lottieUrl: DISTRIBUTION_NETWORK_URL,
     modalLottieUrl: DISTRIBUTION_NETWORK_INNER_URL,
+    modalAnimationClassName: "h-full w-full lg:scale-110",
     expandToId: "hotel-website",
 
     renderBottom: () => (
@@ -230,7 +232,7 @@ const products: Product[] = [
     expandToId: "property-management",
     modalFeatures: [
       "Stop Managing Events. Start Monetizing Them.",
-      "Sell faster with Instant form generation",    
+      "Sell faster with Instant form generation",
       "QR Code-Based Digital Ticketing & Contactless Check-In",
       "From Tickets to Insights — Everything in One Place.",
       "Run Events That Actually Pay Off.",

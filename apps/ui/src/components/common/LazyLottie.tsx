@@ -36,6 +36,10 @@ export interface LazyLottieProps {
   autoplay?: boolean
   /** Merged onto the wrapper; the inner Lottie is always h-full w-full. */
   className?: string
+  /** Merged onto the inner Lottie element (defaults to `h-full w-full`). Use to
+      transform just the animation, e.g. `scale-110`, without affecting the
+      wrapper box. */
+  lottieClassName?: string
   rendererSettings?: RendererSettings
   /** IntersectionObserver margin for "lazy". Default "600px" (load before visible). */
   rootMargin?: string
@@ -61,6 +65,7 @@ export function LazyLottie({
   loop = true,
   autoplay = true,
   className,
+  lottieClassName,
   rendererSettings,
   rootMargin = "600px",
   fallback = null,
@@ -159,7 +164,7 @@ export function LazyLottie({
           animationData={data}
           loop={reduceMotion ? false : loop}
           autoplay={reduceMotion ? false : autoplay}
-          className="h-full w-full "
+          className={cn("h-full w-full", lottieClassName)}
           rendererSettings={rendererSettings}
           aria-label={ariaLabel}
           role={ariaLabel ? "img" : undefined}
