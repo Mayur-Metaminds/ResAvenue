@@ -42,6 +42,7 @@ export const CONVERSION_FIRST_INNER = `${ROOT}/direct-connect/conversion_first_b
 export const CONVERSION_FIRST_OUTER = `${ROOT}/direct-connect/conversion_first_booking_outer.json`
 export const DISCOUNT_INNER = `${ROOT}/direct-connect/discount_promotion_inner.json`
 export const DISCOUNT_OUTER = `${ROOT}/direct-connect/discount_promotion_outer.json`
+export const GOOGLE_HOTEL_ADS_INNER = `${ROOT}/direct-connect/google_hotel_ads_inner.json`
 export const GOOGLE_HOTEL_ADS_OUTER = `${ROOT}/direct-connect/google_hotel_ads_outer.json`
 export const INTELLIGENT_ANALYTICS_OUTER = `${ROOT}/direct-connect/intelligence_analytics_outer.json`
 export const INTELLIGENT_ANALYTICS_INNER = `${ROOT}/direct-connect/intelligence_analytics_inner.json`

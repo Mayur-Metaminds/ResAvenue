@@ -44,6 +44,12 @@ export type BentoItem = {
   modalAnimationClassName?: string
   /** The ID of the bento card this modal should vertically expand to cover. */
   expandToId?: string
+  /** Optional wrapper className for the bullet list in the "stacked-vertical"
+      modal layout (e.g. to pull it up closer to the description). Only set
+      this on the specific card(s) that need the override — it's undefined,
+      and therefore a no-op, everywhere else. */
+  bulletWrapperClassName?: string
+  mobileModalHeight?: string
 }
 
 type BentoGridProps<T extends BentoItem> = {
@@ -118,11 +124,11 @@ function computeBoundsForAnchor(
 
   switch (anchor) {
     case "top-left":
-      return { 
-        top: topInGrid, 
-        left: leftInGrid, 
-        right: "auto", 
-        bottom: expandBottom 
+      return {
+        top: topInGrid,
+        left: leftInGrid,
+        right: "auto",
+        bottom: expandBottom
       }
     case "top-right":
       return {
@@ -132,11 +138,11 @@ function computeBoundsForAnchor(
         bottom: expandBottom
       }
     case "bottom-left":
-      return { 
-        top: expandTop, 
-        left: leftInGrid, 
-        right: "auto", 
-        bottom: bottomInGrid 
+      return {
+        top: expandTop,
+        left: leftInGrid,
+        right: "auto",
+        bottom: bottomInGrid
       }
     case "bottom-right":
       return {

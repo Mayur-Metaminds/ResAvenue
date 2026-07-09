@@ -95,6 +95,8 @@ export interface BentoModalProduct {
   showLearnMore?: boolean
   /** The ID of the bento card this modal should vertically expand to cover. */
   expandToId?: string
+  bulletWrapperClassName?: string
+  mobileModalHeight?: string
 }
 
 
@@ -265,10 +267,10 @@ function MobileSimpleModal({
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.96 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className="fixed inset-x-4 top-[5vh] h-[90vh] z-[110] flex flex-col overflow-hidden rounded-[20px] bg-white shadow-2xl"
+        className={cn("fixed inset-x-4 top-[5vh] h-[90vh] z-[110] flex flex-col overflow-hidden rounded-[20px] bg-white shadow-2xl", product.mobileModalHeight)}
       >
         <ModalContent product={product} onClose={onClose} isDesktop={false} />
-      </motion.div>
+      </motion.div >
     </>
   )
 }
@@ -596,7 +598,7 @@ function StackedVerticalModalContent({
         <CloseBtn size={32} />
       </button>
 
-      <div className="flex w-full flex-col flex-1 min-h-0 overflow-y-auto lg:overflow-hidden px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
+      <div className="flex w-full flex-col flex-1 min-h-0 px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
         {/* Icon (chip) */}
         <div className="mt-[10px] md:mt-0 flex h-[42px] w-[42px] items-center justify-center rounded-[12px] mb-[12px] [&>svg]:w-[32px] [&>svg]:h-[32px]">
           {product.icon && product.icon}
@@ -619,18 +621,20 @@ function StackedVerticalModalContent({
 
         {/* Bullets — 2-column grid (single column on mobile) */}
         {product.modalFeatures.length > 0 && (
-          <ul className="grid grid-cols-1 gap-x-[24px] gap-y-[16px] md:w-fit md:grid-cols-2 md:gap-x-[60px]">
-            {product.modalFeatures.map((feature) => (
-              <li key={feature} className="flex items-start text-gray-700">
-                <span className="mt-0.5 mr-3 flex h-4 w-4 shrink-0 items-center justify-center md:h-5 md:w-5">
-                  <CheckedIcon />
-                </span>
-                <span className="font-source-sans-400 text-[13px] leading-[20px] text-[#45556C] font-medium md:text-[14px] md:leading-[22px]">
-                  {feature}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <div className={cn("", product.bulletWrapperClassName)}>
+            <ul className="grid grid-cols-1 gap-x-[24px] gap-y-[16px] md:w-fit md:grid-cols-2 md:gap-x-[60px]">
+              {product.modalFeatures.map((feature) => (
+                <li key={feature} className="flex items-start text-gray-700">
+                  <span className="mt-0.5 mr-3 flex h-4 w-4 shrink-0 items-center justify-center md:h-5 md:w-5">
+                    <CheckedIcon />
+                  </span>
+                  <span className="font-source-sans-400 text-[13px] leading-[20px] text-[#45556C] font-medium md:text-[14px] md:leading-[22px]">
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
 
         {/* Animation / image — full width, edge to edge. The box takes the
@@ -640,7 +644,7 @@ function StackedVerticalModalContent({
             grows to fit it; on mobile the body scrolls down to it. */}
         <div
           className={cn(
-            "relative w-full shrink-0 overflow-hidden rounded-2xl",
+            "relative shrink-0 overflow-hidden rounded-2xl -mx-[20px] w-[calc(100%+40px)] md:-mx-[40px] md:w-[calc(100%+80px)]",
             product.modalAnimationWrapperClassName
           )}
           style={animationAspect ? { aspectRatio: animationAspect } : undefined}
