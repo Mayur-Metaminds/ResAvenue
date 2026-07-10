@@ -75,13 +75,14 @@ export function HeroSection() {
               {/* Glow effect behind the image */}
               <div className="absolute top-1/2 left-1/2 -z-10 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ED862E]/15 blur-[80px]" />
 
-              <div className="relative aspect-[1380/884] w-full overflow-hidden">
+              <div className="relative aspect-[1380/884] w-full max-lg:overflow-hidden">
                 <LazyLottie
                   src={HERO_LAPTOP_URL}
                   priority="eager"
                   loop
                   autoplay
-                  className="h-full w-full object-contain lg:scale-95"
+                  className="h-full w-full overflow-visible lg:ml-5"
+                  lottieClassName="max-[1025px]:scale-95 lg:scale-125"
                   rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                   aria-label="ResAvenue dashboard preview"
                 />

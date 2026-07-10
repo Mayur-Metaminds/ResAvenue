@@ -9,7 +9,7 @@ const LANDING = "/assets/landing"
 const ROOT = "/assets"
 
 /* ── Above-the-fold heroes (eager + preloaded) ───────────────────────────── */
-export const HERO_LAPTOP_URL = `${LANDING}/home_page_direct_connect_v3.json`
+export const HERO_LAPTOP_URL = `${LANDING}/home_hero.json`
 export const DC_HERO_OVERLAY_URL = `${ROOT}/direct-connect/hero_section.json`
 export const CHANNEL_CONNECT_HERO_URL = `${ROOT}/channel-connect/hero_section.json`
 export const DISTRIBUTED_TECH_GLOBE_URL = `${LANDING}/distribution-network.json`
