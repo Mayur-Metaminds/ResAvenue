@@ -609,7 +609,7 @@ function StackedVerticalModalContent({
         <CloseBtn size={32} />
       </button>
 
-      <div className="flex w-full overflow-y-auto flex-col flex-1 min-h-0 px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
+      <div className="flex w-full max-lg:overflow-y-auto flex-col flex-1 min-h-0 px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
         {/* Icon (chip) */}
         <div className="mt-[10px] md:mt-0 flex h-[42px] w-[42px] items-center justify-center rounded-[12px] mb-[12px] [&>svg]:w-[32px] [&>svg]:h-[32px]">
           {product.icon && product.icon}
