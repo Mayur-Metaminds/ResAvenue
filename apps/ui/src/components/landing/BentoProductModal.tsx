@@ -214,6 +214,17 @@ function DesktopAnchoredModal({
         left: bounds.left !== "auto" ? `calc(min(${bounds.left}px, 100% - 760px))` : "auto",
         right: bounds.right !== "auto" ? `calc(min(${bounds.right}px, 100% - 760px))` : "auto",
         bottom: bounds.bottom,
+        // FIX: the width classes below can set the modal to 760px, 950px, or
+        // whatever `product.modalWidth` specifies — but the clamp above only
+        // ever assumes 760px, and the old `max-w-[calc(100vw-32px)]` class
+        // only guarded against the *viewport*, not this modal's actual
+        // containing block (the bento grid, inset by its own side padding).
+        // Right around the `lg` (1024px) breakpoint — where this desktop
+        // variant first turns on — the grid is narrower than a 950px modal
+        // even though it's narrower than the viewport, so the modal spilled
+        // past the right edge. Capping maxWidth against `100%` (the grid's
+        // own width) as well as the viewport fixes it at every breakpoint.
+        maxWidth: "min(100%, calc(100vw - 32px))",
       }}
       className={cn(
         // Grows to fit its content (h-auto) or stretches between top/bottom bounds.
@@ -598,7 +609,7 @@ function StackedVerticalModalContent({
         <CloseBtn size={32} />
       </button>
 
-      <div className="flex w-full flex-col flex-1 min-h-0 px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
+      <div className="flex w-full overflow-y-auto flex-col flex-1 min-h-0 px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
         {/* Icon (chip) */}
         <div className="mt-[10px] md:mt-0 flex h-[42px] w-[42px] items-center justify-center rounded-[12px] mb-[12px] [&>svg]:w-[32px] [&>svg]:h-[32px]">
           {product.icon && product.icon}
