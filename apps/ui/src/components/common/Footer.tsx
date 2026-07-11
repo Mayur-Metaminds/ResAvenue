@@ -129,15 +129,15 @@ export function Footer({ nested = false, className }: FooterProps) {
                 {[
                   { title: "Direct Connect", href: "/direct-connect" },
                   { title: "Channel Connect", href: "/channel-connect" },
-                  { title: "Property Management System", href: "/property-management" },
-                  { title: "Revenue Management", href: "/revenue-management" },
-                  { title: "Distribution Network", href: "/distribution-network" },
-                  { title: "Event Management", href: "/event-booking" },
-                  { title: "Website Builder", href: "/hotel-website-builder" },
-                  { title: "Tours & Packages Engine", href: "/tours-packages" },
-                  { title: "Mobile App Ecosystem", href: "/mobile-app" },
-                  { title: "Analytics & Reporting", href: "/analytics-reporting" },
-                  { title: "Guest CRM & Loyalty", href: "/guest-crm" },
+                  { title: "Property Management System", href: "/#" },
+                  { title: "Revenue Management", href: "/#" },
+                  { title: "Distribution Network", href: "/#" },
+                  { title: "Event Management", href: "/#" },
+                  { title: "Website Builder", href: "/#" },
+                  { title: "Tours & Packages Engine", href: "/#" },
+                  { title: "Mobile App Ecosystem", href: "/#" },
+                  { title: "Analytics & Reporting", href: "/#" },
+                  { title: "Guest CRM & Loyalty", href: "/#" },
                 ].map(({ title, href }) => (
                   <li key={title}>
                     <Link
