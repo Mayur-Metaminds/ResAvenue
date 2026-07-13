@@ -317,7 +317,7 @@ export function WhoWeServeSection() {
                 {/* Scrollable area:
                     - mobile (<lg): scrolls everything — title, subtitle, bullets AND image
                     - desktop (lg+): scrolls only title, subtitle, bullets; image is pinned below */}
-                <div className="overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-5 pb-5 md:px-8 md:pb-8 lg:px-10 lg:pb-0">
+                <div className="overflow-y-auto lg:overflow-y-hidden px-5 pb-5 md:px-8 md:pb-8 lg:px-10 lg:pb-0">
                   {/* Title & Subtitle */}
                   <h3 className="mb-2 text-[20px] lg:text-[22px] font-semibold tracking-tight text-[#010C28]">
                     {activeSegmentData.title}
@@ -345,7 +345,7 @@ export function WhoWeServeSection() {
                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ type: "spring", damping: 22, stiffness: 300, delay: 0.1 }}
-                    className="lg:hidden relative mt-4 aspect-[16/6] w-full overflow-hidden rounded-3xl"
+                    className="lg:hidden relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-3xl"
                   >
                     <Image
                       src={activeSegmentData.image}
@@ -364,7 +364,7 @@ export function WhoWeServeSection() {
                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ type: "spring", damping: 22, stiffness: 300, delay: 0.1 }}
-                    className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl"
+                    className="relative aspect-[16/9] 2xl:aspect-[21/9] w-full overflow-hidden rounded-3xl"
                   >
                     <Image
                       src={activeSegmentData.image}
