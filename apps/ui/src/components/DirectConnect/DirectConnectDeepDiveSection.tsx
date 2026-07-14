@@ -27,28 +27,28 @@ const accordionData: AccordionItemData[] = [
     title: "Easy Mobile Bookings",
     description:
       "Make it simple for guests no matter where they are with a seamless 3-step mobile booking experience.",
-    image: "/images/direct-connect/easymobilebookings.png"
+    image: "/images/direct-connect/easymobilebookings.avif"
   },
   {
     id: "item-2",
     title: "Real-time Sync",
     description:
       "Instantly updates the rates and inventory across multiple hotels in just few clicks.",
-    image: "/images/direct-connect/realtimesync.png"
+    image: "/images/direct-connect/realtimesync.avif"
   },
   {
     id: "item-3",
     title: "Hotel Price Widget",
     description:
       "Compare real-time OTA rates with your hotel's official website rate in one view. Showcase the lowest available rate, and drive direct bookings with transparent pricing.",
-    image: "/images/direct-connect/hotelpricewidget.png"
+    image: "/images/direct-connect/hotelpricewidget.avif"
   },
   {
     id: "item-4",
     title: "Simple payment processing",
     description:
       "Streamline your payment process with a seamless and secure PCI compliant payment gateway.",
-    image: "/images/direct-connect/simplePaymentProcessing.png"
+    image: "/images/direct-connect/simplePaymentProcessing.avif"
   },
 ]
 
