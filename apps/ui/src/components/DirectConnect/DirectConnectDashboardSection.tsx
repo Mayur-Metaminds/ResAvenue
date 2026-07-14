@@ -32,7 +32,7 @@ export function DirectConnectDashboardSection() {
             {/* Stats */}
             <div className="flex items-center gap-12 md:gap-16">
               <div className="flex flex-col">
-                <span className="font-plus-jakarta-700 mb-2 text-[36px] leading-none text-white md:text-[48px]">
+                <span className="font-plus-jakarta-700 mb-2 text-[36px] leading-none text-[#ED862E] md:text-[48px]">
                   <CountUp
                     target={2.4}
                     suffix="s"
@@ -44,7 +44,7 @@ export function DirectConnectDashboardSection() {
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="font-plus-jakarta-700 mb-2 text-[40px] leading-none text-white md:text-[48px]">
+                <span className="font-plus-jakarta-700 mb-2 text-[40px] leading-none text-[#ED862E] md:text-[48px]">
                   <CountUp target={18} suffix="%" />
                 </span>
                 <span className="font-source-sans-600 text-[10px] font-bold tracking-[1.5px] text-white/50 uppercase md:text-[12px]">
@@ -60,7 +60,7 @@ export function DirectConnectDashboardSection() {
               src={INTELLIGENT_ANALYTICS_INNER}
               priority="lazy"
               loop
-              className="h-full w-full drop-shadow-2xl"
+              className="drop-shadow-2xl rounded-xl"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
             />
           </div>

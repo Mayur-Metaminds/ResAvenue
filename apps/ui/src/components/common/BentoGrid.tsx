@@ -49,6 +49,12 @@ export type BentoItem = {
       this on the specific card(s) that need the override — it's undefined,
       and therefore a no-op, everywhere else. */
   bulletWrapperClassName?: string
+  /** Optional className override for the bullet `<ul>` itself (column count,
+      gaps, etc). Merged over each layout's default bullet classes via `cn()`,
+      so only the conflicting Tailwind classes (e.g. `grid-cols-1` →
+      `grid-cols-2`) are replaced — the rest of that card's modal layout is
+      unaffected. Applies regardless of `modalLayout`. */
+  bulletListClassName?: string
   mobileModalHeight?: string
 }
 

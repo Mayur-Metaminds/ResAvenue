@@ -96,6 +96,13 @@ export interface BentoModalProduct {
   /** The ID of the bento card this modal should vertically expand to cover. */
   expandToId?: string
   bulletWrapperClassName?: string
+  /** Optional className override for the bullet `<ul>` itself (column count,
+      gaps, etc). Merged over each layout's default bullet classes via `cn()`,
+      so only the conflicting Tailwind classes (e.g. `grid-cols-1` →
+      `grid-cols-2`) are replaced — everything else about that layout
+      (icon/title/description position, animation column, etc.) is
+      unaffected. Applies in all three modalLayout variants. */
+  bulletListClassName?: string
   mobileModalHeight?: string
 }
 
@@ -325,7 +332,7 @@ function ModalContent({
       <Button
         variant="primary"
         size="default"
-        className="w-fit gap-2 rounded-[6px] md:rounded-[10px] px-[20px] py-[10px] md:px-[32px] md:py-[14px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
+        className="w-fit gap-2 rounded-[6px] md:rounded-[10px] px-[20px] py-[8px] md:px-[20px] md:py-[10px] cursor-pointer font-['Plus_Jakarta_Sans'] font-semibold text-[15px] leading-[24px] shadow-[0_10px_15px_-3px_rgba(237,134,46,0.20),0_4px_6px_-4px_rgba(237,134,46,0.20)] hover:opacity-90"
         icon={<ArrowRight className="h-4 w-4" />}
         onClick={() => {
           onClose()
@@ -392,7 +399,12 @@ function ModalContent({
 
           {/* Right — feature checklist (two columns on desktop, one on mobile). */}
           <div className="flex flex-col justify-start gap-[20px]">
-            <ul className="grid grid-cols-1 gap-x-[15px] gap-y-[12px] md:grid-cols-2">
+            <ul
+              className={cn(
+                "grid grid-cols-1 gap-x-[15px] gap-y-[12px] md:grid-cols-2",
+                product.bulletListClassName
+              )}
+            >
               {product.modalFeatures.map((feature) => (
                 <li key={feature} className="flex items-start text-gray-700">
                   <span className="mt-0.5 mr-3 flex h-4 w-4 md:h-5 md:w-5 shrink-0 items-center justify-center">
@@ -517,7 +529,7 @@ function SideBySideModalContent({
 
             {/* Bullets — stacked below the description in the same column */}
             {product.modalFeatures.length > 0 && (
-              <ul className="space-y-[12px]">
+              <ul className={cn("space-y-[12px]", product.bulletListClassName)}>
                 {product.modalFeatures.map((feature) => (
                   <li key={feature} className="flex items-start text-gray-700">
                     <span className="mt-0.5 mr-3 flex h-4 w-4 shrink-0 items-center justify-center md:h-5 md:w-5">
@@ -609,7 +621,7 @@ function StackedVerticalModalContent({
         <CloseBtn size={32} />
       </button>
 
-      <div className="flex w-full max-lg:overflow-y-auto flex-col flex-1 min-h-0 px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
+      <div className="flex w-full overflow-y-auto flex-col flex-1 min-h-0 px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
         {/* Icon (chip) */}
         <div className="mt-[10px] md:mt-0 flex h-[42px] w-[42px] items-center justify-center rounded-[12px] mb-[12px] [&>svg]:w-[32px] [&>svg]:h-[32px]">
           {product.icon && product.icon}
@@ -633,7 +645,12 @@ function StackedVerticalModalContent({
         {/* Bullets — 2-column grid (single column on mobile) */}
         {product.modalFeatures.length > 0 && (
           <div className={cn("", product.bulletWrapperClassName)}>
-            <ul className="grid grid-cols-1 gap-x-[24px] gap-y-[16px] md:w-fit md:grid-cols-2 md:gap-x-[60px]">
+            <ul
+              className={cn(
+                "grid grid-cols-1 gap-x-[24px] gap-y-[16px] md:w-fit md:grid-cols-2 md:gap-x-[60px]",
+                product.bulletListClassName
+              )}
+            >
               {product.modalFeatures.map((feature) => (
                 <li key={feature} className="flex items-start text-gray-700">
                   <span className="mt-0.5 mr-3 flex h-4 w-4 shrink-0 items-center justify-center md:h-5 md:w-5">
