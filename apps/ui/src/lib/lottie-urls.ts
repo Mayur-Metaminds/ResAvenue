@@ -38,8 +38,8 @@ export const PILLES_URL = `${LANDING}/pill_v2.json`
 
 /* ── /direct-connect route sections (lazy) ───────────────────────────────── */
 export const DC_TRAFFIC_REPORT_URL = `${ROOT}/traffic_report_work.json`
-export const CONVERSION_FIRST_INNER = `${ROOT}/direct-connect/conversion_first_booking_inner.json`
-export const CONVERSION_FIRST_OUTER = `${ROOT}/direct-connect/conversion_first_booking_outer.json`
+export const CONVERSION_FIRST_INNER = `${ROOT}/direct-connect/Conversion_first_booking_engine_inner.json`
+export const CONVERSION_FIRST_OUTER = `${ROOT}/direct-connect/Conversion_first_booking_engine_outer.json`
 export const DISCOUNT_INNER = `${ROOT}/direct-connect/discount_promotion_inner.json`
 export const DISCOUNT_OUTER = `${ROOT}/direct-connect/discount_promotion_outer.json`
 export const GOOGLE_HOTEL_ADS_INNER = `${ROOT}/direct-connect/google_hotel_ads_inner.json`
