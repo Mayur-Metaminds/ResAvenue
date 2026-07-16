@@ -30,11 +30,11 @@ export const CHANNEL_CONNECT_INNER_URL = `${LANDING}/channel_connect_inner.json`
 export const PROPERTY_MANAGEMENT_INNER_URL = `${LANDING}/property_management_inner.json`
 export const DISTRIBUTION_NETWORK_INNER_URL = `${LANDING}/distribution_network_inner.json`
 export const EVENT_INNER_URL = `${LANDING}/event_management_new.json`
-export const HOTEL_WEBSITE_INNER_URL = `${LANDING}/hotel_website_builder_inner_v2.json`
+export const HOTEL_WEBSITE_INNER_URL = `${LANDING}/hotel_website_builder_inner.json`
 export const REVENUE_MANAGEMENT_INNER = `${LANDING}/revenue_management_inner_v2.json`
 
 /* ── Landing solution section (lazy) ─────────────────────────────────────── */
-export const PILLES_URL = `${LANDING}/pill_v2.json`
+export const PILLES_URL = `${LANDING}/pill_2.json`
 
 /* ── /direct-connect route sections (lazy) ───────────────────────────────── */
 export const DC_TRAFFIC_REPORT_URL = `${ROOT}/traffic_report_work.json`
