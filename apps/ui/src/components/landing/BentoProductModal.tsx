@@ -360,10 +360,9 @@ function ModalContent({
         <CloseBtn size={62} />
       </button>
 
-      {/* Scrollable body — on the mobile variant (<lg) the content scrolls when
-          it overflows the fixed-height modal. On desktop, it also scrolls if
-          the content exceeds the viewport height constraint. */}
-      <div className="flex w-full flex-1 min-h-0 overflow-y-auto lg:overflow-hidden flex-col gap-[15px] px-[20px] pt-[12px] md:px-[32px] md:pt-[22px] pb-[20px]">
+      {/* Scrollable body — only below lg. At lg+ the modal grows / page scroll
+          handles overflow; no inner scrollbar. */}
+      <div className="flex w-full flex-1 min-h-0 overflow-hidden max-lg:overflow-y-auto flex-col gap-[15px] px-[20px] pt-[12px] md:px-[32px] md:pt-[22px] pb-[20px]">
         {/* Two-column top section (stacks on mobile via grid-cols-1) */}
         <div className="grid w-full grid-cols-1   ">
           {/* Left — icon + eyebrow + title + description + Learn More.
@@ -504,7 +503,7 @@ function SideBySideModalContent({
         <CloseBtn size={32} />
       </button>
 
-      <div className="flex-1 min-h-0 w-full overflow-y-auto lg:overflow-hidden px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[0px]">
+      <div className="flex-1 min-h-0 w-full overflow-hidden max-lg:overflow-y-auto px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[0px]">
         <div className="grid h-auto w-full grid-cols-1 gap-[32px] md:h-full md:gap-[40px] md:grid-cols-2 md:grid-rows-[minmax(0,1fr)]">
           {/* Left — icon + title + description + bullets */}
           <div className="flex flex-col items-start mt-[10px] md:mt-0">
@@ -621,7 +620,7 @@ function StackedVerticalModalContent({
         <CloseBtn size={32} />
       </button>
 
-      <div className="flex w-full overflow-y-auto flex-col flex-1 min-h-0 px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
+      <div className="flex w-full overflow-hidden max-lg:overflow-y-auto flex-col flex-1 min-h-0 px-[20px] pt-[12px] pb-[24px] md:px-[40px] md:pb-[40px]">
         {/* Icon (chip) */}
         <div className="mt-[10px] md:mt-0 flex h-[42px] w-[42px] items-center justify-center rounded-[12px] mb-[12px] [&>svg]:w-[32px] [&>svg]:h-[32px]">
           {product.icon && product.icon}
