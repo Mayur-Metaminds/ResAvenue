@@ -29,7 +29,7 @@ export const DIRECT_CONNECT_INNER_URL = `${LANDING}/direct_connect_inner.json`
 export const CHANNEL_CONNECT_INNER_URL = `${LANDING}/channel_connect_inner.json`
 export const PROPERTY_MANAGEMENT_INNER_URL = `${LANDING}/property_management_inner.json`
 export const DISTRIBUTION_NETWORK_INNER_URL = `${LANDING}/distribution_network_inner.json`
-export const EVENT_INNER_URL = `${LANDING}/event_management_new.json`
+export const EVENT_INNER_URL = `${LANDING}/event_and_ticketing_inner.json`
 export const HOTEL_WEBSITE_INNER_URL = `${LANDING}/hotel_website_builder_inner.json`
 export const REVENUE_MANAGEMENT_INNER = `${LANDING}/revenue_management_inner_v2.json`
 
@@ -45,7 +45,7 @@ export const DISCOUNT_OUTER = `${ROOT}/direct-connect/discount_promotion_outer.j
 export const GOOGLE_HOTEL_ADS_INNER = `${ROOT}/direct-connect/google_hotel_ads_inner.json`
 export const GOOGLE_HOTEL_ADS_OUTER = `${ROOT}/direct-connect/google_hotel_ads_outer.json`
 export const INTELLIGENT_ANALYTICS_OUTER = `${ROOT}/direct-connect/intelligence_analytics_outer.json`
-export const INTELLIGENT_ANALYTICS_INNER = `${ROOT}/direct-connect/intelligence_analytics_inner.json`
+export const INTELLIGENT_ANALYTICS_INNER = `${ROOT}/direct-connect/unified_intelligence.json`
 export const UNLOCK_REVENUE_OUTER = `${ROOT}/direct-connect/unlock_new_revenue_outer.json`
 export const UNLOCK_REVENUE_INNER = `${ROOT}/direct-connect/unlock_new_revenue_inner.json`
 export const PAYMENT_OUTER = `${ROOT}/direct-connect/payment_security_outer.json`

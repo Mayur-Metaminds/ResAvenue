@@ -55,12 +55,13 @@ export function DirectConnectDashboardSection() {
           </div>
 
           {/* Right Column: Mockup Animation */}
-          <div className="relative z-10 flex aspect-[4/3] w-full items-center justify-center lg:origin-right lg:scale-110">
+          <div className="relative z-10 flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[16px] lg:origin-center lg:scale-130 lg:rounded-[24px]">
             <LazyLottie
               src={INTELLIGENT_ANALYTICS_INNER}
               priority="lazy"
               loop
-              className="drop-shadow-2xl rounded-xl"
+              className="flex h-full w-full items-center justify-center drop-shadow-2xl"
+              lottieClassName="h-auto max-h-full w-full sm:-mb-30 md:-mb-22 lg:-mb-30 xl:-ml-5"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
             />
           </div>

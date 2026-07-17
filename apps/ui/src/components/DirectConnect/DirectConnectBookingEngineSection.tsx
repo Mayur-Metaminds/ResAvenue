@@ -126,7 +126,7 @@ export function DirectConnectBookingEngineSection() {
                   key={activeFeature?.id}
                   src={activeFeature?.image ?? FALLBACK_IMAGE}
                   alt={activeFeature?.title ?? "Booking Engine Mockup"}
-                  className="h-auto w-full lg:h-full lg:max-h-[500px] lg:w-auto lg:max-w-none object-contain lg:object-left drop-shadow-2xl transition-opacity duration-300 lg:translate-x-8 xl:translate-x-12"
+                  className="h-auto w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[500px] lg:w-auto lg:max-w-none lg:translate-x-8 lg:object-left lg:scale-[0.6] lg:-ml-11 xl:translate-x-12 xl:scale-100"
                 />
               </div>
             </>
