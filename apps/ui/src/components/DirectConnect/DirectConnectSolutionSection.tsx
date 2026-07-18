@@ -134,7 +134,7 @@ const solutions: SolutionCard[] = [
     title: "Intelligent Analytics",
     subtitle:
       "Keep track of your online bookings with advanced reports, statistics, and advanced tracking via one built-in dashboard.",
-    modalSubtitle: "Gain complete visibility into bookings, revenue, guest behaviour, and operational performance through one intelligent analytics dashboard today.",
+    modalSubtitle: "Gain complete visibility into bookings, revenue, guest behaviour, and operational performance through one intelligent analytics dashboard today. \nMake smarter business decisions with real-time reports and actionable data that help optimize revenue and improve overall performance. \n\n Monitor booking sources, conversion trends, promotional performance, and operational KPIs through visually rich reports and analytics tools. Turn data into actionable insights that help improve pricing strategies and business growth.",
     gridSpan: "col-span-1 lg:col-span-6 min-h-[250px]",
     anchor: "top-right",
     bulletWrapperClassName: "relative z-10 mb-[-20px] md:mb-[-32px]",
@@ -151,7 +151,7 @@ const solutions: SolutionCard[] = [
     showLearnMore: false,
     lottieUrl: INTELLIGENT_ANALYTICS_OUTER,
     modalLottieUrl: INTELLIGENT_ANALYTICS_INNER,
-    modalAnimationWrapperClassName: "-mt-[16px] md:-mt-[32px]",
+    modalAnimationWrapperClassName: "max-sm:mt-10 lg:mt-[16px] xl:-mt-[5px]",
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[55%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:inset-y-0 lg:right-10 lg:mx-0 lg:h-auto lg:w-[40%] lg:items-center lg:justify-end lg:pr-8",
   },
