@@ -134,7 +134,7 @@ const solutions: SolutionCard[] = [
     title: "Intelligent Analytics",
     subtitle:
       "Keep track of your online bookings with advanced reports, statistics, and advanced tracking via one built-in dashboard.",
-    modalSubtitle: "Gain complete visibility into your booking performance, revenue trends, guest behaviour, and operational insights through one intelligent analytics dashboard. \nMake smarter business decisions with real-time reports and actionable data that help optimize revenue and improve overall performance. \n\n Monitor booking sources, conversion trends, promotional performance, and operational KPIs through visually rich reports and analytics tools. Turn data into actionable insights that help improve pricing strategies and business growth.",
+    modalSubtitle: "Gain complete visibility into bookings, revenue, guest behaviour, and operational performance through one intelligent analytics dashboard today.",
     gridSpan: "col-span-1 lg:col-span-6 min-h-[250px]",
     anchor: "top-right",
     bulletWrapperClassName: "relative z-10 mb-[-20px] md:mb-[-32px]",
