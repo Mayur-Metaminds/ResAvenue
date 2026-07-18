@@ -218,7 +218,7 @@ const solutions: SolutionCard[] = [
     modalSubtitle: "Build stronger guest relationships and drive repeat business with exclusive member programs and agent-focused pricing strategies. Reward loyalty with personalized offers, member-only rates, and targeted promotions that encourage direct bookings over third-party channels.Create a more personalized guest journey while maximizing long-term customer value. \n\n Keep guests engaged with tailored offers, promotional campaigns, and loyalty-driven incentives that strengthen brand affinity. Manage agent, corporate, and member pricing seamlessly while encouraging guests to book directly through your website.",
     gridSpan: "col-span-1 lg:col-span-12 min-h-[350px]",
     anchor: "bottom-left",
-    bulletListClassName: "lg:grid grid-cols-2 gap-x-[16px] gap-y-[12px]",
+    bulletListClassName: "lg:grid grid-cols-2 gap-x-[18px] gap-y-[2px]",
     modalFeatures: [
       "Exclusive Member Rates",
       "Loyalty & Repeat Guest Benefits",
