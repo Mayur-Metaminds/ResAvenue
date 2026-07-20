@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 
 import { SectionHeader } from "./SectionHeader"
+import { cn } from "@/lib/styles"
 import {
   DnaSvg,
   AddSvg,
@@ -75,6 +76,8 @@ const segments = [
     ],
     image: "/images/Landing/revenue-management.jpeg",
     position: { bottom: "25%", right: "-6%", transform: "translate(0%, 50%)" },
+    titleClassName:
+      "max-w-[18rem] text-left leading-snug whitespace-normal xl:max-w-none",
     icon: WhoWeServePopupIcon4,
   },
   {
@@ -121,7 +124,13 @@ const segments = [
       "Deliver seamless guest journeys from booking to check-in",
     ],
     image: "/images/Landing/resorts.jpeg",
-    position: { top: "35%", left: "-23%", transform: "translate(0%, -50%)" },
+    position: { top: "35%", transform: "translate(0%, -50%)" },
+    // -20% by default; from xl (after lg) nudge slightly right so the
+    // wrapped label sits clearer of the section edge.
+    positionClassName: "left-[-20%] lg:left-[-4%]",
+    // Long label — wrap to ~2 lines before xl only
+    titleClassName:
+      "max-w-[18rem] text-left leading-snug whitespace-normal xl:max-w-none",
     icon: WhoWeServePopupIcon2,
   },
 ]
@@ -221,14 +230,25 @@ export function WhoWeServeSection() {
           // Outer div owns the absolute position (its inline `transform:
           // translate(...)` anchors the pill). The hover effect lives on the
           // inner button so it doesn't fight that inline transform.
-          <div key={segment.id} className="absolute z-30" style={segment.position}>
-            <button
-              type="button"
-              onClick={() => setSelectedSegment(segment.id)}
-              aria-label={`View details for ${segment.title}`}
-              className="flex cursor-pointer items-center gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_52px_88px_0_rgba(2,33,69,0.50)] transition-transform duration-300 ease-out hover:-translate-y-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E]"
-            >
-              <span className="text-[16px] md:text-[18px] font-plus-jakarta-500 text-[#000]">
+          <div
+            key={segment.id}
+            className={cn(
+              "absolute z-30",
+              "positionClassName" in segment && segment.positionClassName
+            )}
+            style={segment.position}
+          >            <button
+            type="button"
+            onClick={() => setSelectedSegment(segment.id)}
+            aria-label={`View details for ${segment.title}`}
+            className="flex cursor-pointer items-center gap-3 rounded-[26px] border border-gray-100 bg-white px-5 py-2.5 shadow-[0_52px_88px_0_rgba(2,33,69,0.50)] transition-transform duration-300 ease-out hover:-translate-y-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E]"
+          >
+              <span
+                className={cn(
+                  "text-[16px] md:text-[18px] font-plus-jakarta-500 text-[#000]",
+                  "titleClassName" in segment && segment.titleClassName
+                )}
+              >
                 {segment.title}
               </span>
               <span aria-hidden>
@@ -301,33 +321,35 @@ export function WhoWeServeSection() {
               className="fixed top-1/2 left-1/2 z-50 w-full max-w-[680px] -translate-x-1/2 -translate-y-1/2 px-4"
             >
               <div className="flex max-h-[90vh] flex-col overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
-                {/* Sticky Icon + Close Button row */}
-                <div className="flex shrink-0 items-center justify-between bg-white px-5 pt-5 pb-4 md:px-8 lg:px-10 lg:pt-6 lg:pb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FEFAF5] lg:h-12 lg:w-12 [&>svg]:h-6 [&>svg]:w-6 lg:[&>svg]:h-8 lg:[&>svg]:w-8">
-                    <activeSegmentData.icon />
+                {/* Header: icon + title/description aligned left, close on right */}
+                <div className="flex shrink-0 items-start justify-between gap-3 bg-white px-5 pt-5 pb-3 md:px-8 lg:px-10 lg:pt-6 lg:pb-3">
+                  <div className="flex min-w-0 flex-1 items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FEFAF5] lg:h-12 lg:w-12 [&>svg]:h-6 [&>svg]:w-6 lg:[&>svg]:h-8 lg:[&>svg]:w-8">
+                      <activeSegmentData.icon />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-[20px] font-semibold tracking-tight text-[#010C28] lg:text-[22px]">
+                        {activeSegmentData.title}
+                      </h3>
+                      <p className="mt-1 text-[13px] font-medium text-[#8BA0B2] lg:text-[14px]">
+                        {activeSegmentData.subtitle}
+                      </p>
+                    </div>
                   </div>
                   <button
                     onClick={() => setSelectedSegment(null)}
-                    className="cursor-pointer text-gray-400 transition-transform hover:scale-105 hover:text-gray-700 focus:outline-none"
+                    className="mt-1 shrink-0 cursor-pointer text-gray-400 transition-transform hover:scale-105 hover:text-gray-700 focus:outline-none"
                   >
                     <CloseBtn size={24} />
                   </button>
                 </div>
 
                 {/* Body:
-                    - mobile (<lg): scrolls title, subtitle, bullets AND image
+                    - mobile (<lg): scrolls bullets AND image
                     - desktop (lg+): no scroll — bullets stay fully visible; image
                       height is dynamic (leftover space inside max-h-[90vh]) */}
                 <div className="flex min-h-0 flex-1 flex-col overflow-y-auto lg:overflow-hidden">
                   <div className="shrink-0 px-5 pb-5 md:px-8 md:pb-8 lg:px-10 lg:pb-0">
-                    {/* Title & Subtitle */}
-                    <h3 className="mb-2 text-[20px] font-semibold tracking-tight text-[#010C28] lg:text-[22px]">
-                      {activeSegmentData.title}
-                    </h3>
-                    <p className="mb-4 pr-6 text-[13px] font-medium text-[#8BA0B2] lg:mb-4 lg:text-[14px]">
-                      {activeSegmentData.subtitle}
-                    </p>
-
                     {/* Points — fully visible on lg+ (no desktop scroller) */}
                     <ul className="space-y-3 lg:space-y-2.5">
                       {activeSegmentData.points.map((point, idx) => (
@@ -367,7 +389,7 @@ export function WhoWeServeSection() {
                   <div className="relative mx-10 mt-3 mb-6 hidden min-h-0 overflow-hidden rounded-3xl lg:block xl:mb-10"
                     style={{
                       height:
-                        "min(337px, max(120px, calc(90vh - 26rem)))",
+                        "min(337px, max(120px, calc(90vh - 20rem)))",
                     }}
                   >
                     <motion.div
