@@ -300,10 +300,10 @@ export function WhoWeServeSection() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="fixed top-1/2 left-1/2 z-50 w-full max-w-[680px] -translate-x-1/2 -translate-y-1/2 px-4"
             >
-              <div className="flex flex-col max-h-[90vh] overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
+              <div className="flex max-h-[90vh] flex-col overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
                 {/* Sticky Icon + Close Button row */}
-                <div className="shrink-0 flex items-center justify-between bg-white px-5 pt-5 pb-4 md:px-8 lg:px-10 lg:pt-6 lg:pb-4">
-                  <div className="flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-2xl bg-[#FEFAF5] [&>svg]:w-6 [&>svg]:h-6 lg:[&>svg]:w-8 lg:[&>svg]:h-8">
+                <div className="flex shrink-0 items-center justify-between bg-white px-5 pt-5 pb-4 md:px-8 lg:px-10 lg:pt-6 lg:pb-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FEFAF5] lg:h-12 lg:w-12 [&>svg]:h-6 [&>svg]:w-6 lg:[&>svg]:h-8 lg:[&>svg]:w-8">
                     <activeSegmentData.icon />
                   </div>
                   <button
@@ -314,67 +314,78 @@ export function WhoWeServeSection() {
                   </button>
                 </div>
 
-                {/* Scrollable area:
-                    - mobile (<lg): scrolls everything — title, subtitle, bullets AND image
-                    - desktop (lg+): scrolls only title, subtitle, bullets; image is pinned below */}
-                <div className="overflow-y-auto lg:overflow-y-hidden px-5 pb-5 md:px-8 md:pb-8 lg:px-10 lg:pb-0">
-                  {/* Title & Subtitle */}
-                  <h3 className="mb-2 text-[20px] lg:text-[22px] font-semibold tracking-tight text-[#010C28]">
-                    {activeSegmentData.title}
-                  </h3>
-                  <p className="mb-4 lg:mb-6 pr-6 text-[13px] lg:text-[14px] font-medium text-[#8BA0B2]">
-                    {activeSegmentData.subtitle}
-                  </p>
+                {/* Body:
+                    - mobile (<lg): scrolls title, subtitle, bullets AND image
+                    - desktop (lg+): no scroll — bullets stay fully visible; image
+                      height is dynamic (leftover space inside max-h-[90vh]) */}
+                <div className="flex min-h-0 flex-1 flex-col overflow-y-auto lg:overflow-hidden">
+                  <div className="shrink-0 px-5 pb-5 md:px-8 md:pb-8 lg:px-10 lg:pb-0">
+                    {/* Title & Subtitle */}
+                    <h3 className="mb-2 text-[20px] font-semibold tracking-tight text-[#010C28] lg:text-[22px]">
+                      {activeSegmentData.title}
+                    </h3>
+                    <p className="mb-4 pr-6 text-[13px] font-medium text-[#8BA0B2] lg:mb-4 lg:text-[14px]">
+                      {activeSegmentData.subtitle}
+                    </p>
 
-                  {/* Points */}
-                  <ul className="space-y-3 lg:space-y-[12px]">
-                    {activeSegmentData.points.map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <div className="mt-1 shrink-0 [&>svg]:w-4 [&>svg]:h-4">
-                          <CheckedIcon />
-                        </div>
-                        <span className="text-[13px] lg:text-[15px] leading-relaxed text-[#475467]">
-                          {point}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                    {/* Points — fully visible on lg+ (no desktop scroller) */}
+                    <ul className="space-y-3 lg:space-y-2.5">
+                      {activeSegmentData.points.map((point, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <div className="mt-1 shrink-0 [&>svg]:h-4 [&>svg]:w-4">
+                            <CheckedIcon />
+                          </div>
+                          <span className="text-[13px] leading-relaxed text-[#475467] lg:text-[15px] lg:leading-snug">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
 
-                  {/* Image inside scroll — mobile only */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ type: "spring", damping: 22, stiffness: 300, delay: 0.1 }}
-                    className="lg:hidden relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-3xl"
+                    {/* Image inside scroll — mobile only */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ type: "spring", damping: 22, stiffness: 300, delay: 0.1 }}
+                      className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-3xl lg:hidden"
+                    >
+                      <Image
+                        src={activeSegmentData.image}
+                        alt={activeSegmentData.title}
+                        fill
+                        sizes="100vw"
+                        priority
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* Image pinned at bottom — desktop only.
+                      Height is dynamic via leftover modal space:
+                      min(preferred 16:9 height, 90vh minus room for header+bullets).
+                      Inline style — Tailwind arbitrary min() with commas is unreliable. */}
+                  <div className="relative mx-10 mt-3 mb-6 hidden min-h-0 overflow-hidden rounded-3xl lg:block xl:mb-10"
+                    style={{
+                      height:
+                        "min(337px, max(120px, calc(90vh - 26rem)))",
+                    }}
                   >
-                    <Image
-                      src={activeSegmentData.image}
-                      alt={activeSegmentData.title}
-                      fill
-                      sizes="100vw"
-                      priority
-                      className="object-cover"
-                    />
-                  </motion.div>
-                </div>
-
-                {/* Image pinned at bottom — desktop only */}
-                <div className="hidden lg:block shrink-0 px-10 pt-4 pb-10">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ type: "spring", damping: 22, stiffness: 300, delay: 0.1 }}
-                    className="relative aspect-[16/9] 2xl:aspect-[21/9] w-full overflow-hidden rounded-3xl"
-                  >
-                    <Image
-                      src={activeSegmentData.image}
-                      alt={activeSegmentData.title}
-                      fill
-                      sizes="680px"
-                      priority
-                      className="object-cover"
-                    />
-                  </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ type: "spring", damping: 22, stiffness: 300, delay: 0.1 }}
+                      className="absolute inset-0 overflow-hidden rounded-3xl"
+                    >
+                      <Image
+                        src={activeSegmentData.image}
+                        alt={activeSegmentData.title}
+                        fill
+                        sizes="680px"
+                        priority
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </div>
                 </div>
               </div>
             </motion.div>
