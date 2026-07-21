@@ -50,7 +50,7 @@ const directConnectFeatures: FeatureStep[] = [
     label: "Responsive Booking Engine",
     description:
       "Seamless bookings across every device. Deliver a fast, mobile-first experience that converts.",
-    imageClassName: "2xl:scale-[1.25] 2xl:mt-10",
+    imageClassName: "2xl:scale-[1.25] 2xl:mt-10 xl:ml-20 xl:mr-10 2xl:ml-15 4xl:translate-x-20",
     icon: ThreeDWheelIcon1,
     image: "/images/Landing/explore-module-direct_connect/booking-engine.png",
   },
@@ -60,7 +60,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Build loyalty that drives repeat bookings.Manage corporate clients and members with ease.",
     icon: ThreeDWheelIcon2,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-15",
+    imageClassName: "2xl:scale-[1.2] 2xl:mt-15 xl:ml-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-direct_connect/corporate-management.png",
   },
   {
@@ -69,7 +69,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Turn data into smarter decisions. Track performance and unlock actionable insights instantly.",
     icon: ThreeDWheelIcon3,
-    imageClassName: "2xl:scale-[1.2] 2xl:-ml-5 2xl:mt-10",
+    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:ml-10 xl:mr-10 4xl:translate-x-30",
     image: "/images/Landing/explore-module-direct_connect/analytics-reporting.png",
   },
   {
@@ -79,7 +79,7 @@ const directConnectFeatures: FeatureStep[] = [
       "Drive demand with irresistible offers. Launch targeted promotions that convert more bookings.",
     icon: ThreeDWheelIcon4,
     image: "/images/Landing/explore-module-direct_connect/discounts-promotion.png",
-    imageClassName: "xl:scale-[1.1] xl:mt-30 2xl:mr-10 2xl:scale-[1.3]",
+    imageClassName: "xl:scale-[1.1] xl:mt-30 xl:ml-10 xl:mr-10 2xl:scale-[1.3] 4xl:translate-x-20",
   },
   {
     id: "events",
@@ -88,7 +88,7 @@ const directConnectFeatures: FeatureStep[] = [
       "Drive demand with irresistible offers. Launch targeted promotions that convert more bookings.",
     icon: ThreeDWheelIcon5,
     image: "/images/Landing/explore-module-direct_connect/events-ticketing.png",
-    imageClassName: "2xl:scale-[1.1] 2xl:mt-5",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-5 xl:ml-10 xl:mr-10 4xl:translate-x-20",
   },
   {
     id: "packages",
@@ -96,7 +96,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Sell more with curated experiences. Bundle rooms, services, and offers to boost revenue.",
     icon: ThreeDWheelIcon6,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-10",
+    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:ml-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-direct_connect/packages-engine.png",
   },
   {
@@ -105,7 +105,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Faster payments. Zero friction. Simplify invoicing with secure and seamless transactions.",
     icon: ThreeDWheelIcon7,
-    imageClassName: "xl:scale-[1.2] mt-15",
+    imageClassName: "2xl:scale-[1.2] mt-15 xl:ml-10 xl:mr-10 4xl:scale-100 4xl:translate-x-20",
     image: "/images/Landing/explore-module-direct_connect/invoice-payment.png",
   },
 ]
@@ -144,7 +144,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Stay in control across all channels. Update rates and inventory in real-time without errors.",
     icon: ThreeDWheelIcon8,
-    imageClassName: "2xl:scale-[1.25] 2xl:mt-10",
+    imageClassName: "2xl:scale-[1.25] 2xl:mt-10 xl:mr-10 4xl:translate-x-30",
     image: "/images/Landing/explore-module-channel_connect/rate-inventory.png",
   },
   {
@@ -153,7 +153,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Manage every property from one place. Simplify operations with centralized control and visibility.",
     icon: ThreeDWheelIcon9,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-10",
+    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/property-management.png",
   },
   {
@@ -162,7 +162,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Maximize revenue with smart pricing. Adjust rates dynamically based on demand and trends.",
     icon: ThreeDWheelIcon10,
-    imageClassName: "2xl:scale-110 2xl:-ml-15",
+    imageClassName: "2xl:scale-110 2xl:-ml-15 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/yield-management.png",
   },
   {
@@ -171,7 +171,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Know your market. Stay ahead. Track competitor pricing and make smarter decisions.",
     icon: ThreeDWheelIcon11,
-    imageClassName: "2xl:scale-[1.2] xl:mt-5",
+    imageClassName: "2xl:scale-[1.2] xl:mt-5 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/competitor-analysis.png",
   },
   {
@@ -180,7 +180,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Adapt pricing to every season. Optimize rates effortlessly for peak and low demand.",
     icon: ThreeDWheelIcon12,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-10",
+    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/seasonal-pricing.png",
   },
   {
@@ -189,7 +189,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Launch offers that actually convert. Create and manage campaigns across all channels.",
     icon: ThreeDWheelIcon13,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-15 2xl:mr-10 xl:mr-5",
+    imageClassName: "2xl:scale-[1.2] 2xl:mt-15 2xl:mr-10 xl:mr-15 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/promotions.png",
   },
   {
@@ -198,7 +198,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "See what’s working. Improve faster. Get deep insights into performance across channels.",
     icon: ThreeDWheelIcon14,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-10",
+    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/reports-analytics.png",
   },
 ]
@@ -207,19 +207,34 @@ export function ExploreModulesSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [activeTab, setActiveTab] = useState<"direct" | "channel">("direct")
   const [activeIndex, setActiveIndex] = useState(0)
+  // 4K (2560px+): keep the module at a fixed 800px so the next section peeks
+  // below instead of a full-viewport sticky takeover.
+  const [is4k, setIs4k] = useState(false)
 
   const wheelCooldownRef = useRef(0)
   const exitLockoutRef = useRef(0)
 
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 2560px)")
+    const sync = () => setIs4k(mq.matches)
+    sync()
+    mq.addEventListener("change", sync)
+    return () => mq.removeEventListener("change", sync)
+  }, [])
+
   const currentFeatures =
     activeTab === "direct" ? directConnectFeatures : channelConnectFeatures
+
+  // Matches sticky top classes: top-16 (mobile) / sm:top-24 / lg:top-20
+  const getStickyOffset = () =>
+    window.innerWidth >= 1024 ? 80 : window.innerWidth >= 640 ? 96 : 64
 
   // One viewport of page scroll per feature step. The sticky inner stays pinned
   // for the full outer-section height, so the user "stays in" the section until
   // they've scrolled through every step — then the section ends naturally and
-  // the next section comes into view.
+  // the next section comes into view. At 4K we skip the tall track entirely.
   const stepsPerSection = Math.max(1, currentFeatures.length) + 1
-  const sectionHeight = `${stepsPerSection * 100}vh`
+  const sectionHeight = is4k ? undefined : `${stepsPerSection * 100}vh`
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -233,6 +248,7 @@ export function ExploreModulesSection() {
     [0, Math.max(0, currentFeatures.length)]
   )
   useMotionValueEvent(indexMotion, "change", (latest) => {
+    if (is4k) return
     const next = Math.max(
       0,
       Math.min(currentFeatures.length - 1, Math.round(latest))
@@ -241,11 +257,15 @@ export function ExploreModulesSection() {
   })
 
   const scrollToFeature = (i: number, behavior: ScrollBehavior = "smooth") => {
+    if (is4k) {
+      setActiveIndex(i)
+      return
+    }
     const el = sectionRef.current
     if (!el) return
     const rect = el.getBoundingClientRect()
     const sectionTop = rect.top + window.scrollY
-    const stickyOffset = window.innerWidth >= 1024 ? 80 : 96
+    const stickyOffset = getStickyOffset()
     const pinStart = sectionTop - stickyOffset
     const scrollable = el.offsetHeight - (window.innerHeight - stickyOffset)
     const progress = i / Math.max(1, currentFeatures.length)
@@ -261,10 +281,15 @@ export function ExploreModulesSection() {
 
   const handleTabChange = (tab: "direct" | "channel") => {
     if (tab === activeTab) return
+    if (is4k) {
+      setActiveTab(tab)
+      setActiveIndex(0)
+      return
+    }
     const el = sectionRef.current
     if (el) {
       const sectionTop = el.getBoundingClientRect().top + window.scrollY
-      const stickyOffset = window.innerWidth >= 1024 ? 80 : 96
+      const stickyOffset = getStickyOffset()
       const pinStart = sectionTop - stickyOffset
       const scrollable = el.offsetHeight - (window.innerHeight - stickyOffset)
       pendingProgressRef.current =
@@ -277,20 +302,21 @@ export function ExploreModulesSection() {
   }
 
   useIsoLayoutEffect(() => {
+    if (is4k) return
     const progress = pendingProgressRef.current
     if (progress == null) return
     pendingProgressRef.current = null
     const el = sectionRef.current
     if (!el) return
     const sectionTop = el.getBoundingClientRect().top + window.scrollY
-    const stickyOffset = window.innerWidth >= 1024 ? 80 : 96
+    const stickyOffset = getStickyOffset()
     const pinStart = sectionTop - stickyOffset
     const scrollable = el.offsetHeight - (window.innerHeight - stickyOffset)
     window.scrollTo({
       top: pinStart + scrollable * progress,
       behavior: "instant",
     })
-  }, [activeTab])
+  }, [activeTab, is4k])
 
   const selectFeature = (i: number) => {
     setActiveIndex(i)
@@ -305,6 +331,8 @@ export function ExploreModulesSection() {
   // scroll duration so a burst of trackpad inertia events still resolves
   // to one step. At the section's first/last step, we let wheel events
   // bubble naturally so the user can scroll out of the section.
+  // At 4K the section is a fixed 800px block (not sticky), so wheel over it
+  // just steps the active feature without hijacking page scroll height.
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
@@ -314,20 +342,42 @@ export function ExploreModulesSection() {
 
     const isPinned = () => {
       const rect = el.getBoundingClientRect()
-      const stickyOffset = window.innerWidth >= 1024 ? 80 : 96
+      const stickyOffset = getStickyOffset()
       // Allow 1px tolerance for browser subpixel layout rounding
       return rect.top <= stickyOffset + 1 && rect.bottom >= window.innerHeight - 1
     }
 
     const handleWheel = (e: WheelEvent) => {
-      if (!isPinned()) return
-
       const now = performance.now()
-
-      if (now < exitLockoutRef.current) return
-
       const direction = Math.sign(e.deltaY)
       if (direction === 0) return
+
+      if (is4k) {
+        const rect = el.getBoundingClientRect()
+        const overSection =
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom &&
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right
+        if (!overSection) return
+
+        const target = activeIndex + direction
+        if (target < 0 || target >= currentFeatures.length) return
+
+        if (now < wheelCooldownRef.current) {
+          e.preventDefault()
+          return
+        }
+
+        e.preventDefault()
+        wheelCooldownRef.current = now + COOLDOWN_MS
+        setActiveIndex(target)
+        return
+      }
+
+      if (!isPinned()) return
+
+      if (now < exitLockoutRef.current) return
 
       const target = activeIndex + direction
       // Boundaries: let the user scroll out of the section in the natural
@@ -352,7 +402,7 @@ export function ExploreModulesSection() {
     window.addEventListener("wheel", handleWheel, { passive: false })
 
     return () => window.removeEventListener("wheel", handleWheel)
-  }, [activeIndex, currentFeatures.length])
+  }, [activeIndex, currentFeatures.length, is4k])
 
   const activeFeature = currentFeatures[activeIndex] ?? currentFeatures[0]
   if (!activeFeature) return null
@@ -360,7 +410,7 @@ export function ExploreModulesSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative w-full bg-[#010C28] text-white"
+      className="relative w-full bg-[#010C28] text-white 4xl:pb-20"
     >
       {/* Header — in normal flow, scrolls away with the page */}
       <div className="mx-auto w-full max-w-[1440px] px-4 lg:px-1 pt-24 lg:pt-20">
@@ -381,14 +431,19 @@ export function ExploreModulesSection() {
         />
       </div>
 
-      {/* Sticky tracking area */}
-      <div ref={sectionRef} style={{ height: sectionHeight }}>
-        {/* Sticky block — pins below the fixed navbar so the tabs row stays visible */}
-        <div className="sticky top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden">
+      {/* Sticky tracking area — at 4K this is a fixed 800px block (not full-viewport) */}
+      <div
+        ref={sectionRef}
+        className={cn(is4k && "h-[800px]")}
+        style={sectionHeight ? { height: sectionHeight } : undefined}
+      >
+        {/* Sticky block — pins below the fixed navbar so the tabs row stays visible.
+            At 4K: relative + 800px so the next section stays visible below. */}
+        <div className="sticky top-16 sm:top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden 4xl:relative 4xl:top-auto 4xl:h-[800px]">
           <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 lg:px-1 h-full justify-center">
             <div className="flex h-full flex-col ">
               {/* Tabs */}
-              <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center">
+              <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center 4xl:mb-6">
                 <div className="flex rounded-full border border-gray-800/50 bg-[#0b142e] p-1">
                   <TabButton
                     active={activeTab === "direct"}
@@ -405,10 +460,10 @@ export function ExploreModulesSection() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 pb-6 lg:pb-[92px] min-h-0">
+              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 4xl:gap-24 pb-6 lg:pb-[92px] 4xl:pb-6 min-h-0">
                 {/* 3D Wheel */}
                 <div
-                  className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:self-center lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible"
+                  className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:self-center lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible max-sm:-translate-y-6"
                   style={{ perspective: "1200px" }}
                 >
                   <div
@@ -427,8 +482,9 @@ export function ExploreModulesSection() {
                   </div>
                 </div>
 
-                {/* Image */}
-                <div className="relative z-10 w-full lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 mt-4 lg:mt-0">
+                {/* Image — pl/translate (not ml on the img) create real space from the
+                    wheel; ml on a w-full img is clamped by the overflow-hidden parent. */}
+                <div className="relative z-10 w-full lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 -mt-20 mb-2 sm:mt-4 sm:mb-0 lg:mt-0 4xl:pl-16">
                   <div className="pointer-events-none absolute inset-0 rounded-3xl lg:rounded-l-3xl lg:rounded-r-none bg-gradient-to-tr from-[#ED862E]/10 to-transparent opacity-60 blur-3xl" />
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -437,14 +493,14 @@ export function ExploreModulesSection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="absolute top-0 left-0 h-full w-full flex items-center justify-center"
+                      className="absolute top-0 left-0 h-full w-full flex items-center justify-center 4xl:justify-start"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={activeFeature.image}
                         alt={activeFeature.label}
                         className={cn(
-                          "h-full w-full rounded-[20px] object-contain object-center p-2 lg:p-0",
+                          "h-full w-full rounded-[20px] object-contain object-center p-2 lg:p-0 4xl:origin-left",
                           activeFeature.imageClassName
                         )}
                       />
@@ -505,15 +561,28 @@ interface WheelItemProps {
 const WHEEL_ANGLE_STEP = 6
 /** Vertical radius (px). Large + small angle keeps items nearly vertical with comfortable spacing. */
 const WHEEL_RADIUS_Y = 1100
+/** Tighter vertical radius below the `sm` breakpoint. */
+const WHEEL_RADIUS_Y_SM = 720
 /** Depth radius (px). Kept modest so items barely recede — wheel reads as almost flat. */
 const WHEEL_RADIUS_Z = 220
 const DEG_TO_RAD = Math.PI / 180
 
 function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
+  const [isSm, setIsSm] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)")
+    const sync = () => setIsSm(mq.matches)
+    sync()
+    mq.addEventListener("change", sync)
+    return () => mq.removeEventListener("change", sync)
+  }, [])
+
   const offset = index - activeIndex
   const abs = Math.abs(offset)
   const angle = offset * WHEEL_ANGLE_STEP * DEG_TO_RAD
-  const y = Math.sin(angle) * WHEEL_RADIUS_Y
+  const radiusY = isSm ? WHEEL_RADIUS_Y_SM : WHEEL_RADIUS_Y
+  const y = Math.sin(angle) * radiusY
   const z = (Math.cos(angle) - 1) * WHEEL_RADIUS_Z
   const rotateX = -offset * WHEEL_ANGLE_STEP
   const opacity = abs > 3 ? 0 : Math.max(0, 1 - abs * 0.32)
@@ -535,7 +604,7 @@ function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
         transformOrigin: "center left",
       }}
       className={cn(
-        "relative flex items-center gap-4 lg:gap-[24px] text-left w-full lg:w-full xl:w-[467px] py-2 lg:py-[10px] pr-[10px] pl-0"
+        "relative flex items-center gap-3 sm:gap-4 lg:gap-[24px] text-left w-full lg:w-full xl:w-[467px] py-1 sm:py-2 lg:py-[10px] pr-[10px] pl-0"
       )}
     >
       {/* Background & Border Layer (active only) */}
@@ -558,16 +627,16 @@ function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
 
       <div
         className={cn(
-          "relative z-10 flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[8px] transition-colors duration-300 ml-3 lg:ml-[16px]",
+          "relative z-10 flex h-[36px] w-[36px] sm:h-[48px] sm:w-[48px] shrink-0 items-center justify-center rounded-[8px] transition-colors duration-300 ml-3 lg:ml-[16px]",
           isActive ? "bg-[#ED862E]/10" : "bg-white/5"
         )}
       >
-        <Icon className={cn("h-5 w-5", isActive ? "text-[#ED862E]" : "text-gray-500")} />
+        <Icon className={cn("h-4 w-4 sm:h-5 sm:w-5", isActive ? "text-[#ED862E]" : "text-gray-500")} />
       </div>
       <div className="relative z-10 flex min-w-0 flex-col">
         <span
           className={cn(
-            "truncate typo-body5 transition-colors duration-300",
+            "truncate font-plus-jakarta-500 text-[12px] leading-[18px] sm:text-[16px] sm:leading-[24px] transition-colors duration-300",
             isActive ? "text-white" : "text-gray-400"
           )}
         >
@@ -580,7 +649,7 @@ function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
           )}
         >
           <div className="overflow-hidden">
-            <p className="line-clamp-2 pr-2 text-[13px] lg:text-sm leading-relaxed text-gray-400 whitespace-normal">
+            <p className="line-clamp-2 pr-2 text-[11px] sm:text-[13px] lg:text-sm leading-relaxed text-gray-400 whitespace-normal">
               {feature.description}
             </p>
           </div>
