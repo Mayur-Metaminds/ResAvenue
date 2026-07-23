@@ -171,7 +171,7 @@ const solutions: SolutionCard[] = [
       "Flexible Packages & Bundles",
     ],
     imagePlaceholder: "/images/Mock-Image.png",
-    modalAnimationClassName: "h-full w-full xl:-mt-20 scale-80",
+    modalAnimationClassName: "h-full w-full xl:-mt-20 2xl:-ml-10 scale-80",
     icon: <UnifiedPlatformIcon5 />,
     modalWidth: "w-[950px]",
     expandToId: "google-hotel-ads",

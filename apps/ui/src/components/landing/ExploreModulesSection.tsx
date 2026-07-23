@@ -78,8 +78,8 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Drive demand with irresistible offers. Launch targeted promotions that convert more bookings.",
     icon: ThreeDWheelIcon4,
-    image: "/images/Landing/explore-module-direct_connect/discounts-promotion.png",
-    imageClassName: "xl:scale-[1.1] xl:mt-30 xl:ml-10 xl:mr-10 2xl:scale-[1.3] 4xl:translate-x-20",
+    image: "/images/Landing/explore-module-direct_connect/discounts-promotions.png",
+    imageClassName: "xl:scale-[1.1] xl:mt-10 xl:ml-10 xl:mr-10 2xl:scale-[1.3] 4xl:translate-x-20",
   },
   {
     id: "events",
@@ -162,7 +162,8 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Maximize revenue with smart pricing. Adjust rates dynamically based on demand and trends.",
     icon: ThreeDWheelIcon10,
-    imageClassName: "2xl:scale-110 2xl:-ml-15 xl:mr-10 4xl:translate-x-20",
+    // imageClassName: "2xl:scale-130 2xl:-ml-15 xl:mr-10 2xl:mt-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.3] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/yield-management.png",
   },
   {
@@ -213,6 +214,12 @@ export function ExploreModulesSection() {
 
   const wheelCooldownRef = useRef(0)
   const exitLockoutRef = useRef(0)
+  const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const activeIndexRef = useRef(0)
+  const is4kRef = useRef(false)
+
+  activeIndexRef.current = activeIndex
+  is4kRef.current = is4k
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 2560px)")
@@ -272,6 +279,54 @@ export function ExploreModulesSection() {
     window.scrollTo({ top: pinStart + scrollable * progress, behavior })
   }
 
+  const isSectionEngaged = () => {
+    const el = sectionRef.current
+    if (!el) return false
+    const rect = el.getBoundingClientRect()
+    if (is4kRef.current) {
+      return rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15
+    }
+    const stickyOffset = getStickyOffset()
+    return rect.top <= stickyOffset + 1 && rect.bottom >= window.innerHeight - 1
+  }
+
+  const AUTOPLAY_MS = 5000
+
+  const clearAutoplay = () => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current)
+      autoplayRef.current = null
+    }
+  }
+
+  const startAutoplay = () => {
+    clearAutoplay()
+    if (typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return
+    }
+    autoplayRef.current = setInterval(() => {
+      if (!isSectionEngaged()) return
+      const len = currentFeatures.length
+      if (len <= 1) return
+      const prev = activeIndexRef.current
+      const next = (prev + 1) % len
+      const wrapping = next === 0 && prev === len - 1
+      if (is4kRef.current) {
+        setActiveIndex(next)
+      } else {
+        scrollToFeature(next, wrapping ? "instant" : "smooth")
+      }
+    }, AUTOPLAY_MS)
+  }
+
+  useEffect(() => {
+    startAutoplay()
+    return clearAutoplay
+    // Restart when the feature list changes (tab switch).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab, currentFeatures.length, is4k])
+
   // When the user switches tabs we preserve their RELATIVE progress (0..1)
   // in the section rather than resetting them to the top. This stops sticky
   // from detaching mid-switch and avoids the disorienting jump-to-top feel.
@@ -284,6 +339,7 @@ export function ExploreModulesSection() {
     if (is4k) {
       setActiveTab(tab)
       setActiveIndex(0)
+      startAutoplay()
       return
     }
     const el = sectionRef.current
@@ -298,6 +354,7 @@ export function ExploreModulesSection() {
           : 0
     }
     setActiveTab(tab)
+    startAutoplay()
     // activeIndex resyncs from the scroll-driven useMotionValueEvent below.
   }
 
@@ -321,6 +378,7 @@ export function ExploreModulesSection() {
   const selectFeature = (i: number) => {
     setActiveIndex(i)
     scrollToFeature(i)
+    startAutoplay()
   }
 
   // Wheel/trackpad hijacking — while the section is pinned, swallow wheel
@@ -372,6 +430,7 @@ export function ExploreModulesSection() {
         e.preventDefault()
         wheelCooldownRef.current = now + COOLDOWN_MS
         setActiveIndex(target)
+        startAutoplay()
         return
       }
 
@@ -397,6 +456,7 @@ export function ExploreModulesSection() {
       e.preventDefault()
       wheelCooldownRef.current = now + COOLDOWN_MS
       scrollToFeature(target, "instant")
+      startAutoplay()
     }
 
     window.addEventListener("wheel", handleWheel, { passive: false })

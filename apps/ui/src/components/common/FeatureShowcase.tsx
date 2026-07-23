@@ -23,6 +23,7 @@ export interface FeatureShowcaseProps {
       the children (e.g. at the top of an interactive points list) on mobile;
       the desktop two-column layout is unchanged either way. */
   imageMobilePosition?: "top" | "bottom"
+  fullWidthHeader?: boolean
 }
 
 function FeatureShowcaseRoot({
@@ -34,58 +35,80 @@ function FeatureShowcaseRoot({
   imagePosition = "right",
   headerAlignment = "left",
   imageMobilePosition = "bottom",
+  fullWidthHeader = false,
 }: FeatureShowcaseProps) {
   const imageOnTopMobile = imageMobilePosition === "top"
 
   return (
-    <div
-      className={cn(
-        "grid grid-cols-1 items-center gap-16 lg:grid-cols-2",
-        className
+    <>
+      {header && fullWidthHeader && (
+        <SectionHeader
+          {...header}
+          className={cn(
+            headerAlignment === "center"
+              ? "items-center text-center"
+              : "items-start text-left",
+            "mb-[36px] gap-[12px]",
+            header.className
+          )}
+        />
       )}
-    >
-      {/* Content Column */}
-      <div
-        className={cn(
-          "flex flex-col ",
-          imagePosition === "left" ? "order-1 lg:order-2" : "order-1 lg:order-1"
-        )}
-      >
-        {header && (
-          <SectionHeader
-            {...header}
-            className={cn(
-              headerAlignment === "center"
-                ? "items-center text-center"
-                : "items-start text-left",
-              "gap-[12px]",
-              header.className
-            )}
-          />
-        )}
-        {/* Mobile-only: render the image at the top of the content (e.g. above
-            an interactive points list). On desktop it's hidden here and shown
-            in its own column. Opt in via `imageMobilePosition="top"`. */}
-        {imageOnTopMobile && (
-          <div className="relative mb-4 w-full lg:hidden">{imageSlot}</div>
-        )}
-        <div className="flex w-full flex-col gap-4 ">{children}</div>
-      </div>
 
-      {/* Image Column — hidden on mobile when the image is shown on top. The
-          `hidden lg:flex` is appended AFTER imageClassName so it wins over a
-          caller's `flex` (cn = twMerge keeps the last conflicting class). */}
       <div
         className={cn(
-          "relative flex w-full items-center justify-center",
-          imagePosition === "left" ? "order-2 lg:order-1" : "order-2 lg:order-2",
-          imageClassName,
-          imageOnTopMobile && "hidden lg:flex"
+          "grid grid-cols-1 items-center gap-16 lg:grid-cols-2",
+          className
         )}
       >
-        {imageSlot}
+        {/* Content */}
+        <div
+          className={cn(
+            "flex flex-col",
+            imagePosition === "left"
+              ? "order-1 lg:order-2"
+              : "order-1 lg:order-1"
+          )}
+        >
+          {/* Only render header here when NOT using full width */}
+          {header && !fullWidthHeader && (
+            <SectionHeader
+              {...header}
+              className={cn(
+                headerAlignment === "center"
+                  ? "items-center text-center"
+                  : "items-start text-left",
+                "gap-[12px]",
+                header.className
+              )}
+            />
+          )}
+
+          {imageOnTopMobile && (
+            <div className="relative mb-4 w-full lg:hidden">
+              {imageSlot}
+            </div>
+          )}
+
+          <div className="flex w-full flex-col gap-4">
+            {children}
+          </div>
+        </div>
+
+        {/* Image */}
+        <div
+          className={cn(
+            "relative flex w-full items-center justify-center",
+            imagePosition === "left"
+              ? "order-2 lg:order-1"
+              : "order-2 lg:order-2",
+            imageClassName,
+            imageOnTopMobile && "hidden lg:flex"
+          )}
+        >
+          {imageSlot}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

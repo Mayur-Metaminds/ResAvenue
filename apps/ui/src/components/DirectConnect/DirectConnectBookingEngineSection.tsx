@@ -95,7 +95,8 @@ export function DirectConnectBookingEngineSection() {
     >
       <div className="container mx-auto max-w-[1440px] px-4 md:px-8 xl:px-[80px]">
         <FeatureShowcase
-          className="lg:items-stretch xl:grid-cols-[1fr_1.3fr]"
+          fullWidthHeader={true}
+          className="lg:-ml-1 2xl:-ml-4 4xl:-ml-1 lg:items-stretch xl:grid-cols-[420px_1fr]"
           imageMobilePosition="top"
           imageClassName="h-full flex items-center justify-center lg:justify-end"
           header={{
@@ -135,7 +136,7 @@ export function DirectConnectBookingEngineSection() {
                     key={activeFeature?.id}
                     src={activeFeature?.image ?? FALLBACK_IMAGE}
                     alt={activeFeature?.title ?? "Booking Engine Mockup"}
-                    className="h-auto w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[500px] lg:w-auto lg:max-w-none lg:translate-x-8 lg:object-left lg:scale-[0.6] lg:-ml-11 xl:translate-x-12 xl:scale-100"
+                    className="h-auto w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[450px] lg:w-auto lg:max-w-none lg:translate-x-8 lg:object-left lg:scale-[0.6] lg:-ml-11 xl:translate-x-12 xl:scale-100"
                   />
                 )}
               </div>

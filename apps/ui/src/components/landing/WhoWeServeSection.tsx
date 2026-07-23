@@ -321,7 +321,7 @@ export function WhoWeServeSection() {
               className="fixed top-1/2 left-1/2 z-50 w-full max-w-[680px] -translate-x-1/2 -translate-y-1/2 px-4"
             >
               <div className="flex max-h-[90vh] flex-col overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
-                {/* Header: icon + title/description aligned left, close on right */}
+                {/* Header: icon + title aligned left, close on right */}
                 <div className="flex shrink-0 items-start justify-between gap-3 bg-white px-5 pt-5 pb-3 md:px-8 lg:px-10 lg:pt-6 lg:pb-3">
                   <div className="flex min-w-0 flex-1 items-start gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FEFAF5] lg:h-12 lg:w-12 [&>svg]:h-6 [&>svg]:w-6 lg:[&>svg]:h-8 lg:[&>svg]:w-8">
@@ -331,9 +331,6 @@ export function WhoWeServeSection() {
                       <h3 className="text-[20px] font-semibold tracking-tight text-[#010C28] lg:text-[22px]">
                         {activeSegmentData.title}
                       </h3>
-                      <p className="mt-1 text-[13px] font-medium text-[#8BA0B2] lg:text-[14px]">
-                        {activeSegmentData.subtitle}
-                      </p>
                     </div>
                   </div>
                   <button
@@ -350,6 +347,11 @@ export function WhoWeServeSection() {
                       height is dynamic (leftover space inside max-h-[90vh]) */}
                 <div className="flex min-h-0 flex-1 flex-col overflow-y-auto lg:overflow-hidden">
                   <div className="shrink-0 px-5 pb-5 md:px-8 md:pb-8 lg:px-10 lg:pb-0">
+                    {/* Description — sits above the bullets, same column alignment */}
+                    <p className="mb-4 text-[13px] font-medium leading-relaxed text-[#8BA0B2] lg:mb-3 lg:text-[14px]">
+                      {activeSegmentData.subtitle}
+                    </p>
+
                     {/* Points — fully visible on lg+ (no desktop scroller) */}
                     <ul className="space-y-3 lg:space-y-2.5">
                       {activeSegmentData.points.map((point, idx) => (
