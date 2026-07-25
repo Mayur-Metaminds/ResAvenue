@@ -117,7 +117,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Stay in control across all channels. Update rates and inventory in real-time without errors.",
     icon: ThreeDWheelIcon8,
-    imageClassName: "2xl:scale-[1.25] 2xl:mt-10 xl:mr-10 4xl:translate-x-30",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:mr-10 4xl:translate-x-30",
     image: "/images/Landing/explore-module-channel_connect/rate-inventory.png",
   },
   {
@@ -126,7 +126,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Manage every property from one place. Simplify operations with centralized control and visibility.",
     icon: ThreeDWheelIcon9,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/property-management.png",
   },
   {
@@ -135,7 +135,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Maximize revenue with smart pricing. Adjust rates dynamically based on demand and trends.",
     icon: ThreeDWheelIcon10,
-    imageClassName: "2xl:scale-[1.3] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/yield-management.png",
   },
   {
@@ -144,7 +144,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Know your market. Stay ahead. Track competitor pricing and make smarter decisions.",
     icon: ThreeDWheelIcon11,
-    imageClassName: "2xl:scale-[1.2] xl:mt-5 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] xl:mt-5 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/competitor-analysis.png",
   },
   {
@@ -153,7 +153,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Adapt pricing to every season. Optimize rates effortlessly for peak and low demand.",
     icon: ThreeDWheelIcon12,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1.1] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/seasonal-pricing.png",
   },
   {
@@ -162,7 +162,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Launch offers that actually convert. Create and manage campaigns across all channels.",
     icon: ThreeDWheelIcon13,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-15 2xl:mr-10 xl:mr-15 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1.1] 2xl:mt-15 2xl:mr-10 xl:mr-15 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/promotions.png",
   },
   {
@@ -171,7 +171,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "See what's working. Improve faster. Get deep insights into performance across channels.",
     icon: ThreeDWheelIcon14,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/reports-analytics.png",
   },
 ]
