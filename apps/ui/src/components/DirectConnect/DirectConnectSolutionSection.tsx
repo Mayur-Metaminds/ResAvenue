@@ -227,7 +227,7 @@ const solutions: SolutionCard[] = [
     ],
     imagePlaceholder: "/images/Mock-Image.png",
     icon: <UnifiedPlatformIcon7 />,
-    modalWidth: "w-full",
+    modalWidth: "w-full shadow-[0_-24px_60px_-16px_rgba(1,14,56,0.22),0_-8px_24px_-8px_rgba(1,14,56,0.16)]",
     modalHeight: " lg:h-[590px] xl:h-[440px] 2xl:h-[430px]",
     // mobileModalHeight: "h-[100vh] top-[4vh] mb-40",
     showLearnMore: false,

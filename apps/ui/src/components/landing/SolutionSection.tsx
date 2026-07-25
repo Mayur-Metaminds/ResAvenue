@@ -51,14 +51,22 @@ export function SolutionSection() {
         {/* GIF Mockup — `slice` makes the Lottie cover its container by
             zooming in, hiding the built-in canvas padding around the pills. */}
         <div className="relative z-10 h-[90%] w-[100%] md:h-[100%] md:w-[100%]">
-          <LazyLottie
-            src={PILLES_URL}
-            priority="lazy"
-            loop
-            autoplay
-            rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
-            className="h-full w-full"
-          />
+          <div className="relative z-10 h-[90%] w-full overflow-hidden md:h-full">
+            <LazyLottie
+              src={PILLES_URL}
+              priority="lazy"
+              loop
+              autoplay
+              rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
+              className="h-full w-full"
+            />
+
+            {/* Left Fade */}
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-30 bg-gradient-to-r from-white via-white/80 to-transparent" />
+
+            {/* Right Fade */}
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-30 bg-gradient-to-l from-white via-white/80 to-transparent" />
+          </div>
         </div>
       </div>
 

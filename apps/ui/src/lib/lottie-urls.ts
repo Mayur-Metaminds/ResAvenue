@@ -28,13 +28,13 @@ export const HOTEL_WEBSITE_OUTER_URL = `${LANDING}/hotel_website_builder_outer.j
 export const DIRECT_CONNECT_INNER_URL = `${LANDING}/direct_connect_inner.json`
 export const CHANNEL_CONNECT_INNER_URL = `${LANDING}/channel_connect_inner.json`
 export const PROPERTY_MANAGEMENT_INNER_URL = `${LANDING}/property_management_inner.json`
-export const DISTRIBUTION_NETWORK_INNER_URL = `${LANDING}/distribution_network_inner_new.json`
+export const DISTRIBUTION_NETWORK_INNER_URL = `${LANDING}/distribution_channels_channel_connect_homepage_latest.json`
 export const EVENT_INNER_URL = `${LANDING}/event_and_ticketing_inner.json`
 export const HOTEL_WEBSITE_INNER_URL = `${LANDING}/hotel_website_builder_inner.json`
-export const REVENUE_MANAGEMENT_INNER = `${LANDING}/revenue_management_inner_v2.json`
+export const REVENUE_MANAGEMENT_INNER = `${LANDING}/Revenue_management_Inner_latest.json`
 
 /* ── Landing solution section (lazy) ─────────────────────────────────────── */
-export const PILLES_URL = `${LANDING}/pill_2.json`
+export const PILLES_URL = `${LANDING}/pill_25_7.json`
 
 /* ── /direct-connect route sections (lazy) ───────────────────────────────── */
 export const DC_TRAFFIC_REPORT_URL = `${ROOT}/traffic_report_work.json`

@@ -124,7 +124,7 @@ export function Navbar() {
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 z-50 w-full rounded-none px-[15px] py-[19px] transition-[top,width,padding,background-color,border-color,border-radius,box-shadow,backdrop-filter] duration-300 ease-out will-change-[top,width]",
+          "fixed top-0 left-0 z-50 w-full rounded-none px-[15px] 4xl:px-100 py-[19px] transition-[top,width,padding,background-color,border-color,border-radius,box-shadow,backdrop-filter] duration-300 ease-out will-change-[top,width]",
           // Always center on desktop — works at full width too (left:50% + -translate-x-1/2 nets to left:0 when width is 100%).
           // Keeping these stable across scroll states eliminates the wobble from animating left/translate together.
           "lg:left-1/2 lg:-translate-x-1/2",

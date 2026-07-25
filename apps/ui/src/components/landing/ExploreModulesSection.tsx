@@ -40,7 +40,7 @@ type FeatureStep = {
   description: string
   icon: React.ElementType
   image: string
-  /** Optional className merged onto the feature photo (e.g. scale). */
+  /** Optional className merged onto the feature photo (scale + positioning nudges). */
   imageClassName?: string
 }
 
@@ -50,7 +50,7 @@ const directConnectFeatures: FeatureStep[] = [
     label: "Responsive Booking Engine",
     description:
       "Seamless bookings across every device. Deliver a fast, mobile-first experience that converts.",
-    imageClassName: "2xl:scale-[1.25] 2xl:mt-10 xl:ml-20 xl:mr-10 2xl:ml-15 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:ml-20 xl:mr-10 2xl:ml-15 4xl:translate-x-20",
     icon: ThreeDWheelIcon1,
     image: "/images/Landing/explore-module-direct_connect/booking-engine.png",
   },
@@ -60,7 +60,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Build loyalty that drives repeat bookings.Manage corporate clients and members with ease.",
     icon: ThreeDWheelIcon2,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-15 xl:ml-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-15 xl:ml-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-direct_connect/corporate-management.png",
   },
   {
@@ -69,7 +69,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Turn data into smarter decisions. Track performance and unlock actionable insights instantly.",
     icon: ThreeDWheelIcon3,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:ml-10 xl:mr-10 4xl:translate-x-30",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:ml-10 xl:mr-10 4xl:translate-x-30",
     image: "/images/Landing/explore-module-direct_connect/analytics-reporting.png",
   },
   {
@@ -79,7 +79,7 @@ const directConnectFeatures: FeatureStep[] = [
       "Drive demand with irresistible offers. Launch targeted promotions that convert more bookings.",
     icon: ThreeDWheelIcon4,
     image: "/images/Landing/explore-module-direct_connect/discounts-promotions.png",
-    imageClassName: "xl:scale-[1.1] xl:mt-10 xl:ml-10 xl:mr-10 2xl:scale-[1.3] 4xl:translate-x-20",
+    imageClassName: "xl:mt-10 xl:ml-10 xl:mr-10 2xl:scale-[1.2] 4xl:scale-[1.05] 4xl:translate-x-20",
   },
   {
     id: "events",
@@ -88,7 +88,7 @@ const directConnectFeatures: FeatureStep[] = [
       "Drive demand with irresistible offers. Launch targeted promotions that convert more bookings.",
     icon: ThreeDWheelIcon5,
     image: "/images/Landing/explore-module-direct_connect/events-ticketing.png",
-    imageClassName: "2xl:scale-[1.1] 2xl:mt-5 xl:ml-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: " 2xl:mt-5 xl:mr-10 4xl:translate-x-20",
   },
   {
     id: "packages",
@@ -96,7 +96,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Sell more with curated experiences. Bundle rooms, services, and offers to boost revenue.",
     icon: ThreeDWheelIcon6,
-    imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:ml-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:ml-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-direct_connect/packages-engine.png",
   },
   {
@@ -105,37 +105,10 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Faster payments. Zero friction. Simplify invoicing with secure and seamless transactions.",
     icon: ThreeDWheelIcon7,
-    imageClassName: "2xl:scale-[1.2] mt-15 xl:ml-10 xl:mr-10 4xl:scale-100 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] mt-15 xl:ml-10 xl:mr-10 4xl:scale-100 4xl:translate-x-20",
     image: "/images/Landing/explore-module-direct_connect/invoice-payment.png",
   },
 ]
-
-// const channelConnectFeatures: FeatureStep[] = [
-//   {
-//     id: "inventory",
-//     label: "Master Inventory Sharing",
-//     description:
-//       "One source of truth pushed to every connected channel in real time.",
-//     icon: ThreeDWheelIcon6,
-//     image: "/images/Landing/Explore-Module.png",
-//   },
-//   {
-//     id: "otas",
-//     label: "Connect to 100+ OTAs",
-//     description:
-//       "Plug into the world's biggest demand sources without per-channel work.",
-//     icon: ThreeDWheelIcon1,
-//     image: "/images/Landing/Explore-Module.png",
-//   },
-//   {
-//     id: "realtime",
-//     label: "Real-time Updates",
-//     description:
-//       "Rate, availability, and restriction sync with sub-second propagation.",
-//     icon: ThreeDWheelIcon3,
-//     image: "/images/Landing/Explore-Module.png",
-//   },
-// ]
 
 const channelConnectFeatures: FeatureStep[] = [
   {
@@ -162,7 +135,6 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Maximize revenue with smart pricing. Adjust rates dynamically based on demand and trends.",
     icon: ThreeDWheelIcon10,
-    // imageClassName: "2xl:scale-130 2xl:-ml-15 xl:mr-10 2xl:mt-10 4xl:translate-x-20",
     imageClassName: "2xl:scale-[1.3] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/yield-management.png",
   },
@@ -197,7 +169,7 @@ const channelConnectFeatures: FeatureStep[] = [
     id: "reports-analytics",
     label: "Reports & Analytics",
     description:
-      "See what’s working. Improve faster. Get deep insights into performance across channels.",
+      "See what's working. Improve faster. Get deep insights into performance across channels.",
     icon: ThreeDWheelIcon14,
     imageClassName: "2xl:scale-[1.2] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/reports-analytics.png",
@@ -500,7 +472,12 @@ export function ExploreModulesSection() {
         {/* Sticky block — pins below the fixed navbar so the tabs row stays visible.
             At 4K: relative + 800px so the next section stays visible below. */}
         <div className="sticky top-16 sm:top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden 4xl:relative 4xl:top-auto 4xl:h-[800px]">
-          <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 lg:px-1 h-full justify-center">
+          {/* Row container — widened at 2xl/4xl (separate from the header's
+              max-w-[1440px] above) so the 7-col image grid track actually has
+              room to grow. Without this, the image column's max-w-[...] caps
+              below were unreachable: a child's max-width can only shrink it
+              within its grid track, never force the track itself to expand. */}
+          <div className="mx-auto flex w-full max-w-[1440px] 2xl:max-w-[1800px] 4xl:max-w-[2200px] flex-col px-4 lg:px-1 h-full justify-center">
             <div className="flex h-full flex-col ">
               {/* Tabs */}
               <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center 4xl:mb-6">
@@ -520,7 +497,7 @@ export function ExploreModulesSection() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 4xl:gap-24 pb-6 lg:pb-[92px] 4xl:pb-6 min-h-0">
+              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 4xl:gap-24 pb-6 lg:pb-[92px] 4xl:px-35 4xl:pb-6 min-h-0">
                 {/* 3D Wheel */}
                 <div
                   className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:self-center lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible max-sm:-translate-y-6"
@@ -542,30 +519,35 @@ export function ExploreModulesSection() {
                   </div>
                 </div>
 
-                {/* Image — pl/translate (not ml on the img) create real space from the
-                    wheel; ml on a w-full img is clamped by the overflow-hidden parent. */}
-                <div className="relative z-10 w-full lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 -mt-20 mb-2 sm:mt-4 sm:mb-0 lg:mt-0 4xl:pl-16">
-                  <div className="pointer-events-none absolute inset-0 rounded-3xl lg:rounded-l-3xl lg:rounded-r-none bg-gradient-to-tr from-[#ED862E]/10 to-transparent opacity-60 blur-3xl" />
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`${activeTab}-${activeFeature.id}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="absolute top-0 left-0 h-full w-full flex items-center justify-center 4xl:justify-start"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={activeFeature.image}
-                        alt={activeFeature.label}
-                        className={cn(
-                          "h-full w-full rounded-[20px] object-contain object-center p-2 lg:p-0 4xl:origin-left",
-                          activeFeature.imageClassName
-                        )}
-                      />
-                    </motion.div>
-                  </AnimatePresence>
+                {/* Image column — now has real room (see widened row container
+                    above), so the max-w cap below is a true ceiling rather than
+                    an unreachable request. Per-feature scale-[...] in
+                    imageClassName is restored: it can push slightly past this
+                    box since there's no overflow-hidden here by design. */}
+                <div className="relative z-10 w-full lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 -mt-20 mb-2 sm:mt-4 sm:mb-0 lg:mt-0 4xl:pl-16 flex items-center justify-center 4xl:justify-start">
+                  <div className="relative w-full h-full max-w-[560px] sm:max-w-[600px] lg:max-w-[900px] 2xl:max-w-[1100px] 4xl:w-[920px] mx-auto 4xl:mx-0">
+                    <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#ED862E]/10 to-transparent opacity-60 blur-3xl" />
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={`${activeTab}-${activeFeature.id}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        className="absolute top-0 left-0 h-full w-full flex items-center justify-center"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={activeFeature.image}
+                          alt={activeFeature.label}
+                          className={cn(
+                            "h-full w-full max-w-full max-h-full rounded-[20px] object-contain object-center p-2 lg:p-0",
+                            activeFeature.imageClassName
+                          )}
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
                 </div>
               </div>
             </div>
