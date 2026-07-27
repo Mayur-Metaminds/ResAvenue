@@ -169,7 +169,7 @@ export function DirectConnectDeepDiveSection() {
                 highlightGradient="linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)"
                 eyebrow={
                   <Eyebrow
-                    className="mb-0"
+                    className="mb-0 pt-10 lg:pt-16"
                     showDot
                     style={
                       {
