@@ -427,7 +427,7 @@ function ModalContent({
           hasFixedHeight ? (
             // Fixed-height modal: the animation fills the leftover space so the
             // taller modal has no empty gap.
-            <div className="relative min-h-[300px] w-full  flex-1 overflow-hidden rounded-2xl md:min-h-[400px]">
+            <div className="relative min-h-[300px] w-full  flex-1 overflow-hidden md:min-h-[400px]">
               <LazyLottie
                 src={(product.modalLottieUrl ?? product.lottieUrl) as string}
                 priority="on-demand"

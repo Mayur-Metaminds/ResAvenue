@@ -44,6 +44,7 @@ const products: Product[] = [
     title: "Direct Connect",
     subtitle: "Own Your Guests. Own Your Revenue. \nTurn Every Visitor Into a Direct Booking",
     gridSpan: "col-span-1 md:col-span-7 lg:col-span-7",
+    modalAnimationClassName: "scale-[1.2] rounded-[1px]",
     anchor: "top-left",
     modalSubtitle: "Own Your Guests. Own Your Revenue. Turn Every Visitor Into a Direct Booking ResAvenue Direct Connect helps hospitality businesses convert website traffic into commission-free bookings through a seamless, mobile-first booking experience. Designed to reduce booking friction and increase conversions, it empowers properties to drive more revenue from their own website while delivering a superior guest experience.",
     modalFeatures: [
