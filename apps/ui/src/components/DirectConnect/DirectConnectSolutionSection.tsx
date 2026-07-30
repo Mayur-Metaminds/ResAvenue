@@ -152,7 +152,7 @@ const solutions: SolutionCard[] = [
     showLearnMore: false,
     lottieUrl: INTELLIGENT_ANALYTICS_OUTER,
     modalLottieUrl: INTELLIGENT_ANALYTICS_INNER,
-    modalAnimationWrapperClassName: "max-sm:mt-10 lg:mt-[16px] xl:-mt-[5px] lg:scale-95",
+    modalAnimationWrapperClassName: "max-sm:mt-5 lg:scale-[1] md:-mt-20 lg:-mt-35 xl:-mt-45 ",
     textContainerClassName: "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[55%]",
     animationContainerClassName: "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:inset-y-0 lg:right-10 lg:mx-0 lg:h-auto lg:w-[40%] lg:items-center lg:justify-end lg:pr-8",
   },
