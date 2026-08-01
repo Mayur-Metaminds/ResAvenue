@@ -61,7 +61,7 @@ export function DirectConnectDashboardSection() {
               priority="lazy"
               loop
               className="flex h-full w-full items-center justify-center drop-shadow-2xl"
-              lottieClassName="h-auto max-h-full w-full sm:-mb-30 md:-mb-22 lg:-mb-30 xl:-ml-5"
+              lottieClassName="h-auto max-h-full w-full -mt-20 xl:-ml-5"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
             />
           </div>
