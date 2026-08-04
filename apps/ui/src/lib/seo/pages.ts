@@ -35,7 +35,7 @@ export function getHomePageSeo(): PageSeo {
 const DIRECT_CONNECT_TITLE = "Direct Connect — Booking Engine & CRS"
 const DIRECT_CONNECT_DESCRIPTION =
   "Turn your hotel website into a conversion-first booking engine. ResAvenue Direct Connect delivers real-time availability, dynamic pricing, secure payments, and mobile-first checkout to maximize direct bookings."
-const DIRECT_CONNECT_PATH = "/direct-connect/"
+const DIRECT_CONNECT_PATH = "/direct-connect"
 
 export function getDirectConnectPageSeo(): PageSeo {
   return buildPageSeo({
@@ -59,7 +59,7 @@ export function getDirectConnectPageSeo(): PageSeo {
 const CHANNEL_CONNECT_TITLE = "Channel Connect — Hotel Channel Manager"
 const CHANNEL_CONNECT_DESCRIPTION =
   "Synchronize rates, inventory, and availability across OTAs and distribution channels in real time. ResAvenue Channel Connect gives hotels one dashboard to manage every channel."
-const CHANNEL_CONNECT_PATH = "/channel-connect/"
+const CHANNEL_CONNECT_PATH = "/channel-connect"
 
 export function getChannelConnectPageSeo(): PageSeo {
   return buildPageSeo({
@@ -82,7 +82,7 @@ export function getChannelConnectPageSeo(): PageSeo {
 const PROPERTY_MANAGEMENT_TITLE = "Property Management — Cloud PMS"
 const PROPERTY_MANAGEMENT_DESCRIPTION =
   "Run front desk, housekeeping, billing, and daily operations from one cloud-based property management system built for modern hospitality teams."
-const PROPERTY_MANAGEMENT_PATH = "/property-management/"
+const PROPERTY_MANAGEMENT_PATH = "/property-management"
 
 export function getPropertyManagementPageSeo(): PageSeo {
   return buildPageSeo({
@@ -105,7 +105,7 @@ export function getPropertyManagementPageSeo(): PageSeo {
 const HOTEL_WEBSITE_BUILDER_TITLE = "Hotel Website Builder — Direct Booking Websites"
 const HOTEL_WEBSITE_BUILDER_DESCRIPTION =
   "Launch a high-converting hotel website designed to drive direct bookings. ResAvenue Hotel Website Builder combines beautiful design with integrated booking technology."
-const HOTEL_WEBSITE_BUILDER_PATH = "/hotel-website-builder/"
+const HOTEL_WEBSITE_BUILDER_PATH = "/hotel-website-builder"
 
 export function getHotelWebsiteBuilderPageSeo(): PageSeo {
   return buildPageSeo({
@@ -127,7 +127,7 @@ export function getHotelWebsiteBuilderPageSeo(): PageSeo {
 const MOBILE_APP_TITLE = "Mobile App — Hotel Management On the Go"
 const MOBILE_APP_DESCRIPTION =
   "Manage reservations, inventory, and guest operations from anywhere with the ResAvenue mobile app for hospitality teams."
-const MOBILE_APP_PATH = "/mobile-app/"
+const MOBILE_APP_PATH = "/mobile-app"
 
 export function getMobileAppPageSeo(): PageSeo {
   return buildPageSeo({
@@ -148,7 +148,7 @@ export function getMobileAppPageSeo(): PageSeo {
 const EVENT_BOOKING_TITLE = "Event Booking — Events & Ticketing Platform"
 const EVENT_BOOKING_DESCRIPTION =
   "Sell event tickets, manage venues, and handle registrations alongside room stays with ResAvenue Event Booking for hotels and hospitality venues."
-const EVENT_BOOKING_PATH = "/event-booking/"
+const EVENT_BOOKING_PATH = "/event-booking"
 
 export function getEventBookingPageSeo(): PageSeo {
   return buildPageSeo({
@@ -170,7 +170,7 @@ export function getEventBookingPageSeo(): PageSeo {
 const DISTRIBUTED_TECHNOLOGY_TITLE = "Distribution Network — Global Hotel Connectivity"
 const DISTRIBUTED_TECHNOLOGY_DESCRIPTION =
   "Connect to global distribution networks and reach travelers across every major channel with ResAvenue distributed technology infrastructure."
-const DISTRIBUTED_TECHNOLOGY_PATH = "/distributed-technology/"
+const DISTRIBUTED_TECHNOLOGY_PATH = "/distributed-technology"
 
 export function getDistributedTechnologyPageSeo(): PageSeo {
   return buildPageSeo({
@@ -192,7 +192,7 @@ export function getDistributedTechnologyPageSeo(): PageSeo {
 const RESOURCE_PAGE_TITLE = "Resources — Hospitality Insights & Guides"
 const RESOURCE_PAGE_DESCRIPTION =
   "Explore resources, guides, and insights from ResAvenue to help hospitality brands grow revenue, streamline operations, and improve guest experiences."
-const RESOURCE_PAGE_PATH = "/resource-page/"
+const RESOURCE_PAGE_PATH = "/resource-page"
 
 export function getResourcePageSeo(): PageSeo {
   return buildPageSeo({
@@ -213,7 +213,7 @@ export function getResourcePageSeo(): PageSeo {
 const CONTACT_US_TITLE = "Contact Us — Talk to the ResAvenue Team"
 const CONTACT_US_DESCRIPTION =
   "Get in touch with ResAvenue to request a demo, ask questions, or learn how our platform can help your hospitality business grow."
-const CONTACT_US_PATH = "/contact-us/"
+const CONTACT_US_PATH = "/contact-us"
 
 export function getContactUsPageSeo(): PageSeo {
   return buildPageSeo({

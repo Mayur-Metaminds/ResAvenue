@@ -10,18 +10,26 @@ import { isProduction } from "@/lib/general-helpers"
  * specific matching rule wins, so these `Allow` entries carve out exceptions
  * to the blanket `Disallow: /`.
  *
- * Currently excludes `/distributed-technology/` and `/resource-page/`,
- * which aren't ready to be indexed yet.
+ * The homepage entry MUST be anchored with `$` (`/$`, not `/`) — an
+ * unanchored `Allow: /` is a *prefix* match that matches every URL on the
+ * site, which would silently allow everything and defeat the blanket
+ * `Disallow: /` below entirely.
+ *
+ * Paths have no trailing slash to match the URLs Next.js actually serves
+ * (trailingSlash defaults to false — "/path/" 308-redirects to "/path").
+ *
+ * Currently excludes `/distributed-technology` and `/resource-page`, which
+ * aren't ready to be indexed yet.
  */
 const ALLOWED_ROBOTS_PATHS = [
-  "/",
-  "/channel-connect/",
-  "/direct-connect/",
-  "/contact-us/",
-  "/event-booking/",
-  "/hotel-website-builder/",
-  "/property-management/",
-  "/mobile-app/",
+  "/$",
+  "/channel-connect",
+  "/direct-connect",
+  "/contact-us",
+  "/event-booking",
+  "/hotel-website-builder",
+  "/property-management",
+  "/mobile-app",
 ]
 
 export default function robots(): MetadataRoute.Robots {

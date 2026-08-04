@@ -65,6 +65,34 @@ const nextConfig = {
   // Turbopack configuration (replaces webpack config)
   // Turbopack has built-in intelligent caching, so no manual cache configuration needed
   // Note: Custom webpack loaders/plugins are not supported in Turbopack
+
+  // Baseline security headers. Deliberately NOT including Content-Security-Policy
+  // here — a misconfigured CSP can silently break scripts/styles/images across
+  // the whole site (Sentry, fonts, Strapi/imgproxy media, etc.) and needs to be
+  // rolled out via `Content-Security-Policy-Report-Only` first to verify nothing
+  // is blocked before enforcing it.
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          // Prevents the site from being embedded in an <iframe> on another
+          // origin (clickjacking protection).
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          // Stops browsers from MIME-sniffing a response away from its
+          // declared Content-Type.
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          // Limits how much referrer info is sent to other origins.
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          // Disables browser features this app doesn't use.
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
+      },
+    ]
+  },
 }
 
 const withConfig = (() => {

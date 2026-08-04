@@ -52,21 +52,15 @@ export function Footer({ nested = false, className }: FooterProps) {
                 COMPANY
               </h4>
               <ul className="space-y-4">
+                {/* About Us, Careers, and Partners intentionally have no href
+                    — those pages don't exist yet. Rendered as inert text
+                    (not <a>) so crawlers don't report them as broken/404
+                    internal links. Re-add the href once each page exists. */}
                 <li>
-                  <a
-                    href="/about-us"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    About Us
-                  </a>
+                  <span className="text-sm text-gray-300">About Us</span>
                 </li>
                 <li>
-                  <a
-                    href="/careers"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Careers
-                  </a>
+                  <span className="text-sm text-gray-300">Careers</span>
                 </li>
                 <li>
                   <a
@@ -77,12 +71,7 @@ export function Footer({ nested = false, className }: FooterProps) {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/partners"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Partners
-                  </a>
+                  <span className="text-sm text-gray-300">Partners</span>
                 </li>
               </ul>
             </div>
@@ -93,29 +82,15 @@ export function Footer({ nested = false, className }: FooterProps) {
                 LEGAL
               </h4>
               <ul className="space-y-4">
+                {/* Same as COMPANY above — no href until these pages exist. */}
                 <li>
-                  <a
-                    href="/privacy-policy"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Privacy Policy
-                  </a>
+                  <span className="text-sm text-gray-300">Privacy Policy</span>
                 </li>
                 <li>
-                  <a
-                    href="/terms-of-service"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Terms of Service
-                  </a>
+                  <span className="text-sm text-gray-300">Terms of Service</span>
                 </li>
                 <li>
-                  <a
-                    href="/cookie-policy"
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    Cookie Policy
-                  </a>
+                  <span className="text-sm text-gray-300">Cookie Policy</span>
                 </li>
               </ul>
             </div>
@@ -129,13 +104,13 @@ export function Footer({ nested = false, className }: FooterProps) {
                 {[
                   { title: "Direct Connect", href: "/direct-connect" },
                   { title: "Channel Connect", href: "/channel-connect" },
-                  { title: "Property Management System", href: "/#" },
+                  { title: "Property Management System", href: "/property-management" },
                   { title: "Revenue Management", href: "/#" },
-                  { title: "Distribution Network", href: "/#" },
-                  { title: "Event Management", href: "/#" },
-                  { title: "Website Builder", href: "/#" },
+                  { title: "Distribution Network", href: "/distributed-technology" },
+                  { title: "Event Management", href: "/event-booking" },
+                  { title: "Website Builder", href: "/hotel-website-builder" },
                   { title: "Tours & Packages Engine", href: "/#" },
-                  { title: "Mobile App Ecosystem", href: "/#" },
+                  { title: "Mobile App Ecosystem", href: "/mobile-app" },
                   { title: "Analytics & Reporting", href: "/#" },
                   { title: "Guest CRM & Loyalty", href: "/#" },
                 ].map(({ title, href }) => (

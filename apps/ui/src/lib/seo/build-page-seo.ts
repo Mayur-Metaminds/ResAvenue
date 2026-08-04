@@ -21,10 +21,13 @@ export type PageSeo = {
   schema: Record<string, unknown>
 }
 
+// Next.js (trailingSlash: false, the default) 308-redirects "/path/" to
+// "/path" — confirmed live. Canonical/OG/sitemap URLs must match the URL
+// actually served, or they point at a redirecting (non-final) URL.
 function normalizePath(path: string): string {
   if (path === "/") return "/"
 
-  return path.endsWith("/") ? path : `${path}/`
+  return path.endsWith("/") ? path.slice(0, -1) : path
 }
 
 function pageUrl(path: string): string {
@@ -200,11 +203,11 @@ export const STATIC_SEO_ROUTES: Array<{
   priority: number
 }> = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
-  { path: "/direct-connect/", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/channel-connect/", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/property-management/", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/hotel-website-builder/", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/mobile-app/", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/event-booking/", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/contact-us/", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/direct-connect", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/channel-connect", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/property-management", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/hotel-website-builder", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/mobile-app", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/event-booking", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/contact-us", changeFrequency: "monthly", priority: 0.7 },
 ]
