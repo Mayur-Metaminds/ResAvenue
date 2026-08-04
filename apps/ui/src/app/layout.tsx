@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next"
 import Script from "next/script"
 
 import { Navbar } from "@/components/common/Navbar"
+import { getSiteUrl } from "@/constants/seo.constants"
 import { siteConfig } from "@/config/site"
 import { fontRoboto } from "@/lib/fonts"
 import { cn } from "@/lib/styles"
@@ -14,7 +15,7 @@ import { cn } from "@/lib/styles"
  * automatically get " / ResAvenue" appended.
  */
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     template: `%s | ${siteConfig.name}`,
     default: siteConfig.name,

@@ -1,17 +1,22 @@
 import type { Metadata } from "next"
 
-import { siteConfig } from "@/config/site"
 import EventBookingWrapper from "@/components/EventBooking/EventBookingWrapper"
+import { StructuredData } from "@/components/seo/StructuredData"
+import { getEventBookingPageSeo } from "@/lib/seo/pages"
 
-export const metadata: Metadata = {
-  title: "Event Booking",
-  description: `Event management and ticketing by ${siteConfig.name}.`,
+export function generateMetadata(): Metadata {
+  return getEventBookingPageSeo().metadata
 }
 
 export default function EventBookingPage() {
+  const seo = getEventBookingPageSeo()
+
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <EventBookingWrapper/>
-    </main>
+    <>
+      <StructuredData data={seo.schema} />
+      <main className="flex min-h-screen items-center justify-center">
+        <EventBookingWrapper />
+      </main>
+    </>
   )
 }

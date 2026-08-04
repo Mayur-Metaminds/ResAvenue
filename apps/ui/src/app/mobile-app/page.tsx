@@ -1,17 +1,22 @@
 import type { Metadata } from "next"
 
 import MobileAppWrapper from "@/components/MobileApp/MobileAppWrapper"
-import { siteConfig } from "@/config/site"
+import { StructuredData } from "@/components/seo/StructuredData"
+import { getMobileAppPageSeo } from "@/lib/seo/pages"
 
-export const metadata: Metadata = {
-  title: "Mobile App",
-  description: `Cloud-based hotel management on the go by ${siteConfig.name}.`,
+export function generateMetadata(): Metadata {
+  return getMobileAppPageSeo().metadata
 }
 
 export default function MobileAppPage() {
+  const seo = getMobileAppPageSeo()
+
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <MobileAppWrapper />
-    </main>
+    <>
+      <StructuredData data={seo.schema} />
+      <main className="flex min-h-screen items-center justify-center">
+        <MobileAppWrapper />
+      </main>
+    </>
   )
 }

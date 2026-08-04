@@ -108,6 +108,7 @@
 
           {/* Title */}
           <HeroTitle
+            as="h2"
             className={cn("mb-4", titleClassName)}
             style={
               {

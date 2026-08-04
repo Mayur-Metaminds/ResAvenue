@@ -1,17 +1,22 @@
 import type { Metadata } from "next"
 
 import PropertyManagementWrapper from "@/components/PropertyManagement/PropertyManagementWrapper"
-import { siteConfig } from "@/config/site"
+import { StructuredData } from "@/components/seo/StructuredData"
+import { getPropertyManagementPageSeo } from "@/lib/seo/pages"
 
-export const metadata: Metadata = {
-  title: "Property Management",
-  description: `Cloud-based property management system by ${siteConfig.name}.`,
+export function generateMetadata(): Metadata {
+  return getPropertyManagementPageSeo().metadata
 }
 
 export default function PropertyManagementPage() {
+  const seo = getPropertyManagementPageSeo()
+
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <PropertyManagementWrapper />
-    </main>
+    <>
+      <StructuredData data={seo.schema} />
+      <main className="flex min-h-screen items-center justify-center">
+        <PropertyManagementWrapper />
+      </main>
+    </>
   )
 }

@@ -1,13 +1,20 @@
 import type { Metadata } from "next"
 
 import DistributedTechnologyWrapper from "@/components/DistributedTechnology/DistributedTechnologyWrapper"
-import { siteConfig } from "@/config/site"
+import { StructuredData } from "@/components/seo/StructuredData"
+import { getDistributedTechnologyPageSeo } from "@/lib/seo/pages"
 
-export const metadata: Metadata = {
-  title: "Distribution Network",
-  description: `Global distribution network by ${siteConfig.name}.`,
+export function generateMetadata(): Metadata {
+  return getDistributedTechnologyPageSeo().metadata
 }
 
 export default function DistributionNetworkPage() {
-  return <DistributedTechnologyWrapper />
+  const seo = getDistributedTechnologyPageSeo()
+
+  return (
+    <>
+      <StructuredData data={seo.schema} />
+      <DistributedTechnologyWrapper />
+    </>
+  )
 }

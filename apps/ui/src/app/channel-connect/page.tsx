@@ -1,13 +1,20 @@
 import type { Metadata } from "next"
 
 import ChannelConnect from "@/components/ChannelConnect/ChannelConnect"
-import { siteConfig } from "@/config/site"
+import { StructuredData } from "@/components/seo/StructuredData"
+import { getChannelConnectPageSeo } from "@/lib/seo/pages"
 
-export const metadata: Metadata = {
-  title: "Channel Connect",
-  description: `Channel manager by ${siteConfig.name}.`,
+export function generateMetadata(): Metadata {
+  return getChannelConnectPageSeo().metadata
 }
 
 export default function ChannelConnectPage() {
-  return <ChannelConnect />
+  const seo = getChannelConnectPageSeo()
+
+  return (
+    <>
+      <StructuredData data={seo.schema} />
+      <ChannelConnect />
+    </>
+  )
 }

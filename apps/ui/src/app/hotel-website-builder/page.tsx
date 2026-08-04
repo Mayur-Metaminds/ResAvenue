@@ -1,13 +1,20 @@
 import type { Metadata } from "next"
 
-import { siteConfig } from "@/config/site"  
 import HotelWebsiteBuilder from "@/components/HotelWebsiteBuilder/HotelWebsiteBuilder"
+import { StructuredData } from "@/components/seo/StructuredData"
+import { getHotelWebsiteBuilderPageSeo } from "@/lib/seo/pages"
 
-export const metadata: Metadata = {
-  title: "Hotel Website Builder",
-  description: `Hotel Website builder by ${siteConfig.name}.`,
+export function generateMetadata(): Metadata {
+  return getHotelWebsiteBuilderPageSeo().metadata
 }
 
 export default function HotelWebsiteBuilderPage() {
-  return <HotelWebsiteBuilder />
+  const seo = getHotelWebsiteBuilderPageSeo()
+
+  return (
+    <>
+      <StructuredData data={seo.schema} />
+      <HotelWebsiteBuilder />
+    </>
+  )
 }

@@ -28,6 +28,7 @@ export function SolutionSection() {
 
         {/* Title */}
         <HeroTitle
+          as="h2"
           style={{ "--hero-title-color": "#010C28" } as React.CSSProperties}
         >
           Hotels run on disparate systems.

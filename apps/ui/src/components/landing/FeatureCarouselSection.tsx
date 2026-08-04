@@ -278,6 +278,7 @@ export function FeatureCarouselSection() {
             PRODUCTS
           </Eyebrow>
           <HeroTitle
+            as="h2"
             className="mb-4"
             style={
               {

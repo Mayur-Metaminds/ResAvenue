@@ -1,13 +1,20 @@
 import type { Metadata } from "next"
 
 import DirectConnect from "@/components/DirectConnect/DirectConnect"
-import { siteConfig } from "@/config/site"
+import { StructuredData } from "@/components/seo/StructuredData"
+import { getDirectConnectPageSeo } from "@/lib/seo/pages"
 
-export const metadata: Metadata = {
-  title: "Direct Connect",
-  description: `Booking engine and CRS by ${siteConfig.name}.`,
+export function generateMetadata(): Metadata {
+  return getDirectConnectPageSeo().metadata
 }
 
 export default function DirectConnectPage() {
-  return <DirectConnect />
+  const seo = getDirectConnectPageSeo()
+
+  return (
+    <>
+      <StructuredData data={seo.schema} />
+      <DirectConnect />
+    </>
+  )
 }

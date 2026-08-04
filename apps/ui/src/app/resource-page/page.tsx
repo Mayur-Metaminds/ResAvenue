@@ -1,13 +1,20 @@
 import type { Metadata } from "next"
 
 import ResourcePageWrapper from "@/components/ResourcePage/ResourcePageWrapper"
-import { siteConfig } from "@/config/site"
+import { StructuredData } from "@/components/seo/StructuredData"
+import { getResourcePageSeo } from "@/lib/seo/pages"
 
-export const metadata: Metadata = {
-  title: "Resources",
-  description: `The operating system for modern hospitality by ${siteConfig.name}.`,
+export function generateMetadata(): Metadata {
+  return getResourcePageSeo().metadata
 }
 
 export default function ResourcePage() {
-  return <ResourcePageWrapper />
+  const seo = getResourcePageSeo()
+
+  return (
+    <>
+      <StructuredData data={seo.schema} />
+      <ResourcePageWrapper />
+    </>
+  )
 }

@@ -4,6 +4,8 @@ import { cn } from "@/lib/styles"
 
 export interface HeroTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   children: React.ReactNode
+  /** Semantic heading level. Defaults to h1 for page heroes. */
+  as?: "h1" | "h2" | "h3"
 }
 
 /**
@@ -19,10 +21,11 @@ function HeroTitleRoot({
   children,
   className,
   style,
+  as: Tag = "h1",
   ...rest
 }: HeroTitleProps) {
   return (
-    <h1
+    <Tag
       className={cn("typo-h1", className)}
       style={{
         color: "var(--hero-title-color, #F1F5F9)",
@@ -31,7 +34,7 @@ function HeroTitleRoot({
       {...rest}
     >
       {children}
-    </h1>
+    </Tag>
   )
 }
 

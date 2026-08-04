@@ -14,10 +14,7 @@ export const siteConfig = {
     "The Complete Revenue & Distribution Platform for Modern Hospitality",
   description:
     "ResAvenue brings together booking technology, channel connectivity, property management, intelligent pricing, and digital commerce tools into one seamless ecosystem designed to help hospitality brands grow.",
-  url:
-    process.env.NEXT_PUBLIC_APP_PUBLIC_URL ??
-    process.env.NEXT_PUBLIC_APP_URL ??
-    "http://localhost:3000",
+  url: process.env.APP_PUBLIC_URL ?? "http://localhost:3000",
   ogImage: "/images/og-image.png",
   logo: "/images/logo.png",
   locale: "en_US",

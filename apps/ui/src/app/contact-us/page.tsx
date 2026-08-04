@@ -1,13 +1,20 @@
 import type { Metadata } from "next"
 
 import ContactUsWrapper from "@/components/ContactUs/ContactUsWrapper"
-import { siteConfig } from "@/config/site"
+import { StructuredData } from "@/components/seo/StructuredData"
+import { getContactUsPageSeo } from "@/lib/seo/pages"
 
-export const metadata: Metadata = {
-  title: "Contact Us",
-  description: `Contact Us by ${siteConfig.name}.`,
+export function generateMetadata(): Metadata {
+  return getContactUsPageSeo().metadata
 }
 
 export default function ContactUsPage() {
-  return <ContactUsWrapper />
+  const seo = getContactUsPageSeo()
+
+  return (
+    <>
+      <StructuredData data={seo.schema} />
+      <ContactUsWrapper />
+    </>
+  )
 }

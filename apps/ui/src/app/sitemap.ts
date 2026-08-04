@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next"
 import type { Locale } from "next-intl"
 
+import { getSiteUrl } from "@/constants/seo.constants"
 import { getEnvVar } from "@/lib/env-vars"
 import { isDevelopment, isProduction } from "@/lib/general-helpers"
 import { createPublicFullPath, routing } from "@/lib/navigation"
 import { fetchAllPages } from "@/lib/strapi-api/content/server"
+import { STATIC_SEO_ROUTES } from "@/lib/seo/build-page-seo"
 
 // This should be static or dynamic based on build/runtime needs
 export const dynamic = "force-dynamic"
@@ -27,13 +29,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   )
   const results = await Promise.allSettled(promises)
 
-  return results
+  const cmsEntries = results
     .filter((result) => result.status === "fulfilled")
     .reduce((acc, curr) => {
       acc.push(...curr.value)
 
       return acc
     }, [] as MetadataRoute.Sitemap)
+
+  const siteUrl = getSiteUrl()
+
+  const staticEntries: MetadataRoute.Sitemap = STATIC_SEO_ROUTES.map(
+    ({ path, changeFrequency, priority }) => ({
+      url: path === "/" ? `${siteUrl}/` : `${siteUrl}${path}`,
+      changeFrequency,
+      priority,
+    })
+  )
+
+  return [...staticEntries, ...cmsEntries]
 }
 
 /**
