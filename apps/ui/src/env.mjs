@@ -60,6 +60,11 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "production"]).optional(),
     // APP_ENV is used to determine the environment the app is running in. Used to divide deployments.
     APP_ENV: z.enum(["testing", "production"]).optional(),
+    // Automatically injected by Vercel. Unlike NODE_ENV (which is "production"
+    // for every Vercel build, including previews), VERCEL_ENV distinguishes
+    // the real production domain ("production") from preview/branch
+    // deployments ("preview") and local `vercel dev` ("development").
+    VERCEL_ENV: z.enum(["production", "preview", "development"]).optional(),
   },
 
   /*
@@ -106,6 +111,7 @@ export const env = createEnv({
     // shared
     NODE_ENV: process.env.NODE_ENV,
     APP_ENV: process.env.APP_ENV,
+    VERCEL_ENV: process.env.VERCEL_ENV,
   },
 })
 

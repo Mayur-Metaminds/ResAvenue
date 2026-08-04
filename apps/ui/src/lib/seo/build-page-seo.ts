@@ -186,7 +186,14 @@ function buildPageSchema({
   }
 }
 
-/** Static marketing routes included in sitemap.xml */
+/**
+ * Static marketing routes included in sitemap.xml.
+ *
+ * Kept in sync with `ALLOWED_ROBOTS_PATHS` in `apps/ui/src/app/robots.ts` —
+ * only pages allowed to be crawled should be advertised here. Currently
+ * excludes `/distributed-technology/` and `/resource-page/`, which aren't
+ * ready to be indexed yet.
+ */
 export const STATIC_SEO_ROUTES: Array<{
   path: string
   changeFrequency: "weekly" | "monthly"
@@ -199,7 +206,5 @@ export const STATIC_SEO_ROUTES: Array<{
   { path: "/hotel-website-builder/", changeFrequency: "monthly", priority: 0.9 },
   { path: "/mobile-app/", changeFrequency: "monthly", priority: 0.8 },
   { path: "/event-booking/", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/distributed-technology/", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/resource-page/", changeFrequency: "monthly", priority: 0.7 },
   { path: "/contact-us/", changeFrequency: "monthly", priority: 0.7 },
 ]

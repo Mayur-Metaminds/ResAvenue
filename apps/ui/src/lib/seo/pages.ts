@@ -268,18 +268,12 @@ export const SEO_PAGE_ENTRIES: SeoPageEntry[] = [
     description: EVENT_BOOKING_DESCRIPTION,
   },
   {
-    path: DISTRIBUTED_TECHNOLOGY_PATH,
-    title: DISTRIBUTED_TECHNOLOGY_TITLE,
-    description: DISTRIBUTED_TECHNOLOGY_DESCRIPTION,
-  },
-  {
-    path: RESOURCE_PAGE_PATH,
-    title: RESOURCE_PAGE_TITLE,
-    description: RESOURCE_PAGE_DESCRIPTION,
-  },
-  {
     path: CONTACT_US_PATH,
     title: CONTACT_US_TITLE,
     description: CONTACT_US_DESCRIPTION,
   },
+  // NOTE: /distributed-technology/ and /resource-page/ are intentionally
+  // excluded here — they're disallowed in apps/ui/src/app/robots.ts and
+  // dropped from STATIC_SEO_ROUTES until ready to be indexed. Re-add them
+  // in all three places together once they're ready.
 ]

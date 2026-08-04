@@ -322,18 +322,11 @@ export function WhoWeServeSection() {
             >
               <div className="flex max-h-[90vh] flex-col overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] lg:max-h-[95vh]">
                 {/* Header row: icon aligned left, close on right.
-                    On mobile/tablet the title sits inline next to the icon;
-                    on desktop it moves below (see the block underneath). */}
+                    Title + description are lowered below the icon at every
+                    breakpoint (see the block underneath). */}
                 <div className="flex shrink-0 items-start justify-between gap-3 bg-white px-5 pt-5 pb-3 md:px-8 lg:px-8 lg:pt-5 lg:pb-0">
-                  <div className="flex min-w-0 flex-1 items-start gap-3 lg:block">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FEFAF5] lg:h-12 lg:w-12 [&>svg]:h-6 [&>svg]:w-6 lg:[&>svg]:h-7 lg:[&>svg]:w-7">
-                      <activeSegmentData.icon />
-                    </div>
-                    <div className="min-w-0 flex-1 lg:hidden">
-                      <h3 className="text-[20px] font-semibold tracking-tight text-[#010C28]">
-                        {activeSegmentData.title}
-                      </h3>
-                    </div>
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FEFAF5] lg:h-12 lg:w-12 [&>svg]:h-6 [&>svg]:w-6 lg:[&>svg]:h-9 lg:[&>svg]:w-9">
+                    <activeSegmentData.icon />
                   </div>
                   <button
                     onClick={() => setSelectedSegment(null)}
@@ -343,16 +336,16 @@ export function WhoWeServeSection() {
                   </button>
                 </div>
 
-                {/* Desktop only: title + description, lowered below the icon */}
-                <div className="hidden shrink-0 px-8 pb-2 lg:block">
-                  <h3 className="text-[22px] font-semibold tracking-tight text-[#010C28]">
+                {/* Title + description, lowered below the icon */}
+                <div className="shrink-0 px-5 pb-2 md:px-8 lg:px-8">
+                  <h3 className="text-[20px] font-semibold tracking-tight text-[#010C28] lg:text-[22px]">
                     {activeSegmentData.title}
                   </h3>
-                  <p className="text-[14px] font-medium leading-relaxed text-[#8BA0B2]">
+                  <p className="mt-1 text-[13px] font-medium leading-relaxed text-[#8BA0B2] lg:mt-0 lg:text-[14px]">
                     {activeSegmentData.subtitle}
                   </p>
                 </div>
-                <div className="hidden px-8 lg:block">
+                <div className="px-5 md:px-8 lg:px-8">
                   <div className="border-t border-gray-400" />
                 </div>
 
@@ -361,13 +354,7 @@ export function WhoWeServeSection() {
                     - desktop (lg+): no scroll — bullets stay fully visible; image
                       height is dynamic (leftover space inside max-h-[90vh]) */}
                 <div className="flex min-h-0 flex-1 flex-col overflow-y-auto lg:overflow-hidden">
-                  <div className="shrink-0 px-5 pb-5 md:px-8 md:pb-8 lg:mb-1 lg:px-8 lg:pt-3 lg:pb-0">
-                    {/* Description — sits above the bullets, same column alignment.
-                        Hidden on desktop, where it's shown below the icon instead. */}
-                    <p className="mb-4 text-[13px] font-medium leading-relaxed text-[#8BA0B2] lg:hidden">
-                      {activeSegmentData.subtitle}
-                    </p>
-
+                  <div className="shrink-0 px-5 pt-4 pb-5 md:px-8 md:pb-8 lg:mb-1 lg:px-8 lg:pt-3 lg:pb-0">
                     {/* Points — fully visible on lg+ (no desktop scroller) */}
                     <ul className="space-y-3 lg:space-y-2.5">
                       {activeSegmentData.points.map((point, idx) => (
