@@ -29,7 +29,7 @@ type FeatureItem = {
 // TODO: Replace these placeholder images per-feature once the design assets
 // are ready. For now they all point at the same booking-engine mockup so the
 // active-card switching is functional end-to-end.
-const FALLBACK_IMAGE = "/images/Direct-Connect/Booking-Engine.png"
+const FALLBACK_IMAGE = "/images/Direct-Connect/Booking-Engine.avif"
 
 const features: FeatureItem[] = [
   {
@@ -37,7 +37,7 @@ const features: FeatureItem[] = [
     title: "Live Inventory & Smart Pricing",
     subtitle: "Real-time room availability and dynamic pricing",
     Icon: BookingEngineIcon1,
-    image: "/images/direct-connect/liveInventory.png",
+    image: "/images/direct-connect/liveInventory.avif",
   },
   {
     id: "promotions",
@@ -51,35 +51,35 @@ const features: FeatureItem[] = [
     title: "Upsell & Add-on Optimization",
     subtitle: "Industry upsell features for room upgrades & add-ons",
     Icon: BookingEngineIcon3,
-    image: "/images/direct-connect/upsells.png",
+    image: "/images/direct-connect/upsells.avif",
   },
   {
     id: "global-support",
     title: "Global Accessibility Support",
     subtitle: "Multi-language and multi-currency support",
     Icon: BookingEngineIcon4,
-    image: "/images/direct-connect/globalAccessibility.png",
+    image: "/images/direct-connect/globalAccessibility.avif",
   },
   {
     id: "automated-engagement",
     title: "Automated Guest Engagement",
     subtitle: "Automated guest communication flow",
     Icon: BookingEngineIcon5,
-    image: "/images/direct-connect/automatedGuest.png",
+    image: "/images/direct-connect/automatedGuest.avif",
   },
   {
     id: "invoicing-payment-collect",
     title: "Invoicing / Payment Collect",
     subtitle: "Collect secure online payments instantly through a simple payment link",
     Icon: BookingEngineIcon6,
-    image: "/images/direct-connect/collections.png",
+    image: "/images/direct-connect/collections.avif",
   },
   {
     id: "retargeting-abandoned-bookings",
     title: "Retargeting - Abandoned Bookings",
     subtitle: "Convert abandoned bookings into confirmed reservations with real-time guest retargeting ",
     Icon: BookingEngineIcon7,
-    image: "/images/direct-connect/retargetting.png",
+    image: "/images/direct-connect/retargetting.avif",
   },
 ]
 
