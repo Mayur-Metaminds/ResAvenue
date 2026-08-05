@@ -59,7 +59,7 @@ const PropertyManagementHousekeeping = () => {
         <div className="hidden min-w-0 md:block lg:flex-2">
           <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
             <img
-              src="/images/Mobile-App/mobileAppInventory.png"
+              src="/images/Mobile-App/mobileAppInventory.avif"
               alt="Housekeeping management illustration"
               className="h-full w-full object-cover"
             />
@@ -99,7 +99,7 @@ const PropertyManagementHousekeeping = () => {
 
           <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:hidden">
             <img
-              src="/images/Mobile-App/mobileAppInventory.png"
+              src="/images/Mobile-App/mobileAppInventory.avif"
               alt="Housekeeping management illustration"
               className="h-full w-full object-cover"
             />

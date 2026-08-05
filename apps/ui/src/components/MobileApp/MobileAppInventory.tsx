@@ -58,7 +58,7 @@ Prevent overbookings with lightning-fast cloud synchronization."
                     <AppearOnScroll x={40} y={0}>
                         <img
                             className='h-[343px] w-[343px] sm:h-[384px] sm:w-[384px] rounded-3xl rotate-3'
-                            src="/images/Mobile-App/mobileAppInventory.png" alt="" />
+                            src="/images/Mobile-App/mobileAppInventory.avif" alt="" />
                     </AppearOnScroll>
                 </div>
             </div>

@@ -63,7 +63,7 @@ const PropertyManagementReservation = () => {
         <div className="order-last min-w-0 lg:order-none lg:flex-[0.8]">
           <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
             <img
-              src="/images/Mobile-App/mobileAppReservations.png"
+              src="/images/Mobile-App/mobileAppReservations.avif"
               alt="Reservation management illustration"
               className="h-full w-full object-cover"
             />

@@ -21,7 +21,7 @@ const MobileAppReservations = () => {
                     <AppearOnScroll x={-40} y={0}>
                         <img
                             className='h-[343px] w-[343px] sm:h-[384px] sm:w-[384px] rounded-3xl -rotate-3'
-                            src="/images/Mobile-App/mobileAppReservations.png" alt="" />
+                            src="/images/Mobile-App/mobileAppReservations.avif" alt="" />
                     </AppearOnScroll>
                 </div>
                 <div className='sm:flex-1 min-w-0 sm:py-[60px] lg:py-[100px] text-left py-[34px]'>

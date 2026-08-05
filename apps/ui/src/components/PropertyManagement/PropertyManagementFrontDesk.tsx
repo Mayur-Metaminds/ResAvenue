@@ -64,9 +64,9 @@ const bullets = [
 ]
 
 const previewImages = [
-  "/images/Mobile-App/mobileAppReservations.png",
-  "/images/Mobile-App/mobileAppInventory.png",
-  "/images/Mobile-App/mobileAppAlerts.png",
+  "/images/Mobile-App/mobileAppReservations.avif",
+  "/images/Mobile-App/mobileAppInventory.avif",
+  "/images/Mobile-App/mobileAppAlerts.avif",
 ]
 
 // Shared header — rendered above the panel on mobile (normal flow, scrolls out

@@ -42,7 +42,7 @@ const MobileAppShowcase = () => {
                     <div className='h-full w-[300px] sm:w-[374px] flex flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-lg shadow-[#ED862E]/12 transition-shadow duration-200 hover:shadow-lg hover:shadow-black/20'>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                            src="/images/Mobile-App/dummyshowcase.png"
+                            src="/images/Mobile-App/dummyshowcase.avif"
                             alt={title}
                             className='shrink-0 w-full h-[193px] sm:h-[241px] object-cover'
                             style={{ borderRadius: '21px 20px 0 0' }}

@@ -54,7 +54,7 @@ const MobileAppAlerts = () => {
                     <AppearOnScroll x={40} y={0}>
                         <img
                             className='h-[311.004px] w-[311.004px] max-w-[384px] aspect-square sm:h-[384px] sm:w-[384px] rounded-3xl rotate-[1deg]'
-                            src="/images/Mobile-App/mobileAppAlerts.png" alt="" />
+                            src="/images/Mobile-App/mobileAppAlerts.avif" alt="" />
                     </AppearOnScroll>
                 </div>
             </div>
