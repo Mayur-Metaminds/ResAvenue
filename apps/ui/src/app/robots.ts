@@ -4,33 +4,19 @@ import { getEnvVar } from "@/lib/env-vars"
 import { isProduction } from "@/lib/general-helpers"
 
 /**
- * Marketing pages that are ready to be crawled/indexed. Everything else is
- * disallowed by default (see `disallow: "/"` below) until it's reviewed and
- * added here — robots.txt path matching is prefix-based, and the most
- * specific matching rule wins, so these `Allow` entries carve out exceptions
- * to the blanket `Disallow: /`.
- *
- * The homepage entry MUST be anchored with `$` (`/$`, not `/`) — an
- * unanchored `Allow: /` is a *prefix* match that matches every URL on the
- * site, which would silently allow everything and defeat the blanket
- * `Disallow: /` below entirely.
+ * Pages that aren't ready to be indexed yet — everything else is crawlable
+ * by default. This is a denylist (explicit `Disallow` per path) rather than
+ * an allowlist with a blanket `Disallow: /` + `Allow` overrides, because
+ * some crawlers/SEO tools don't implement the "most specific rule wins"
+ * precedence algorithm (or the `$` end-anchor) correctly — they see a bare
+ * `Disallow: /` line anywhere in the file and treat the entire site as
+ * blocked, regardless of any `Allow` exceptions. A pure denylist has no such
+ * line, so it can't be misread that way by any parser.
  *
  * Paths have no trailing slash to match the URLs Next.js actually serves
  * (trailingSlash defaults to false — "/path/" 308-redirects to "/path").
- *
- * Currently excludes `/distributed-technology` and `/resource-page`, which
- * aren't ready to be indexed yet.
  */
-const ALLOWED_ROBOTS_PATHS = [
-  "/$",
-  "/channel-connect",
-  "/direct-connect",
-  "/contact-us",
-  "/event-booking",
-  "/hotel-website-builder",
-  "/property-management",
-  "/mobile-app",
-]
+const DISALLOWED_ROBOTS_PATHS = ["/distributed-technology", "/resource-page"]
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = getEnvVar("APP_PUBLIC_URL")
@@ -40,7 +26,7 @@ export default function robots(): MetadataRoute.Robots {
   }
 
   return {
-    rules: { userAgent: "*", allow: ALLOWED_ROBOTS_PATHS, disallow: "/" },
+    rules: { userAgent: "*", disallow: DISALLOWED_ROBOTS_PATHS },
     ...(baseUrl
       ? { sitemap: new URL("./sitemap.xml", baseUrl).toString() }
       : {}),
