@@ -117,9 +117,9 @@ const PropertyManagementHousekeeping = () => {
               >
                 <div className="h-12 w-12">{card.icon}</div>
 
-                <h4 className="mt-4 typo-body1 text-white lg:text-[14px]! lg:font-medium! lg:leading-[16.8px]! lg:tracking-[-0.25px]! lg:[font-family:'Public_Sans',sans-serif]!">
+                <h3 className="mt-4 typo-body1 text-white lg:text-[14px]! lg:font-medium! lg:leading-[16.8px]! lg:tracking-[-0.25px]! lg:[font-family:'Public_Sans',sans-serif]!">
                   {card.title}
-                </h4>
+                </h3>
                 <p className="mt-2 font-source-sans-400 text-[14px] leading-[22.4px] text-white/50 lg:text-[12px] lg:font-light! lg:leading-[15.6px] lg:[font-family:'Public_Sans',sans-serif]!">
                   {card.description}
                 </p>

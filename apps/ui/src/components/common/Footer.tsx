@@ -48,9 +48,9 @@ export function Footer({ nested = false, className }: FooterProps) {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8 xl:col-span-8">
             {/* Column 1: COMPANY */}
             <div className="flex flex-col">
-              <h4 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
+              <h3 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
                 COMPANY
-              </h4>
+              </h3>
               <ul className="space-y-4">
                 {/* About Us, Careers, and Partners intentionally have no href
                     — those pages don't exist yet. Rendered as inert text
@@ -78,9 +78,9 @@ export function Footer({ nested = false, className }: FooterProps) {
 
             {/* Column 2: LEGAL */}
             <div className="flex flex-col">
-              <h4 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
+              <h3 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
                 LEGAL
-              </h4>
+              </h3>
               <ul className="space-y-4">
                 {/* Same as COMPANY above — no href until these pages exist. */}
                 <li>
@@ -97,9 +97,9 @@ export function Footer({ nested = false, className }: FooterProps) {
 
             {/* Column 3: SOLUTIONS */}
             <div className="flex flex-col sm:col-span-2">
-              <h4 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
+              <h3 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
                 SOLUTIONS
-              </h4>
+              </h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 w-full">
                 {[
                   { title: "Direct Connect", href: "/direct-connect" },

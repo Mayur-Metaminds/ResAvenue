@@ -15,8 +15,11 @@ import { siteConfig } from "@/config/site"
 
 // ── Home ──────────────────────────────────────────────────────────────────────
 
-const HOME_TITLE = `${siteConfig.name} | ${siteConfig.tagline}`
-const HOME_DESCRIPTION = siteConfig.description
+// Kept under ~60 chars for SERP display; siteConfig.tagline (used in the
+// hero UI and llms.txt) is intentionally longer and untouched.
+const HOME_TITLE = "ResAvenue — Revenue & Distribution Platform for Hotels"
+const HOME_DESCRIPTION =
+  "ResAvenue unifies booking, channel connectivity, property management, and intelligent pricing into one platform built to help hospitality brands grow."
 const HOME_PATH = "/"
 
 export function getHomePageSeo(): PageSeo {
@@ -34,7 +37,7 @@ export function getHomePageSeo(): PageSeo {
 
 const DIRECT_CONNECT_TITLE = "Direct Connect — Booking Engine & CRS"
 const DIRECT_CONNECT_DESCRIPTION =
-  "Turn your hotel website into a conversion-first booking engine. ResAvenue Direct Connect delivers real-time availability, dynamic pricing, secure payments, and mobile-first checkout to maximize direct bookings."
+  "Turn your hotel website into a conversion-first booking engine with real-time availability, dynamic pricing, secure payments, and mobile-first checkout."
 const DIRECT_CONNECT_PATH = "/direct-connect"
 
 export function getDirectConnectPageSeo(): PageSeo {
@@ -58,7 +61,7 @@ export function getDirectConnectPageSeo(): PageSeo {
 
 const CHANNEL_CONNECT_TITLE = "Channel Connect — Hotel Channel Manager"
 const CHANNEL_CONNECT_DESCRIPTION =
-  "Synchronize rates, inventory, and availability across OTAs and distribution channels in real time. ResAvenue Channel Connect gives hotels one dashboard to manage every channel."
+  "Synchronize rates, inventory, and availability across OTAs in real time. One dashboard to manage every distribution channel."
 const CHANNEL_CONNECT_PATH = "/channel-connect"
 
 export function getChannelConnectPageSeo(): PageSeo {
@@ -104,7 +107,7 @@ export function getPropertyManagementPageSeo(): PageSeo {
 
 const HOTEL_WEBSITE_BUILDER_TITLE = "Hotel Website Builder — Direct Booking Websites"
 const HOTEL_WEBSITE_BUILDER_DESCRIPTION =
-  "Launch a high-converting hotel website designed to drive direct bookings. ResAvenue Hotel Website Builder combines beautiful design with integrated booking technology."
+  "Launch a high-converting hotel website designed to drive direct bookings, combining beautiful design with integrated booking technology."
 const HOTEL_WEBSITE_BUILDER_PATH = "/hotel-website-builder"
 
 export function getHotelWebsiteBuilderPageSeo(): PageSeo {

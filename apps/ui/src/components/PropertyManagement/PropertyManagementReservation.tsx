@@ -114,9 +114,9 @@ const PropertyManagementReservation = () => {
                 <div className="flex items-start justify-start gap-3">
                   <span className="shrink-0">{card.icon}</span>
                   <div className="min-w-0">
-                    <h4 className="text-[16px] font-normal leading-[22.4px] text-white [font-family:var(--font-source-sans)] xl:font-medium xl:leading-[19.2px] xl:tracking-[-0.25px] xl:[font-family:var(--font-plus-jakarta)]">
+                    <h3 className="text-[16px] font-normal leading-[22.4px] text-white [font-family:var(--font-source-sans)] xl:font-medium xl:leading-[19.2px] xl:tracking-[-0.25px] xl:[font-family:var(--font-plus-jakarta)]">
                       {card.title}
-                    </h4>
+                    </h3>
                     <p className="mt-1 text-[14px] font-normal leading-[22.4px] text-white/50 [font-family:var(--font-source-sans)] xl:text-[12px] xl:font-medium xl:leading-[15.6px] xl:text-white/65">
                       {card.description}
                     </p>

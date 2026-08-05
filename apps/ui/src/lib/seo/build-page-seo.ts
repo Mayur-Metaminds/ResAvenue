@@ -192,9 +192,9 @@ function buildPageSchema({
 /**
  * Static marketing routes included in sitemap.xml.
  *
- * Kept in sync with `ALLOWED_ROBOTS_PATHS` in `apps/ui/src/app/robots.ts` —
- * only pages allowed to be crawled should be advertised here. Currently
- * excludes `/distributed-technology/` and `/resource-page/`, which aren't
+ * Kept in sync with `DISALLOWED_ROBOTS_PATHS` in `apps/ui/src/app/robots.ts`
+ * — only pages allowed to be crawled should be advertised here. Currently
+ * excludes `/distributed-technology` and `/resource-page`, which aren't
  * ready to be indexed yet.
  */
 export const STATIC_SEO_ROUTES: Array<{

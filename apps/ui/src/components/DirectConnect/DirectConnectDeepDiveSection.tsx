@@ -245,14 +245,14 @@ export function DirectConnectDeepDiveSection() {
                           {index === 3 && <NumberIcon4 />}
                         </div>
                         <div>
-                          <h4
+                          <h3
                             className={cn(
                               "transition-colors duration-300 typo-body5",
                               isOpen ? "text-white mb-[10px] font-bold" : "text-[#94A3B8] mb-0"
                             )}
                           >
                             {item.title}
-                          </h4>
+                          </h3>
                           <div
                             className={cn(
                               "overflow-hidden transition-all duration-300 ease-in-out",
