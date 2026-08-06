@@ -2,12 +2,15 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import type * as React from "react"
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 import { Eyebrow } from "@/components/common/Eyebrow"
-import { CloseBtn, PlayButton } from "../../../public/svg/commonSvg"
+import { CloseBtn } from "../../../public/svg/commonSvg"
 import { HeroTitle } from "./HeroTitle"
+
+const FEATURE_CAROUSEL_DIR = "/images/Landing/featureCarousel"
 
 // Mock Data Structure
 type CarouselCard = {
@@ -16,20 +19,26 @@ type CarouselCard = {
   title: string
   linkText: string
   linkUrl: string
-  /** Direct URL to the video shown in the modal (MP4 / WebM). */
-  videoSrc: string
-  /** Optional poster image shown before the video loads. */
-  posterSrc?: string
+  /** Feature image shown on the card and in the modal. */
+  imageSrc: string
 }
 
 const carouselData: CarouselCard[] = [
   {
+    id: "property-management",
+    eyebrow: "OPERATIONS",
+    title: "Centralized System for your entire property",
+    linkText: "Learn More",
+    linkUrl: "/property-management",
+    imageSrc: `${FEATURE_CAROUSEL_DIR}/centralized_system_for_your_property.jpg`,
+  },
+  {
     id: "booking-engine",
     eyebrow: "DIRECT CONNECT",
-    title: "Mobile-friendly booking engine with rate plans",
+    title: "Mobile friendly booking engine with special mobile rates",
     linkText: "Learn More",
     linkUrl: "/direct-connect",
-    videoSrc: "/assets/videos/booking-engine.mp4",
+    imageSrc: `${FEATURE_CAROUSEL_DIR}/mobile_friendly_booking_engine.jpg`,
   },
   {
     id: "channel-manager",
@@ -37,31 +46,15 @@ const carouselData: CarouselCard[] = [
     title: "Seamlessly distribute to 100+ OTAs instantly",
     linkText: "Learn More",
     linkUrl: "/channel-connect",
-    videoSrc: "/assets/videos/agilysys.mp4",
+    imageSrc: `${FEATURE_CAROUSEL_DIR}/seemlessly_distribute_100_plus_OTAs.jpg`,
   },
   {
-    id: "property-management",
-    eyebrow: "OPERATIONS",
-    title: "Central nervous system for your entire property",
-    linkText: "Learn More",
-    linkUrl: "/property-management",
-    videoSrc: "/assets/videos/one-platform.mp4",
-  },
-   {
-    id: "propertyu-management",
-    eyebrow: "OPERATIONS",
-    title: "Central nervous system for your entire property",
-    linkText: "Learn More",
-    linkUrl: "/property-management",
-    videoSrc: "/assets/videos/one-platform.mp4",
-  },
-   {
-    id: "bookingu-engine",
+    id: "payment-collection",
     eyebrow: "DIRECT CONNECT",
-    title: "Mobile-friendly booking engine with rate plans",
+    title: "Secure & Seamless Payment Collection",
     linkText: "Learn More",
     linkUrl: "/direct-connect",
-    videoSrc: "/assets/videos/booking-engine.mp4",
+    imageSrc: `${FEATURE_CAROUSEL_DIR}/secure_and_seamless_payment_collection.jpg`,
   },
 ]
 
@@ -347,7 +340,7 @@ export function FeatureCarouselSection() {
 
       {/* Navigation Controls were moved to the top right of the header */}
 
-      <VideoModal card={activeCard} onClose={closeModal} openerRef={openerRef} />
+      <PreviewModal card={activeCard} onClose={closeModal} openerRef={openerRef} />
 
       {/* Hide Scrollbar Style Hack */}
       <style
@@ -368,8 +361,9 @@ export function FeatureCarouselSection() {
 }
 
 /**
- * One carousel card. The whole card is a `<button>` so it's reachable by
- * keyboard and assistive tech; the play SVG is just visual affordance.
+ * One carousel card. A full-size (invisible) button sits behind the bottom
+ * content so clicking anywhere on the card opens the preview modal, while
+ * the "Learn More" link stays independently clickable on top of it.
  */
 function CarouselItem({
   card,
@@ -382,36 +376,28 @@ function CarouselItem({
     <div
       className="group relative h-[400px] w-[85vw] shrink-0 snap-center overflow-hidden rounded-[24px] shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[511px] md:w-[1000px] lg:w-[1100px]"
     >
-      {/* Thumbnail — a still frame from the video (no autoplay). `#t=0.1` seeks
-          to ~0.1s so a representative frame paints instead of a black one; the
-          full video only plays in the modal after the play button is clicked.
-          Provide `posterSrc` for a hand-picked thumbnail when you want one. */}
-      <video
-        src={`${card.videoSrc}#t=0.1`}
-        poster={card.posterSrc}
-        muted
-        playsInline
-        preload="metadata"
+      {/* Thumbnail */}
+      <Image
+        src={card.imageSrc}
+        alt=""
+        fill
         aria-hidden
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        sizes="(max-width: 768px) 85vw, (max-width: 1024px) 1000px, 1100px"
+        className="pointer-events-none object-cover transition-transform duration-700 group-hover:scale-105"
       />
 
       {/* Gradient overlay for text readability */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-      {/* Play button — the actual click target. Sits in the centre, leaves
-          the rest of the card non-interactive so the carousel can be dragged
-          or swipe-scrolled without accidentally opening the modal. */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          onClick={(e) => onOpen(card, e.currentTarget)}
-          aria-label={`Play video: ${card.title}`}
-          className="rounded-full cursor-pointer transition-transform duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E] focus-visible:ring-offset-2"
-        >
-          <PlayButton className="h-20 w-20 drop-shadow-lg" />
-        </button>
-      </div>
+      {/* Full-card click target — opens the preview modal. Sits below the
+          bottom content so the "Learn More" link (pointer-events-auto) still
+          takes priority when clicked directly. */}
+      <button
+        type="button"
+        onClick={(e) => onOpen(card, e.currentTarget)}
+        aria-label={`View: ${card.title}`}
+        className="absolute inset-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E] focus-visible:ring-offset-2"
+      />
 
       {/* Bottom content — non-interactive aside from the Learn More link */}
       <div className="pointer-events-none absolute right-0 bottom-0 left-0 flex flex-col justify-end p-4 md:p-12">
@@ -440,15 +426,14 @@ function CarouselItem({
 }
 
 /**
- * Video modal. Native dialog-style behavior built by hand because we want
+ * Preview modal. Native dialog-style behavior built by hand because we want
  * Framer animations + custom styling:
  *   - ESC closes
  *   - Backdrop click closes
  *   - Body scroll locks while open
  *   - Focus moves into the modal on open, returns to the opener on close
- *   - Video unmounts on close so playback stops
  */
-function VideoModal({
+function PreviewModal({
   card,
   onClose,
   openerRef,
@@ -493,7 +478,7 @@ function VideoModal({
     <AnimatePresence>
       {card && (
         <motion.div
-          key="video-modal"
+          key="preview-modal"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -518,21 +503,45 @@ function VideoModal({
               ref={closeButtonRef}
               type="button"
               onClick={onClose}
-              aria-label="Close video"
+              aria-label="Close preview"
               className="absolute cursor-pointer -top-12 right-0 z-10 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ED862E] focus-visible:ring-offset-2 md:-top-14"
             >
               <CloseBtn size={44} />
             </button>
 
             <div className="relative aspect-video w-full overflow-hidden rounded-[24px] bg-black shadow-2xl">
-              <video
-                src={card.videoSrc}
-                poster={card.posterSrc}
-                controls
-                autoPlay
-                playsInline
-                className="h-full w-full"
+              <Image
+                src={card.imageSrc}
+                alt={card.title}
+                fill
+                sizes="1100px"
+                className="object-cover"
               />
+
+              {/* Gradient overlay for text readability — same treatment as the card thumbnail */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+              <div className="pointer-events-none absolute right-0 bottom-0 left-0 flex flex-col justify-end p-4 md:p-12">
+                <Eyebrow
+                  showDot={false}
+                  className="typo-body2 mb-0"
+                  style={{ "--eyebrow-color": "#ED862E" } as React.CSSProperties}
+                >
+                  {card.eyebrow}
+                </Eyebrow>
+
+                <h3 className="text-[20px] md:text-[24px] lg:text-[40px] font-plus-jakarta-500 text-[#FFF] mb-[9px] lg:mb-[20px]">
+                  {card.title}
+                </h3>
+
+                <Link
+                  href={card.linkUrl}
+                  className="pointer-events-auto typo-body2 md:text-[16px] text-[14px] inline-flex w-fit items-center text-white/90 hover:text-white"
+                >
+                  {card.linkText}
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
             </div>
           </motion.div>
         </motion.div>
