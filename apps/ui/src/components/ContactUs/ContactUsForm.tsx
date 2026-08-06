@@ -93,7 +93,7 @@ export default function ContactForm() {
 
     const result = contactSubmissionSchema.safeParse({
       ...formData,
-      service: selected,
+      services: selected,
     })
 
     if (!result.success) {
@@ -309,8 +309,8 @@ export default function ContactForm() {
               ))}
             </div>
           </div>
-          {errors.service && (
-            <p className="font-plus-jakarta-500 mt-2 text-[8.315px] text-red-400 md:text-xs">{errors.service}</p>
+          {errors.services && (
+            <p className="font-plus-jakarta-500 mt-2 text-[8.315px] text-red-400 md:text-xs">{errors.services}</p>
           )}
         </div>
 

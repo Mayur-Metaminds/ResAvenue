@@ -61,13 +61,17 @@ export function HotelWebsiteBuilderHeroSection() {
 
         {/* Right Column: Graphic/Dashboard Preview */}
         <div className="relative z-10 flex w-full flex-1 items-start justify-start">
-          <LazyLottie
-            src={CHANNEL_CONNECT_HERO_URL}
-            priority="lazy"
-            loop
-            className="h-full w-full max-w-2xl"
-            aria-label="Hotel website builder animation"
-          />
+          {/* Reserves the animation's native aspect ratio so the layout
+              doesn't jump once the Lottie JSON loads in (prevents CLS). */}
+          <div className="relative aspect-[1380/884] w-full max-w-2xl overflow-hidden">
+            <LazyLottie
+              src={CHANNEL_CONNECT_HERO_URL}
+              priority="lazy"
+              loop
+              className="h-full w-full"
+              aria-label="Hotel website builder animation"
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -11,7 +11,7 @@
 import type { APIResponse } from "."
 
 /**
- * Allowed `service` values. Declared as a `readonly` tuple so it can power
+ * Allowed `services` values. Declared as a `readonly` tuple so it can power
  * both the Zod `enum` and the TypeScript union below without drift.
  */
 export const CONTACT_SERVICE_OPTIONS = [
@@ -37,7 +37,7 @@ export interface ContactSubmissionInput {
   propertyName: string
   /** Optional. Empty string is also accepted by the schema. */
   siteUrl?: string
-  service: ContactService[]
+  services: ContactService[]
   message?: string
 }
 

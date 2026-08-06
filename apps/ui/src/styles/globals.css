@@ -12,55 +12,20 @@ input[type="number"] {
   appearance: textfield;
 }
 
-/* ================= Plus Jakarta Sans ================= */
-@font-face {
-  font-family: "Plus Jakarta Sans";
-  src: url("/fonts/Plus-Jakarta-Sans/plus-jakarta-sans-v12-latin-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Plus Jakarta Sans";
-  src: url("/fonts/Plus-Jakarta-Sans/plus-jakarta-sans-v12-latin-500.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Plus Jakarta Sans";
-  src: url("/fonts/Plus-Jakarta-Sans/plus-jakarta-sans-v12-latin-700.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ================= Source Sans 3 ================= */
-@font-face {
-  font-family: "Source Sans 3";
-  src: url("/fonts/Source-Sans-3/source-sans-3-v19-latin-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Source Sans 3";
-  src: url("/fonts/Source-Sans-3/source-sans-3-v19-latin-600.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* ================= Tailwind v4 theme tokens ================= */
 /* Only font tokens — there is no dark/light theme in this project. Section
-   colors are set per-section via Tailwind arbitrary classes. */
+   colors are set per-section via Tailwind arbitrary classes.
+   Plus Jakarta Sans / Source Sans 3 are self-hosted via `next/font/google`
+   (see `src/lib/fonts.ts`) instead of raw `@font-face` rules — Next.js
+   downloads the font files at build time, serves them from our own origin,
+   sets `font-display: swap`, and generates a metrics-matched fallback font
+   to minimize layout shift while the real font loads. The `.variable`
+   classes applied in `app/layout.tsx` define the `--font-plus-jakarta-sans`
+   / `--font-source-sans-3` custom properties referenced below. */
 @theme {
-  --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
-  --font-source-sans: "Source Sans 3", sans-serif;
+  --font-sans: var(--font-plus-jakarta-sans), sans-serif;
+  --font-plus-jakarta: var(--font-plus-jakarta-sans), sans-serif;
+  --font-source-sans: var(--font-source-sans-3), sans-serif;
   /* Extra-wide breakpoints. Defined in rem so they sort correctly alongside
      the default rem-based breakpoints (sm–2xl). */
   --breakpoint-3xl: 120rem; /* 1920px */

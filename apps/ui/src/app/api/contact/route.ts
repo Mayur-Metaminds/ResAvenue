@@ -41,12 +41,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true }, { status: 201 })
   } catch (err) {
     if (err instanceof StrapiHttpError) {
+      // Logged server-side only — never sent to the browser.
+      console.error("[api/contact] Strapi rejected submission:", {
+        status: err.status,
+        details: err.details,
+      })
       // Forward a sanitized message; never leak Strapi internals.
       return NextResponse.json(
         { error: "Could not save submission" },
         { status: err.status >= 500 ? 502 : err.status }
       )
     }
+    console.error("[api/contact] Unexpected error:", err)
     return NextResponse.json({ error: "Unexpected error" }, { status: 500 })
   }
 }

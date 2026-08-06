@@ -6,7 +6,7 @@ import Script from "next/script"
 import { Navbar } from "@/components/common/Navbar"
 import { getSiteUrl } from "@/constants/seo.constants"
 import { siteConfig } from "@/config/site"
-import { fontRoboto } from "@/lib/fonts"
+import { fontPlusJakarta, fontRoboto, fontSourceSans } from "@/lib/fonts"
 import { cn } from "@/lib/styles"
 
 /**
@@ -90,7 +90,9 @@ export default function RootLayout({
         suppressHydrationWarning
         className={cn(
           "min-h-screen font-sans antialiased",
-          fontRoboto.variable
+          fontRoboto.variable,
+          fontPlusJakarta.variable,
+          fontSourceSans.variable
         )}
       >
         <div className="flex min-h-screen flex-col">

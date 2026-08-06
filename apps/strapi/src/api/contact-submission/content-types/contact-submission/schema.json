@@ -14,13 +14,13 @@
   "attributes": {
     "firstName": {
       "type": "string",
-      "required": true,
-      "maxLength": 100
+      "maxLength": 100,
+      "required": true
     },
     "lastName": {
       "type": "string",
-      "required": true,
-      "maxLength": 100
+      "maxLength": 100,
+      "required": true
     },
     "email": {
       "type": "email",
@@ -28,35 +28,23 @@
     },
     "phone": {
       "type": "string",
-      "required": true,
-      "maxLength": 32
+      "maxLength": 32,
+      "required": true
     },
     "propertyName": {
       "type": "string",
-      "required": true,
-      "maxLength": 200
+      "maxLength": 200,
+      "required": true
     },
     "siteUrl": {
       "type": "string",
       "maxLength": 500
     },
-    "service": {
-      "type": "enumeration",
-      "enum": [
-        "Direct Connect",
-        "Revenue Management",
-        "Website Builder",
-        "Channel Connect",
-        "Distribution Network",
-        "Tours & Packages Engine",
-        "Property Management System",
-        "Event Management",
-        "Mobile App Ecosystem"
-      ],
-      "required": true
-    },
     "message": {
       "type": "text"
+    },
+    "services": {
+      "type": "json"
     }
   }
 }

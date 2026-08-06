@@ -56,13 +56,17 @@ with a single, powerful enterprise solution designed for scale.'
 
         {/* Right Column: Dummy Lottie animation placeholder */}
         <div className="relative z-10 flex w-full flex-1 items-center justify-center">
-          <LazyLottie
-            src={heroAnimationUrl}
-            priority="lazy"
-            loop
-            className="h-full w-full max-w-2xl"
-            aria-label="Event booking animation"
-          />
+          {/* Reserves the animation's native aspect ratio so the layout
+              doesn't jump once the Lottie JSON loads in (prevents CLS). */}
+          <div className="relative aspect-[1380/884] w-full max-w-2xl overflow-hidden">
+            <LazyLottie
+              src={heroAnimationUrl}
+              priority="lazy"
+              loop
+              className="h-full w-full"
+              aria-label="Event booking animation"
+            />
+          </div>
         </div>
 
       </div>

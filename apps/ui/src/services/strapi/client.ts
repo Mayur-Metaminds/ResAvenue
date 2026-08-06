@@ -2,12 +2,19 @@ import qs from "qs"
 
 import type { StrapiError } from "./types"
 
-const STRAPI_URL =
-  process.env.NEXT_PUBLIC_STRAPI_URL ??
-  process.env.STRAPI_URL ??
-  "http://localhost:1337"
+// Deliberately read via raw `process.env` (not the validated `env.mjs`
+// object / `getEnvVar`): `client.ts` is transitively imported by
+// `ContactUsForm.tsx` (a client component) via `contact.service.ts`, and
+// `env.mjs` throws if a server-only var is touched from client code. Raw
+// `process.env.X` just evaluates to `undefined` in the browser bundle
+// instead, which is safe here since `strapiFetch` itself is only ever
+// invoked server-side (from the `/api/contact` route handler).
+const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337"
 
-const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN
+// Reuse the same write-capable key the rest of the app already uses for
+// Strapi mutations (see `lib/strapi-api/request-auth.ts`) instead of a
+// separate, undocumented `STRAPI_API_TOKEN`.
+const STRAPI_TOKEN = process.env.STRAPI_REST_CUSTOM_API_KEY
 
 export interface StrapiFetchOptions extends Omit<RequestInit, "body"> {
   /** Query params — serialized with `qs` so Strapi's filters/populate/sort syntax works. */
