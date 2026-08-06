@@ -23,6 +23,7 @@ import {
   ThreeDWheelIcon8,
   ThreeDWheelIcon9,
 } from "../../../public/svg/LandingPage"
+import Image from "next/image"
 import type * as React from "react"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 
@@ -536,12 +537,13 @@ export function ExploreModulesSection() {
                         transition={{ duration: 0.35, ease: "easeOut" }}
                         className="absolute top-0 left-0 h-full w-full flex items-center justify-center"
                       >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+                        <Image
                           src={activeFeature.image}
                           alt={activeFeature.label}
+                          fill
+                          sizes="(max-width: 1024px) 90vw, 45vw"
                           className={cn(
-                            "h-full w-full max-w-full max-h-full rounded-[20px] object-contain object-center p-2 lg:p-0",
+                            "rounded-[20px] object-contain object-center p-2 lg:p-0",
                             activeFeature.imageClassName
                           )}
                         />

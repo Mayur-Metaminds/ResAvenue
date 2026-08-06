@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "framer-motion"
 import { ArrowRightLeft, CalendarCog, ClipboardList } from "lucide-react"
+import Image from "next/image"
 import type React from "react"
 import { useRef, useState } from "react"
 
@@ -62,6 +63,8 @@ const bullets = [
       "Let the system intelligently assign rooms based on availability, guest preferences, and housekeeping status.",
   },
 ]
+
+const FALLBACK_PREVIEW_IMAGE = "/images/Mobile-App/mobileAppReservations.avif"
 
 const previewImages = [
   "/images/Mobile-App/mobileAppReservations.avif",
@@ -156,11 +159,15 @@ const PropertyManagementFrontDesk = () => {
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="relative h-full w-full overflow-hidden rounded-3xl max-[769px]:mt-20"
               >
-                <img
-                  src={previewImages[activeIndex] ?? previewImages[0]}
-                  alt={`${activeBullet?.id ?? "front-desk"} preview`}
-                  className="h-full w-full object-contain lg:w-[90%] lg:mx-auto"
-                />
+                <div className="relative h-full w-full lg:mx-auto lg:w-[90%]">
+                  <Image
+                    src={previewImages[activeIndex] ?? FALLBACK_PREVIEW_IMAGE}
+                    alt={`${activeBullet?.id ?? "front-desk"} preview`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="object-contain"
+                  />
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>

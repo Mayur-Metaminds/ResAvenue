@@ -1,5 +1,7 @@
 "use client"
 
+import Image from 'next/image'
+
 import { Marquee } from '@/components/common/Marquee'
 
 // Text content from the design; card images are intentionally left as dummy placeholders.
@@ -40,13 +42,18 @@ const MobileAppShowcase = () => {
                 ariaLabel="Mobile app highlights"
                 renderItem={({ title, description }) => (
                     <div className='h-full w-[300px] sm:w-[374px] flex flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-lg shadow-[#ED862E]/12 transition-shadow duration-200 hover:shadow-lg hover:shadow-black/20'>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/images/Mobile-App/dummyshowcase.avif"
-                            alt={title}
-                            className='shrink-0 w-full h-[193px] sm:h-[241px] object-cover'
-                            style={{ borderRadius: '21px 20px 0 0' }}
-                        />
+                        <div
+                            className='relative shrink-0 w-full h-[193px] sm:h-[241px]'
+                            style={{ borderRadius: '21px 20px 0 0', overflow: 'hidden' }}
+                        >
+                            <Image
+                                src="/images/Mobile-App/dummyshowcase.avif"
+                                alt={title}
+                                fill
+                                sizes="(max-width: 640px) 300px, 374px"
+                                className='object-cover'
+                            />
+                        </div>
                         <div className='p-5 sm:p-6 text-left'>
                             <h3 className='font-plus-jakarta-700 text-[20px] leading-[26px] text-[#0F172A]'>
                                 {title}

@@ -1,6 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
+import Image from "next/image"
 import { useState } from "react"
 
 import { SectionHeader } from "@/components/landing/SectionHeader"
@@ -181,14 +182,15 @@ function EventBookingCoreFeatures() {
                 <motion.div
                   layout
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className={`w-full overflow-hidden rounded-[21.795px] bg-slate-100 ${isExpanded ? "min-h-[200px] flex-1" : "aspect-[4/3.3]"
+                  className={`relative w-full overflow-hidden rounded-[21.795px] bg-slate-100 ${isExpanded ? "min-h-[200px] flex-1" : "aspect-[4/3.3]"
                     }`}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={f.image}
                     alt={f.title}
-                    className="object-fit h-full w-full transition-transform duration-300 group-hover:scale-[1.1]"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.1]"
                   />
                 </motion.div>
                 <div className="flex flex-1 flex-col px-2 py-4 md:p-5">

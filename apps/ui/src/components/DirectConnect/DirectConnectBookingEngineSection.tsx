@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import type * as React from "react"
 import { useState } from "react"
 
@@ -24,12 +25,23 @@ type FeatureItem = {
   Icon: React.ComponentType
   /** Mockup shown in the image slot when this feature is active. */
   image: string
+  /**
+   * Intrinsic pixel dimensions of `image` (skipped for the Lottie/.json
+   * entry). Required by next/image in non-`fill` mode — the responsive
+   * `w-full h-auto` / `lg:h-full lg:w-auto` classes on the image slot rely on
+   * the browser knowing each mockup's real aspect ratio to avoid distortion
+   * or layout shift when switching between features.
+   */
+  width?: number
+  height?: number
 }
 
 // TODO: Replace these placeholder images per-feature once the design assets
 // are ready. For now they all point at the same booking-engine mockup so the
 // active-card switching is functional end-to-end.
 const FALLBACK_IMAGE = "/images/Direct-Connect/Booking-Engine.avif"
+const FALLBACK_WIDTH = 676
+const FALLBACK_HEIGHT = 556
 
 const features: FeatureItem[] = [
   {
@@ -38,6 +50,8 @@ const features: FeatureItem[] = [
     subtitle: "Real-time room availability and dynamic pricing",
     Icon: BookingEngineIcon1,
     image: "/images/direct-connect/liveInventory.avif",
+    width: 2992,
+    height: 1732,
   },
   {
     id: "promotions",
@@ -52,6 +66,8 @@ const features: FeatureItem[] = [
     subtitle: "Industry upsell features for room upgrades & add-ons",
     Icon: BookingEngineIcon3,
     image: "/images/direct-connect/upsells.avif",
+    width: 2992,
+    height: 2220,
   },
   {
     id: "global-support",
@@ -59,6 +75,8 @@ const features: FeatureItem[] = [
     subtitle: "Multi-language and multi-currency support",
     Icon: BookingEngineIcon4,
     image: "/images/direct-connect/globalAccessibility.avif",
+    width: 2992,
+    height: 2053,
   },
   {
     id: "automated-engagement",
@@ -66,6 +84,8 @@ const features: FeatureItem[] = [
     subtitle: "Automated guest communication flow",
     Icon: BookingEngineIcon5,
     image: "/images/direct-connect/automatedGuest.avif",
+    width: 2598,
+    height: 1732,
   },
   {
     id: "invoicing-payment-collect",
@@ -73,6 +93,8 @@ const features: FeatureItem[] = [
     subtitle: "Collect secure online payments instantly through a simple payment link",
     Icon: BookingEngineIcon6,
     image: "/images/direct-connect/collections.avif",
+    width: 2598,
+    height: 2375,
   },
   {
     id: "retargeting-abandoned-bookings",
@@ -80,6 +102,8 @@ const features: FeatureItem[] = [
     subtitle: "Convert abandoned bookings into confirmed reservations with real-time guest retargeting ",
     Icon: BookingEngineIcon7,
     image: "/images/direct-connect/retargetting.avif",
+    width: 2598,
+    height: 1848,
   },
 ]
 
@@ -132,10 +156,12 @@ export function DirectConnectBookingEngineSection() {
                     className="h-auto w-full origin-center drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[500px] lg:w-auto lg:max-w-none lg:translate-x-8 lg:object-left lg:scale-[0.6] lg:-ml-11 xl:translate-x-12 xl:scale-100"
                   />
                 ) : (
-                  <img
+                  <Image
                     key={activeFeature?.id}
                     src={activeFeature?.image ?? FALLBACK_IMAGE}
                     alt={activeFeature?.title ?? "Booking Engine Mockup"}
+                    width={activeFeature?.width ?? FALLBACK_WIDTH}
+                    height={activeFeature?.height ?? FALLBACK_HEIGHT}
                     className="h-auto w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[450px] lg:w-auto lg:max-w-none lg:translate-x-8 lg:object-left lg:scale-[0.6] lg:-ml-11 xl:translate-x-12 xl:scale-100"
                   />
                 )}

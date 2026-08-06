@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 import { SectionHeader } from "@/components/landing/SectionHeader"
 
@@ -61,11 +62,13 @@ const PropertyManagementReservation = () => {
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
         {/* Product image. Below content on mobile, left on desktop. */}
         <div className="order-last min-w-0 lg:order-none lg:flex-[0.8]">
-          <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-            <img
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <Image
               src="/images/Mobile-App/mobileAppReservations.avif"
               alt="Reservation management illustration"
-              className="h-full w-full object-cover"
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-cover"
             />
           </div>
         </div>

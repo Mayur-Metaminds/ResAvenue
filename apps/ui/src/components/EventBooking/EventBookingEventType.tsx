@@ -1,5 +1,7 @@
 "use client"
 
+import Image from "next/image"
+
 import { Marquee } from "@/components/common/Marquee"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 
@@ -89,12 +91,13 @@ const EventBookingEventType = () => {
                     ariaLabel="Event types"
                     renderItem={(e) => (
                         <div className="w-[280px] h-[340px] md:h-[416px] overflow-hidden rounded-[21.795px] border-2 border-slate-200 bg-white text-left shadow-sm transition-colors duration-200 hover:border-[#ED862E] sm:w-[320px]">
-                            <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                            <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                                <Image
                                     src={e.image}
                                     alt={e.title}
-                                    className="h-full w-full object-cover"
+                                    fill
+                                    sizes="320px"
+                                    className="object-cover"
                                 />
                             </div>
                             <div className="p-4 md:p-5">

@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import { SectionHeader } from '@/components/landing/SectionHeader'
 import { AppearOnScroll } from '@/components/common/AppearOnScroll'
 import { CalenderIcon, GuestUser, BoxCheck } from '../../../public/svg/Mobile-App'
@@ -19,9 +21,13 @@ const MobileAppReservations = () => {
             <div className='mx-auto flex w-full max-w-[1920px] gap-[17px] lg:gap-16 flex-col lg:flex-row px-[16px] sm:px-[80px]'>
                 <div className='bg-[#F1F5F90D] max-sm:h-[512px] rounded-3xl sm:flex-1 flex items-center justify-center'>
                     <AppearOnScroll x={-40} y={0}>
-                        <img
-                            className='h-[343px] w-[343px] sm:h-[384px] sm:w-[384px] rounded-3xl -rotate-3'
-                            src="/images/Mobile-App/mobileAppReservations.avif" alt="" />
+                        <Image
+                            className='h-[343px] w-[343px] sm:h-[384px] sm:w-[384px] rounded-3xl -rotate-3 object-cover'
+                            src="/images/Mobile-App/mobileAppReservations.avif"
+                            alt=""
+                            width={384}
+                            height={384}
+                        />
                     </AppearOnScroll>
                 </div>
                 <div className='sm:flex-1 min-w-0 sm:py-[60px] lg:py-[100px] text-left py-[34px]'>

@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 import { SectionHeader } from "@/components/landing/SectionHeader"
 
@@ -57,11 +58,13 @@ const PropertyManagementHousekeeping = () => {
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
         <div className="hidden min-w-0 md:block lg:flex-2">
-          <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-            <img
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <Image
               src="/images/Mobile-App/mobileAppInventory.avif"
               alt="Housekeeping management illustration"
-              className="h-full w-full object-cover"
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-cover"
             />
           </div>
         </div>
@@ -97,11 +100,13 @@ const PropertyManagementHousekeeping = () => {
             }
           />
 
-          <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:hidden">
-            <img
+          <div className="relative mt-8 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:hidden">
+            <Image
               src="/images/Mobile-App/mobileAppInventory.avif"
               alt="Housekeeping management illustration"
-              className="h-full w-full object-cover"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
           </div>
 
