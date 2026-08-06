@@ -162,7 +162,7 @@ export function DirectConnectBookingEngineSection() {
                     alt={activeFeature?.title ?? "Booking Engine Mockup"}
                     width={activeFeature?.width ?? FALLBACK_WIDTH}
                     height={activeFeature?.height ?? FALLBACK_HEIGHT}
-                    className="h-auto w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[450px] lg:w-auto lg:max-w-none lg:translate-x-8 lg:object-left lg:scale-[0.6] lg:-ml-11 xl:translate-x-12 xl:scale-100"
+                    className="h-auto w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[450px] lg:w-auto lg:max-w-none lg:translate-x-8 lg:object-left lg:scale-[0.6] lg:-ml-11 xl:translate-x-12 xl:scale-[1.2]"
                   />
                 )}
               </div>
