@@ -325,7 +325,7 @@ export function WhoWeServeSection() {
                     Title + description are lowered below the icon at every
                     breakpoint (see the block underneath). */}
                 <div className="flex shrink-0 items-start justify-between gap-3 bg-white px-5 pt-5 pb-3 md:px-8 lg:px-8 lg:pt-5 lg:pb-0">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FEFAF5] lg:h-12 lg:w-12 [&>svg]:h-6 [&>svg]:w-6 lg:[&>svg]:h-9 lg:[&>svg]:w-9">
+                  <div className="flex lg:-ml-1.5 shrink-0 items-center justify-center rounded-2xl lg:h-12 lg:w-12 [&>svg]:h-6 [&>svg]:w-6 lg:[&>svg]:h-9 lg:[&>svg]:w-9">
                     <activeSegmentData.icon />
                   </div>
                   <button
@@ -341,7 +341,7 @@ export function WhoWeServeSection() {
                   <h3 className="text-[20px] font-semibold tracking-tight text-[#010C28] lg:text-[22px]">
                     {activeSegmentData.title}
                   </h3>
-                  <p className="mt-1 text-[13px] font-medium leading-relaxed text-[#8BA0B2] lg:mt-0 lg:text-[14px]">
+                  <p className="mt-1 text-[13px] font-light leading-relaxed text-[#8BA0B2] lg:mt-0 lg:text-[14px]">
                     {activeSegmentData.subtitle}
                   </p>
                 </div>

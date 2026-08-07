@@ -51,7 +51,7 @@ const directConnectFeatures: FeatureStep[] = [
     label: "Responsive Booking Engine",
     description:
       "Seamless bookings across every device. Deliver a fast, mobile-first experience that converts.",
-    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:ml-20 xl:mr-10 2xl:ml-15 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:-ml-6 ",
     icon: ThreeDWheelIcon1,
     image: "/images/Landing/explore-module-direct_connect/booking-engine.avif",
   },
@@ -61,7 +61,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Build loyalty that drives repeat bookings.Manage corporate clients and members with ease.",
     icon: ThreeDWheelIcon2,
-    imageClassName: "2xl:scale-[1.1] 2xl:mt-15 xl:ml-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-15 xl:-ml-8 xl:-mr-8 4xl:-mt-3 4xl:translate-x-20",
     image: "/images/Landing/explore-module-direct_connect/corporate-management.avif",
   },
   {
@@ -70,7 +70,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Turn data into smarter decisions. Track performance and unlock actionable insights instantly.",
     icon: ThreeDWheelIcon3,
-    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:ml-10 xl:mr-10 4xl:translate-x-30",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:-ml-8 xl:-mr-8  4xl:translate-x-30",
     image: "/images/Landing/explore-module-direct_connect/analytics-reporting.avif",
   },
   {
@@ -80,7 +80,7 @@ const directConnectFeatures: FeatureStep[] = [
       "Drive demand with irresistible offers. Launch targeted promotions that convert more bookings.",
     icon: ThreeDWheelIcon4,
     image: "/images/Landing/explore-module-direct_connect/discounts-promotions.avif",
-    imageClassName: "xl:mt-10 xl:ml-10 xl:mr-10 2xl:scale-[1.2] 4xl:scale-[1.05] 4xl:translate-x-20",
+    imageClassName: "xl:mt-10 xl:-ml-8 xl:-mr-8 2xl:scale-[1.2] 4xl:scale-[1.05]  4xl:translate-x-20",
   },
   {
     id: "events",
@@ -89,7 +89,7 @@ const directConnectFeatures: FeatureStep[] = [
       "Drive demand with irresistible offers. Launch targeted promotions that convert more bookings.",
     icon: ThreeDWheelIcon5,
     image: "/images/Landing/explore-module-direct_connect/events-ticketing.avif",
-    imageClassName: " 2xl:mt-5 xl:mr-10 4xl:translate-x-20",
+    imageClassName: " 2xl:mt-5 xl:-ml-8 xl:-mr-8  4xl:translate-x-20",
   },
   {
     id: "packages",
@@ -97,7 +97,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Sell more with curated experiences. Bundle rooms, services, and offers to boost revenue.",
     icon: ThreeDWheelIcon6,
-    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:ml-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:-ml-8 xl:-mr-8  4xl:translate-x-20",
     image: "/images/Landing/explore-module-direct_connect/packages-engine.avif",
   },
   {
@@ -106,7 +106,7 @@ const directConnectFeatures: FeatureStep[] = [
     description:
       "Faster payments. Zero friction. Simplify invoicing with secure and seamless transactions.",
     icon: ThreeDWheelIcon7,
-    imageClassName: "2xl:scale-[1.1] mt-15 xl:ml-10 xl:mr-10 4xl:scale-100 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] mt-15 xl:-ml-5 xl:-mr-5 4xl:scale-100 xl:-mt-2  4xl:-mt-4 4xl:translate-x-20",
     image: "/images/Landing/explore-module-direct_connect/invoice-payment.avif",
   },
 ]
@@ -118,7 +118,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Stay in control across all channels. Update rates and inventory in real-time without errors.",
     icon: ThreeDWheelIcon8,
-    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:mr-10 4xl:translate-x-30",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:-ml-6 4xl:translate-x-30",
     image: "/images/Landing/explore-module-channel_connect/rate-inventory.avif",
   },
   {
@@ -127,7 +127,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Manage every property from one place. Simplify operations with centralized control and visibility.",
     icon: ThreeDWheelIcon9,
-    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] 2xl:mt-10 xl:-ml-8 xl:-mr-8 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/property-management.avif",
   },
   {
@@ -136,7 +136,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Maximize revenue with smart pricing. Adjust rates dynamically based on demand and trends.",
     icon: ThreeDWheelIcon10,
-    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1] 2xl:mt-10 xl:-ml-8 xl:-mr-8 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/yield-management.avif",
   },
   {
@@ -145,7 +145,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Know your market. Stay ahead. Track competitor pricing and make smarter decisions.",
     icon: ThreeDWheelIcon11,
-    imageClassName: "2xl:scale-[1.1] xl:mt-5 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.1] xl:mt-5 xl:-ml-8 xl:-mr-8 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/competitor-analysis.avif",
   },
   {
@@ -154,7 +154,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Adapt pricing to every season. Optimize rates effortlessly for peak and low demand.",
     icon: ThreeDWheelIcon12,
-    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1.1] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1.1] 2xl:mt-10 xl:-ml-8 xl:-mr-8 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/seasonal-pricing.avif",
   },
   {
@@ -163,7 +163,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "Launch offers that actually convert. Create and manage campaigns across all channels.",
     icon: ThreeDWheelIcon13,
-    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1.1] 2xl:mt-15 2xl:mr-10 xl:mr-15 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1.1] 2xl:mt-15 2xl:mr-10 xl:-ml-10 xl:-mr-8 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/promotions.avif",
   },
   {
@@ -172,7 +172,7 @@ const channelConnectFeatures: FeatureStep[] = [
     description:
       "See what's working. Improve faster. Get deep insights into performance across channels.",
     icon: ThreeDWheelIcon14,
-    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1] 2xl:mt-10 xl:mr-10 4xl:translate-x-20",
+    imageClassName: "2xl:scale-[1.2] 4xl:scale-[1] 2xl:mt-10 xl:-ml-8 xl:-mr-5 4xl:translate-x-20",
     image: "/images/Landing/explore-module-channel_connect/reports-analytics.avif",
   },
 ]
