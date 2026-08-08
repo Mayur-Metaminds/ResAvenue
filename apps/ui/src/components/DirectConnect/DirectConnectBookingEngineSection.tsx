@@ -83,7 +83,8 @@ const features: FeatureItem[] = [
     title: "Automated Guest Engagement",
     subtitle: "Automated guest communication flow",
     Icon: BookingEngineIcon5,
-    image: "/images/Direct-Connect/automatedGuest.avif",
+    // image: "/images/Direct-Connect/automatedGuest.avif",
+    image: "/images/Direct-Connect/automatedGuest-new.avif",
     width: 2598,
     height: 1732,
   },
@@ -120,9 +121,9 @@ export function DirectConnectBookingEngineSection() {
       <div className="container mx-auto max-w-[1440px] px-4 md:px-8 xl:px-[80px]">
         <FeatureShowcase
           fullWidthHeader={true}
-          className="lg:-ml-1 2xl:-ml-4 4xl:-ml-1 lg:items-stretch xl:grid-cols-[420px_1fr]"
+          className="lg:-ml-1 2xl:-ml-4 4xl:-ml-1 lg:items-stretch xl:grid-cols-[420px_1fr] min-w-0"
           imageMobilePosition="top"
-          imageClassName="h-full flex items-center justify-center lg:justify-end"
+          imageClassName="h-full min-w-0 max-w-full overflow-hidden flex items-center justify-center lg:justify-end"
           header={{
             className: "mb-[36px]",
             eyebrow: "OPTIMIZED FOR CONVERSIONS",
@@ -146,14 +147,16 @@ export function DirectConnectBookingEngineSection() {
 
               {/* Mockup Image — keyed on activeFeature.id so React remounts the
                   <img> when the user clicks a different card, giving a fresh
-                  load + native crossfade as the src changes. */}
-              <div className="relative z-10 flex h-full w-full items-center justify-start lg:justify-center">
+                  load + native crossfade as the src changes.
+                  Contained in max-w-full + overflow-hidden so scale/size never
+                  spills past the section (or navbar) width on any breakpoint. */}
+              <div className="relative z-10 flex h-full w-full min-w-0 max-w-full items-center justify-center overflow-hidden">
                 {activeFeature?.image.endsWith(".json") ? (
                   <LazyLottie
                     key={activeFeature.id}
                     src={activeFeature.image}
                     priority="lazy"
-                    className="h-auto w-full origin-center drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[500px] lg:w-auto lg:max-w-none lg:translate-x-8 lg:object-left lg:scale-[0.6] lg:-ml-11 xl:translate-x-12 xl:scale-100"
+                    className="h-auto w-full max-w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[500px] lg:w-auto"
                   />
                 ) : (
                   <Image
@@ -162,7 +165,7 @@ export function DirectConnectBookingEngineSection() {
                     alt={activeFeature?.title ?? "Booking Engine Mockup"}
                     width={activeFeature?.width ?? FALLBACK_WIDTH}
                     height={activeFeature?.height ?? FALLBACK_HEIGHT}
-                    className="h-auto w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[450px] lg:w-auto lg:max-w-none lg:translate-x-8 lg:object-left lg:scale-[0.6] lg:-ml-11 xl:translate-x-12 xl:scale-[1.2]"
+                    className="h-auto w-full max-w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[450px] lg:w-auto"
                   />
                 )}
               </div>

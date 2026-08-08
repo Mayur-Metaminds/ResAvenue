@@ -34,7 +34,8 @@ const accordionData: AccordionItemData[] = [
     title: "Real-time Sync",
     description:
       "Instantly updates the rates and inventory across multiple hotels in just few clicks.",
-    image: "/images/Direct-Connect/realTimeSync.avif"
+    // image: "/images/Direct-Connect/realTimeSync.avif"
+    image: "/images/Direct-Connect/realTimeSync-new.avif"
   },
   {
     id: "item-3",

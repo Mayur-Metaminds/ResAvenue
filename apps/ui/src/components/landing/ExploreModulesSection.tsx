@@ -205,9 +205,10 @@ export function ExploreModulesSection() {
   const currentFeatures =
     activeTab === "direct" ? directConnectFeatures : channelConnectFeatures
 
-  // Matches sticky top classes: top-16 (mobile) / sm:top-24 / lg:top-20
+  // Matches sticky top classes: top-16 (mobile) / sm:top-24 / lg:top-24
+  // lg uses 96px so the floating navbar (lg:top-6 + ~58px) never covers content.
   const getStickyOffset = () =>
-    window.innerWidth >= 1024 ? 80 : window.innerWidth >= 640 ? 96 : 64
+    window.innerWidth >= 1024 ? 96 : window.innerWidth >= 640 ? 96 : 64
 
   // One viewport of page scroll per feature step. The sticky inner stays pinned
   // for the full outer-section height, so the user "stays in" the section until
@@ -470,18 +471,16 @@ export function ExploreModulesSection() {
         className={cn(is4k && "h-[800px]")}
         style={sectionHeight ? { height: sectionHeight } : undefined}
       >
-        {/* Sticky block — pins below the fixed navbar so the tabs row stays visible.
+        {/* Sticky block — pins below the floating navbar (lg:top-24 clears
+            lg:top-6 + nav height). overflow-hidden clips any image spill.
             At 4K: relative + 800px so the next section stays visible below. */}
-        <div className="sticky top-16 sm:top-24 lg:top-20 h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-5rem)] w-full overflow-hidden 4xl:relative 4xl:top-auto 4xl:h-[800px]">
-          {/* Row container — widened at 2xl/4xl (separate from the header's
-              max-w-[1440px] above) so the 7-col image grid track actually has
-              room to grow. Without this, the image column's max-w-[...] caps
-              below were unreachable: a child's max-width can only shrink it
-              within its grid track, never force the track itself to expand. */}
-          <div className="mx-auto flex w-full max-w-[1440px] 2xl:max-w-[1800px] 4xl:max-w-[2200px] flex-col px-4 lg:px-1 h-full justify-center">
-            <div className="flex h-full flex-col ">
+        <div className="sticky top-16 sm:top-24 lg:top-24 h-[calc(100dvh-6rem)] w-full overflow-hidden 4xl:relative 4xl:top-auto 4xl:h-[800px]">
+          {/* Row container — side padding matches floating navbar inset so the
+              right-side image cannot peek past the nav corners into the body. */}
+          <div className="mx-auto flex w-full max-w-[1440px] 2xl:max-w-[1800px] 4xl:max-w-[2200px] flex-col px-4 lg:px-4 xl:px-8 h-full justify-center">
+            <div className="flex h-full min-h-0 min-w-0 flex-col">
               {/* Tabs */}
-              <div className="relative z-20 mb-[54px] lg:mb-10 flex justify-center 4xl:mb-6">
+              <div className="relative z-20 mb-[54px] lg:mb-10 flex shrink-0 justify-center 4xl:mb-6">
                 <div className="flex rounded-full border border-gray-800/50 bg-[#0b142e] p-1">
                   <TabButton
                     active={activeTab === "direct"}
@@ -498,10 +497,10 @@ export function ExploreModulesSection() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 4xl:gap-24 pb-6 lg:pb-[92px] 4xl:px-35 4xl:pb-6 min-h-0">
+              <div className="flex min-h-0 min-w-0 flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 4xl:gap-24 pb-6 lg:pb-[92px] 4xl:px-35 4xl:pb-6">
                 {/* 3D Wheel */}
                 <div
-                  className="relative z-0 w-full lg:col-span-5 h-[280px] lg:h-full lg:self-center lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible max-sm:-translate-y-6"
+                  className="relative z-0 w-full min-w-0 lg:col-span-5 h-[280px] lg:h-full lg:self-center lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible max-sm:-translate-y-6"
                   style={{ perspective: "1200px" }}
                 >
                   <div
@@ -520,14 +519,12 @@ export function ExploreModulesSection() {
                   </div>
                 </div>
 
-                {/* Image column — now has real room (see widened row container
-                    above), so the max-w cap below is a true ceiling rather than
-                    an unreachable request. Per-feature scale-[...] in
-                    imageClassName is restored: it can push slightly past this
-                    box since there's no overflow-hidden here by design. */}
-                <div className="relative z-10 w-full lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 -mt-20 mb-2 sm:mt-4 sm:mb-0 lg:mt-0 4xl:pl-16 flex items-center justify-center 4xl:justify-start">
-                  <div className="relative w-full h-full max-w-[560px] sm:max-w-[600px] lg:max-w-[900px] 2xl:max-w-[1100px] 4xl:w-[920px] mx-auto 4xl:mx-0">
-                    <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#ED862E]/10 to-transparent opacity-60 blur-3xl" />
+                {/* Image column — fixed W×H slot; object-contain keeps full
+                    image (no crop); overflow-hidden stops navbar/body spill.
+                    Per-feature scale/translate classes are not applied here. */}
+                <div className="relative z-10 w-full min-w-0 lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 -mt-20 mb-2 sm:mt-4 sm:mb-0 lg:mt-0 4xl:pl-16 flex items-center justify-center 4xl:justify-start">
+                  <div className="relative mx-auto 4xl:mx-0 h-full w-full min-w-0 max-w-[min(100%,560px)] sm:max-w-[min(100%,600px)] lg:max-w-[min(100%,760px)] xl:max-w-[min(100%,840px)] 2xl:max-w-[min(100%,920px)] 4xl:max-w-[920px] overflow-hidden rounded-[20px]">
+                    <div className="pointer-events-none absolute inset-0 rounded-[20px] opacity-60 blur-3xl" />
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={`${activeTab}-${activeFeature.id}`}
@@ -535,17 +532,14 @@ export function ExploreModulesSection() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.35, ease: "easeOut" }}
-                        className="absolute top-0 left-0 h-full w-full flex items-center justify-center"
+                        className="absolute inset-0"
                       >
                         <Image
                           src={activeFeature.image}
                           alt={activeFeature.label}
                           fill
-                          sizes="(max-width: 1024px) 90vw, 45vw"
-                          className={cn(
-                            "rounded-[20px] object-contain object-center p-2 lg:p-0",
-                            activeFeature.imageClassName
-                          )}
+                          sizes="(max-width: 1024px) 90vw, (max-width: 1536px) 45vw, 920px"
+                          className="object-contain object-center"
                         />
                       </motion.div>
                     </AnimatePresence>
