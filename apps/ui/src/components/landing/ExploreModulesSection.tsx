@@ -480,7 +480,7 @@ export function ExploreModulesSection() {
           <div className="mx-auto flex w-full max-w-[1440px] 2xl:max-w-[1800px] 4xl:max-w-[2200px] flex-col px-4 lg:px-4 xl:px-8 h-full justify-center">
             <div className="flex h-full min-h-0 min-w-0 flex-col">
               {/* Tabs */}
-              <div className="relative z-20 mb-[54px] lg:mb-10 flex shrink-0 justify-center 4xl:mb-6">
+              <div className="relative z-20 mb-6 lg:mb-10 flex shrink-0 justify-center 4xl:mb-6">
                 <div className="flex rounded-full border border-gray-800/50 bg-[#0b142e] p-1">
                   <TabButton
                     active={activeTab === "direct"}
@@ -497,10 +497,10 @@ export function ExploreModulesSection() {
                 </div>
               </div>
 
-              <div className="flex min-h-0 min-w-0 flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 4xl:gap-24 pb-6 lg:pb-[92px] 4xl:px-35 4xl:pb-6">
+              <div className="flex min-h-0 min-w-0 flex-1 flex-col lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-3 lg:gap-12 4xl:gap-24 pb-4 lg:pb-[92px] 4xl:px-35 4xl:pb-6">
                 {/* 3D Wheel */}
                 <div
-                  className="relative z-0 w-full min-w-0 lg:col-span-5 h-[280px] lg:h-full lg:self-center lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible max-sm:-translate-y-6"
+                  className="relative z-0 w-full min-w-0 lg:col-span-5 h-[220px] sm:h-[240px] md:h-[240px] lg:h-full lg:self-center lg:ml-[20px] xl:ml-22.5 shrink-0 overflow-hidden lg:overflow-visible max-sm:-translate-y-6"
                   style={{ perspective: "1200px" }}
                 >
                   <div
@@ -522,8 +522,8 @@ export function ExploreModulesSection() {
                 {/* Image column — fixed W×H slot; object-contain keeps full
                     image (no crop); overflow-hidden stops navbar/body spill.
                     Per-feature scale/translate classes are not applied here. */}
-                <div className="relative z-10 w-full min-w-0 lg:col-span-7 h-[260px] md:h-[320px] lg:h-full shrink-0 -mt-20 mb-2 sm:mt-4 sm:mb-0 lg:mt-0 4xl:pl-16 flex items-center justify-center 4xl:justify-start">
-                  <div className="relative mx-auto 4xl:mx-0 h-full w-full min-w-0 max-w-[min(100%,560px)] sm:max-w-[min(100%,600px)] lg:max-w-[min(100%,760px)] xl:max-w-[min(100%,840px)] 2xl:max-w-[min(100%,920px)] 4xl:max-w-[920px] overflow-hidden rounded-[20px]">
+                <div className="relative z-10 w-full min-w-0 lg:col-span-7 h-full min-h-0 flex-1 max-h-[280px] sm:max-h-[320px] md:max-h-[440px] lg:max-h-none lg:h-full shrink-0 -mt-12 mb-2 sm:-mt-2 sm:mb-0 md:mt-0 md:mb-0 lg:mt-0 4xl:pl-16 flex items-center justify-center 4xl:justify-start">
+                  <div className="relative mx-auto 4xl:mx-0 h-full w-full min-w-0 max-w-[min(100%,560px)] sm:max-w-[min(100%,600px)] md:max-w-[min(100%,680px)] lg:max-w-[min(100%,760px)] xl:max-w-[min(100%,840px)] 2xl:max-w-[min(100%,920px)] 4xl:max-w-[920px] overflow-hidden rounded-[20px]">
                     <div className="pointer-events-none absolute inset-0 rounded-[20px] opacity-60 blur-3xl" />
                     <AnimatePresence mode="wait">
                       <motion.div
@@ -599,18 +599,19 @@ interface WheelItemProps {
 const WHEEL_ANGLE_STEP = 6
 /** Vertical radius (px). Large + small angle keeps items nearly vertical with comfortable spacing. */
 const WHEEL_RADIUS_Y = 1100
-/** Tighter vertical radius below the `sm` breakpoint. */
-const WHEEL_RADIUS_Y_SM = 720
+/** Tighter vertical radius below the `lg` breakpoint (matches sm/md spacing). */
+const WHEEL_RADIUS_Y_COMPACT = 720
 /** Depth radius (px). Kept modest so items barely recede — wheel reads as almost flat. */
 const WHEEL_RADIUS_Z = 220
 const DEG_TO_RAD = Math.PI / 180
 
 function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
-  const [isSm, setIsSm] = useState(false)
+  const [isCompact, setIsCompact] = useState(false)
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 639px)")
-    const sync = () => setIsSm(mq.matches)
+    // Use compact (sm-like) spacing through md; lg+ keeps the larger radius.
+    const mq = window.matchMedia("(max-width: 1023px)")
+    const sync = () => setIsCompact(mq.matches)
     sync()
     mq.addEventListener("change", sync)
     return () => mq.removeEventListener("change", sync)
@@ -619,7 +620,7 @@ function WheelItem({ feature, index, activeIndex, onClick }: WheelItemProps) {
   const offset = index - activeIndex
   const abs = Math.abs(offset)
   const angle = offset * WHEEL_ANGLE_STEP * DEG_TO_RAD
-  const radiusY = isSm ? WHEEL_RADIUS_Y_SM : WHEEL_RADIUS_Y
+  const radiusY = isCompact ? WHEEL_RADIUS_Y_COMPACT : WHEEL_RADIUS_Y
   const y = Math.sin(angle) * radiusY
   const z = (Math.cos(angle) - 1) * WHEEL_RADIUS_Z
   const rotateX = -offset * WHEEL_ANGLE_STEP
