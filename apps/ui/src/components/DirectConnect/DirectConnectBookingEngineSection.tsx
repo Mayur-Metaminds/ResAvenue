@@ -4,9 +4,9 @@ import Image from "next/image"
 import type * as React from "react"
 import { useState } from "react"
 
-import { SectionHeader } from "@/components/landing/SectionHeader"
 import { FeatureShowcase } from "@/components/common/FeatureShowcase"
 import { LazyLottie } from "@/components/common/LazyLottie"
+import { SectionHeader } from "@/components/landing/SectionHeader"
 
 import {
   BookingEngineIcon1,
@@ -91,7 +91,8 @@ const features: FeatureItem[] = [
   {
     id: "invoicing-payment-collect",
     title: "Invoicing / Payment Collect",
-    subtitle: "Collect secure online payments instantly through a simple payment link",
+    subtitle:
+      "Collect secure online payments instantly through a simple payment link",
     Icon: BookingEngineIcon6,
     image: "/images/Direct-Connect/collections.avif",
     width: 2598,
@@ -100,7 +101,8 @@ const features: FeatureItem[] = [
   {
     id: "retargeting-abandoned-bookings",
     title: "Retargeting - Abandoned Bookings",
-    subtitle: "Convert abandoned bookings into confirmed reservations with real-time guest retargeting ",
+    subtitle:
+      "Convert abandoned bookings into confirmed reservations with real-time guest retargeting ",
     Icon: BookingEngineIcon7,
     image: "/images/Direct-Connect/retargetting.avif",
     width: 2598,
@@ -110,18 +112,17 @@ const features: FeatureItem[] = [
 
 export function DirectConnectBookingEngineSection() {
   const [activeId, setActiveId] = useState(features[0]?.id)
-  const activeFeature =
-    features.find((f) => f.id === activeId) ?? features[0]
+  const activeFeature = features.find((f) => f.id === activeId) ?? features[0]
 
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-white px-4 py-[32px] md:px-8 lg:py-[80px] lg:py-[120px] overflow-hidden"
+      className="w-full overflow-hidden bg-white px-4 py-[32px] md:px-8 lg:py-[80px] lg:py-[120px]"
     >
       <div className="container mx-auto max-w-[1440px] px-4 md:px-8 xl:px-[80px]">
         <FeatureShowcase
-          fullWidthHeader={true}
-          className="lg:-ml-1 2xl:-ml-4 4xl:-ml-1 lg:items-stretch xl:grid-cols-[420px_1fr] min-w-0"
+          fullWidthHeader
+          className="4xl:-ml-1 min-w-0 lg:-ml-1 lg:items-stretch xl:grid-cols-[420px_1fr] 2xl:-ml-4"
           imageMobilePosition="top"
           imageClassName="h-full min-w-0 max-w-full overflow-hidden flex items-center justify-center lg:justify-end"
           header={{
@@ -137,8 +138,9 @@ export function DirectConnectBookingEngineSection() {
                 </SectionHeader.Highlight>
               </>
             ),
-            description: "A high-conversion, mobile-optimized engine delivering a seamless booking journey from discovery to payment.",
-            descriptionClassName: "leading-[28px]"
+            description:
+              "A high-conversion, mobile-optimized engine delivering a seamless booking journey from discovery to payment.",
+            descriptionClassName: "leading-[28px]",
           }}
           imageSlot={
             <>
@@ -150,13 +152,16 @@ export function DirectConnectBookingEngineSection() {
                   load + native crossfade as the src changes.
                   Contained in max-w-full + overflow-hidden so scale/size never
                   spills past the section (or navbar) width on any breakpoint. */}
-              <div className="relative z-10 flex h-full w-full min-w-0 max-w-full items-center justify-center overflow-hidden">
+              <div className="relative z-10 flex h-full w-full max-w-full min-w-0 items-center justify-center overflow-hidden">
                 {activeFeature?.image.endsWith(".json") ? (
                   <LazyLottie
                     key={activeFeature.id}
                     src={activeFeature.image}
                     priority="lazy"
-                    className="h-auto w-full max-w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[500px] lg:w-auto"
+                    // Explicit height below lg: LazyLottie is h-full inside and
+                    // has no intrinsic size — without this the mobile/md slot
+                    // collapses to 0. lg+ still uses the grid column height.
+                    className="h-[240px] w-full max-w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] sm:h-[280px] md:h-[320px] lg:h-full lg:max-h-[500px] lg:w-auto"
                   />
                 ) : (
                   <Image
@@ -174,6 +179,7 @@ export function DirectConnectBookingEngineSection() {
         >
           {features.map((feature) => {
             const isActive = activeFeature?.id === feature.id
+
             return (
               <FeatureShowcase.Card
                 key={feature.id}
