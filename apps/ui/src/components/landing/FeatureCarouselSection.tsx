@@ -374,7 +374,7 @@ function CarouselItem({
 }) {
   return (
     <div
-      className="group relative h-[400px] w-[85vw] shrink-0 snap-center overflow-hidden rounded-[24px] shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[511px] md:w-[1000px] lg:w-[1100px]"
+      className="group relative h-[400px] w-[85vw] shrink-0 snap-center overflow-hidden rounded-[24px] shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[511px] md:w-[min(1000px,85vw)] lg:w-[min(1100px,85vw)]"
     >
       {/* Thumbnail */}
       <Image
@@ -382,7 +382,7 @@ function CarouselItem({
         alt=""
         fill
         aria-hidden
-        sizes="(max-width: 768px) 85vw, (max-width: 1024px) 1000px, 1100px"
+        sizes="(max-width: 768px) 85vw, (max-width: 1024px) min(1000px, 85vw), min(1100px, 85vw)"
         className="pointer-events-none object-cover transition-transform duration-700 group-hover:scale-105"
       />
 

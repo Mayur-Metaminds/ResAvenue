@@ -275,6 +275,32 @@ const products: Product[] = [
     lottieUrl: HOTEL_WEBSITE_OUTER_URL,
     modalLottieUrl: HOTEL_WEBSITE_INNER_URL,
     expandToId: "distribution-network",
+    renderBottom: () => (
+      <>
+        {/* Mobile + md: full content width, no extra inset/scale — the shared
+            default fallback used px-4 + scale-125 which clipped this animation
+            inside the card's overflow-hidden shell on narrow viewports. */}
+        <div className="pointer-events-none relative z-0 mt-4 flex h-[220px] w-full items-center justify-center md:h-[240px] lg:hidden">
+          <LazyLottie
+            src={HOTEL_WEBSITE_OUTER_URL}
+            priority="lazy"
+            loop
+            className="h-full w-full"
+            rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+          />
+        </div>
+        {/* lg+: preserve the original default fallback styling exactly. */}
+        <div className="relative mt-8 hidden h-[200px] items-center justify-center px-4 z-0 pointer-events-none lg:flex">
+          <LazyLottie
+            src={HOTEL_WEBSITE_OUTER_URL}
+            priority="lazy"
+            loop
+            className="h-full w-full scale-125"
+            rendererSettings={{ preserveAspectRatio: "xMidYMax meet" }}
+          />
+        </div>
+      </>
+    ),
   },
 ]
 

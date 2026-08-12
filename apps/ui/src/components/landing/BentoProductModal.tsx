@@ -439,12 +439,15 @@ function ModalContent({
               {product.lottieOverlay}
             </div>
           ) : (
-            // Auto-height modal: a 90%-wide box sized to the animation's aspect
-            // ratio. flex-1 lets it grow into the freed space (e.g. on the fixed-
-            // height mobile modal) with the animation centered.
+            // Auto-height modal (<lg overlay, or desktop without a fixed
+            // height): size the box to the animation's aspect ratio.
+            // Full width below lg so edges align with the text/CTA above;
+            // lg+ keeps the original 90% + slight scale for the rare
+            // auto-height desktop case (expandToId / modalHeight use the
+            // full-bleed branch above and are unaffected).
             <div className="flex w-full items-start justify-center">
               <div
-                className="relative w-[90%] overflow-hidden rounded-2xl"
+                className="relative w-full overflow-hidden rounded-2xl lg:w-[90%]"
                 style={
                   animationAspect ? { aspectRatio: animationAspect } : undefined
                 }
@@ -453,7 +456,7 @@ function ModalContent({
                   src={(product.modalLottieUrl ?? product.lottieUrl) as string}
                   priority="on-demand"
                   loop
-                  className="h-full w-full scale-95"
+                  className="h-full w-full lg:scale-95"
                   rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                   onReady={(data) => setAnimationAspect(lottieAspectRatio(data))}
                 />
@@ -463,7 +466,7 @@ function ModalContent({
           )
         ) : (
           <div
-            className="mx-auto min-h-[200px] w-[90%] flex-1 rounded-2xl md:min-h-[350px]"
+            className="mx-auto min-h-[200px] w-full flex-1 rounded-2xl md:min-h-[350px] lg:w-[90%]"
             style={{
               background: `url(${product.imagePlaceholder}) lightgray 50% / cover no-repeat`,
             }}

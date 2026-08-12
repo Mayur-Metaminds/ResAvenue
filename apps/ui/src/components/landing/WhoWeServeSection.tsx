@@ -160,22 +160,6 @@ export function WhoWeServeSection() {
         background: "var(--bg, linear-gradient(225deg, rgba(240, 242, 253, 0.33) 0%, rgba(61, 98, 129, 0.00) 100%))"
       }}
     >
-      {/* Preload popup images. Hidden in layout (size 0, aria-hidden) but
-          Next.js still emits <link rel="preload"> hints because of `priority`
-          + actually fetches via the optimizer because the components mount.
-          By the time the user opens a segment the image is already cached. */}
-      <div aria-hidden className="absolute h-0 w-0 overflow-hidden">
-        {segments.map((s) => (
-          <Image
-            key={s.id}
-            src={s.image}
-            alt=""
-            width={1}
-            height={1}
-            priority
-          />
-        ))}
-      </div>
       {/* Header */}
       <SectionHeader
         className="z-10 mb-[16px] lg:mb-16 px-4"
@@ -320,7 +304,7 @@ export function WhoWeServeSection() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="fixed top-1/2 left-1/2 z-50 w-full max-w-[680px] -translate-x-1/2 -translate-y-1/2 px-4"
             >
-              <div className="flex max-h-[90vh] flex-col overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] lg:max-h-[95vh]">
+              <div className="flex max-h-[90vh] flex-col overflow-hidden rounded-[32px] border border-black bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] lg:max-h-[95vh]">
                 {/* Header row: icon aligned left, close on right.
                     Title + description are lowered below the icon at every
                     breakpoint (see the block underneath). */}
@@ -377,11 +361,13 @@ export function WhoWeServeSection() {
                       className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-3xl lg:hidden"
                     >
                       <Image
+                        key={activeSegmentData.id}
                         src={activeSegmentData.image}
                         alt={activeSegmentData.title}
                         fill
                         sizes="100vw"
                         priority
+                        unoptimized
                         className="object-cover"
                       />
                     </motion.div>
@@ -404,11 +390,13 @@ export function WhoWeServeSection() {
                       className="absolute inset-0 overflow-hidden rounded-xl"
                     >
                       <Image
+                        key={activeSegmentData.id}
                         src={activeSegmentData.image}
                         alt={activeSegmentData.title}
                         fill
                         sizes="680px"
                         priority
+                        unoptimized
                         className="object-cover"
                       />
                     </motion.div>

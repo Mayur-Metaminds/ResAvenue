@@ -124,7 +124,7 @@ export function DirectConnectBookingEngineSection() {
           fullWidthHeader
           className="4xl:-ml-1 min-w-0 lg:-ml-1 lg:items-stretch xl:grid-cols-[420px_1fr] 2xl:-ml-4"
           imageMobilePosition="top"
-          imageClassName="h-full min-w-0 max-w-full overflow-hidden flex items-center justify-center lg:justify-end"
+          imageClassName="h-full min-w-0 max-w-full max-lg:overflow-hidden overflow-visible flex items-center justify-center lg:justify-end lg:pr-2"
           header={{
             className: "mb-[36px]",
             eyebrow: "OPTIMIZED FOR CONVERSIONS",
@@ -152,7 +152,7 @@ export function DirectConnectBookingEngineSection() {
                   load + native crossfade as the src changes.
                   Contained in max-w-full + overflow-hidden so scale/size never
                   spills past the section (or navbar) width on any breakpoint. */}
-              <div className="relative z-10 flex h-full w-full max-w-full min-w-0 items-center justify-center overflow-hidden">
+              <div className="relative z-10 flex h-full w-full max-w-full min-w-0 items-center justify-center max-lg:overflow-hidden overflow-visible">
                 {activeFeature?.image.endsWith(".json") ? (
                   <LazyLottie
                     key={activeFeature.id}
@@ -161,7 +161,7 @@ export function DirectConnectBookingEngineSection() {
                     // Explicit height below lg: LazyLottie is h-full inside and
                     // has no intrinsic size — without this the mobile/md slot
                     // collapses to 0. lg+ still uses the grid column height.
-                    className="h-[240px] w-full max-w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] sm:h-[280px] md:h-[320px] lg:h-full lg:max-h-[500px] lg:w-auto"
+                    className="h-[240px] w-full max-w-full origin-center object-contain drop-shadow-[0_10px_18px_-4px_rgba(1,14,56,0.12)] transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] sm:h-[280px] md:h-[320px] lg:h-full lg:max-h-[500px] lg:w-auto"
                   />
                 ) : (
                   <Image
@@ -170,7 +170,7 @@ export function DirectConnectBookingEngineSection() {
                     alt={activeFeature?.title ?? "Booking Engine Mockup"}
                     width={activeFeature?.width ?? FALLBACK_WIDTH}
                     height={activeFeature?.height ?? FALLBACK_HEIGHT}
-                    className="h-auto w-full max-w-full origin-center object-contain drop-shadow-2xl transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[450px] lg:w-auto"
+                    className="h-auto w-full max-w-full origin-center object-contain drop-shadow-[0_10px_18px_-4px_rgba(1,14,56,0.12)] transition-[opacity,transform] duration-300 min-[425px]:max-lg:scale-[0.85] lg:h-full lg:max-h-[450px] lg:w-auto"
                   />
                 )}
               </div>

@@ -31,7 +31,7 @@ export function DirectConnectHeroSection() {
       />
 
       {/* Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[16px] lg:px-[80px] py-[70px] flex flex-1 flex-col">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[16px] lg:px-[80px] py-[70px] pt-[90px] md:pt-[100px] lg:pt-[70px] flex flex-1 flex-col">
         {/* Main Content */}
         <div className="grid flex-1 grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8">
           {/* Left Column: Content */}

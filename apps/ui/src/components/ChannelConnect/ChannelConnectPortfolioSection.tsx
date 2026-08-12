@@ -79,16 +79,6 @@ export function ChannelConnectPortfolioSection() {
                 </div>
               }
             >
-              <div className="flex lg:hidden justify-center w-full mb-6 mt-4">
-
-                <LazyLottie
-                  src={CHANNEL_CONNECT_DATA_DRIVEN_URL}
-                  priority="lazy"
-                  loop
-                  className="h-full w-full"
-                  rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
-                />
-              </div>
               <motion.div {...slideInFromLeft(0)}>
                 <CheckedRow text="Track booking sources and identify top-performing channels." />
               </motion.div>
@@ -101,6 +91,15 @@ export function ChannelConnectPortfolioSection() {
               <motion.div {...slideInFromLeft(3)}>
                 <CheckedRow text="Benchmark rates and stay ahead of the market." />
               </motion.div>
+              <div className="mt-6 flex w-full justify-center lg:hidden">
+                <LazyLottie
+                  src={CHANNEL_CONNECT_DATA_DRIVEN_URL}
+                  priority="lazy"
+                  loop
+                  className="h-full w-full"
+                  rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
+                />
+              </div>
             </FeatureShowcase>
           </div>
         </div>

@@ -74,30 +74,29 @@ export function ChannelConnectMobileAppSection() {
   })
 
   return (
-    <section data-nav-theme="light" className="w-full bg-white mt-[50px]">
+    <section data-nav-theme="light" className="w-full bg-white my-[50px] lg:my-[60px]">
       <div
         className="flex flex-col gap-[32px] rounded-[45px] bg-white"
       >
-        {/* Scroll-driven sticky reveal at all breakpoints. The sticky pane is a
-            fixed height (viewport minus the nav) that centers its content, so it
-            never grows as the active card expands on scroll. On very short
-            screens the stack can still exceed that height — overflow-hidden
-            clips it rather than letting the pane grow. */}
+        {/* Scroll-driven sticky reveal. Below lg: top-anchored flex so the
+            Lottie isn't clipped. lg+: original centered sticky pane. */}
         <div ref={block1Ref} className="relative h-[200vh] lg:h-[300vh]">
           {/* On mobile the eyebrow + title scroll out of view before the pin
               engages, freeing the pinned viewport for the phone image + cards.
               Hidden at lg+, where the header renders inside FeatureShowcase. */}
-          <div className="px-[12px] pt-[8px] pb-[20px] lg:hidden">
+          <div className="px-[12px] pt-[8px] pb-[20px] md:px-16 lg:hidden">
             <SectionHeader
               {...portfolioHeader}
               className="items-start gap-[12px] text-left"
             />
           </div>
-          <div className="sticky top-20 flex w-full h-[calc(100svh-80px)] items-center justify-center overflow-hidden">
-            <div className="w-full">
-              <div className="relative p-[12px] pb-[56px] md:px-16 lg:px-24 lg:pb-16 3xl:mx-auto 3xl:w-full 3xl:max-w-300">
-                <div className="relative z-10">
+          <div className="sticky top-20 flex h-[calc(100svh-80px)] w-full overflow-hidden max-lg:flex-col lg:items-center lg:justify-center">
+            <div className="w-full max-lg:flex max-lg:h-full max-lg:min-h-0 max-lg:flex-col">
+              <div className="relative p-[12px] pb-4 md:px-16 md:pb-6 lg:px-24 lg:pb-16 3xl:mx-auto 3xl:w-full 3xl:max-w-300 max-lg:flex max-lg:min-h-0 max-lg:flex-1 max-lg:flex-col max-lg:justify-start">
+                <div className="relative z-10 max-lg:flex max-lg:min-h-0 max-lg:flex-1 max-lg:flex-col">
                   <FeatureShowcase
+                    className="max-lg:min-h-0 max-lg:flex-1 max-lg:items-stretch"
+                    childrenClassName="max-lg:min-h-0 max-lg:flex-1"
                     imagePosition="left"
                     imageClassName="hidden lg:flex"
                     header={{
@@ -118,31 +117,37 @@ export function ChannelConnectMobileAppSection() {
                       </div>
                     }
                   >
-                    {/* Portfolio animation shown below lg (above the cards)
-                        since the desktop imageSlot is hidden on mobile. Hidden
-                        at lg+ where imageSlot renders the visual on the left. */}
-                    <div className="flex lg:hidden justify-center w-full mb-2 mt-0">
-                      <div className="relative w-full max-w-[520px] aspect-[1468/695] overflow-hidden rounded-[20px]">
+                    <div className="flex flex-col gap-4 max-lg:min-h-0 max-lg:flex-1">
+                      {/* Portfolio animation shown below lg (above the cards)
+                          since the desktop imageSlot is hidden on mobile. Hidden
+                          at lg+ where imageSlot renders the visual on the left.
+                          Height is capped with svh so phones + cards fit inside
+                          the sticky viewport without clipping either. */}
+                      <div className="relative mx-auto mt-0 h-[clamp(140px,28svh,280px)] w-full max-w-[520px] shrink-0 lg:hidden">
                         <LazyLottie
                           src={CONTROL_YOUR_PORTFOLIO_URL}
                           priority="lazy"
                           loop
+                          showSkeleton={false}
                           className="h-full w-full"
+                          lottieClassName="h-full! w-full!"
                           rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
                         />
                       </div>
+                      <div className="flex flex-col gap-4 max-lg:min-h-0 max-lg:flex-1 max-lg:justify-center">
+                        {portfolioCards.map((card, i) => (
+                          <FeatureShowcase.Card
+                            key={card.title}
+                            variant="light"
+                            icon={card.icon}
+                            title={card.title}
+                            subtitle={card.subtitle}
+                            isActive={activeIndex === i}
+                            activeEffect
+                          />
+                        ))}
+                      </div>
                     </div>
-                    {portfolioCards.map((card, i) => (
-                      <FeatureShowcase.Card
-                        key={card.title}
-                        variant="light"
-                        icon={card.icon}
-                        title={card.title}
-                        subtitle={card.subtitle}
-                        isActive={activeIndex === i}
-                        activeEffect
-                      />
-                    ))}
                   </FeatureShowcase>
                 </div>
               </div>

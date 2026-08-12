@@ -18,6 +18,8 @@ export interface FeatureShowcaseProps {
   imagePosition?: "left" | "right"
   /** Content alignment for the header */
   headerAlignment?: "left" | "center"
+  /** Optional class for the children wrapper (below the header). */
+  childrenClassName?: string
   /** Where the image sits on MOBILE (below lg). Defaults to "bottom" — the
       image stacks under the content. Set to "top" to render the image above
       the children (e.g. at the top of an interactive points list) on mobile;
@@ -36,6 +38,7 @@ function FeatureShowcaseRoot({
   headerAlignment = "left",
   imageMobilePosition = "bottom",
   fullWidthHeader = false,
+  childrenClassName,
 }: FeatureShowcaseProps) {
   const imageOnTopMobile = imageMobilePosition === "top"
 
@@ -89,7 +92,7 @@ function FeatureShowcaseRoot({
             </div>
           )}
 
-          <div className="flex w-full flex-col gap-4">
+          <div className={cn("flex w-full flex-col gap-4", childrenClassName)}>
             {children}
           </div>
         </div>

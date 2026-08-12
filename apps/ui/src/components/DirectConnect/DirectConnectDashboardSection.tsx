@@ -2,6 +2,7 @@
 
 import { CountUp } from "@/components/common/CountUp"
 import { LazyLottie } from "@/components/common/LazyLottie"
+import { TightLottie } from "@/components/common/TightLottie"
 import { INTELLIGENT_ANALYTICS_INNER } from "@/lib/lottie-urls"
 
 export function DirectConnectDashboardSection() {
@@ -13,10 +14,10 @@ export function DirectConnectDashboardSection() {
         backgroundImage: `url('/images/demo-section-bg-img.png')`,
       }}
     >
-      <div className="container mx-auto max-w-[1440px] px-[16px] py-[34px] lg:px-[80px] lg:py-[60px]">
-        <div className="grid grid-cols-1 items-center gap-[34px] lg:grid-cols-2 lg:gap-8">
+      <div className="container mx-auto max-w-[1440px] px-[16px] pt-[34px] pb-2 md:pb-3 lg:px-[60px] xl:px-[80px] lg:py-[60px]">
+        <div className="grid grid-cols-1 items-start gap-2 md:gap-3 lg:items-center lg:grid-cols-2 lg:gap-x-12">
           {/* Left Column: Content */}
-          <div className="z-10 flex flex-col gap-[24px]">
+          <div className="z-10 flex flex-col gap-5 md:gap-6 lg:gap-[24px]">
             {/* Title */}
             <h2 className="font-plus-jakarta-500 text-[36px] leading-[1.1] tracking-tight text-white md:text-[48px]">
               Unified Intelligence <br className="hidden md:block" />
@@ -54,14 +55,24 @@ export function DirectConnectDashboardSection() {
             </div>
           </div>
 
-          {/* Right Column: Mockup Animation */}
-          <div className="relative z-10 flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[16px] lg:origin-center lg:scale-130 lg:rounded-[24px]">
+          {/* Mobile + md: full Lottie in a padded frame — never clipped. lg+ below. */}
+          <TightLottie
+            src={INTELLIGENT_ANALYTICS_INNER}
+            priority="lazy"
+            fit="frame"
+            dropShadow
+            showSkeleton={false}
+            frameClassName="-mt-[6%] -mb-[11%] md:mb-[-15%]"
+            className="z-10 w-full overflow-hidden rounded-[16px] lg:hidden"
+          />
+          <div className="relative z-10 hidden w-full items-center justify-center overflow-hidden rounded-[16px] lg:flex lg:aspect-[4/3] lg:origin-center lg:scale-130 lg:rounded-[24px]">
             <LazyLottie
               src={INTELLIGENT_ANALYTICS_INNER}
               priority="lazy"
               loop
+              showSkeleton={false}
               className="flex h-full w-full items-center justify-center drop-shadow-2xl"
-              lottieClassName="h-auto max-h-full w-full -mt-20 xl:-ml-5"
+              lottieClassName="h-auto max-h-full w-full lg:-mt-20 xl:-ml-5"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
             />
           </div>
