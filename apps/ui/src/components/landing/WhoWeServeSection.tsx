@@ -329,7 +329,7 @@ export function WhoWeServeSection() {
                     {activeSegmentData.subtitle}
                   </p>
                 </div>
-                <div className="px-5 md:px-8 lg:px-8">
+                <div className="px-5 md:px-8 lg:px-8 pb-2.5">
                   <div className="border-t border-gray-400" />
                 </div>
 
