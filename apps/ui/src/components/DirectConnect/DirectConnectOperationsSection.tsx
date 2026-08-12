@@ -45,9 +45,11 @@ export function DirectConnectOperationsSection() {
   return (
     <section
       data-nav-theme="light"
-      className="w-full bg-[#F8FAFC] px-[16px] py-[34px] lg:px-[80px] lg:py-[50px]"
+      className="w-full bg-[#F8FAFC] py-[34px] lg:py-[50px]"
     >
-      <div className="container mx-auto max-w-[1440px] lg:px-[80px]">
+      {/* Single horizontal padding layer — previous lg:px-[80px] on BOTH
+          section and container left only ~640px for 3 cards at 1024px. */}
+      <div className="container mx-auto max-w-[1440px] px-[16px] md:px-8 lg:px-[48px] xl:px-[80px]">
         {/* Header */}
         <SectionHeader
           className="mb-[24px] text-center lg:mb-[50px]"
@@ -63,12 +65,13 @@ export function DirectConnectOperationsSection() {
           }
         />
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 gap-[20px] md:grid-cols-3 lg:gap-8">
+        {/* Grid — md is 2 cols, so the 3rd card uses col-span + justify-self
+            to sit centered on the second row. lg+ restores normal 3-col flow. */}
+        <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-6 xl:gap-8">
           {operationsData.map((op) => (
             <div
               key={op.id}
-              className="cursor-pointer group relative flex flex-col items-start overflow-hidden rounded-[24px] border border-slate-100 bg-white p-8 shadow-[0_4px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-xl lg:p-10"
+              className="cursor-pointer group relative flex flex-col items-start overflow-hidden rounded-[24px] border border-slate-100 bg-white p-8 shadow-[0_4px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-xl lg:p-6 xl:p-10 md:last:col-span-2 md:last:w-[calc((100%-1.25rem)/2)] md:last:justify-self-center lg:last:col-span-1 lg:last:w-auto lg:last:justify-self-auto"
             >
               {/* Hover Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#ED862E] to-[#F5A962] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

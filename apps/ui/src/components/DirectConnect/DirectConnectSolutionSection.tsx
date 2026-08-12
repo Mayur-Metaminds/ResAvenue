@@ -135,13 +135,16 @@ const solutions: SolutionCard[] = [
     modalAnimationWrapperClassName: "",
     textContainerClassName:
       "relative z-10 flex grow flex-col pb-[160px] lg:pb-0 lg:max-w-[60%] xl:max-w-[45%]",
+    // lg/xl: bottom-anchored fixed height (matches current look).
+    // 2xl+: also pin a top inset so the Lottie can't flush against the card
+    // top when the row is shorter relative to the 300px frame.
     animationContainerClassName:
-      "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-10 xl:-bottom-14 lg:right-10 lg:mx-0 lg:h-[300px] lg:w-[40%] xl:w-[50%] lg:items-end lg:justify-end",
+      "absolute inset-x-0 bottom-0 z-0 mx-6 flex h-[150px] items-end justify-center pointer-events-none transition-transform duration-500 group-hover:scale-105 lg:inset-x-auto lg:-bottom-10 xl:-bottom-14 lg:right-10 lg:mx-0 lg:h-[300px] lg:w-[40%] xl:w-[50%] lg:items-end lg:justify-end 2xl:top-6 2xl:h-auto",
     lottieClassName:
       "scale-110 lg:scale-100 origin-bottom lg:origin-bottom-right",
     lottieRendererSettings: { preserveAspectRatio: "xMidYMax meet" },
   },
-  {
+  { 
     id: "intelligent-analytics",
     modalLayout: "stacked-vertical",
     title: "Intelligent Analytics",
