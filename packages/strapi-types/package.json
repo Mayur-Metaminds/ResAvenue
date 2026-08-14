@@ -15,7 +15,7 @@
   },
   "types": "src/index.ts",
   "scripts": {
-    "build": "echo 'Types-only package, no build needed'",
+    "build": "node -e \"const fs=require('fs'); fs.rmSync('./generated',{force:true,recursive:true}); fs.cpSync('../../apps/strapi/types/generated', './generated', {recursive:true});\"",
     "dev": "echo 'Types-only package, no dev needed'",
     "lint": "eslint -c ../../eslint.config.mjs './**/*.{js,ts,jsx,tsx,cjs,mjs}'",
     "lint:fix": "pnpm lint --fix",
