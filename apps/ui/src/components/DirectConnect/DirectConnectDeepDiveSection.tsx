@@ -10,6 +10,7 @@ import {
 import { useRef, useState, useEffect } from "react"
 
 import { Eyebrow } from "@/components/common/Eyebrow"
+import { ScrollAccordionSection } from "@/components/common/ScrollAccordionSection"
 import { SectionHeader } from "@/components/landing/SectionHeader"
 import { cn } from "@/lib/styles"
 
@@ -33,7 +34,8 @@ const accordionData: AccordionItemData[] = [
     title: "Easy Mobile Bookings",
     description:
       "Make it simple for guests no matter where they are with a seamless 3-step mobile booking experience.",
-    image: "/images/Direct-Connect/easyMobileBookings.avif",
+    // image: "/images/Direct-Connect/easyMobileBookings.avif",
+    image: "/images/Direct-Connect/easyMobileBookings-new.png",
   },
   {
     id: "item-2",
@@ -48,14 +50,16 @@ const accordionData: AccordionItemData[] = [
     title: "Hotel Price Widget",
     description:
       "Compare real-time OTA rates with your hotel's official website rate in one view. Showcase the lowest available rate, and drive direct bookings with transparent pricing.",
-    image: "/images/Direct-Connect/hotelPriceWidget.avif",
+    // image: "/images/Direct-Connect/hotelPriceWidget.avif",
+    image: "/images/Direct-Connect/hotelPriceWidget-new.webp",
   },
   {
     id: "item-4",
     title: "Simple payment processing",
     description:
       "Streamline your payment process with a seamless and secure PCI compliant payment gateway.",
-    image: "/images/Direct-Connect/simplePaymentProcessing.avif",
+    // image: "/images/Direct-Connect/simplePaymentProcessing.avif",
+    image: "/images/Direct-Connect/simplePaymentProcessing-new.webp",
   },
 ]
 
@@ -181,12 +185,37 @@ export function DirectConnectDeepDiveSection() {
   }, [activeIndex])
 
   return (
-    <section
-      ref={sectionRef}
-      data-nav-theme="dark"
-      className="relative w-full bg-[#010C28] max-md:!h-auto"
-      style={{ height: `calc(100vh * ${stepsPerSection})` }}
-    >
+    <>
+      <ScrollAccordionSection
+        className="md:hidden"
+        items={accordionData}
+        eyebrowText="DEEP DIVE"
+        title={
+          <>
+            The Fastest Booking <br />
+            <SectionHeader.Highlight>
+              Experience on the Market.
+            </SectionHeader.Highlight>
+          </>
+        }
+        titleColor="#FFFFFF"
+        highlightGradient="linear-gradient(90deg, #F27F0D 0%, #FDBA74 100%)"
+        backgroundColor="#010C28"
+        navTheme="dark"
+        renderIcon={(index) => {
+          if (index === 0) return <NumberIcon1 />
+          if (index === 1) return <NumberIcon2 />
+          if (index === 2) return <NumberIcon3 />
+          if (index === 3) return <NumberIcon4 />
+          return null
+        }}
+      />
+      <section
+        ref={sectionRef}
+        data-nav-theme="dark"
+        className="relative w-full bg-[#010C28] max-md:hidden"
+        style={{ height: `calc(100vh * ${stepsPerSection})` }}
+      >
       {/* Mobile: natural height + click. md+: sticky scroll scrub (unchanged). */}
       <div className="relative flex w-full flex-col items-center justify-start max-md:overflow-visible md:sticky md:top-[56px] md:h-[calc(100vh-56px)] md:overflow-hidden lg:top-20 lg:h-[calc(100vh-80px)]">
         <div className="mx-auto flex w-full max-w-[1440px] flex-col justify-start px-4 py-8 transition-all duration-500 ease-in-out md:h-full md:min-h-0 md:py-8 lg:px-[65px] lg:py-5 lg:pr-[80px] xl:py-10">
@@ -310,29 +339,30 @@ export function DirectConnectDeepDiveSection() {
 
             {/* Image — mobile: natural full-width size; md+: sticky column fill */}
             <div className="relative order-3 w-full md:order-none md:col-start-1 md:row-span-2 md:row-start-1 md:h-full md:max-h-full md:min-h-0 md:self-center md:overflow-hidden md:rounded-[24px]">
-              <AnimatePresence mode="wait">
-                {(() => {
-                  // activeIndex is clamped to [0, accordionData.length - 1] in
-                  // useMotionValueEvent so it's always a valid index — but TS
-                  // doesn't know that under noUncheckedIndexedAccess. Fall back
-                  // to the first item just in case.
-                  const item = accordionData[activeIndex] ?? accordionData[0]
-                  if (!item) return null
+              {accordionData.map((item, index) => {
+                const isActive = activeIndex === index
+                const yOffset = index < activeIndex ? -20 : 20
 
-                  return (
-                    <motion.img
-                      key={activeIndex}
-                      src={item.image}
-                      alt={item.title}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="h-auto w-full object-contain object-center md:absolute md:inset-0 md:h-full md:w-full"
-                    />
-                  )
-                })()}
-              </AnimatePresence>
+                return (
+                  <motion.img
+                    key={item.id}
+                    src={item.image}
+                    alt={item.title}
+                    initial={false}
+                    animate={{ 
+                      opacity: isActive ? 1 : 0, 
+                      y: isActive ? 0 : yOffset,
+                      zIndex: isActive ? 10 : 0
+                    }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className={cn(
+                      "w-full object-contain object-center md:absolute md:inset-0 md:h-full md:w-full",
+                      index === 0 ? "relative h-auto" : "absolute top-0 left-0 h-full"
+                    )}
+                    style={{ pointerEvents: isActive ? "auto" : "none" }}
+                  />
+                )
+              })}
             </div>
           </div>
         </div>
@@ -350,6 +380,7 @@ export function DirectConnectDeepDiveSection() {
         className="pointer-events-none absolute bottom-0 left-0 hidden w-full md:block"
         style={{ height: "calc(100vh - 80px)" }}
       />
-    </section>
+      </section>
+    </>
   )
 }
