@@ -17,7 +17,7 @@ export function DirectConnectHeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex  w-full flex-col overflow-hidden bg-[#0A0A0B]"
+      className="relative flex w-full flex-col overflow-hidden bg-[#0A0A0B]"
     >
       {/* Background image */}
       <Image
@@ -31,9 +31,9 @@ export function DirectConnectHeroSection() {
       />
 
       {/* Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[16px] lg:px-[80px] py-[70px] pt-[90px] md:pt-[100px] lg:pt-[70px] flex flex-1 flex-col">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-[16px] py-[70px] pt-[90px] md:pt-[100px] lg:px-[80px] lg:pt-[70px]">
         {/* Main Content */}
-        <div className="grid flex-1 grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8">
+        <div className="grid flex-1 grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
           {/* Left Column: Content */}
           <HeroContent
             eyebrow="HOTEL BOOKING ENGINE"
@@ -53,7 +53,7 @@ export function DirectConnectHeroSection() {
                 variant="primary"
                 size="default"
                 icon={<ArrowRight className="h-4 w-4" />}
-                className="gap-[7.6px] pt-[8.5px] pr-[10.5px] pb-[8.5px] pl-[9.5px] font-['Plus_Jakarta_Sans'] font-semibold text-[16px] leading-[24px] lg:px-[28px] lg:pt-[17px] lg:pb-[18px] lg:text-[15px]"
+                className="gap-[7.6px] pt-[8.5px] pr-[10.5px] pb-[8.5px] pl-[9.5px] font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-semibold lg:px-[28px] lg:pt-[17px] lg:pb-[18px] lg:text-[15px]"
               >
                 Request a Demo
               </Button>,
@@ -61,7 +61,7 @@ export function DirectConnectHeroSection() {
                 key="products"
                 variant="secondary"
                 size="default"
-                className="pt-[9px] pr-[16px] pb-[10px] pl-[17px] font-['Plus_Jakarta_Sans'] font-semibold text-[16px] leading-[24px] lg:pt-[17px] lg:pr-[28.6px] lg:pb-[18px] lg:pl-[29px] lg:text-[15px]"
+                className="pt-[9px] pr-[16px] pb-[10px] pl-[17px] font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-semibold lg:pt-[17px] lg:pr-[28.6px] lg:pb-[18px] lg:pl-[29px] lg:text-[15px]"
               >
                 Explore Products
               </Button>,
@@ -69,12 +69,12 @@ export function DirectConnectHeroSection() {
           />
 
           {/* Right Column: Mockup */}
-          <div className="relative z-20 flex h-[300px] w-full items-center justify-center sm:h-[480px] lg:h-[600px] xl:h-[720px] lg:justify-end">
+          <div className="relative z-20 flex h-[300px] w-full items-center justify-center sm:h-[480px] lg:h-[600px] lg:justify-center xl:h-[720px] xl:justify-end">
             <LazyLottie
               src={DC_HERO_OVERLAY_URL}
               priority="eager"
               loop
-              className="h-full w-full max-w-[800px]"
+              className="h-full w-full origin-center scale-[1.35] md:scale-[1.15] lg:scale-[1.3] xl:scale-[1.4]"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
             />
 

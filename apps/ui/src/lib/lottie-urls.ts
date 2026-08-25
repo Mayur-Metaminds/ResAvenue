@@ -10,7 +10,8 @@ const ROOT = "/assets"
 
 /* ── Above-the-fold heroes (eager + preloaded) ───────────────────────────── */
 export const HERO_LAPTOP_URL = `${LANDING}/home_hero.json`
-export const DC_HERO_OVERLAY_URL = `${ROOT}/direct-connect/hero_section.json`
+// export const DC_HERO_OVERLAY_URL = `${ROOT}/direct-connect/hero_section.json`
+export const DC_HERO_OVERLAY_URL = `${ROOT}/direct-connect/hero_section_latest.json`
 export const CHANNEL_CONNECT_HERO_URL = `${ROOT}/channel-connect/hero_section.json`
 export const DISTRIBUTED_TECH_GLOBE_URL = `${LANDING}/distribution-network.json`
 export const RESOURCE_SYSTEM_MGMT_URL = `${LANDING}/system-management.json`
@@ -53,6 +54,7 @@ export const PAYMENT_INNER = `${ROOT}/direct-connect/payment_security_inner.json
 export const AGENT = `${ROOT}/direct-connect/agent.json`
 
 /* ── /channel-connect route sections (lazy) ──────────────────────────────── */
-export const CHANNEL_CONNECT_RESERVATION_URL = `${ROOT}/channel-connect/central_reservation.json`
+// export const CHANNEL_CONNECT_RESERVATION_URL = `${ROOT}/channel-connect/central_reservation.json`
+export const CHANNEL_CONNECT_RESERVATION_URL = `${ROOT}/channel-connect/central_reservation_latest.json`
 export const CHANNEL_CONNECT_DATA_DRIVEN_URL = `${ROOT}/channel-connect/date_driven_decisions.json`
 export const CONTROL_YOUR_PORTFOLIO_URL = `${ROOT}/channel-connect/control_your_portfolio.json`
