@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import {
   contactServiceOptions,
   contactSubmissionSchema,
+  mapContactFormErrors,
   submitContactForm,
 } from "@/services/strapi/contact.service"
 import type {
@@ -55,12 +56,21 @@ export default function ContactForm() {
   }
 
   const handleServiceClick = (service: ContactService) => {
-    if (!isDragging.current)
+    if (!isDragging.current) {
       setSelected((prev) =>
         prev.includes(service)
           ? prev.filter((s) => s !== service)
           : [...prev, service]
       )
+
+      if (errors.services) {
+        setErrors((prev) => {
+          const next = { ...prev }
+          delete next.services
+          return next
+        })
+      }
+    }
   }
 
   const scrollTabs = (direction: "prev" | "next") => {
@@ -87,6 +97,20 @@ export default function ContactForm() {
     }
   }
 
+  const inputClassName = (fieldName: keyof ContactFormErrors) =>
+    `w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b py-[8px] outline-none md:py-[16px] ${errors[fieldName]
+      ? "border-red-400 focus:border-red-400"
+      : "border-[#FFF] focus:border-orange-400"
+    }`
+
+  const scrollToFirstError = () => {
+    requestAnimationFrame(() => {
+      document
+        .querySelector("[data-field-error='true']")
+        ?.scrollIntoView({ behavior: "smooth", block: "center" })
+    })
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (status.kind === "submitting") return
@@ -97,14 +121,9 @@ export default function ContactForm() {
     })
 
     if (!result.success) {
-      const formattedErrors: Record<string, string> = {}
-      result.error.issues.forEach((issue) => {
-        if (issue.path[0]) {
-          formattedErrors[issue.path[0].toString()] = issue.message
-        }
-      })
-      setErrors(formattedErrors)
+      setErrors(mapContactFormErrors(result.error))
       setStatus({ kind: "idle" })
+      scrollToFirstError()
       return
     }
 
@@ -114,16 +133,16 @@ export default function ContactForm() {
     try {
       await submitContactForm(result.data)
       setStatus({ kind: "success" })
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        propertyName: "",
-        siteUrl: "",
-        message: "",
-      })
-      setSelected([])
+      // setFormData({
+      //   firstName: "",
+      //   lastName: "",
+      //   email: "",
+      //   phone: "",
+      //   propertyName: "",
+      //   siteUrl: "",
+      //   message: "",
+      // })
+      // setSelected([])
     } catch (err) {
       setStatus({
         kind: "error",
@@ -137,129 +156,155 @@ export default function ContactForm() {
 
   return (
     <section className="flex w-full items-start justify-start">
-      <form onSubmit={handleSubmit} className="w-full overflow-hidden rounded-[14px] md:rounded-[15px] border border-[#00000033] bg-[#FFFFFF1A] p-4 shadow-2xl backdrop-blur-xl xl:p-8">
+      <form noValidate onSubmit={handleSubmit} className="w-full overflow-hidden rounded-[14px] md:rounded-[15px] border border-[#00000033] bg-[#FFFFFF1A] p-4 shadow-2xl backdrop-blur-xl xl:p-8">
         {/* Form Grid */}
         <div className="grid grid-cols-1 gap-y-5 md:grid-cols-2 md:gap-x-6 md:gap-y-7">
           {/* First Name */}
-          <div>
-            <label className="typo-body5 font-normal! text-white">
+          <div data-field-error={errors.firstName ? "true" : undefined}>
+            <label htmlFor="firstName" className="typo-body5 font-normal! text-white">
               First Name<span className="text-[#F00]">*</span>
             </label>
 
             <input
+              id="firstName"
               type="text"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
               placeholder="john"
-              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              maxLength={100}
+              aria-invalid={Boolean(errors.firstName)}
+              aria-describedby={errors.firstName ? "firstName-error" : undefined}
+              className={inputClassName("firstName")}
             />
             {errors.firstName && (
-              <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.firstName}</p>
+              <p id="firstName-error" className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.firstName}</p>
             )}
           </div>
 
           {/* Last Name */}
-          <div>
-            <label className="typo-body5 font-normal! text-white">
+          <div data-field-error={errors.lastName ? "true" : undefined}>
+            <label htmlFor="lastName" className="typo-body5 font-normal! text-white">
               Last Name<span className="text-[#F00]">*</span>
             </label>
 
             <input
+              id="lastName"
               type="text"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
               placeholder="Doe"
-              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              maxLength={100}
+              aria-invalid={Boolean(errors.lastName)}
+              aria-describedby={errors.lastName ? "lastName-error" : undefined}
+              className={inputClassName("lastName")}
             />
             {errors.lastName && (
-              <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.lastName}</p>
+              <p id="lastName-error" className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.lastName}</p>
             )}
           </div>
 
           {/* Email */}
-          <div>
-            <label className="typo-body5 font-normal! text-white">
+          <div data-field-error={errors.email ? "true" : undefined}>
+            <label htmlFor="email" className="typo-body5 font-normal! text-white">
               Email<span className="text-[#F00]">*</span>
             </label>
 
             <input
+              id="email"
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="john@hotel.com"
-              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              maxLength={254}
+              autoComplete="email"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className={inputClassName("email")}
             />
             {errors.email && (
-              <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.email}</p>
+              <p id="email-error" className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.email}</p>
             )}
           </div>
 
           {/* Phone */}
-          <div>
-            <label className="typo-body5 font-normal! text-white">
+          <div data-field-error={errors.phone ? "true" : undefined}>
+            <label htmlFor="phone" className="typo-body5 font-normal! text-white">
               Phone<span className="text-[#F00]">*</span>
             </label>
 
             <input
-              type="text"
+              id="phone"
+              type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
               placeholder="+91 88888 88888"
-              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              maxLength={15}
+              autoComplete="tel"
+              aria-invalid={Boolean(errors.phone)}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
+              className={inputClassName("phone")}
             />
             {errors.phone && (
-              <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.phone}</p>
+              <p id="phone-error" className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.phone}</p>
             )}
           </div>
 
           {/* Property Name */}
-          <div>
-            <label className="typo-body5 font-normal! text-white">
+          <div data-field-error={errors.propertyName ? "true" : undefined}>
+            <label htmlFor="propertyName" className="typo-body5 font-normal! text-white">
               Property Name<span className="text-[#F00]">*</span>
             </label>
 
             <input
+              id="propertyName"
               type="text"
               name="propertyName"
               value={formData.propertyName}
               onChange={handleChange}
               placeholder="Your Hotel Name"
-              className="w-full text-white typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              maxLength={200}
+              aria-invalid={Boolean(errors.propertyName)}
+              aria-describedby={errors.propertyName ? "propertyName-error" : undefined}
+              className={inputClassName("propertyName")}
             />
             {errors.propertyName && (
-              <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.propertyName}</p>
+              <p id="propertyName-error" className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.propertyName}</p>
             )}
           </div>
 
           {/* Site URL */}
-          <div>
-            <label className="typo-body5 font-normal! text-white">
+          <div data-field-error={errors.siteUrl ? "true" : undefined}>
+            <label htmlFor="siteUrl" className="typo-body5 font-normal! text-white">
               Site URL
             </label>
 
             <input
-              type="text"
+              id="siteUrl"
+              type="url"
               name="siteUrl"
               value={formData.siteUrl}
               onChange={handleChange}
               placeholder="https://yourhotel.com"
-              className="w-full text-white     typo-body3 placeholder:text-white/60 placeholder:typo-body3 placeholder:font-normal! border-b border-[#FFF] py-[8px] outline-none focus:border-orange-400 md:py-[16px]"
+              maxLength={500}
+              aria-invalid={Boolean(errors.siteUrl)}
+              aria-describedby={errors.siteUrl ? "siteUrl-error" : undefined}
+              className={inputClassName("siteUrl")}
             />
             {errors.siteUrl && (
-              <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.siteUrl}</p>
+              <p id="siteUrl-error" className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.siteUrl}</p>
             )}
           </div>
         </div>
 
         {/* Services */}
-        <div className="my-[24px]">
+        <div className="my-[24px]" data-field-error={errors.services ? "true" : undefined}>
           <div className="mb-[7px] md:mb-[16px] flex items-center justify-between gap-3">
             <label className="typo-body5 font-bold! text-white">
-              Services interested in
+              Services interested in<span className="text-[#F00]">*</span>
             </label>
 
             <div className="flex shrink-0 items-center gap-2">
@@ -310,22 +355,32 @@ export default function ContactForm() {
             </div>
           </div>
           {errors.services && (
-            <p className="font-plus-jakarta-500 mt-2 text-[8.315px] text-red-400 md:text-xs">{errors.services}</p>
+            <p id="services-error" className="font-plus-jakarta-500 mt-2 text-[8.315px] text-red-400 md:text-xs" role="alert">{errors.services}</p>
           )}
         </div>
 
         {/* Message */}
-        <div className="mt-[12px] md:mt-[32px]">
+        <div className="mt-[12px] md:mt-[32px]" data-field-error={errors.message ? "true" : undefined}>
+          <label htmlFor="message" className="sr-only">
+            Message
+          </label>
           <textarea
+            id="message"
             rows={4}
             name="message"
             value={formData.message}
             onChange={handleChange}
             placeholder="Write a message here..."
-            className="w-full resize-none rounded-xl border border-white/10 bg-transparent px-3 py-3 text-[16px] text-white transition outline-none placeholder:text-[#FFF] placeholder:typo-body5 placeholder:font-normal! focus:border-orange-400 p-[12px] md:p-[10px] "
+            maxLength={5000}
+            aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? "message-error" : undefined}
+            className={`w-full resize-none rounded-xl border bg-transparent px-3 py-3 text-[16px] text-white transition outline-none placeholder:text-[#FFF] placeholder:typo-body5 placeholder:font-normal! p-[12px] md:p-[10px] ${errors.message
+              ? "border-red-400 focus:border-red-400"
+              : "border-white/10 focus:border-orange-400"
+              }`}
           />
           {errors.message && (
-            <p className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.message}</p>
+            <p id="message-error" className="font-plus-jakarta-500 mt-1 text-[8.315px] text-red-400 md:text-xs">{errors.message}</p>
           )}
         </div>
 

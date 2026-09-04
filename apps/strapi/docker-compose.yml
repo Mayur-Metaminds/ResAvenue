@@ -1,4 +1,4 @@
-# This docker-compose file contains only Postgres database for local run. 
+# This docker-compose file contains only Postgres database for local run.
 # Strapi should be run either in a separate container (Dockerfile) or in the host machine.
 
 name: strapi-next-starter
@@ -16,10 +16,10 @@ services:
       - data:/var/lib/postgresql/data/ #using a volume
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
     ports:
-      - "5432:5432"
+      - "${DATABASE_PORT:-5432}:5432"
     networks:
       - db_network
-  
+
   # Optional: image processing proxy for local development.
   # Start with: pnpm run:imgproxy (or docker compose up -d imgproxy)
   # Then set IMGPROXY_URL=http://localhost:8080 in apps/ui/.env.local
