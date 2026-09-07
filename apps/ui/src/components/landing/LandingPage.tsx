@@ -39,9 +39,7 @@ export default function LandingPage() {
       />
       <SolutionSection />
 
-      <div className="bg-red-600">
-        <BentoProductsSection />
-      </div>
+      <BentoProductsSection />
 
       <ExploreModulesSection />
       <FeatureCarouselSection />
