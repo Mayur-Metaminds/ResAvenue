@@ -16,9 +16,7 @@ export default {
         html,
       })
 
-      console.log(
-        "Contact submission email sent successfully and Lifecycle called"
-      )
+      console.log("Contact submission email sent successfully")
     } catch (error) {
       console.error("Failed to send contact submission email", error)
     }
