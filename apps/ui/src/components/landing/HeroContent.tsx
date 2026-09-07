@@ -17,6 +17,8 @@ export interface HeroContentProps {
   eyebrowColor?: string
 }
 
+console.log("HeroContent Called Component")
+
 export function HeroContent({
   eyebrow,
   title,
@@ -40,10 +42,19 @@ export function HeroContent({
       </div>
 
       {/* Main Title — the caller owns the heading element (e.g. <HeroTitle />). */}
-      <div className={cn("mb-[16px] lg:mb-[24px]",titleClassName)}>{title}</div>
+      <div className={cn("mb-[16px] lg:mb-[24px]", titleClassName)}>
+        {title}
+      </div>
 
       {/* Description */}
-      <p className={cn("typo-body1 mb-[40px] text-white opacity-55", descriptionClassName)}>{description}</p>
+      <p
+        className={cn(
+          "typo-body1 mb-[40px] text-white opacity-55",
+          descriptionClassName
+        )}
+      >
+        {description}
+      </p>
 
       {/* Actions */}
       {actions && actions.length > 0 && (
