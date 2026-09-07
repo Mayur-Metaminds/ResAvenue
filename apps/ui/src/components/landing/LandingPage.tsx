@@ -16,7 +16,7 @@ import { CtaSection } from "../common/CtaSection"
 
 export default function LandingPage() {
   return (
-    <div className="bg-green-600">
+    <div className="bg-blue-600">
       <HeroSection />
       <Marquee<TrustedLogo>
         className="w-full pt-[30px] pb-[30px]"
