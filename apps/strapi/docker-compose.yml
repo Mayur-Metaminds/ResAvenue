@@ -24,15 +24,15 @@ services:
   # Start with: pnpm run:imgproxy (or docker compose up -d imgproxy)
   # Then set IMGPROXY_URL=http://localhost:8080 in apps/ui/.env.local
   # Without this, images are served unoptimized directly from Strapi (fine for dev).
-  imgproxy:
-    image: darthsim/imgproxy:v3.24.1
-    restart: unless-stopped
-    ports:
-      - "8080:8080"
-    environment:
-      IMGPROXY_BIND: ":8080"
-    profiles:
-      - imgproxy
+  # imgproxy:
+  #   image: darthsim/imgproxy:v3.24.1
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     IMGPROXY_BIND: ":8080"
+  #   profiles:
+  #     - imgproxy
 
 volumes:
   data:
