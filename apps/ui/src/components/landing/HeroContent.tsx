@@ -17,8 +17,6 @@ export interface HeroContentProps {
   eyebrowColor?: string
 }
 
-console.log("HeroContent Called Component")
-
 export function HeroContent({
   eyebrow,
   title,
