@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import MobileAppWrapper from "@/components/MobileApp/MobileAppWrapper"
+import { ComingSoonPage } from "@/components/common/ComingSoonPage"
 import { StructuredData } from "@/components/seo/StructuredData"
 import { getMobileAppPageSeo } from "@/lib/seo/pages"
 
@@ -14,9 +14,7 @@ export default function MobileAppPage() {
   return (
     <>
       <StructuredData data={seo.schema} />
-      <main className="flex min-h-screen items-center justify-center">
-        <MobileAppWrapper />
-      </main>
+      <ComingSoonPage />
     </>
   )
 }

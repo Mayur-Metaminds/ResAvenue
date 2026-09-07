@@ -1,9 +1,10 @@
 "use client"
 
+import type * as React from "react"
+
 import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
 import { CountUp } from "@/components/common/CountUp"
 import { LazyLottie } from "@/components/common/LazyLottie"
-import { cn } from "@/lib/styles"
 import {
   CHANNEL_CONNECT_INNER_URL,
   CHANNEL_CONNECT_OUTER_URL,
@@ -20,7 +21,7 @@ import {
   PROPERTY_MANAGEMENT_OUTER_URL,
   REVENUE_MANAGEMENT_INNER,
 } from "@/lib/lottie-urls"
-import type * as React from "react"
+import { cn } from "@/lib/styles"
 
 import { SectionHeader } from "./SectionHeader"
 
@@ -42,11 +43,13 @@ const products: Product[] = [
     id: "direct-connect",
     eyebrow: "BOOKING ENGINE AND CRS",
     title: "Direct Connect",
-    subtitle: "Own Your Guests. Own Your Revenue. \nTurn Every Visitor Into a Direct Booking",
+    subtitle:
+      "Own Your Guests. Own Your Revenue. \nTurn Every Visitor Into a Direct Booking",
     gridSpan: "col-span-1 md:col-span-7 lg:col-span-7",
     modalAnimationClassName: "scale-[1.2] rounded-[1px]",
     anchor: "top-left",
-    modalSubtitle: "Own Your Guests. Own Your Revenue. Turn Every Visitor Into a Direct Booking ResAvenue Direct Connect helps hospitality businesses convert website traffic into commission-free bookings through a seamless, mobile-first booking experience. Designed to reduce booking friction and increase conversions, it empowers properties to drive more revenue from their own website while delivering a superior guest experience.",
+    modalSubtitle:
+      "Own Your Guests. Own Your Revenue. Turn Every Visitor Into a Direct Booking ResAvenue Direct Connect helps hospitality businesses convert website traffic into commission-free bookings through a seamless, mobile-first booking experience. Designed to reduce booking friction and increase conversions, it empowers properties to drive more revenue from their own website while delivering a superior guest experience.",
     modalFeatures: [
       "Turn Every Click into a Direct Booking.",
       "Maximise Revenue with Smarter Rates and Offers.",
@@ -59,7 +62,7 @@ const products: Product[] = [
     modalLottieUrl: DIRECT_CONNECT_INNER_URL,
     expandToId: "property-management",
     renderBottom: () => (
-      <div className="pointer-events-none relative mt-4 z-0 w-full aspect-[796/284] overflow-hidden transition-transform duration-500 group-hover:scale-105">
+      <div className="pointer-events-none relative z-0 mt-4 aspect-[796/284] w-full overflow-hidden transition-transform duration-500 group-hover:scale-105">
         <LazyLottie
           src={DIRECT_CONNECT_OUTER_URL}
           priority="lazy"
@@ -75,7 +78,8 @@ const products: Product[] = [
     eyebrow: "CHANNEL MANAGER",
     title: "Channel Connect",
     subtitle: "Manage Every Channel From One Place",
-    modalSubtitle: "Keep rates, inventory, and availability perfectly synchronized across OTAs and distribution channels with ResAvenue Channel Connect. Automate updates in real time, eliminate manual effort, and maximize your online visibility while maintaining complete control over your distribution strategy.",
+    modalSubtitle:
+      "Keep rates, inventory, and availability perfectly synchronized across OTAs and distribution channels with ResAvenue Channel Connect. Automate updates in real time, eliminate manual effort, and maximize your online visibility while maintaining complete control over your distribution strategy.",
     isDark: true,
     gridSpan: "col-span-1 md:col-span-5 lg:col-span-5",
     anchor: "top-right",
@@ -85,8 +89,7 @@ const products: Product[] = [
       "Smarter Inventory.Higher Revenue.",
       "Sync instantly Across Every Channel. Eliminate Errors.",
       "Seamless OTA and PMS Connects for Smarter Operations",
-      "More visibility. Zero manual work."
-
+      "More visibility. Zero manual work.",
     ],
     imagePlaceholder: "/images/placeholder-channel-connect.png",
     lottieUrl: CHANNEL_CONNECT_OUTER_URL,
@@ -94,7 +97,7 @@ const products: Product[] = [
     modalAnimationClassName: "h-full w-full lg:-mt-9",
     expandToId: "distribution-network",
     renderBottom: () => (
-      <div className="pointer-events-none relative mt-4 z-0 mx-8 flex h-[160px] md:h-[200px] lg:h-[300px] items-end justify-center transition-transform duration-500 group-hover:scale-105">
+      <div className="pointer-events-none relative z-0 mx-8 mt-4 flex h-[160px] items-end justify-center transition-transform duration-500 group-hover:scale-105 md:h-[200px] lg:h-[300px]">
         <LazyLottie
           src={CHANNEL_CONNECT_OUTER_URL}
           priority="lazy"
@@ -111,7 +114,8 @@ const products: Product[] = [
     title: "Property Management",
     subtitle:
       "Run Your Hotel Operations Seamlessly. Everything your front desk and operations team need — in one system/Simplify Operations. Elevate Guest Experiences.",
-    modalSubtitle: "ResAvenue PMS brings reservations, front desk operations, housekeeping, guest management, and billing into one centralized platform. Streamline daily operations, improve team productivity, and deliver exceptional guest experiences through a system built specifically for modern hospitality businesses.",
+    modalSubtitle:
+      "ResAvenue PMS brings reservations, front desk operations, housekeeping, guest management, and billing into one centralized platform. Streamline daily operations, improve team productivity, and deliver exceptional guest experiences through a system built specifically for modern hospitality businesses.",
     gridSpan: "col-span-1 md:col-span-6 lg:col-span-4",
     anchor: "top-left",
     modalFeatures: [
@@ -126,8 +130,8 @@ const products: Product[] = [
     modalLottieUrl: PROPERTY_MANAGEMENT_INNER_URL,
     expandToId: "event-management",
     renderBottom: () => (
-      <div className="pointer-events-none relative z-0  flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px]  bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
+      <div className="pointer-events-none relative z-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+        <div className="flex h-[198px] w-full items-center justify-center rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
           <LazyLottie
             src={PROPERTY_MANAGEMENT_OUTER_URL}
             priority="lazy"
@@ -145,7 +149,8 @@ const products: Product[] = [
     title: "Revenue Management",
     subtitle:
       "Maximize Revenue with Intelligent Pricing Let data and AI drive smarter pricing decisions.",
-    modalSubtitle: "Make data-driven pricing decisions with powerful revenue management tools designed to maximize occupancy and revenue. Analyze demand patterns, monitor performance, and optimize rates dynamically to stay competitive and capture every revenue opportunity.",
+    modalSubtitle:
+      "Make data-driven pricing decisions with powerful revenue management tools designed to maximize occupancy and revenue. Analyze demand patterns, monitor performance, and optimize rates dynamically to stay competitive and capture every revenue opportunity.",
     gridSpan: "col-span-1 md:col-span-6 lg:col-span-4",
     anchor: "top-left",
     modalFeatures: [
@@ -154,15 +159,15 @@ const products: Product[] = [
       "Manage Revenue, Occupancy, and Trends",
       "Project Revenue Potential With Confidence",
       "AI-Powered Dynamic Discounts to Boost Booking",
-      "Price smarter. Earn more."
+      "Price smarter. Earn more.",
     ],
     imagePlaceholder: "/images/placeholder-revenue.png",
     lottieUrl: GRAPH_URL,
     modalLottieUrl: REVENUE_MANAGEMENT_INNER,
     expandToId: "event-management",
     renderBottom: () => (
-      <div className="pointer-events-none relative mt-4 w-full z-0 flex items-start justify-start transition-transform duration-500 px-4 group-hover:scale-105">
-        <div className="flex h-[200px] lg:h-[240px] w-full items-start justify-start rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
+      <div className="pointer-events-none relative z-0 mt-4 flex w-full items-start justify-start px-4 transition-transform duration-500 group-hover:scale-105">
+        <div className="flex h-[200px] w-full items-start justify-start rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)] lg:h-[240px]">
           <LazyLottie
             src={GRAPH_URL}
             priority="lazy"
@@ -180,9 +185,11 @@ const products: Product[] = [
     title: "Distribution Network",
     subtitle:
       "Be Everywhere Your Guests Are Searching. Expand Your Reach Across the Global Travel Ecosystem",
-    modalSubtitle: "Connect your property to leading GDS, IDS, OTA, and metasearch platforms through ResAvenue's powerful distribution network. Increase visibility, access corporate travel demand, and ensure your inventory is available wherever travelers search and book.",
+    modalSubtitle:
+      "Connect your property to leading GDS, IDS, OTA, and metasearch platforms through ResAvenue's powerful distribution network. Increase visibility, access corporate travel demand, and ensure your inventory is available wherever travelers search and book.",
     gridSpan: "col-span-1 md:col-span-12 lg:col-span-4",
     anchor: "top-right",
+    href: "/distributed-technology",
     modalFeatures: [
       "Stop Missing Guests. Start Showing Up Everywhere.",
       "Own Every Search. Win Every Booking.",
@@ -198,7 +205,7 @@ const products: Product[] = [
     expandToId: "hotel-website",
 
     renderBottom: () => (
-      <div className="pointer-events-none relative z-0  flex items-center justify-center transition-transform duration-500 group-hover:scale-105 ">
+      <div className="pointer-events-none relative z-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
         <div className="relative flex h-[198px] w-full items-center justify-center rounded-[20px] bg-[linear-gradient(78deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0)_100%)]">
           <LazyLottie
             src={DISTRIBUTION_NETWORK_URL}
@@ -209,7 +216,7 @@ const products: Product[] = [
           />
           {/* Absolutely-centered count-up overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-plus-jakarta-700 leading-none tracking-tight text-[#0F172A] text-[28px] md:text-[40px]">
+            <span className="font-plus-jakarta-700 text-[28px] leading-none tracking-tight text-[#0F172A] md:text-[40px]">
               <CountUp target={120} suffix="+" loop />
             </span>
           </div>
@@ -223,7 +230,8 @@ const products: Product[] = [
     title: "Event Management & Ticketing",
     subtitle:
       "A complete solution for events, conferences, and experiences. Create/Manage & Monetize Every Event.",
-    modalSubtitle: "ResAvenue Event Management & Ticketing helps venues and hospitality businesses seamlessly create, market, sell, and manage events of any scale. From online registrations and ticket sales to attendee check-ins and event analytics, everything is managed through one powerful platform designed to maximize attendance and revenue.",
+    modalSubtitle:
+      "ResAvenue Event Management & Ticketing helps venues and hospitality businesses seamlessly create, market, sell, and manage events of any scale. From online registrations and ticket sales to attendee check-ins and event analytics, everything is managed through one powerful platform designed to maximize attendance and revenue.",
     isDark: true,
     gridSpan: "col-span-1 md:col-span-6 lg:col-span-5",
     anchor: "bottom-left",
@@ -244,7 +252,7 @@ const products: Product[] = [
     // slot it shrinks to a short strip and hugs the bottom (xMidYMax) with a
     // big gap above. Center it vertically so it sits higher in the card.
     renderBottom: () => (
-      <div className="pointer-events-none relative mt-4 z-0 mx-6 flex h-[200px] items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 lg:mx-10 lg:h-[240px]">
+      <div className="pointer-events-none relative z-0 mx-6 mt-4 flex h-[200px] items-center justify-center transition-transform duration-500 group-hover:scale-105 md:mx-8 lg:mx-10 lg:h-[240px]">
         <LazyLottie
           src={EVENT_OUTER_URL}
           priority="lazy"
@@ -259,11 +267,12 @@ const products: Product[] = [
     id: "hotel-website",
     eyebrow: "BRAND WEBSITE",
     title: "Hotel Website Builder",
-    subtitle:
-      "Transform Your Website into Your Best Booking Agent.",
-    modalSubtitle: "Create beautiful, high-performing websites that showcase your property and drive direct bookings. With responsive templates, intuitive content management, SEO tools, and seamless booking engine integration, ResAvenue Website Builder helps transform your website into a powerful revenue-generating channel.",
+    subtitle: "Transform Your Website into Your Best Booking Agent.",
+    modalSubtitle:
+      "Create beautiful, high-performing websites that showcase your property and drive direct bookings. With responsive templates, intuitive content management, SEO tools, and seamless booking engine integration, ResAvenue Website Builder helps transform your website into a powerful revenue-generating channel.",
     gridSpan: "col-span-1 md:col-span-6 lg:col-span-7",
     anchor: "bottom-right",
+    href: "/hotel-website-builder",
     modalFeatures: [
       "High-conversion, mobile-first brand websites ",
       "Easy-to-use CMS to update content and images",
@@ -290,7 +299,7 @@ const products: Product[] = [
           />
         </div>
         {/* lg+: preserve the original default fallback styling exactly. */}
-        <div className="relative mt-8 hidden h-[200px] items-center justify-center px-4 z-0 pointer-events-none lg:flex">
+        <div className="pointer-events-none relative z-0 mt-8 hidden h-[200px] items-center justify-center px-4 lg:flex">
           <LazyLottie
             src={HOTEL_WEBSITE_OUTER_URL}
             priority="lazy"
@@ -345,7 +354,7 @@ export function BentoProductsSection() {
             </p>
             <h3
               className={cn(
-                "font-plus-jakarta-700 mb-[2px] max-sm:pr-12 text-[20px] leading-8 lg:pr-15",
+                "font-plus-jakarta-700 mb-[2px] text-[20px] leading-8 max-sm:pr-12 lg:pr-15",
                 product.isDark ? "text-white" : "text-[#0F172A]"
               )}
             >
@@ -364,7 +373,7 @@ export function BentoProductsSection() {
           {product.renderBottom ? (
             product.renderBottom()
           ) : product.lottieUrl ? (
-            <div className="relative mt-8 px-4 z-0 flex h-[200px] items-center justify-center pointer-events-none">
+            <div className="pointer-events-none relative z-0 mt-8 flex h-[200px] items-center justify-center px-4">
               <LazyLottie
                 src={product.lottieUrl}
                 priority="lazy"
@@ -376,7 +385,7 @@ export function BentoProductsSection() {
           ) : (
             <div
               className={cn(
-                "relative mt-auto z-0 mx-6 h-[180px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105 md:mx-8 lg:h-[220px]",
+                "relative z-0 mx-6 mt-auto h-[180px] rounded-t-[40px] transition-transform duration-500 group-hover:scale-105 md:mx-8 lg:h-[220px]",
                 product.isDark ? "opacity-90" : "opacity-100"
               )}
               style={{

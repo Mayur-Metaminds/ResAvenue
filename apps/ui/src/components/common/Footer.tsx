@@ -25,7 +25,7 @@ export function Footer({ nested = false, className }: FooterProps) {
   return (
     <footer
       className={cn(
-        "w-full  text-white",
+        "w-full text-white",
         nested ? "pt-16 pb-10" : "bg-[#010C28] pt-20 pb-10",
         className
       )}
@@ -52,26 +52,37 @@ export function Footer({ nested = false, className }: FooterProps) {
                 COMPANY
               </h3>
               <ul className="space-y-4">
-                {/* About Us, Careers, and Partners intentionally have no href
-                    — those pages don't exist yet. Rendered as inert text
-                    (not <a>) so crawlers don't report them as broken/404
-                    internal links. Re-add the href once each page exists. */}
                 <li>
-                  <span className="text-sm text-gray-300">About Us</span>
+                  <Link
+                    href="/about-us"
+                    className="text-sm text-gray-300 transition-colors hover:text-white"
+                  >
+                    About Us
+                  </Link>
                 </li>
                 <li>
-                  <span className="text-sm text-gray-300">Careers</span>
+                  <Link
+                    href="/careers"
+                    className="text-sm text-gray-300 transition-colors hover:text-white"
+                  >
+                    Careers
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/contact-us"
                     className="text-sm text-gray-300 transition-colors hover:text-white"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <span className="text-sm text-gray-300">Partners</span>
+                  <Link
+                    href="/partners"
+                    className="text-sm text-gray-300 transition-colors hover:text-white"
+                  >
+                    Partners
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -82,15 +93,29 @@ export function Footer({ nested = false, className }: FooterProps) {
                 LEGAL
               </h3>
               <ul className="space-y-4">
-                {/* Same as COMPANY above — no href until these pages exist. */}
                 <li>
-                  <span className="text-sm text-gray-300">Privacy Policy</span>
+                  <Link
+                    href="/privacy-policy"
+                    className="text-sm text-gray-300 transition-colors hover:text-white"
+                  >
+                    Privacy Policy
+                  </Link>
                 </li>
                 <li>
-                  <span className="text-sm text-gray-300">Terms of Service</span>
+                  <Link
+                    href="/terms-of-service"
+                    className="text-sm text-gray-300 transition-colors hover:text-white"
+                  >
+                    Terms of Service
+                  </Link>
                 </li>
                 <li>
-                  <span className="text-sm text-gray-300">Cookie Policy</span>
+                  <Link
+                    href="/cookie-policy"
+                    className="text-sm text-gray-300 transition-colors hover:text-white"
+                  >
+                    Cookie Policy
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -100,19 +125,28 @@ export function Footer({ nested = false, className }: FooterProps) {
               <h3 className="mb-6 text-[11px] font-bold tracking-[0.2em] text-[#8b949e] uppercase">
                 SOLUTIONS
               </h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 w-full">
+              <ul className="grid w-full grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
                 {[
                   { title: "Direct Connect", href: "/direct-connect" },
                   { title: "Channel Connect", href: "/channel-connect" },
-                  { title: "Property Management System", href: "/property-management" },
-                  { title: "Revenue Management", href: "/#" },
-                  { title: "Distribution Network", href: "/distributed-technology" },
+                  {
+                    title: "Property Management System",
+                    href: "/property-management",
+                  },
+                  { title: "Revenue Management", href: "/revenue-management" },
+                  {
+                    title: "Distribution Network",
+                    href: "/distributed-technology",
+                  },
                   { title: "Event Management", href: "/event-booking" },
                   { title: "Website Builder", href: "/hotel-website-builder" },
-                  { title: "Tours & Packages Engine", href: "/#" },
+                  { title: "Tours & Packages Engine", href: "/tours-packages" },
                   { title: "Mobile App Ecosystem", href: "/mobile-app" },
-                  { title: "Analytics & Reporting", href: "/#" },
-                  { title: "Guest CRM & Loyalty", href: "/#" },
+                  {
+                    title: "Analytics & Reporting",
+                    href: "/analytics-reporting",
+                  },
+                  { title: "Guest CRM & Loyalty", href: "/guest-crm" },
                 ].map(({ title, href }) => (
                   <li key={title}>
                     <Link
@@ -137,19 +171,19 @@ export function Footer({ nested = false, className }: FooterProps) {
           <div className="flex items-center space-x-4">
             <a
               href="#"
-              className="flex h-8 w-8 items-center justify-center   transition-all hover:bg-white/10 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center transition-all hover:bg-white/10 hover:text-white"
             >
               <LinkedIn className="h-4 w-4 fill-current" />
             </a>
             <a
               href="#"
-              className="flex h-8 w-8 items-center justify-center   transition-all hover:bg-white/10 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center transition-all hover:bg-white/10 hover:text-white"
             >
               <Twitter className="h-4 w-4 fill-current" />
             </a>
             <a
               href="#"
-              className="flex h-8 w-8 items-center justify-center  transition-all hover:bg-white/10 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center transition-all hover:bg-white/10 hover:text-white"
             >
               <Facebook className="h-4 w-4 fill-current" />
             </a>

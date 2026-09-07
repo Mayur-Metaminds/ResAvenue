@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import ResourcePageWrapper from "@/components/ResourcePage/ResourcePageWrapper"
+import { ComingSoonPage } from "@/components/common/ComingSoonPage"
 import { StructuredData } from "@/components/seo/StructuredData"
 import { getResourcePageSeo } from "@/lib/seo/pages"
 
@@ -14,7 +14,7 @@ export default function ResourcePage() {
   return (
     <>
       <StructuredData data={seo.schema} />
-      <ResourcePageWrapper />
+      <ComingSoonPage />
     </>
   )
 }

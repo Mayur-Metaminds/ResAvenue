@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import DistributedTechnologyWrapper from "@/components/DistributedTechnology/DistributedTechnologyWrapper"
+import { ComingSoonPage } from "@/components/common/ComingSoonPage"
 import { StructuredData } from "@/components/seo/StructuredData"
 import { getDistributedTechnologyPageSeo } from "@/lib/seo/pages"
 
@@ -14,7 +14,7 @@ export default function DistributionNetworkPage() {
   return (
     <>
       <StructuredData data={seo.schema} />
-      <DistributedTechnologyWrapper />
+      <ComingSoonPage />
     </>
   )
 }

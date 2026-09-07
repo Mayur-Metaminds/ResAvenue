@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, memo } from "react"
+import { useEffect, useRef, memo } from "react"
 
 interface SequenceAnimationProps {
   className?: string
@@ -42,11 +42,11 @@ export const HeroSequenceAnimation = memo(function HeroSequenceAnimation({
       frames.push(img)
     }
 
-    let startTime = performance.now()
+    const startTime = performance.now()
 
     const renderLoop = (time: number) => {
       if (!isMounted) return
-      
+
       animationFrameId = requestAnimationFrame(renderLoop)
 
       // Calculate exactly which frame we SHOULD be on based on absolute elapsed time.
@@ -57,7 +57,7 @@ export const HeroSequenceAnimation = memo(function HeroSequenceAnimation({
       if (targetFrame !== currentFrame) {
         currentFrame = targetFrame
         const img = frames[currentFrame]
-        
+
         // Check if the current frame is fully loaded
         if (img && img.complete && img.naturalWidth > 0) {
           if (canvas.width !== img.naturalWidth) {
@@ -83,7 +83,10 @@ export const HeroSequenceAnimation = memo(function HeroSequenceAnimation({
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className={className || "absolute inset-0 z-50 h-full w-full pointer-events-none object-cover"}
+      className={
+        className ||
+        "pointer-events-none absolute inset-0 z-50 h-full w-full object-cover"
+      }
       style={{
         pointerEvents: "none",
         background: "transparent",

@@ -10,8 +10,8 @@
  *
  * @see lib/seo/build-page-seo.ts
  */
-import { buildPageSeo, type PageSeo } from "@/lib/seo/build-page-seo"
 import { siteConfig } from "@/config/site"
+import { buildPageSeo, type PageSeo } from "@/lib/seo/build-page-seo"
 
 // ── Home ──────────────────────────────────────────────────────────────────────
 
@@ -105,7 +105,8 @@ export function getPropertyManagementPageSeo(): PageSeo {
 
 // ── Hotel Website Builder ─────────────────────────────────────────────────────
 
-const HOTEL_WEBSITE_BUILDER_TITLE = "Hotel Website Builder — Direct Booking Websites"
+const HOTEL_WEBSITE_BUILDER_TITLE =
+  "Hotel Website Builder — Direct Booking Websites"
 const HOTEL_WEBSITE_BUILDER_DESCRIPTION =
   "Launch a high-converting hotel website designed to drive direct bookings, combining beautiful design with integrated booking technology."
 const HOTEL_WEBSITE_BUILDER_PATH = "/hotel-website-builder"
@@ -170,7 +171,8 @@ export function getEventBookingPageSeo(): PageSeo {
 
 // ── Distribution Network ──────────────────────────────────────────────────────
 
-const DISTRIBUTED_TECHNOLOGY_TITLE = "Distribution Network — Global Hotel Connectivity"
+const DISTRIBUTED_TECHNOLOGY_TITLE =
+  "Distribution Network — Global Hotel Connectivity"
 const DISTRIBUTED_TECHNOLOGY_DESCRIPTION =
   "Connect to global distribution networks and reach travelers across every major channel with ResAvenue distributed technology infrastructure."
 const DISTRIBUTED_TECHNOLOGY_PATH = "/distributed-technology"
@@ -228,6 +230,253 @@ export function getContactUsPageSeo(): PageSeo {
   })
 }
 
+// ── About Us ──────────────────────────────────────────────────────────────────
+
+const ABOUT_US_TITLE = "About Us — ResAvenue Story & Team"
+const ABOUT_US_DESCRIPTION =
+  "Learn about ResAvenue's mission to empower hospitality brands with revenue, distribution, and operations technology."
+const ABOUT_US_PATH = "/about-us"
+
+export function getAboutUsPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: ABOUT_US_TITLE,
+    description: ABOUT_US_DESCRIPTION,
+    path: ABOUT_US_PATH,
+    breadcrumbName: "About Us",
+    keywords: ["about ResAvenue", "hospitality technology", "hotel platform"],
+  })
+}
+
+// ── Pricing ───────────────────────────────────────────────────────────────────
+
+const PRICING_TITLE = "Pricing — Plans for Every Hospitality Business"
+const PRICING_DESCRIPTION =
+  "Explore ResAvenue pricing plans designed for hotels of every size — from independent properties to large hospitality groups."
+const PRICING_PATH = "/pricing"
+
+export function getPricingPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: PRICING_TITLE,
+    description: PRICING_DESCRIPTION,
+    path: PRICING_PATH,
+    breadcrumbName: "Pricing",
+    keywords: [
+      "ResAvenue pricing",
+      "hotel software pricing",
+      "hospitality plans",
+    ],
+  })
+}
+
+// ── Knowledge Base ────────────────────────────────────────────────────────────
+
+const KNOWLEDGE_BASE_TITLE =
+  "Knowledge Base & Tutorials — ResAvenue Help Center"
+const KNOWLEDGE_BASE_DESCRIPTION =
+  "Browse ResAvenue tutorials, guides, and documentation to get the most out of your hospitality platform."
+const KNOWLEDGE_BASE_PATH = "/knowledge-base"
+
+export function getKnowledgeBasePageSeo(): PageSeo {
+  return buildPageSeo({
+    title: KNOWLEDGE_BASE_TITLE,
+    description: KNOWLEDGE_BASE_DESCRIPTION,
+    path: KNOWLEDGE_BASE_PATH,
+    breadcrumbName: "Knowledge Base",
+    keywords: ["ResAvenue help", "tutorials", "knowledge base", "hotel guides"],
+  })
+}
+
+// ── FAQs ──────────────────────────────────────────────────────────────────────
+
+const FAQS_TITLE = "FAQs — Frequently Asked Questions"
+const FAQS_DESCRIPTION =
+  "Find answers to frequently asked questions about ResAvenue's hospitality platform and services."
+const FAQS_PATH = "/faqs"
+
+export function getFaqsPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: FAQS_TITLE,
+    description: FAQS_DESCRIPTION,
+    path: FAQS_PATH,
+    breadcrumbName: "FAQs",
+    keywords: ["ResAvenue FAQ", "hospitality FAQ", "hotel software questions"],
+  })
+}
+
+// ── Partners ──────────────────────────────────────────────────────────────────
+
+const PARTNERS_TITLE = "Partners & Resellers — Join the ResAvenue Network"
+const PARTNERS_DESCRIPTION =
+  "Partner with ResAvenue to bring hospitality technology to hotels worldwide — explore reseller and partnership opportunities."
+const PARTNERS_PATH = "/partners"
+
+export function getPartnersPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: PARTNERS_TITLE,
+    description: PARTNERS_DESCRIPTION,
+    path: PARTNERS_PATH,
+    breadcrumbName: "Partners",
+    keywords: ["ResAvenue partners", "resellers", "hospitality partnerships"],
+  })
+}
+
+// ── Careers ───────────────────────────────────────────────────────────────────
+
+const CAREERS_TITLE = "Careers — Join ResAvenue"
+const CAREERS_DESCRIPTION =
+  "Join the ResAvenue team and help shape the future of hospitality technology. Explore open roles and opportunities."
+const CAREERS_PATH = "/careers"
+
+export function getCareersPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: CAREERS_TITLE,
+    description: CAREERS_DESCRIPTION,
+    path: CAREERS_PATH,
+    breadcrumbName: "Careers",
+    keywords: ["ResAvenue careers", "hospitality jobs", "join team"],
+  })
+}
+
+// ── Privacy Policy ────────────────────────────────────────────────────────────
+
+const PRIVACY_POLICY_TITLE = "Privacy Policy — ResAvenue"
+const PRIVACY_POLICY_DESCRIPTION =
+  "Read ResAvenue's privacy policy to understand how we collect, use, and protect your personal information."
+const PRIVACY_POLICY_PATH = "/privacy-policy"
+
+export function getPrivacyPolicyPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: PRIVACY_POLICY_TITLE,
+    description: PRIVACY_POLICY_DESCRIPTION,
+    path: PRIVACY_POLICY_PATH,
+    breadcrumbName: "Privacy Policy",
+    keywords: ["privacy policy", "ResAvenue privacy", "data protection"],
+  })
+}
+
+// ── Terms of Service ──────────────────────────────────────────────────────────
+
+const TERMS_OF_SERVICE_TITLE = "Terms of Service — ResAvenue"
+const TERMS_OF_SERVICE_DESCRIPTION =
+  "Review ResAvenue's terms of service governing the use of our platform and services."
+const TERMS_OF_SERVICE_PATH = "/terms-of-service"
+
+export function getTermsOfServicePageSeo(): PageSeo {
+  return buildPageSeo({
+    title: TERMS_OF_SERVICE_TITLE,
+    description: TERMS_OF_SERVICE_DESCRIPTION,
+    path: TERMS_OF_SERVICE_PATH,
+    breadcrumbName: "Terms of Service",
+    keywords: ["terms of service", "ResAvenue terms", "hotel platform terms"],
+  })
+}
+
+// ── Cookie Policy ─────────────────────────────────────────────────────────────
+
+const COOKIE_POLICY_TITLE = "Cookie Policy — ResAvenue"
+const COOKIE_POLICY_DESCRIPTION =
+  "Learn how ResAvenue uses cookies and similar technologies to improve your browsing experience."
+const COOKIE_POLICY_PATH = "/cookie-policy"
+
+export function getCookiePolicyPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: COOKIE_POLICY_TITLE,
+    description: COOKIE_POLICY_DESCRIPTION,
+    path: COOKIE_POLICY_PATH,
+    breadcrumbName: "Cookie Policy",
+    keywords: ["cookie policy", "ResAvenue cookies", "tracking policy"],
+  })
+}
+
+// ── Revenue Management ────────────────────────────────────────────────────────
+
+const REVENUE_MANAGEMENT_TITLE =
+  "Revenue Management — Intelligent Pricing for Hotels"
+const REVENUE_MANAGEMENT_DESCRIPTION =
+  "Maximize hotel revenue with AI-driven pricing, demand forecasting, and rate optimization from ResAvenue."
+const REVENUE_MANAGEMENT_PATH = "/revenue-management"
+
+export function getRevenueManagementPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: REVENUE_MANAGEMENT_TITLE,
+    description: REVENUE_MANAGEMENT_DESCRIPTION,
+    path: REVENUE_MANAGEMENT_PATH,
+    breadcrumbName: "Revenue Management",
+    keywords: [
+      "revenue management",
+      "hotel pricing",
+      "dynamic pricing",
+      "hotel revenue optimization",
+    ],
+  })
+}
+
+// ── Tours & Packages ──────────────────────────────────────────────────────────
+
+const TOURS_PACKAGES_TITLE = "Tours & Packages Engine — Hotel Experiences"
+const TOURS_PACKAGES_DESCRIPTION =
+  "Create and sell tours, packages, and guest experiences seamlessly with ResAvenue's Tours & Packages Engine."
+const TOURS_PACKAGES_PATH = "/tours-packages"
+
+export function getToursPackagesPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: TOURS_PACKAGES_TITLE,
+    description: TOURS_PACKAGES_DESCRIPTION,
+    path: TOURS_PACKAGES_PATH,
+    breadcrumbName: "Tours & Packages",
+    keywords: [
+      "tours and packages",
+      "hotel packages",
+      "guest experiences",
+      "hospitality tours",
+    ],
+  })
+}
+
+// ── Analytics & Reporting ─────────────────────────────────────────────────────
+
+const ANALYTICS_REPORTING_TITLE = "Analytics & Reporting — Hotel Insights"
+const ANALYTICS_REPORTING_DESCRIPTION =
+  "Turn hospitality data into actionable insights with ResAvenue analytics and reporting tools."
+const ANALYTICS_REPORTING_PATH = "/analytics-reporting"
+
+export function getAnalyticsReportingPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: ANALYTICS_REPORTING_TITLE,
+    description: ANALYTICS_REPORTING_DESCRIPTION,
+    path: ANALYTICS_REPORTING_PATH,
+    breadcrumbName: "Analytics & Reporting",
+    keywords: [
+      "hotel analytics",
+      "hospitality reporting",
+      "hotel insights",
+      "performance analytics",
+    ],
+  })
+}
+
+// ── Guest CRM ─────────────────────────────────────────────────────────────────
+
+const GUEST_CRM_TITLE = "Guest CRM & Loyalty — Hospitality Customer Platform"
+const GUEST_CRM_DESCRIPTION =
+  "Build guest loyalty and manage customer relationships with ResAvenue Guest CRM & Loyalty tools."
+const GUEST_CRM_PATH = "/guest-crm"
+
+export function getGuestCrmPageSeo(): PageSeo {
+  return buildPageSeo({
+    title: GUEST_CRM_TITLE,
+    description: GUEST_CRM_DESCRIPTION,
+    path: GUEST_CRM_PATH,
+    breadcrumbName: "Guest CRM",
+    keywords: [
+      "guest CRM",
+      "hotel loyalty",
+      "hospitality CRM",
+      "guest management",
+    ],
+  })
+}
+
 // ── Shared page manifest ─────────────────────────────────────────────────────
 // Reused by llms.txt (see app/llms.txt/route.ts) so it stays in sync with the
 // per-page titles/descriptions above without re-parsing Metadata objects.
@@ -274,6 +523,67 @@ export const SEO_PAGE_ENTRIES: SeoPageEntry[] = [
     path: CONTACT_US_PATH,
     title: CONTACT_US_TITLE,
     description: CONTACT_US_DESCRIPTION,
+  },
+  {
+    path: ABOUT_US_PATH,
+    title: ABOUT_US_TITLE,
+    description: ABOUT_US_DESCRIPTION,
+  },
+  {
+    path: PRICING_PATH,
+    title: PRICING_TITLE,
+    description: PRICING_DESCRIPTION,
+  },
+  {
+    path: KNOWLEDGE_BASE_PATH,
+    title: KNOWLEDGE_BASE_TITLE,
+    description: KNOWLEDGE_BASE_DESCRIPTION,
+  },
+  { path: FAQS_PATH, title: FAQS_TITLE, description: FAQS_DESCRIPTION },
+  {
+    path: PARTNERS_PATH,
+    title: PARTNERS_TITLE,
+    description: PARTNERS_DESCRIPTION,
+  },
+  {
+    path: CAREERS_PATH,
+    title: CAREERS_TITLE,
+    description: CAREERS_DESCRIPTION,
+  },
+  {
+    path: PRIVACY_POLICY_PATH,
+    title: PRIVACY_POLICY_TITLE,
+    description: PRIVACY_POLICY_DESCRIPTION,
+  },
+  {
+    path: TERMS_OF_SERVICE_PATH,
+    title: TERMS_OF_SERVICE_TITLE,
+    description: TERMS_OF_SERVICE_DESCRIPTION,
+  },
+  {
+    path: COOKIE_POLICY_PATH,
+    title: COOKIE_POLICY_TITLE,
+    description: COOKIE_POLICY_DESCRIPTION,
+  },
+  {
+    path: REVENUE_MANAGEMENT_PATH,
+    title: REVENUE_MANAGEMENT_TITLE,
+    description: REVENUE_MANAGEMENT_DESCRIPTION,
+  },
+  {
+    path: TOURS_PACKAGES_PATH,
+    title: TOURS_PACKAGES_TITLE,
+    description: TOURS_PACKAGES_DESCRIPTION,
+  },
+  {
+    path: ANALYTICS_REPORTING_PATH,
+    title: ANALYTICS_REPORTING_TITLE,
+    description: ANALYTICS_REPORTING_DESCRIPTION,
+  },
+  {
+    path: GUEST_CRM_PATH,
+    title: GUEST_CRM_TITLE,
+    description: GUEST_CRM_DESCRIPTION,
   },
   // NOTE: /distributed-technology/ and /resource-page/ are intentionally
   // excluded here — they're disallowed in apps/ui/src/app/robots.ts and

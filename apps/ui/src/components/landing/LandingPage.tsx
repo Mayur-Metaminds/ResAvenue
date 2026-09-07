@@ -1,5 +1,8 @@
 "use client"
 
+import { Marquee } from "@/components/common/Marquee"
+import { trustedLogos, type TrustedLogo } from "@/types/trustedLogos"
+
 import { BentoProductsSection } from "./BentoProductsSection"
 import { ExploreModulesSection } from "./ExploreModulesSection"
 import { FaqSection } from "./FaqSection"
@@ -10,15 +13,13 @@ import { SolutionSection } from "./SolutionSection"
 import { TestimonialsSection } from "./TestimonialsSection"
 import { WhoWeServeSection } from "./WhoWeServeSection"
 import { CtaSection } from "../common/CtaSection"
-import { Marquee } from "@/components/common/Marquee"
-import { trustedLogos, type TrustedLogo } from "@/types/trustedLogos"
 
 export default function LandingPage() {
   return (
     <div>
       <HeroSection />
       <Marquee<TrustedLogo>
-        className="w-full pb-[30px] pt-[30px] "
+        className="w-full pt-[30px] pb-[30px]"
         items={[...trustedLogos]}
         getKey={(logo) => logo.name}
         durationSeconds={110}
@@ -37,7 +38,11 @@ export default function LandingPage() {
         )}
       />
       <SolutionSection />
-      <BentoProductsSection />
+
+      <div className="bg-red-600">
+        <BentoProductsSection />
+      </div>
+
       <ExploreModulesSection />
       <FeatureCarouselSection />
       <WhoWeServeSection />

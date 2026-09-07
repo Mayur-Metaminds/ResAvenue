@@ -1,7 +1,11 @@
 import type { Metadata } from "next"
 
-import { getDefaultOgImage, getSiteUrl, SITE_NAME } from "@/constants/seo.constants"
 import { siteConfig } from "@/config/site"
+import {
+  getDefaultOgImage,
+  getSiteUrl,
+  SITE_NAME,
+} from "@/constants/seo.constants"
 
 export type PageSeoInput = {
   title: string
@@ -175,10 +179,7 @@ function buildPageSchema({
           email: siteConfig.contact.email,
           contactType: "customer support",
         },
-        sameAs: [
-          siteConfig.social.twitter.url,
-          siteConfig.social.linkedin.url,
-        ],
+        sameAs: [siteConfig.social.twitter.url, siteConfig.social.linkedin.url],
       }
     )
   }
@@ -197,11 +198,11 @@ function buildPageSchema({
  * excludes `/distributed-technology` and `/resource-page`, which aren't
  * ready to be indexed yet.
  */
-export const STATIC_SEO_ROUTES: Array<{
+export const STATIC_SEO_ROUTES: {
   path: string
   changeFrequency: "weekly" | "monthly"
   priority: number
-}> = [
+}[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/direct-connect", changeFrequency: "monthly", priority: 0.9 },
   { path: "/channel-connect", changeFrequency: "monthly", priority: 0.9 },
@@ -210,4 +211,17 @@ export const STATIC_SEO_ROUTES: Array<{
   { path: "/mobile-app", changeFrequency: "monthly", priority: 0.8 },
   { path: "/event-booking", changeFrequency: "monthly", priority: 0.8 },
   { path: "/contact-us", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/about-us", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/pricing", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/knowledge-base", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/faqs", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/partners", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/careers", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/privacy-policy", changeFrequency: "monthly", priority: 0.3 },
+  { path: "/terms-of-service", changeFrequency: "monthly", priority: 0.3 },
+  { path: "/cookie-policy", changeFrequency: "monthly", priority: 0.3 },
+  { path: "/revenue-management", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/tours-packages", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/analytics-reporting", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/guest-crm", changeFrequency: "monthly", priority: 0.7 },
 ]

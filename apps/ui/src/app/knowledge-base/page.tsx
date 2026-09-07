@@ -2,14 +2,14 @@ import type { Metadata } from "next"
 
 import { ComingSoonPage } from "@/components/common/ComingSoonPage"
 import { StructuredData } from "@/components/seo/StructuredData"
-import { getEventBookingPageSeo } from "@/lib/seo/pages"
+import { getKnowledgeBasePageSeo } from "@/lib/seo/pages"
 
 export function generateMetadata(): Metadata {
-  return getEventBookingPageSeo().metadata
+  return getKnowledgeBasePageSeo().metadata
 }
 
-export default function EventBookingPage() {
-  const seo = getEventBookingPageSeo()
+export default function KnowledgeBasePage() {
+  const seo = getKnowledgeBasePageSeo()
 
   return (
     <>
