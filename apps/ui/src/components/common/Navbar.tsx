@@ -44,6 +44,20 @@ const navLinks = [
   },
   { name: "Resources", href: "/resource-page" },
   { name: "Partners & resellers", href: "/partners" },
+  {
+    name: "Login",
+    href: "#",
+    subItems: [
+      {
+        name: "Direct Connect",
+        href: "https://crs.resavenue.com/res_mars_new/",
+      },
+      {
+        name: "Channel Connect",
+        href: "https://cm.resavenue.com/channelcontroller/",
+      },
+    ],
+  },
 ]
 
 type NavTheme = "light" | "dark"
@@ -115,116 +129,165 @@ export function Navbar() {
     }
   }, [isMobileMenuOpen])
 
+  // Close the mobile menu once the desktop navbar breakpoint (xl) is reached.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1280px)")
+    const onChange = () => {
+      if (mq.matches) setIsMobileMenuOpen(false)
+    }
+    onChange()
+    mq.addEventListener("change", onChange)
+
+    return () => mq.removeEventListener("change", onChange)
+  }, [])
+
   const isDark = theme === "dark"
 
   return (
     <>
       <nav
         className={cn(
-          "4xl:px-100 fixed top-0 left-0 z-50 w-full rounded-none px-[15px] py-[19px] transition-[top,width,padding,background-color,border-color,border-radius,box-shadow,backdrop-filter] duration-300 ease-out will-change-[top,width]",
+          "4xl:px-100 fixed top-0 left-0 z-[100] w-full rounded-none px-[15px] py-[19px] transition-[top,width,padding,background-color,border-color,border-radius,box-shadow,backdrop-filter] duration-300 ease-out will-change-[top,width]",
           // Always center on desktop — works at full width too (left:50% + -translate-x-1/2 nets to left:0 when width is 100%).
           // Keeping these stable across scroll states eliminates the wobble from animating left/translate together.
-          "lg:left-1/2 lg:-translate-x-1/2",
+          // Desktop navbar chrome starts at xl; lg and below use the mobile navbar.
+          "xl:left-1/2 xl:-translate-x-1/2",
           scrolled
             ? [
-                "lg:top-6 lg:w-[calc(100%-2rem)] lg:rounded-[100px] lg:border lg:px-2 lg:py-2 lg:shadow-[0_8px_32px_rgba(0,0,0,0.1)] xl:w-[calc(100%-4rem)]",
+                "xl:top-6 xl:w-[calc(100%-2rem)] xl:rounded-[100px] xl:border xl:px-2 xl:py-2 xl:shadow-[0_8px_32px_rgba(0,0,0,0.1)] 2xl:w-[calc(100%-4rem)]",
                 isDark
-                  ? "bg-black/20 backdrop-blur-md lg:border-white/10 lg:bg-white/10"
-                  : "border-b border-black/5 bg-[linear-gradient(225deg,rgba(240,242,253,0.18)_0%,rgba(61,98,129,0.12)_100%)] backdrop-blur-[15px] lg:border-black/10 lg:shadow-sm",
+                  ? "bg-black/20 backdrop-blur-md xl:border-white/10 xl:bg-white/10"
+                  : "border-b border-black/5 bg-[linear-gradient(225deg,rgba(240,242,253,0.18)_0%,rgba(61,98,129,0.12)_100%)] backdrop-blur-[15px] xl:border-black/10 xl:shadow-sm",
               ]
             : "border-0 bg-transparent shadow-none backdrop-blur-none"
         )}
       >
         <div
           className={cn(
-            "flex w-full items-center justify-between transition-opacity lg:px-4",
+            "flex w-full items-center justify-between transition-opacity xl:px-4",
             isMobileMenuOpen
               ? "pointer-events-none opacity-0 duration-100"
               : "opacity-100 delay-[400ms] duration-500"
           )}
         >
           {/* Logo */}
-          <div className="shrink-0 lg:ml-2">
+          <div className="shrink-0 xl:ml-2">
             <Link href="/">
               {isDark ? <ResAvenueWhiteLogo /> : <ResAvenueBlackLogo />}
             </Link>
           </div>
 
           {/* Desktop nav */}
-          <div className="hidden items-center lg:flex lg:space-x-3 xl:space-x-8">
-            <div className="flex items-center lg:space-x-3 xl:space-x-8">
-              {navLinks.map((link) => (
-                <div
-                  key={link.name}
-                  className="group relative inline-block py-2"
-                >
-                  <Link
-                    href={link.href}
+          <div className="hidden items-center gap-6 xl:flex">
+            <div className="flex items-center xl:space-x-3 2xl:space-x-8">
+              {navLinks.map((link) => {
+                const isLogin = link.name === "Login"
+
+                return (
+                  <div
+                    key={link.name}
                     className={cn(
-                      "typo-body3 relative flex shrink-0 items-center gap-1.5 whitespace-nowrap transition-colors",
-                      "hover:text-[#ED862E]",
-                      // Animated underline in the same hover color, grows from the left.
-                      "after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-[#ED862E] after:transition-[width] after:duration-300 hover:after:w-full",
-                      isDark ? "text-white/80" : "text-[#010E38]"
+                      "group relative inline-block",
+                      // Services / Support Center: py-2 is part of the hit area above the
+                      // shared pt-4 dropdown offset. Login is a tall CTA button, so py-0
+                      // keeps top-full at the button bottom — then the same pt-4 matches.
+                      isLogin ? "py-0" : "py-2",
+                      link.subItems && "hover:z-50"
                     )}
                   >
-                    {link.name}
-                    {link.subItems && (
-                      <svg
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="transition-transform duration-200 group-hover:rotate-180"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    )}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      className={cn(
+                        "typo-body3 relative flex shrink-0 items-center gap-1.5 whitespace-nowrap transition-colors",
+                        isLogin
+                          ? buttonVariants({
+                              variant: "primary",
+                              className:
+                                "box-border h-[40.8px] leading-none text-white after:hidden hover:text-white hover:opacity-90",
+                            })
+                          : [
+                              "hover:text-[#ED862E]",
+                              // Animated underline in the same hover color, grows from the left.
+                              "after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-[#ED862E] after:transition-[width] after:duration-300 hover:after:w-full",
+                              isDark ? "text-white/80" : "text-[#010E38]",
+                            ]
+                      )}
+                      style={
+                        isLogin
+                          ? { padding: "11px 21.661px 11.8px 22px" }
+                          : undefined
+                      }
+                    >
+                      {link.name}
+                      {link.subItems && (
+                        <svg
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="transition-transform duration-200 group-hover:rotate-180"
+                        >
+                          <path
+                            d="M1 1L5 5L9 1"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      )}
+                    </Link>
 
-                  {link.subItems && (
-                    <div className="invisible absolute top-full left-1/2 z-50 -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+                    {link.subItems && (
+                      // Dropdown offset:
+                      // - Text links (Services / Support Center): wrapper py-2 puts 8px
+                      //   under the label, then pt-4 (16px) → visible label→panel air ≈ 8px
+                      //   of py-2 (reads as nav) + short bridge.
+                      // - Login is a solid CTA with py-0, so top-full = button bottom.
+                      //   Using the same pt-4 leaves a full 16px empty band under the
+                      //   orange button. pt-2 matches the visible gap under Support Center.
                       <div
                         className={cn(
-                          "flex w-[186px] flex-col gap-[8px] rounded-[5px] p-[10px] backdrop-blur-md",
-                          isDark
-                            ? "bg-[rgba(0,0,0,0.22)]"
-                            : "border border-black/5 bg-white/90 shadow-sm"
+                          "pointer-events-none invisible absolute top-full left-1/2 z-[110] -translate-x-1/2 group-hover:pointer-events-auto group-hover:visible",
+                          isLogin ? "pt-[13.75px]" : "pt-4"
                         )}
                       >
-                        {link.subItems.map((sub, idx) => (
-                          <div
-                            key={sub.name}
-                            className="flex flex-col gap-[10px]"
-                          >
-                            {idx > 0 && (
-                              <div className="h-[1px] w-full bg-[#D7D9D9]/40" />
-                            )}
-                            <Link
-                              href={sub.href}
-                              className={cn(
-                                "block text-left text-[14px] leading-normal font-medium transition-colors",
-                                isDark
-                                  ? "text-white/80 hover:text-white"
-                                  : "text-[#010C28]/80 hover:text-[#010C28]"
-                              )}
+                        <div
+                          className={cn(
+                            "relative isolate flex w-[186px] flex-col gap-[8px] rounded-[5px] p-[10px] backdrop-blur-md",
+                            isDark
+                              ? "bg-[rgba(0,0,0,0.22)]"
+                              : "border border-black/5 bg-white/90 shadow-sm"
+                          )}
+                        >
+                          {link.subItems.map((sub, idx) => (
+                            <div
+                              key={sub.name}
+                              className="flex flex-col gap-[10px]"
                             >
-                              {sub.name}
-                            </Link>
-                          </div>
-                        ))}
+                              {idx > 0 && (
+                                <div className="h-[1px] w-full bg-[#D7D9D9]/40" />
+                              )}
+                              <Link
+                                href={sub.href}
+                                className={cn(
+                                  "block text-left text-[14px] leading-normal font-medium transition-colors",
+                                  isDark
+                                    ? "text-white/80 hover:text-white"
+                                    : "text-[#010C28]/80 hover:text-[#010C28]"
+                                )}
+                              >
+                                {sub.name}
+                              </Link>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              ))}
+                    )}
+                  </div>
+                )
+              })}
             </div>
 
             <Link
@@ -232,7 +295,7 @@ export function Navbar() {
               className={buttonVariants({
                 variant: "primary",
                 className:
-                  "typo-body3 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] lg:mr-2",
+                  "typo-body3 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] xl:mr-2",
               })}
               style={{ padding: "11px 21.661px 11.8px 22px" }}
             >
@@ -243,7 +306,7 @@ export function Navbar() {
           {/* Mobile hamburger */}
           <button
             className={cn(
-              "touch-manipulation p-2 lg:hidden",
+              "touch-manipulation p-2 xl:hidden",
               isDark ? "text-white" : "text-[#010C28]"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -271,14 +334,14 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex flex-col lg:hidden"
+            className="fixed inset-0 z-[110] flex flex-col xl:hidden"
             style={{
               background: "rgba(237, 134, 46, 0.60)",
               backdropFilter: "blur(20.7px)",
               WebkitBackdropFilter: "blur(20.7px)",
             }}
           >
-            <div className="flex flex-1 flex-col overflow-hidden px-[15px] py-[19px] shadow-2xl">
+            <div className="flex flex-1 flex-col overflow-hidden px-[15px] py-[19px] shadow-2xl md:px-[24px] lg:px-[32px]">
               {/* Header */}
               <div className="mb-8 flex items-center justify-between">
                 <div className="shrink-0">
@@ -365,14 +428,14 @@ export function Navbar() {
                 </div>
 
                 {/* CTA Button */}
-                <div className="mt-auto pt-8 pb-4">
+                <div className="mt-auto flex justify-center pt-8 pb-4">
                   <Link
                     href="/contact-us"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={buttonVariants({
                       variant: "primary",
                       className:
-                        "font-source-sans-600 flex h-[48px] w-full items-center justify-center rounded-[50px] text-[15px] text-white",
+                        "font-source-sans-600 flex h-[48px] w-full max-w-[240px] items-center justify-center rounded-[50px] text-[15px] text-white",
                     })}
                   >
                     Request a Demo
