@@ -3,17 +3,11 @@
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { LazyLottie } from "@/components/common/LazyLottie"
-import { preloadLottie } from "@/lib/lottie-preload"
-import { HERO_LAPTOP_URL } from "@/lib/lottie-urls"
 import { HeroContent } from "./HeroContent"
+import { HeroSequenceAnimation } from "./HeroSequenceAnimation"
 import { HeroTitle } from "./HeroTitle"
 
 export function HeroSection() {
-  // Above the fold: start the (large) hero animation download as early as
-  // possible, in parallel with hydration, instead of waiting for the effect.
-  preloadLottie(HERO_LAPTOP_URL)
-
   return (
     <section
       data-nav-theme="dark"
@@ -75,16 +69,7 @@ export function HeroSection() {
               <div className="absolute top-1/2 left-1/2 -z-10 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ED862E]/15 blur-[80px]" />
 
               <div className="relative aspect-[1380/884] w-full max-lg:overflow-hidden">
-                <LazyLottie
-                  src={HERO_LAPTOP_URL}
-                  priority="eager"
-                  loop
-                  autoplay
-                  className="h-full w-full overflow-visible lg:ml-5"
-                  lottieClassName="max-[1025px]:scale-95 lg:scale-125"
-                  rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
-                  aria-label="ResAvenue dashboard preview"
-                />
+                <HeroSequenceAnimation className="absolute inset-0 z-10 h-full w-full pointer-events-none object-contain" />
               </div>
             </div>
           </div>
