@@ -1,6 +1,6 @@
-import type React from "react"
-
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
+import type React from "react"
 
 import { LazyLottie } from "@/components/common/LazyLottie"
 import { HeroContent } from "@/components/landing/HeroContent"
@@ -11,7 +11,7 @@ function PropertyManagementHero() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center"
+      className="relative flex w-full flex-col justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20">
@@ -38,27 +38,27 @@ function PropertyManagementHero() {
             }
             description={
               <span className="typo-body1 text-white/65 lg:w-129">
-                Your front desk, bookings, payments, housekeeping, and revenue—all
-                unified into one intelligent system.
-                <br className="hidden lg:block" /> Drive more direct bookings. Eliminate operational chaos. Deliver
-                seamless guest experiences at scale.
+                Your front desk, bookings, payments, housekeeping, and
+                revenue—all unified into one intelligent system.
+                <br className="hidden lg:block" /> Drive more direct bookings.
+                Eliminate operational chaos. Deliver seamless guest experiences
+                at scale.
               </span>
             }
             actions={[
-              <button
+              <Link
                 key="demo"
-                type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-[#ED862E] px-6 py-3.5 font-medium text-white shadow-[0_8px_24px_rgba(237,134,46,0.45)] transition-transform hover:scale-105 hover:bg-[#d97726] lg:text-[15px]"
+                href="/contact-us"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#ED862E] px-6 py-3.5 font-medium text-white shadow-[0_8px_24px_rgba(237,134,46,0.45)] transition-transform hover:scale-105 hover:bg-[#d97726] lg:text-[15px]"
               >
                 Request a Demo
                 <ArrowRight className="h-4 w-4" />
-              </button>,
+              </Link>,
               <button
                 key="sales"
                 type="button"
                 className="rounded-full border border-white/10 bg-[#1C2C47]/60 px-8 py-3.5 font-medium text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-[#1C2C47]/80 lg:text-[15px]"
               >
-
                 <span className="">Talk to Sales</span>
               </button>,
             ]}

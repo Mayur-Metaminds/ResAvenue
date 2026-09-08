@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 import { LazyLottie } from "@/components/common/LazyLottie"
 import { HeroContent } from "@/components/landing/HeroContent"
@@ -48,15 +49,16 @@ export function DirectConnectHeroSection() {
             }
             description="From hotels and resorts to boutique properties, serviced apartments, villas, and alternative accommodations, ResAvenue Direct Connect transforms your website into a powerful direct booking engine. Deliver seamless, mobile-first booking experiences with real-time availability, dynamic pricing, exclusive offers, secure payments, and conversion-focused journeys designed to reduce OTA dependency and maximize direct revenue."
             actions={[
-              <Button
-                key="demo"
-                variant="primary"
-                size="default"
-                icon={<ArrowRight className="h-4 w-4" />}
-                className="gap-[7.6px] pt-[8.5px] pr-[10.5px] pb-[8.5px] pl-[9.5px] font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-semibold lg:px-[28px] lg:pt-[17px] lg:pb-[18px] lg:text-[15px]"
-              >
-                Request a Demo
-              </Button>,
+              <Link key="demo" href="/contact-us">
+                <Button
+                  variant="primary"
+                  size="default"
+                  icon={<ArrowRight className="h-4 w-4" />}
+                  className="gap-[7.6px] pt-[8.5px] pr-[10.5px] pb-[8.5px] pl-[9.5px] font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-semibold lg:px-[28px] lg:pt-[17px] lg:pb-[18px] lg:text-[15px]"
+                >
+                  Request a Demo
+                </Button>
+              </Link>,
               <Button
                 key="products"
                 variant="secondary"

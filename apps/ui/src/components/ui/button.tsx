@@ -6,7 +6,7 @@ import { cn } from "@/lib/styles"
 const buttonVariants = cva(
   // Typography is intentionally NOT baked in — consumers pass a typo-* utility (or explicit
   // font/size/weight classes) so call sites stay in control without fighting the cascade.
-  "inline-flex items-center justify-center whitespace-nowrap rounded-[50px] text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-[50px] text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {

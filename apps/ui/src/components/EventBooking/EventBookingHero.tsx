@@ -1,25 +1,29 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from "lucide-react"
+import Link from "next/link"
+import type React from "react"
 
-import { LazyLottie } from '@/components/common/LazyLottie'
-import { HeroContent } from '@/components/landing/HeroContent'
-import { HeroTitle } from '@/components/landing/HeroTitle'
-import { Button } from '@/components/ui/button'
-import { CHANNEL_CONNECT_HERO_URL } from '@/lib/lottie-urls'
-import React from 'react'
+import { LazyLottie } from "@/components/common/LazyLottie"
+import { HeroContent } from "@/components/landing/HeroContent"
+import { HeroTitle } from "@/components/landing/HeroTitle"
+import { Button } from "@/components/ui/button"
+import { CHANNEL_CONNECT_HERO_URL } from "@/lib/lottie-urls"
 
-const EventBookingHero = () => {
+function EventBookingHero() {
   const heroAnimationUrl = CHANNEL_CONNECT_HERO_URL
 
   return (
-    <div data-nav-theme="dark" className='relative flex w-full flex-col overflow-hidden bg-cover bg-center bg-no-repeat justify-center'
-      style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}>
-      <div className='mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20'>
-        <div className='relative z-10 flex w-full flex-1 flex-col items-start lg:pt-6'>
+    <div
+      data-nav-theme="dark"
+      className="relative flex w-full flex-col justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/images/Contact-Us/contactUsBg.png')" }}
+    >
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] py-[106px] lg:flex-row lg:justify-between lg:px-20">
+        <div className="relative z-10 flex w-full flex-1 flex-col items-start lg:pt-6">
           <HeroContent
-            eyebrow='Enterprise Analytics'
+            eyebrow="Enterprise Analytics"
             title={
               <HeroTitle
-                className='typo-h1 tracking-[-1.8px] text-white max-sm:max-w-[300px] max-w-100'
+                className="typo-h1 max-w-100 tracking-[-1.8px] text-white max-sm:max-w-[300px]"
                 style={
                   {
                     "--hero-title-color": "#FFFFFF",
@@ -34,24 +38,25 @@ const EventBookingHero = () => {
                 <HeroTitle.Highlight>ticketing Platform</HeroTitle.Highlight>
               </HeroTitle>
             }
-            description='Streamline your Ticketing, Payments, and Event Management
-with a single, powerful enterprise solution designed for scale.'
-            descriptionClassName='typo-body1 mb-0 mb-[30px] md:mb-[20px] text-white opacity-55' />
-
+            description="Streamline your Ticketing, Payments, and Event Management
+with a single, powerful enterprise solution designed for scale."
+            descriptionClassName="typo-body1 mb-0 mb-[30px] md:mb-[20px] text-white opacity-55"
+          />
 
           <div className="mt-5 flex justify-center">
-            <Button
-              key="demo"
-              variant="primary"
-              size="default"
-              icon={<ArrowRight className="h-4 w-4" />}
-              // Exact pixel paddings & gap applied responsively
-              className="gap-[7.6px] pt-[8.5px] pr-[12px] lg:pr-[10.5px] pb-[8.5px] pl-[11px] lg:pl-[9.5px] font-['Plus_Jakarta_Sans'] font-semibold text-[16px] leading-[24px] lg:px-[28px] lg:pt-[17px] lg:pb-[18px] lg:text-[15px]"
-            >
-              Request a Demo
-            </Button>
+            <Link href="/contact-us">
+              <Button
+                key="demo"
+                variant="primary"
+                size="default"
+                icon={<ArrowRight className="h-4 w-4" />}
+                // Exact pixel paddings & gap applied responsively
+                className="gap-[7.6px] pt-[8.5px] pr-[12px] pb-[8.5px] pl-[11px] font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-semibold lg:px-[28px] lg:pt-[17px] lg:pr-[10.5px] lg:pb-[18px] lg:pl-[9.5px] lg:text-[15px]"
+              >
+                Request a Demo
+              </Button>
+            </Link>
           </div>
-
         </div>
 
         {/* Right Column: Dummy Lottie animation placeholder */}
@@ -68,7 +73,6 @@ with a single, powerful enterprise solution designed for scale.'
             />
           </div>
         </div>
-
       </div>
     </div>
   )

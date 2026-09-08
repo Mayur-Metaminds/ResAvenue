@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+
 import { Footer } from "@/components/common/Footer"
 import { cn } from "@/lib/styles"
 
@@ -75,7 +76,9 @@ export function CtaSection({
       />
 
       {/* Overlay */}
-      {showOverlay && <div className="absolute inset-0 z-0 bg-[#010C28]/20 mix-blend-multiply" />}
+      {showOverlay && (
+        <div className="absolute inset-0 z-0 bg-[#010C28]/20 mix-blend-multiply" />
+      )}
 
       <div
         className={cn(
@@ -86,7 +89,7 @@ export function CtaSection({
         {eyebrow && (
           <p
             className={cn(
-              "mb-4 text-sm font-medium uppercase tracking-widest text-white/60",
+              "mb-4 text-sm font-medium tracking-widest text-white/60 uppercase",
               eyebrowClassName
             )}
           >
@@ -96,7 +99,7 @@ export function CtaSection({
 
         <h2
           className={cn(
-            "mb-[18px] text-[32px] lg:text-[48px] leading-[1.15] font-medium tracking-tight text-white md:text-5xl lg:text-6xl",
+            "mb-[18px] text-[32px] leading-[1.15] font-medium tracking-tight text-white md:text-5xl lg:text-6xl lg:text-[48px]",
             titleClassName
           )}
         >
@@ -123,7 +126,7 @@ export function CtaSection({
               <Link
                 href={primaryButtonHref ?? "/contact-us"}
                 className={cn(
-                  "inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-medium text-gray-900 shadow-lg transition-transform hover:scale-105 hover:bg-gray-100",
+                  "inline-flex cursor-pointer items-center gap-2 rounded-full bg-white px-8 py-3.5 font-medium text-gray-900 shadow-lg transition-transform hover:scale-105 hover:bg-gray-100",
                   primaryButtonClassName
                 )}
               >
