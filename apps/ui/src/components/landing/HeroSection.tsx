@@ -49,8 +49,8 @@ export function HeroSection() {
                   variant="primary"
                   size="default"
                   icon={<ArrowRight className="h-4 w-4" />}
-                  // Exact pixel paddings & gap applied responsively
-                  className="gap-[7.6px] pt-[8.5px] pr-[12px] pb-[8.5px] pl-[11px] font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-semibold lg:px-[28px] lg:pt-[17px] lg:pr-[10.5px] lg:pb-[18px] lg:pl-[9.5px] lg:text-[15px]"
+                  // Responsive padding: lg:px-[28px] provides comfortable width matching design
+                  className="gap-[7.6px] px-[18px] pt-[8.5px] pb-[8.5px] font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-semibold lg:px-[28px] lg:pt-[17px] lg:pb-[18px] lg:text-[15px]"
                 >
                   Request a Demo
                 </Button>
