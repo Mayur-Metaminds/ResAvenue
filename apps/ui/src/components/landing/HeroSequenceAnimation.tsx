@@ -30,7 +30,7 @@ export const HeroSequenceAnimation = memo(function HeroSequenceAnimation({
     if (!ctx) return
 
     const frames: HTMLImageElement[] = []
-    let currentFrame = 0
+    let currentFrame = -1
     let animationFrameId: number
     let isMounted = true
 
@@ -39,6 +39,21 @@ export const HeroSequenceAnimation = memo(function HeroSequenceAnimation({
       const img = new Image()
       const paddedIndex = String(i).padStart(padLength, "0")
       img.src = `${folderPath}/${filePrefix}${paddedIndex}${fileExtension}`
+      if (i === 0) {
+        img.addEventListener("load", () => {
+          if (isMounted && currentFrame <= 0 && canvasRef.current) {
+            const c = canvasRef.current
+            const cCtx = c.getContext("2d")
+            if (cCtx && img.naturalWidth > 0) {
+              c.width = img.naturalWidth
+              c.height = img.naturalHeight
+              cCtx.clearRect(0, 0, c.width, c.height)
+              cCtx.drawImage(img, 0, 0)
+              currentFrame = 0
+            }
+          }
+        })
+      }
       frames.push(img)
     }
 
