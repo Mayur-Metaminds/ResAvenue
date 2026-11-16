@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { ComingSoonPage } from "@/components/common/ComingSoonPage"
+import HotelWebsiteBuilder from "@/components/HotelWebsiteBuilder/HotelWebsiteBuilder"
 import { StructuredData } from "@/components/seo/StructuredData"
 import { getHotelWebsiteBuilderPageSeo } from "@/lib/seo/pages"
 
@@ -14,7 +14,8 @@ export default function HotelWebsiteBuilderPage() {
   return (
     <>
       <StructuredData data={seo.schema} />
-      <ComingSoonPage />
+      <HotelWebsiteBuilder />
+      {/* <ComingSoonPage /> */}
     </>
   )
 }

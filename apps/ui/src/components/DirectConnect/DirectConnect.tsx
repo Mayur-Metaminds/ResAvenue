@@ -1,21 +1,16 @@
+import { ComingSoonPage } from "@/components/common/ComingSoonPage"
 import { CtaSection } from "@/components/common/CtaSection"
-
-import { DirectConnectBookingEngineSection } from "./DirectConnectBookingEngineSection"
-import { DirectConnectDashboardSection } from "./DirectConnectDashboardSection"
-import { DirectConnectDeepDiveSection } from "./DirectConnectDeepDiveSection"
-import { DirectConnectHeroSection } from "./DirectConnectHeroSection"
-import { DirectConnectOperationsSection } from "./DirectConnectOperationsSection"
-import { DirectConnectSolutionSection } from "./DirectConnectSolutionSection"
 
 export default function DirectConnect() {
   return (
     <div className="flex min-h-screen flex-col">
-      <DirectConnectHeroSection />
+      <ComingSoonPage />
+      {/* <DirectConnectHeroSection />
       <DirectConnectSolutionSection />
       <DirectConnectDeepDiveSection />
       <DirectConnectOperationsSection />
       <DirectConnectDashboardSection />
-      <DirectConnectBookingEngineSection />
+      <DirectConnectBookingEngineSection /> */}
       <CtaSection primaryButtonLabel={null} showFooter />
     </div>
   )

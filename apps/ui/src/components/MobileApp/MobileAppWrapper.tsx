@@ -1,17 +1,9 @@
-import MobileAppHero from "@/components/MobileApp/MobileAppHero"
-import React from "react"
-import MobileAppCoreFeatures from "@/components/MobileApp/MobileAppCoreFeatures"
-import MobileAppSolutions from "@/components/MobileApp/MobileAppSolutions"
-import MobileAppInventory from "@/components/MobileApp/MobileAppInventory"
-import MobileAppReservations from "@/components/MobileApp/MobileAppReservations"
-import MobileAppAlerts from "@/components/MobileApp/MobileAppAlerts"
-import MobileAppShowcase from "@/components/MobileApp/MobileAppShowcase"
-import MobileAppBenefits from "@/components/MobileApp/mobileAppBenefits"
+import { ComingSoonPage } from "@/components/common/ComingSoonPage"
 import { CtaSection } from "@/components/common/CtaSection"
-import { FaqSection, type FaqItem } from "@/components/landing/FaqSection"
+import type { FaqItem } from "@/components/landing/FaqSection"
 
 // Dummy FAQ data for the mobile app page.
-const mobileAppFaqs: FaqItem[] = [
+const _mobileAppFaqs: FaqItem[] = [
   {
     question: "How long does deployment typically take?",
     answer:
@@ -29,10 +21,11 @@ const mobileAppFaqs: FaqItem[] = [
   },
 ]
 
-const MobileAppWrapper = () => {
+function MobileAppWrapper() {
   return (
-    <div className="flex flex-col w-full">
-      <MobileAppHero />
+    <div className="flex w-full flex-col">
+      <ComingSoonPage />
+      {/* <MobileAppHero />
       <MobileAppSolutions />
       <MobileAppCoreFeatures />
       <MobileAppInventory />
@@ -41,13 +34,13 @@ const MobileAppWrapper = () => {
       <MobileAppShowcase />
       <MobileAppBenefits />
       <FaqSection
-        faqs={mobileAppFaqs}
+        faqs={_mobileAppFaqs}
         description="Everything you need to know about ResAvenue Mobile."
         defaultOpenIndex={null}
         cardClassName="bg-[#F8FAFC]"
         className="bg-white lg:py-[40px]"
         titleClassName="tracking-[-1.5px]! lg:text-[36px]! lg:leading-[40px]! lg:tracking-normal!"
-      />
+      /> */}
       <CtaSection
         title="Create unforgettable events with less effort and more impact."
         titleClassName="typo-h1 mx-auto max-w-[906px] text-center text-white lg:text-[46px]! lg:leading-[51.52px]! lg:tracking-[-0.5px]!"
@@ -56,7 +49,6 @@ const MobileAppWrapper = () => {
         primaryButtonLabel={null}
         showFooter
       />
-
     </div>
   )
 }

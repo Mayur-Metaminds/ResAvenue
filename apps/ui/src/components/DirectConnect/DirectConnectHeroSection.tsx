@@ -18,7 +18,7 @@ export function DirectConnectHeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex w-full flex-col overflow-hidden bg-[#0A0A0B]"
+      className="relative flex w-full flex-col overflow-hidden bg-[#0A0A0B] pt-12 pb-6 sm:pt-14 sm:pb-8 lg:min-h-[666px] lg:pt-20 lg:pb-0"
     >
       {/* Background image */}
       <Image
@@ -32,12 +32,15 @@ export function DirectConnectHeroSection() {
       />
 
       {/* Container */}
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-[16px] py-[70px] pt-[90px] md:pt-[100px] lg:px-[80px] lg:pt-[70px]">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-4 pt-2 pb-0 sm:px-6 sm:pt-4 lg:px-[80px] lg:pt-[60px] lg:pb-0">
         {/* Main Content */}
-        <div className="grid flex-1 grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
+        <div className="grid flex-1 grid-cols-1 items-center gap-4 sm:gap-6 lg:grid-cols-2 lg:gap-8">
           {/* Left Column: Content */}
           <HeroContent
             eyebrow="HOTEL BOOKING ENGINE"
+            eyebrowClassName="typo-body2"
+            className="h-full justify-center pb-0 lg:pb-8 2xl:pb-14"
+            descriptionClassName="mb-[16px] lg:mb-[24px] text-[15px] leading-[22px] sm:text-[16px] sm:leading-[24px]"
             title={
               <HeroTitle>
                 Built for Every Stay.
@@ -47,7 +50,8 @@ export function DirectConnectHeroSection() {
                 </HeroTitle.Highlight>
               </HeroTitle>
             }
-            description="From hotels and resorts to boutique properties, serviced apartments, villas, and alternative accommodations, ResAvenue Direct Connect transforms your website into a powerful direct booking engine. Deliver seamless, mobile-first booking experiences with real-time availability, dynamic pricing, exclusive offers, secure payments, and conversion-focused journeys designed to reduce OTA dependency and maximize direct revenue."
+            description="ResAvenue Direct Connect empowers hotels, resorts, villas, and serviced apartments with seamless, mobile-first direct bookings, real-time availability, dynamic pricing, secure payments, and exclusive offers to reduce OTA dependency and maximize revenue."
+            //From hotels and resorts to boutique properties, serviced apartments, villas, and alternative accommodations, ResAvenue Direct Connect transforms your website into a powerful direct booking engine. Deliver seamless, mobile-first booking experiences with real-time availability, dynamic pricing, exclusive offers, secure payments, and conversion-focused journeys designed to reduce OTA dependency and maximize direct revenue.
             actions={[
               <Link key="demo" href="/contact-us">
                 <Button
@@ -71,17 +75,17 @@ export function DirectConnectHeroSection() {
           />
 
           {/* Right Column: Mockup */}
-          <div className="relative z-20 flex h-[300px] w-full items-center justify-center sm:h-[480px] lg:h-[600px] lg:justify-center xl:h-[720px] xl:justify-end">
+          <div className="relative z-20 flex h-[220px] w-full items-center justify-center sm:h-[295px] md:h-[380px] lg:h-[480px] lg:justify-center xl:h-[510px] xl:justify-end">
             <LazyLottie
               src={DC_HERO_OVERLAY_URL}
               priority="eager"
               loop
-              className="h-full w-full origin-center scale-[1.35] md:scale-[1.15] lg:scale-[1.3] xl:scale-[1.4]"
+              className="h-full w-full origin-center scale-[1.15] md:scale-[1.05] lg:scale-[1.1] xl:scale-[1.2]"
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
             />
 
             {/* Glow */}
-            <div className="bg-primary/20 absolute top-1/2 left-1/2 -z-10 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]" />
+            <div className="bg-primary/20 absolute top-1/2 left-1/2 -z-10 h-[300px] w-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]" />
           </div>
         </div>
       </div>

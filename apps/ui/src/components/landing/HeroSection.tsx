@@ -14,7 +14,7 @@ export function HeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="relative flex w-full flex-col overflow-hidden bg-[#0A0A0B] pt-12 pb-6 sm:pt-14 sm:pb-8 lg:pt-20 lg:pb-0"
+      className="relative flex w-full flex-col overflow-hidden bg-[#0A0A0B] pt-12 pb-6 sm:pt-14 sm:pb-8 lg:min-h-[666px] lg:pt-20 lg:pb-0"
     >
       {/* Background image */}
       <Image
@@ -36,14 +36,16 @@ export function HeroSection() {
             eyebrow="CLOUD BASED HOTEL MANAGEMENT"
             eyebrowClassName="typo-body2"
             className="h-full justify-center pb-0 lg:pb-14"
-            descriptionClassName="mb-5 sm:mb-7 lg:mb-[40px] text-[15px] leading-[22px] sm:text-[16px] sm:leading-[24px]"
+            descriptionClassName="mb-[16px] lg:mb-[24px] text-[15px] leading-[22px] sm:text-[16px] sm:leading-[24px]"
             title={
               <HeroTitle>
                 The Complete Revenue & Distribution Platform for{" "}
                 <HeroTitle.Highlight>Modern Hospitality</HeroTitle.Highlight>
               </HeroTitle>
             }
-            description="ResAvenue brings together booking technology, channel connectivity, property management, intelligent pricing, and digital commerce tools into one seamless ecosystem designed to help hospitality brands grow. Whether you manage a luxury resort, boutique hotel, serviced apartment, or vacation stay, our platform helps you simplify operations, increase direct bookings, and maximize revenue across every channel."
+            description="ResAvenue unifies booking, channel management, property operations, pricing, and digital commerce to simplify hospitality management, boost direct bookings, and maximize revenue across all channels."
+            //ResAvenue brings together booking technology, channel connectivity, property management, intelligent pricing, and digital commerce tools into one seamless ecosystem designed to help hospitality brands grow. Whether you manage a luxury resort, boutique hotel, serviced apartment, or vacation stay, our platform helps you simplify operations, increase direct bookings, and maximize revenue across every channel.
+            //
             actions={[
               <Link key="demo" href="/contact-us">
                 <Button

@@ -1,26 +1,18 @@
-import React from "react"
-
+import { ComingSoonPage } from "@/components/common/ComingSoonPage"
 import { CtaSection } from "@/components/common/CtaSection"
-import PropertyManagementHero from "@/components/PropertyManagement/PropertyManagementHero"
-import PropertyManagementScalability from "@/components/PropertyManagement/PropertyManagementScalability"
-import PropertyManagementOperations from "@/components/PropertyManagement/PropertyManagementOperations"
-import PropertyManagementFrontDesk from "@/components/PropertyManagement/PropertyManagementFrontDesk"
-import PropertyManagementReservation from "@/components/PropertyManagement/PropertyManagementReservation"
-import PropertyManagementBilling from "@/components/PropertyManagement/PropertyManagementBilling"
-import PropertyManagementHousekeeping from "@/components/PropertyManagement/PropertyManagementHousekeeping"
-import PropertyManagementTools from "@/components/PropertyManagement/PropertyManagementTools"
 
-const PropertyManagementWrapper = () => {
+function PropertyManagementWrapper() {
   return (
-    <div className="flex flex-col w-full">
-      <PropertyManagementHero />
+    <div className="flex w-full flex-col">
+      <ComingSoonPage />
+      {/* <PropertyManagementHero />
       <PropertyManagementScalability />
       <PropertyManagementFrontDesk />
       <PropertyManagementOperations />
       <PropertyManagementReservation />
       <PropertyManagementBilling />
       <PropertyManagementHousekeeping />
-      <PropertyManagementTools />
+      <PropertyManagementTools /> */}
       <CtaSection
         title="The Smarter Way to Run Your Hotel Starts Here"
         description="Join hotels that are simplifying operations, increasing direct bookings, and maximizing revenue with one unified platform."

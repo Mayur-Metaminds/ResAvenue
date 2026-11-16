@@ -47,7 +47,7 @@ export function HeroContent({
       {/* Description */}
       <p
         className={cn(
-          "typo-body1 mb-[40px] text-white opacity-55",
+          "typo-body1 mb-[16px] text-white opacity-55 lg:mb-[24px]",
           descriptionClassName
         )}
       >
@@ -58,6 +58,7 @@ export function HeroContent({
       {actions && actions.length > 0 && (
         <div className="flex flex-wrap items-center gap-4">
           {actions.map((action, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={index}>{action}</React.Fragment>
           ))}
         </div>

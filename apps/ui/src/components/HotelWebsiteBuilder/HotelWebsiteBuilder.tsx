@@ -1,27 +1,18 @@
 "use client"
 
-import { Marquee } from "@/components/common/Marquee"
-import { trustedLogos, type TrustedLogo } from "@/types/trustedLogos"
-import { HotelWebsiteBuilderHeroSection } from "./HotelWebsiteBuilderHeroSection"
-import { HotelWebsiteBuilderFeaturesSection } from "./HotelWebsiteBuilderFeaturesSection"
-import { HotelWebsiteBuilderPoweringSection } from "./HotelWebsiteBuilderPoweringSection"
-import { HotelWebsiteBuilderTestimonialsSection } from "./HotelWebsiteBuilderTestimonialsSection"
-import { HotelWebsiteBuilderOpportunitySection } from "./HotelWebsiteBuilderOpportunitySection"
-import { HotelWebsiteBuilderRevenueSection } from "./HotelWebsiteBuilderRevenueSection"
-import { HotelWebsiteBuilderGlobalSection } from "./HotelWebsiteBuilderGlobalSection"
-import { HotelWebsiteBuilderCarouselSection } from "./HotelWebsiteBuilderCarouselSection"
-import { HotelWebsiteBuilderPerformanceSection } from "./HotelWebsiteBuilderPerformanceSection"
+import { ComingSoonPage } from "@/components/common/ComingSoonPage"
 import { CtaSection } from "@/components/common/CtaSection"
 
 export default function HotelWebsiteBuilder() {
   return (
-    <div className="flex flex-col w-full bg-[#FAFAFA]">
-      <HotelWebsiteBuilderHeroSection />
-      
+    <div className="flex w-full flex-col bg-[#FAFAFA]">
+      {/* <HotelWebsiteBuilderHeroSection /> */}
+
+      <ComingSoonPage />
+
       {/* Trusted Logos & Marquee Section */}
-     
-          
-          <Marquee<TrustedLogo>
+
+      {/* <Marquee<TrustedLogo>
             className="w-full pb-[30px] pt-[30px] "
             items={[...trustedLogos]}
             getKey={(logo) => logo.name}
@@ -40,43 +31,40 @@ export default function HotelWebsiteBuilder() {
               </div>
             )}
           />
- 
-
-     
+  */}
 
       {/* Testimonials Marquee Section */}
-      <HotelWebsiteBuilderTestimonialsSection />
+      {/* <HotelWebsiteBuilderTestimonialsSection />
 
       {/* Features Animated Section */}
-      <HotelWebsiteBuilderFeaturesSection />
+      {/* <HotelWebsiteBuilderFeaturesSection />
 
        {/* Powering Section */}
-      <HotelWebsiteBuilderPoweringSection />  
+      {/* <HotelWebsiteBuilderPoweringSection />   */}
 
-       {/* Opportunity Section */}
-      <HotelWebsiteBuilderOpportunitySection />
+      {/* Opportunity Section */}
+      {/* <HotelWebsiteBuilderOpportunitySection /> */}
 
       {/* Revenue Section */}
-      <HotelWebsiteBuilderRevenueSection />
+      {/* <HotelWebsiteBuilderRevenueSection /> */}
 
       {/* Global Section */}
-      <HotelWebsiteBuilderGlobalSection />
+      {/* <HotelWebsiteBuilderGlobalSection /> */}
 
       {/* Carousel Section */}
-      <HotelWebsiteBuilderCarouselSection />
+      {/* <HotelWebsiteBuilderCarouselSection /> */}
 
       {/* Performance Section */}
-      <HotelWebsiteBuilderPerformanceSection />
+      {/* <HotelWebsiteBuilderPerformanceSection /> */}
 
-      <CtaSection 
-        title="Turn Your Website Into Your Most Profitable Channel" 
-        description="Join hotels driving more direct bookings, reducing OTA commissions, and unlocking higher revenue with ResAvenue." 
+      <CtaSection
+        title="Turn Your Website Into Your Most Profitable Channel"
+        description="Join hotels driving more direct bookings, reducing OTA commissions, and unlocking higher revenue with ResAvenue."
         primaryButtonLabel={null}
         secondaryButtonLabel="Get Started Today"
         secondaryButtonHref="/contact-us"
-        showFooter 
+        showFooter
       />
-
     </div>
   )
 }

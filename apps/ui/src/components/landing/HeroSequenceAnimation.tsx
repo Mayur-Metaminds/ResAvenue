@@ -12,6 +12,32 @@ interface SequenceAnimationProps {
   fps?: number
 }
 
+// Global cache to avoid duplicate image allocation and memory thrashing across routes
+const frameCache = new Map<string, HTMLImageElement[]>()
+
+function getFrames(
+  folderPath: string,
+  filePrefix: string,
+  fileExtension: string,
+  padLength: number,
+  totalFrames: number
+): HTMLImageElement[] {
+  const cacheKey = `${folderPath}/${filePrefix}_${padLength}_${totalFrames}_${fileExtension}`
+  let frames = frameCache.get(cacheKey)
+  if (!frames) {
+    frames = []
+    for (let i = 0; i < totalFrames; i++) {
+      const img = new Image()
+      const paddedIndex = String(i).padStart(padLength, "0")
+      img.src = `${folderPath}/${filePrefix}${paddedIndex}${fileExtension}`
+      frames.push(img)
+    }
+    frameCache.set(cacheKey, frames)
+  }
+
+  return frames
+}
+
 export const HeroSequenceAnimation = memo(function HeroSequenceAnimation({
   className,
   folderPath = "/hero-sequence",
@@ -29,32 +55,38 @@ export const HeroSequenceAnimation = memo(function HeroSequenceAnimation({
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    const frames: HTMLImageElement[] = []
+    const frames = getFrames(
+      folderPath,
+      filePrefix,
+      fileExtension,
+      padLength,
+      totalFrames
+    )
     let currentFrame = -1
     let animationFrameId: number
     let isMounted = true
 
-    // Preload all frames based on the provided props
-    for (let i = 0; i < totalFrames; i++) {
-      const img = new Image()
-      const paddedIndex = String(i).padStart(padLength, "0")
-      img.src = `${folderPath}/${filePrefix}${paddedIndex}${fileExtension}`
-      if (i === 0) {
-        img.addEventListener("load", () => {
-          if (isMounted && currentFrame <= 0 && canvasRef.current) {
-            const c = canvasRef.current
-            const cCtx = c.getContext("2d")
-            if (cCtx && img.naturalWidth > 0) {
-              c.width = img.naturalWidth
-              c.height = img.naturalHeight
-              cCtx.clearRect(0, 0, c.width, c.height)
-              cCtx.drawImage(img, 0, 0)
-              currentFrame = 0
-            }
-          }
-        })
+    const firstImg = frames[0]
+    const renderFirstFrame = () => {
+      if (isMounted && currentFrame <= 0 && canvasRef.current) {
+        const c = canvasRef.current
+        const cCtx = c.getContext("2d")
+        if (cCtx && firstImg && firstImg.naturalWidth > 0) {
+          c.width = firstImg.naturalWidth
+          c.height = firstImg.naturalHeight
+          cCtx.clearRect(0, 0, c.width, c.height)
+          cCtx.drawImage(firstImg, 0, 0)
+          currentFrame = 0
+        }
       }
-      frames.push(img)
+    }
+
+    if (firstImg) {
+      if (firstImg.complete && firstImg.naturalWidth > 0) {
+        renderFirstFrame()
+      } else {
+        firstImg.addEventListener("load", renderFirstFrame, { once: true })
+      }
     }
 
     const startTime = performance.now()
@@ -90,7 +122,12 @@ export const HeroSequenceAnimation = memo(function HeroSequenceAnimation({
 
     return () => {
       isMounted = false
-      cancelAnimationFrame(animationFrameId)
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+      }
+      if (firstImg) {
+        firstImg.removeEventListener("load", renderFirstFrame)
+      }
     }
   }, [folderPath, filePrefix, fileExtension, padLength, totalFrames, fps])
 

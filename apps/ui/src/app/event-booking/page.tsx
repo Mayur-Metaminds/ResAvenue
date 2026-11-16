@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { ComingSoonPage } from "@/components/common/ComingSoonPage"
+import EventBookingWrapper from "@/components/EventBooking/EventBookingWrapper"
 import { StructuredData } from "@/components/seo/StructuredData"
 import { getEventBookingPageSeo } from "@/lib/seo/pages"
 
@@ -14,7 +14,8 @@ export default function EventBookingPage() {
   return (
     <>
       <StructuredData data={seo.schema} />
-      <ComingSoonPage />
+      <EventBookingWrapper />
+      {/* <ComingSoonPage /> */}
     </>
   )
 }
