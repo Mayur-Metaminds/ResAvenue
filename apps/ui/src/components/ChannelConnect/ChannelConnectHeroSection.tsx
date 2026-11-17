@@ -22,7 +22,7 @@ export function ChannelConnectHeroSection() {
   return (
     <section
       data-nav-theme="dark"
-      className="4xl:min-h-[42vh] relative flex min-h-[100dvh] w-full flex-col overflow-hidden bg-[#0A0A0B] pt-20 pb-0 sm:pt-14 sm:pb-0 lg:min-h-[666px] lg:pt-20 lg:pb-0 [@media(min-width:1000px)]:min-h-[666px] [@media(min-width:1000px)]:pt-20 [@media(min-width:2000px)]:min-h-[42vh]"
+      className="4xl:min-h-[42vh] relative flex min-h-[100dvh] w-full flex-col overflow-hidden bg-[#0A0A0B] pt-20 pb-0 sm:pt-14 sm:pb-0 lg:min-h-[666px] lg:pt-20 lg:pb-0 [@media(min-width:1000px)]:min-h-[300px] [@media(min-width:1000px)]:pt-5 [@media(min-width:2000px)]:min-h-[42vh]"
     >
       {/* Background image */}
       <Image
@@ -36,14 +36,14 @@ export function ChannelConnectHeroSection() {
       />
 
       {/* Container */}
-      <div className="4xl:max-w-[1712px] 4xl:px-0 relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-4 pt-2 pb-0 sm:px-6 sm:pt-4 lg:pt-[60px] lg:pr-0 lg:pb-0 lg:pl-16 xl:pl-20 [@media(min-width:1000px)]:px-8">
+      <div className="4xl:max-w-[1440px] 4xl:px-0 4xl:pl-20 relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-4 pt-2 pb-0 sm:px-6 sm:pt-4 lg:pt-[60px] lg:pr-0 lg:pb-0 lg:pl-16 xl:pl-20 [@media(min-width:1000px)]:px-8">
         {/* Main Content */}
         <div className="4xl:grid-cols-[auto_1fr] 4xl:items-end 4xl:gap-0 grid flex-1 grid-cols-1 grid-rows-[auto_1fr] items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:grid-rows-none lg:items-end lg:gap-8 xl:gap-4 [@media(min-width:1000px)]:grid-cols-2 [@media(min-width:1000px)]:grid-rows-none [@media(min-width:1000px)]:items-end [@media(min-width:1000px)]:gap-6">
           {/* Left Column: Content */}
           <HeroContent
             eyebrow="INTUITIVE EXPERIENCE. FAST FLEXIBILITY."
             eyebrowClassName="typo-body2"
-            className="4xl:max-w-2xl 4xl:pb-20 4xl:translate-x-45 h-full max-w-none justify-center pb-0 md:max-w-2xl lg:max-w-xl lg:pb-1 xl:translate-x-18"
+            className="4xl:max-w-2xl 4xl:pb-20 4xl:translate-x-0 h-full max-w-none justify-center pb-0 md:max-w-2xl lg:max-w-xl lg:pb-1 xl:translate-x-18"
             descriptionClassName="mb-[16px] lg:mb-[24px] text-[15px] leading-[22px] sm:text-[16px] sm:leading-[24px]"
             title={
               <HeroTitle
@@ -78,7 +78,7 @@ export function ChannelConnectHeroSection() {
 
           {/* Right Column: Hero Animation */}
           <div className="4xl:justify-end relative z-20 mt-auto flex w-full items-end justify-center self-end lg:mt-0 lg:justify-end [@media(min-width:1000px)]:mt-0">
-            <div className="4xl:max-w-[980px] 4xl:-translate-x-30 relative w-full max-w-[340px] min-[400px]:max-w-[380px] sm:max-w-[440px] md:max-w-[500px] lg:max-w-[860px] lg:-translate-x-4 xl:max-w-[920px] xl:-translate-x-10 [@media(min-width:1000px)]:max-w-[580px]">
+            <div className="4xl:max-w-[980px] 4xl:-translate-x-10 relative w-full max-w-[340px] min-[400px]:max-w-[380px] sm:max-w-[440px] md:max-w-[500px] lg:max-w-[860px] lg:-translate-x-4 xl:max-w-[920px] xl:-translate-x-10 [@media(min-width:1000px)]:max-w-[580px]">
               {/* Glow effect behind the image */}
               <div className="absolute top-1/2 left-1/2 -z-10 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ED862E]/15 blur-[80px]" />
 

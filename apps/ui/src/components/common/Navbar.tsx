@@ -147,14 +147,14 @@ export function Navbar() {
     <>
       <nav
         className={cn(
-          "4xl:px-100 fixed top-0 left-0 z-[100] w-full rounded-none px-[15px] py-[19px] transition-[top,width,padding,background-color,border-color,border-radius,box-shadow,backdrop-filter] duration-300 ease-out will-change-[top,width]",
+          "4xl:px-0 fixed top-0 left-0 z-[100] w-full rounded-none px-[15px] py-[19px] transition-[top,width,padding,background-color,border-color,border-radius,box-shadow,backdrop-filter] duration-300 ease-out will-change-[top,width]",
           // Always center on desktop — works at full width too (left:50% + -translate-x-1/2 nets to left:0 when width is 100%).
           // Keeping these stable across scroll states eliminates the wobble from animating left/translate together.
           // Desktop navbar chrome starts at xl; lg and below use the mobile navbar.
           "xl:left-1/2 xl:-translate-x-1/2",
           scrolled
             ? [
-                "xl:top-6 xl:w-[calc(100%-2rem)] xl:rounded-[100px] xl:border xl:px-2 xl:py-2 xl:shadow-[0_8px_32px_rgba(0,0,0,0.1)] 2xl:w-[calc(100%-4rem)]",
+                "4xl:max-w-[1440px] xl:top-6 xl:w-[calc(100%-2rem)] xl:rounded-[100px] xl:border xl:px-2 xl:py-2 xl:shadow-[0_8px_32px_rgba(0,0,0,0.1)] 2xl:w-[calc(100%-4rem)]",
                 isDark
                   ? "bg-black/20 backdrop-blur-md xl:border-white/10 xl:bg-white/10"
                   : "border-b border-black/5 bg-[linear-gradient(225deg,rgba(240,242,253,0.18)_0%,rgba(61,98,129,0.12)_100%)] backdrop-blur-[15px] xl:border-black/10 xl:shadow-sm",
@@ -164,14 +164,14 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "flex w-full items-center justify-between transition-opacity xl:px-4",
+            "4xl:mx-auto 4xl:max-w-[1440px] 4xl:px-[80px] flex w-full items-center justify-between transition-opacity xl:px-4",
             isMobileMenuOpen
               ? "pointer-events-none opacity-0 duration-100"
               : "opacity-100 delay-[400ms] duration-500"
           )}
         >
           {/* Logo */}
-          <div className="shrink-0 xl:ml-2">
+          <div className="4xl:-ml-12 shrink-0 xl:ml-2">
             <Link href="/">
               {isDark ? <ResAvenueWhiteLogo /> : <ResAvenueBlackLogo />}
             </Link>
@@ -295,7 +295,7 @@ export function Navbar() {
               className={buttonVariants({
                 variant: "primary",
                 className:
-                  "typo-body3 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] xl:mr-2",
+                  "typo-body3 4xl:mr-0 flex h-[40.8px] w-[134.08px] items-center justify-center rounded-[50px] xl:mr-2",
               })}
               style={{ padding: "11px 21.661px 11.8px 22px" }}
             >
