@@ -171,7 +171,7 @@ export function Navbar() {
           )}
         >
           {/* Logo */}
-          <div className="4xl:-ml-12 shrink-0 xl:ml-2">
+          <div className="4xl:ml-0 shrink-0 xl:ml-2">
             <Link href="/">
               {isDark ? <ResAvenueWhiteLogo /> : <ResAvenueBlackLogo />}
             </Link>

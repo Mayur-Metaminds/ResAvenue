@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
-import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
+import type * as React from "react"
+import { useState } from "react"
 
 import { BentoGrid, type BentoItem } from "@/components/common/BentoGrid"
 import { SectionHeader } from "@/components/landing/SectionHeader"
@@ -30,7 +30,7 @@ const CARDS_DATA = [
       "Direct, reliable connections with all major global OTAs (Booking, Expedia, Agoda) ensuring your inventory is accurately reflected in real-time.",
     Icon: OmnichannelCardIcon1,
     renderGraphic: () => (
-      <div className="relative mt-[15px] md:absolute md:mt-0 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
+      <div className="relative z-20 mt-[15px] flex items-center -space-x-3 transition-opacity duration-300 md:absolute md:bottom-8 md:left-8 md:mt-0 xl:bottom-10 xl:left-10">
         {["EX", "BK", "AG"].map((label) => (
           <div
             key={label}
@@ -56,7 +56,7 @@ const CARDS_DATA = [
       "Connect directly to key booking engines and reservation systems without intermediaries ensuring high-performance direct integration.",
     Icon: OmnichannelCardIcon2,
     renderGraphic: () => (
-      <div className="relative mt-[15px] md:absolute md:mt-0 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
+      <div className="relative z-20 mt-[15px] flex items-center -space-x-3 transition-opacity duration-300 md:absolute md:bottom-8 md:left-8 md:mt-0 xl:bottom-10 xl:left-10">
         {["EX", "BK", "AG"].map((label) => (
           <div
             key={label}
@@ -82,7 +82,7 @@ const CARDS_DATA = [
       "Expand reach to corporate travellers via leading GDS platforms like Amadeus, Sabre, and Travelport.",
     Icon: OmnichannelCardIcon3,
     renderGraphic: () => (
-      <div className="relative mt-[15px] md:absolute md:mt-0 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
+      <div className="relative z-20 mt-[15px] flex items-center -space-x-3 transition-opacity duration-300 md:absolute md:bottom-8 md:left-8 md:mt-0 xl:bottom-10 xl:left-10">
         {["EX", "BK", "AG"].map((label) => (
           <div
             key={label}
@@ -108,7 +108,7 @@ const CARDS_DATA = [
       "Boost visibility and drive direct traffic with integrations to meta-search platforms like Google Hotel Finder.",
     Icon: OmnichannelCardIcon4,
     renderGraphic: () => (
-      <div className="relative mt-[15px] md:absolute md:mt-0 md:bottom-8 md:left-8 xl:bottom-10 xl:left-10 flex items-center -space-x-3 z-20 transition-opacity duration-300">
+      <div className="relative z-20 mt-[15px] flex items-center -space-x-3 transition-opacity duration-300 md:absolute md:bottom-8 md:left-8 md:mt-0 xl:bottom-10 xl:left-10">
         {["EX", "BK", "AG"].map((label) => (
           <div
             key={label}
@@ -134,6 +134,7 @@ export function ChannelConnectOmnichannelSection() {
 
   const omnichannelCards: OmnichannelCard[] = CARDS_DATA.map((card) => {
     const isActive = card.id === activeId
+
     return {
       id: card.id,
       title: card.title,
@@ -159,13 +160,13 @@ export function ChannelConnectOmnichannelSection() {
     <div data-nav-theme="light">
       <BentoGrid<OmnichannelCard>
         items={omnichannelCards}
-        sectionClassName="w-full py-[32px] lg:py-[60px] px-[12px] lg:px-[80px] bg-white"
-        containerClassName="mx-auto w-full max-w-[1440px] [&>.grid]:xl:!grid-cols-5"
+        sectionClassName="w-full py-[32px] lg:py-[60px] bg-white"
+        containerClassName="mx-auto w-full max-w-[1440px] px-[12px] lg:px-[80px] [&>.grid]:xl:!grid-cols-5"
         gridClassName="relative grid auto-rows-min grid-cols-1 gap-6 md:auto-rows-fr md:grid-cols-12"
         cardClassName="p-6 md:p-8 xl:p-10 md:min-h-[380px] justify-start"
         header={
           <SectionHeader
-            className="mx-auto max-w-3xl text-center md:py-0 py-[24px] mb-[45px] lg:mb-[28px]"
+            className="mx-auto mb-[45px] max-w-3xl py-[24px] text-center md:py-0 lg:mb-[28px]"
             eyebrow="API-first infrastructure"
             eyebrowClassName="mb-[15px] lg:mb-[12px]"
             highlightGradient="linear-gradient(85deg, #010E38 -6.88%, #1A2F6D 41.93%, #ED862E 60.24%)"
@@ -179,8 +180,7 @@ export function ChannelConnectOmnichannelSection() {
                   Omnichannel
                   <br className="" />
                 </span>
-                Connectivity{" "}
-                <span className="md:hidden"> </span>
+                Connectivity <span className="md:hidden"> </span>
                 Ecosystem
               </SectionHeader.Highlight>
             }
@@ -189,6 +189,7 @@ export function ChannelConnectOmnichannelSection() {
         }
         renderCard={(item) => {
           const isActive = item.id === activeId
+
           return (
             <>
               <div
@@ -202,8 +203,8 @@ export function ChannelConnectOmnichannelSection() {
                 className={cn(
                   "relative z-20 flex w-full transition-all duration-300",
                   isActive
-                    ? "mb-[15px] gap-[40px] md:mb-[32px] xl:mb-[40px] items-start"
-                    : "mb-[7px] md:mb-[32px] gap-[18px] xl:mb-[40px] items-center"
+                    ? "mb-[15px] items-start gap-[40px] md:mb-[32px] xl:mb-[40px]"
+                    : "mb-[7px] items-center gap-[18px] md:mb-[32px] xl:mb-[40px]"
                 )}
               >
                 {item?.icon && <div className="shrink-0">{item.icon}</div>}
